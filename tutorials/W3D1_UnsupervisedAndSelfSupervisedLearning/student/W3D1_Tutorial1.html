@@ -609,6 +609,11 @@
 <a class="reference internal nav-link" href="#">
    Tutorial 1: Un/Self-supervised learning methods
   </a>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#tutorial-objectives">
+   Tutorial Objectives
+  </a>
 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry">
 <a class="reference internal nav-link" href="#video-0-introduction">
@@ -651,13 +656,6 @@
 <a class="reference internal nav-link" href="#set-random-seed">
      Set random seed
     </a>
-<ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#pre-load-variables-allows-each-section-to-be-run-independently">
-       Pre-load variables (allows each section to be run independently).
-      </a>
-</li>
-</ul>
 </li>
 <li class="toc-h2 nav-item toc-entry">
 <a class="reference internal nav-link" href="#set-device-gpu-or-cpu-execute-set-device">
@@ -668,6 +666,13 @@
       </span>
 </code>
 </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#pre-load-variables-allows-each-section-to-be-run-independently">
+       Pre-load variables (allows each section to be run independently)
+      </a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -686,11 +691,6 @@
      Section 1.1: Introducing the dSprites dataset
     </a>
 <ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#check-setup">
-       Check setup
-      </a>
-</li>
 <li class="toc-h3 nav-item toc-entry">
 <a class="reference internal nav-link" href="#interactive-demo-1-1-1-exploring-the-dsprites-dataset">
        Interactive Demo 1.1.1: Exploring the dSprites dataset
@@ -737,11 +737,6 @@
      Section 2.1: Examining Representational Similarity Matrices (RSMs)
     </a>
 <ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#id1">
-       Check setup
-      </a>
-</li>
 <li class="toc-h3 nav-item toc-entry">
 <a class="reference internal nav-link" href="#coding-exercise-2-1-1-complete-a-function-that-calculates-rsms">
        Coding Exercise 2.1.1: Complete a function that calculates RSMs.
@@ -1078,8 +1073,10 @@
 <p><strong>Content editors:</strong> Anoop Kulkarni, Spiros Chalvis</p>
 <p><strong>Production editors:</strong> Deepak Raya, Spiros Chalvis</p>
 <p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
-<p align="center"><img src="https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True"/></p><hr class="docutils"/>
-<p>#Tutorial Objectives</p>
+<p align="center"><img src="https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True"/></p></div>
+<hr class="docutils"/>
+<div class="section" id="tutorial-objectives">
+<h1>Tutorial Objectives<a class="headerlink" href="#tutorial-objectives" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial, you will learn about the importance of learning good representations of data.</p>
 <p>Specific objectives for this tutorial:</p>
 <ul class="simple">
@@ -1093,7 +1090,7 @@
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "718fdfee387e413fb70cf032d37599b3"}
+{"version_major": 2, "version_minor": 0, "model_id": "4c26d449e1634d45ae037783e475e746"}
 </script></div>
 </div>
 </div>
@@ -1124,7 +1121,7 @@
 <span class="n">download_str</span> <span class="o">=</span> <span class="s2">"Downloading"</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">):</span>
   <span class="n">download_str</span> <span class="o">=</span> <span class="s2">"Redownloading"</span>
-  <span class="o">!</span><span class="se">\r</span>m -rf <span class="nv">$REPO_PATH</span>
+  <span class="o">!</span>rm -rf <span class="nv">$REPO_PATH</span>
 
 <span class="c1"># download from github repo</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">download_str</span><span class="si">}</span><span class="s2"> data, modules, and files from GitHub to </span><span class="si">{</span><span class="n">REPO_PATH</span><span class="si">}</span><span class="s2">..."</span><span class="p">)</span>
@@ -1164,9 +1161,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Figure settings</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>       <span class="c1"># interactive display</span>
+<span class="c1">#%matplotlib inline</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = 'retina'
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">"https://raw.githubusercontent.com/NeuromatchAcademy/content-creation/main/nma.mplstyle"</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">'axes'</span><span class="p">,</span> <span class="n">unicode_minus</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># to ensure negatives render correctly with xkcd style</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1206,6 +1207,7 @@
   <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Density"</span><span class="p">)</span>
   <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Similarity values"</span><span class="p">)</span>
   <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1288,61 +1290,6 @@
 </div>
 </div>
 </div>
-<div class="section" id="pre-load-variables-allows-each-section-to-be-run-independently">
-<h3>Pre-load variables (allows each section to be run independently).<a class="headerlink" href="#pre-load-variables-allows-each-section-to-be-run-independently" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Pre-load variables (allows each section to be run independently).</span>
-
-<span class="c1"># Section 1</span>
-<span class="n">SEED</span> <span class="o">=</span> <span class="mi">2021</span>
-
-<span class="n">dSprites</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dSpritesDataset</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="s2">"dsprites"</span><span class="p">,</span> <span class="s2">"dsprites_subset.npz"</span><span class="p">)</span>
-    <span class="p">)</span>
-
-<span class="n">dSprites_torchdataset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dSpritesTorchDataset</span><span class="p">(</span>
-  <span class="n">dSprites</span><span class="p">,</span>
-  <span class="n">target_latent</span><span class="o">=</span><span class="s2">"shape"</span>
-  <span class="p">)</span>
-
-<span class="n">train_sampler</span><span class="p">,</span> <span class="n">test_sampler</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">train_test_split_idx</span><span class="p">(</span>
-  <span class="n">dSprites_torchdataset</span><span class="p">,</span>
-  <span class="n">fraction_train</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-  <span class="n">randst</span><span class="o">=</span><span class="n">SEED</span>
-  <span class="p">)</span>
-
-<span class="n">supervised_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="n">model_type</span><span class="o">=</span><span class="s2">"supervised"</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="c1"># Section 2</span>
-<span class="n">custom_torch_RSM_fct</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># default is used instead</span>
-
-<span class="c1"># Section 3</span>
-<span class="n">random_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="n">model_type</span><span class="o">=</span><span class="s2">"random"</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="c1"># Section 4</span>
-<span class="n">vae_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="n">model_type</span><span class="o">=</span><span class="s2">"vae"</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="c1"># Section 5</span>
-<span class="n">invariance_transforms</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">RandomAffine</span><span class="p">(</span>
-    <span class="n">degrees</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
-    <span class="n">translate</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
-    <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
-    <span class="p">)</span>
-<span class="n">dSprites_invariance_torchdataset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dSpritesTorchDataset</span><span class="p">(</span>
-    <span class="n">dSprites</span><span class="p">,</span>
-    <span class="n">target_latent</span><span class="o">=</span><span class="s2">"shape"</span><span class="p">,</span>
-    <span class="n">simclr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">simclr_transforms</span><span class="o">=</span><span class="n">invariance_transforms</span>
-    <span class="p">)</span>
-
-<span class="c1"># Section 6</span>
-<span class="n">simclr_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="n">model_type</span><span class="o">=</span><span class="s2">"simclr"</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="set-device-gpu-or-cpu-execute-set-device">
 <h2>Set device (GPU or CPU). Execute <code class="docutils literal notranslate"><span class="pre">set_device()</span></code><a class="headerlink" href="#set-device-gpu-or-cpu-execute-set-device" title="Permalink to this headline">¶</a></h2>
@@ -1373,7 +1320,6 @@
 <span class="n">SEED</span> <span class="o">=</span> <span class="mi">2021</span>
 <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="n">REPO_PATH</span> <span class="o">=</span> <span class="s2">"neuromatch_ssl_tutorial"</span>
 </pre></div>
 </div>
 </div>
@@ -1381,6 +1327,67 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
 WARNING: For this notebook to perform best, if possible, in the menu under `Runtime` -&gt; `Change runtime type.`  select `GPU` 
 </pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pre-load-variables-allows-each-section-to-be-run-independently">
+<h3>Pre-load variables (allows each section to be run independently)<a class="headerlink" href="#pre-load-variables-allows-each-section-to-be-run-independently" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Pre-load variables (allows each section to be run independently)</span>
+
+<span class="c1"># Section 1</span>
+<span class="n">dSprites</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dSpritesDataset</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span> <span class="s2">"dsprites"</span><span class="p">,</span> <span class="s2">"dsprites_subset.npz"</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">dSprites_torchdataset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dSpritesTorchDataset</span><span class="p">(</span>
+  <span class="n">dSprites</span><span class="p">,</span>
+  <span class="n">target_latent</span><span class="o">=</span><span class="s2">"shape"</span>
+  <span class="p">)</span>
+
+<span class="n">train_sampler</span><span class="p">,</span> <span class="n">test_sampler</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">train_test_split_idx</span><span class="p">(</span>
+  <span class="n">dSprites_torchdataset</span><span class="p">,</span>
+  <span class="n">fraction_train</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+  <span class="n">randst</span><span class="o">=</span><span class="n">SEED</span>
+  <span class="p">)</span>
+
+<span class="n">supervised_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span>
+                                       <span class="n">model_type</span><span class="o">=</span><span class="s2">"supervised"</span><span class="p">,</span>
+                                       <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Section 2</span>
+<span class="n">custom_torch_RSM_fct</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># default is used instead</span>
+
+<span class="c1"># Section 3</span>
+<span class="n">random_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span>
+                                   <span class="n">model_type</span><span class="o">=</span><span class="s2">"random"</span><span class="p">,</span>
+                                   <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Section 4</span>
+<span class="n">vae_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span>
+                                <span class="n">model_type</span><span class="o">=</span><span class="s2">"vae"</span><span class="p">,</span>
+                                <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Section 5</span>
+<span class="n">invariance_transforms</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">RandomAffine</span><span class="p">(</span>
+    <span class="n">degrees</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">translate</span><span class="o">=</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span>
+    <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="n">dSprites_invariance_torchdataset</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dSpritesTorchDataset</span><span class="p">(</span>
+    <span class="n">dSprites</span><span class="p">,</span>
+    <span class="n">target_latent</span><span class="o">=</span><span class="s2">"shape"</span><span class="p">,</span>
+    <span class="n">simclr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">simclr_transforms</span><span class="o">=</span><span class="n">invariance_transforms</span>
+    <span class="p">)</span>
+
+<span class="c1"># Section 6</span>
+<span class="n">simclr_encoder</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">load_encoder</span><span class="p">(</span><span class="n">REPO_PATH</span><span class="p">,</span>
+                                   <span class="n">model_type</span><span class="o">=</span><span class="s2">"simclr"</span><span class="p">,</span>
+                                   <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1394,7 +1401,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a81961af008c4c60b15f7e5227792273"}
+{"version_major": 2, "version_minor": 0, "model_id": "8cf31e4dbbe44175aa057dff14ebe8e8"}
 </script></div>
 </div>
 </div>
@@ -1402,30 +1409,6 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <h2>Section 1.1: Introducing the dSprites dataset<a class="headerlink" href="#section-1-1-introducing-the-dsprites-dataset" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial, we will be using a subset of the openly available <strong>dSprites dataset</strong> to investigate the importance of learning good representations.</p>
 <p><em><strong>Note on dataset:</strong> For convenience, we will be using a subset of the original, full dataset which is available <a class="reference external" href="https://github.com/deepmind/dsprites-dataset/">here</a>, on GitHub.</em></p>
-<div class="section" id="check-setup">
-<h3>Check setup<a class="headerlink" href="#check-setup" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: For this notebook to perform best, if possible, in the menu under `Runtime` -&gt; `Change runtime type.`  select `GPU` 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="interactive-demo-1-1-1-exploring-the-dsprites-dataset">
 <h3>Interactive Demo 1.1.1: Exploring the dSprites dataset<a class="headerlink" href="#interactive-demo-1-1-1-exploring-the-dsprites-dataset" title="Permalink to this headline">¶</a></h3>
 <p>In this first demo, we will get to know the <strong>dSprites dataset</strong>. This dataset is made up of black and white images (20,000 images total in the subset we are using).</p>
@@ -1458,7 +1441,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D1_Tutorial1_37_0.png" src="../../../_images/W3D1_Tutorial1_37_0.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_35_0.png" src="../../../_images/W3D1_Tutorial1_35_0.png"/>
 </div>
 </div>
 <p>To better understand the <code class="docutils literal notranslate"><span class="pre">posX</span></code> and <code class="docutils literal notranslate"><span class="pre">posY</span></code> latent dimensions (which will be most relevant in <strong>Section 10</strong>), we plot the images with some annotations. The annotations (in red) do not modify the actual images; they are added <strong>purely for visualization purposes</strong>, and show:</p>
@@ -1475,7 +1458,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D1_Tutorial1_39_0.png" src="../../../_images/W3D1_Tutorial1_39_0.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_37_0.png" src="../../../_images/W3D1_Tutorial1_37_0.png"/>
 </div>
 </div>
 </div>
@@ -1497,7 +1480,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D1_Tutorial1_42_0.png" src="../../../_images/W3D1_Tutorial1_42_0.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_40_0.png" src="../../../_images/W3D1_Tutorial1_40_0.png"/>
 </div>
 </div>
 <p>The following code:</p>
@@ -1553,7 +1536,7 @@ Dataset size: 16000 training, 4000 test images
 <span class="c1"># to ensure reproducibility</span>
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 
-<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">25</span> <span class="c1"># DEMO: Try different numbers of training epochs</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">25</span>  <span class="c1"># DEMO: Try different numbers of training epochs</span>
 
 <span class="c1"># train a classifier directly on the images</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Training a classifier directly on the images..."</span><span class="p">)</span>
@@ -1575,7 +1558,7 @@ Training a classifier directly on the images...
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "da31b9902bfd4f93a078144f92521e2a"}
+{"version_major": 2, "version_minor": 0, "model_id": "855177c4bd7e448c80db88217af96c74"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Network performance after 25 classifier training epochs (chance: 33.33%):
     Training accuracy: 51.81%
     Testing accuracy: 39.55%
@@ -1662,13 +1645,9 @@ Training a classifier directly on the images...
 </div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_8475186f.py"><em>Click for solution</em></a></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span> <span class="n">seed</span> <span class="mi">2021</span> <span class="n">has</span> <span class="n">been</span> <span class="nb">set</span><span class="o">.</span>
-<span class="n">Training</span> <span class="n">a</span> <span class="n">supervised</span> <span class="n">encoder</span> <span class="ow">and</span> <span class="n">classifier</span><span class="o">...</span>
-<span class="mi">100</span><span class="o">%</span>                                    <span class="mi">10</span><span class="o">/</span><span class="mi">10</span> <span class="p">[</span><span class="mi">00</span><span class="p">:</span><span class="mi">13</span><span class="o">&lt;</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span> <span class="mf">1.33</span><span class="n">s</span><span class="o">/</span><span class="n">it</span><span class="p">]</span>
-
-<span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">10</span> <span class="n">encoder</span> <span class="ow">and</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">10</span> <span class="n">encoder</span> <span class="ow">and</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
     <span class="n">Training</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">100.00</span><span class="o">%</span>
-    <span class="n">Testing</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">98.72</span><span class="o">%</span>
+    <span class="n">Testing</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">98.38</span><span class="o">%</span>
 </pre></div>
 </div>
 <p>When the classifier is trained with an encoder network, however, it achieves very high classification accuracy (98.72%) on the test set, after only 10 training epochs.</p>
@@ -1685,7 +1664,7 @@ Training a classifier directly on the images...
 <tr class="row-even"><td><p><em>33.33%</em></p></td>
 <td><p></p></td>
 <td><p>39.55%</p></td>
-<td><p>98.72%</p></td>
+<td><p>98.38%</p></td>
 </tr>
 </tbody>
 </table>
@@ -1700,7 +1679,7 @@ Training a classifier directly on the images...
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0376b549a26b4244bdb41dff7ddac3bf"}
+{"version_major": 2, "version_minor": 0, "model_id": "2e7de026094249b297f31850bc176de5"}
 </script></div>
 </div>
 </div>
@@ -1708,30 +1687,6 @@ Training a classifier directly on the images...
 <h2>Section 2.1: Examining Representational Similarity Matrices (RSMs)<a class="headerlink" href="#section-2-1-examining-representational-similarity-matrices-rsms" title="Permalink to this headline">¶</a></h2>
 <p>To examine the representations learned by the encoder network, we use <strong>Representational Similarity Matrices (RSMs)</strong>. In these matrices, the similarity between the encoder’s representations of each possible pair of images is plotted to reveal overall structure in representation space.</p>
 <p><em><strong>Note on cosine similarity:</strong> Here, we use cosine similarity as a measure of representational similarity. Cosine similarity measures the angle between 2 vectors, and can be thought of as their normalized dot product.</em></p>
-<div class="section" id="id1">
-<h3>Check setup<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: For this notebook to perform best, if possible, in the menu under `Runtime` -&gt; `Change runtime type.`  select `GPU` 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="coding-exercise-2-1-1-complete-a-function-that-calculates-rsms">
 <h3>Coding Exercise 2.1.1: Complete a function that calculates RSMs.<a class="headerlink" href="#coding-exercise-2-1-1-complete-a-function-that-calculates-rsms" title="Permalink to this headline">¶</a></h3>
 <p>The following code:</p>
@@ -1825,7 +1780,7 @@ Training a classifier directly on the images...
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_5c5462f8.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_c6d022fc.py"><em>Click for solution</em></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_torch_RSM_fct</span><span class="p">()</span> <span class="ow">is</span> <span class="n">correctly</span> <span class="n">implemented</span><span class="o">.</span>
 </pre></div>
 </div>
@@ -1841,7 +1796,6 @@ Training a classifier directly on the images...
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorting_latent</span> <span class="o">=</span> <span class="s2">"shape"</span> <span class="c1"># DEMO: Try sorting by different latent dimensions</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Plotting RSMs..."</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">plot_model_RSMs</span><span class="p">(</span>
     <span class="n">encoders</span><span class="o">=</span><span class="p">[</span><span class="n">supervised_encoder</span><span class="p">],</span> <span class="c1"># we pass the trained supervised_encoder</span>
@@ -1863,7 +1817,7 @@ Training a classifier directly on the images...
 <strong>B.</strong> What pattern can be observed when comparing RSM values for pairs of images that share a similar latent value (e.g., 2 heart images) vs pairs of images that do not (e.g., a heart and a square image)?<br/>
 <strong>C.</strong> Do some shapes appear to be encoded more similarly than others?<br/>
 <strong>D.</strong> Do some latent dimensions show clearer RSM patterns than others? Why might that be so?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_cc25d21d.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_f276340a.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="supporting-images-for-discussion-response-examples-for-2-1-1">
 <h3>Supporting images for Discussion response examples for 2.1.1<a class="headerlink" href="#supporting-images-for-discussion-response-examples-for-2-1-1" title="Permalink to this headline">¶</a></h3>
@@ -1876,7 +1830,7 @@ Training a classifier directly on the images...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D1_Tutorial1_70_0.png" src="../../../_images/W3D1_Tutorial1_70_0.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_66_0.png" src="../../../_images/W3D1_Tutorial1_66_0.png"/>
 </div>
 </div>
 </div>
@@ -1890,35 +1844,13 @@ Training a classifier directly on the images...
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "27fa3982f26645a4bb53a7f1ec3e1cdc"}
+{"version_major": 2, "version_minor": 0, "model_id": "59354570e0214f5daff9e36c0bb29228"}
 </script></div>
 </div>
 </div>
 <div class="section" id="section-3-1-examining-rsms-of-a-random-encoder">
 <h2>Section 3.1: Examining RSMs of a random encoder<a class="headerlink" href="#section-3-1-examining-rsms-of-a-random-encoder" title="Permalink to this headline">¶</a></h2>
 <p>To determine whether the patterns observed in the RSMs of the supervised network encoder are trivial, we investigate whether they also emerge from the <strong>random projections of an untrained encoder</strong>.</p>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: For this notebook to perform best, if possible, in the menu under `Runtime` -&gt; `Change runtime type.`  select `GPU` 
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="coding-exercise-3-1-1-plotting-a-random-network-encoder-rsm-along-different-latent-dimensions">
 <h3>Coding Exercise 3.1.1: Plotting a random network encoder RSM along different latent dimensions.<a class="headerlink" href="#coding-exercise-3-1-1-plotting-a-random-network-encoder-rsm-along-different-latent-dimensions" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise, we repeat the same analysis as in <strong>Section 2.1</strong>, but with a random encoder.</p>
@@ -1973,17 +1905,13 @@ Training a classifier directly on the images...
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_73b1d41e.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_73b1d41e_2.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_73b1d41e_2.png" style="width: 1509.0px; height: 752.0px;"/></a>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span> <span class="n">seed</span> <span class="mi">2021</span> <span class="n">has</span> <span class="n">been</span> <span class="nb">set</span><span class="o">.</span>
-<span class="n">Plotting</span> <span class="n">RSMs</span><span class="o">...</span>
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_73b1d41e_1.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_73b1d41e_1.png" style="width: 1509.0px; height: 752.0px;"/></a>
 </div>
 <div class="section" id="discussion-3-1-1-what-does-comparing-these-rsms-reveal-about-the-potential-value-of-trained-versus-random-encoder-representations">
 <h3>Discussion 3.1.1: What does comparing these RSMs reveal about the potential value of trained versus random encoder representations?<a class="headerlink" href="#discussion-3-1-1-what-does-comparing-these-rsms-reveal-about-the-potential-value-of-trained-versus-random-encoder-representations" title="Permalink to this headline">¶</a></h3>
 <p><strong>A.</strong> What patterns, if any, are visible in the random network encoder RSM?<br/>
 <strong>B.</strong> Which encoder network is most likely to produce meaningful representations?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_a6636c68.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_8b06362b.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="supporting-images-for-discussion-response-examples-for-3-1-1-all-random-encoder-rsms">
 <h3>Supporting images for Discussion response examples for 3.1.1: All random encoder RSMs<a class="headerlink" href="#supporting-images-for-discussion-response-examples-for-3-1-1-all-random-encoder-rsms" title="Permalink to this headline">¶</a></h3>
@@ -1996,7 +1924,7 @@ Training a classifier directly on the images...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D1_Tutorial1_84_0.png" src="../../../_images/W3D1_Tutorial1_84_0.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_77_0.png" src="../../../_images/W3D1_Tutorial1_77_0.png"/>
 </div>
 </div>
 </div>
@@ -2066,11 +1994,7 @@ Training a classifier directly on the images...
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_3f39cb7a.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_3f39cb7a_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_3f39cb7a_3.png" style="width: 1116.0px; height: 827.0px;"/></a>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span> <span class="n">seed</span> <span class="mi">2021</span> <span class="n">has</span> <span class="n">been</span> <span class="nb">set</span><span class="o">.</span>
-<span class="n">Training</span> <span class="n">a</span> <span class="n">classifier</span> <span class="n">on</span> <span class="n">the</span> <span class="n">random</span> <span class="n">encoder</span> <span class="n">representations</span><span class="o">...</span>
-<span class="mi">100</span><span class="o">%</span>                                    <span class="mi">25</span><span class="o">/</span><span class="mi">25</span> <span class="p">[</span><span class="mi">00</span><span class="p">:</span><span class="mi">21</span><span class="o">&lt;</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span> <span class="mf">1.16</span><span class="n">s</span><span class="o">/</span><span class="n">it</span><span class="p">]</span>
-
-<span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">25</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">25</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
     <span class="n">Training</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">46.02</span><span class="o">%</span>
     <span class="n">Testing</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">44.67</span><span class="o">%</span>
 </pre></div>
@@ -2090,7 +2014,7 @@ Training a classifier directly on the images...
 <tr class="row-even"><td><p><em>33.33%</em></p></td>
 <td><p></p></td>
 <td><p>39.55%</p></td>
-<td><p>98.72%</p></td>
+<td><p>98.38%</p></td>
 <td><p>44.67%</p></td>
 </tr>
 </tbody>
@@ -2101,7 +2025,7 @@ Training a classifier directly on the images...
 <p><strong>A.</strong> How does the classifier performance compare to the classifier trained directly on the images?<br/>
 <strong>B.</strong> How does the classifier performance compare to the classifier trained along with the encoder (supervised encoder)?<br/>
 <strong>C.</strong> What explains these different performances?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_3c5b08d8.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_28e6be8a.py"><em>Click for solution</em></a></p>
 </div>
 </div>
 </div>
@@ -2113,7 +2037,7 @@ Training a classifier directly on the images...
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "259efcfd5e354bdeb9b09333170d57d8"}
+{"version_major": 2, "version_minor": 0, "model_id": "d85f53a0e9374692bfc4ab09b48494b2"}
 </script></div>
 </div>
 </div>
@@ -2125,28 +2049,6 @@ Training a classifier directly on the images...
 <ul class="simple">
 <li><p>loads the parameters of a full VAE network (encoder and decoder) pre-trained on the generative task of reconstructing the input images, under the Kullback–Leibler divergence (KLD) minimization constraint over the latent space that characterizes VAEs, using <code class="docutils literal notranslate"><span class="pre">load.load_encoder()</span></code> and <code class="docutils literal notranslate"><span class="pre">load.load_decoder()</span></code>,</p></li>
 </ul>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: For this notebook to perform best, if possible, in the menu under `Runtime` -&gt; `Change runtime type.`  select `GPU` 
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call this before any dataset/network initializing or training,</span>
@@ -2163,9 +2065,7 @@ Training a classifier directly on the images...
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
 Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_bs500_seed2021.pth'.
     =&gt; trained for 300 epochs (batch_size of 500) on the full dSprites subset dataset.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading VAE decoder from 'neuromatch_ssl_tutorial/checkpoints/vae_decoder_300ep_bs500_seed2021.pth'.
+Loading VAE decoder from 'neuromatch_ssl_tutorial/checkpoints/vae_decoder_300ep_bs500_seed2021.pth'.
    =&gt; trained for 300 epochs (batch_size of 500) on the full dSprites subset dataset.
 </pre></div>
 </div>
@@ -2188,7 +2088,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D1_Tutorial1_101_0.png" src="../../../_images/W3D1_Tutorial1_101_0.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_92_0.png" src="../../../_images/W3D1_Tutorial1_92_0.png"/>
 </div>
 </div>
 </div>
@@ -2197,7 +2097,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <p><strong>A.</strong> Which latent features does the network appear to preserve well, and which does it preserve less well?<br/>
 <strong>B.</strong> Based on the reconstruction performance, what do you expect to see in the different RSMs?</p>
 <p><em><strong>Note on reconstruction quality:</strong> This VAE network uses a basic VAE loss with a convolutional encoder (our core encoder network), and a deconvolutional decoder. This can lead to some blurriness in the reconstructed shapes which a more sophisticated VAE could overcome.</em></p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_9d9420c1.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_b1fd9be0.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="interactive-demo-4-1-2-visualizing-the-vae-encoder-rsms-organized-along-different-latent-dimensions">
 <h3>Interactive Demo 4.1.2: Visualizing the VAE encoder RSMs, organized along different latent dimensions.<a class="headerlink" href="#interactive-demo-4-1-2-visualizing-the-vae-encoder-rsms-organized-along-different-latent-dimensions" title="Permalink to this headline">¶</a></h3>
@@ -2222,15 +2122,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plotting RSMs...
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/runner/work/course-content-dl/course-content-dl/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/student/neuromatch_ssl_tutorial/modules/data.py:862: UserWarning: Calculating RSM in 4 blocks to avoid out-of-memory errors.
-  warnings.warn(f"Calculating RSM in {n_blocks} blocks to avoid "
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/IPython/core/pylabtools.py:134: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  fig.canvas.print_figure(bytes_io, **kw)
-</pre></div>
-</div>
-<img alt="../../../_images/W3D1_Tutorial1_105_3.png" src="../../../_images/W3D1_Tutorial1_105_3.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_96_1.png" src="../../../_images/W3D1_Tutorial1_96_1.png"/>
 </div>
 </div>
 </div>
@@ -2241,7 +2133,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <strong>C.</strong> What explains these different RSMs?<br/>
 <strong>D.</strong> How well will the pre-trained VAE encoder likely perform on the shape classification task, as compared to the other encoder networks?<br/>
 <strong>E.</strong> Might the pre-trained VAE encoder be better suited to predicting a different latent dimension?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_dee4bd4b.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_b7aba28a.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="supporting-images-for-discussion-response-examples-for-4-1-2-all-vae-encoder-rsms">
 <h3>Supporting images for Discussion response examples for 4.1.2: All VAE encoder RSMs<a class="headerlink" href="#supporting-images-for-discussion-response-examples-for-4-1-2-all-vae-encoder-rsms" title="Permalink to this headline">¶</a></h3>
@@ -2254,7 +2146,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D1_Tutorial1_109_0.png" src="../../../_images/W3D1_Tutorial1_109_0.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_100_0.png" src="../../../_images/W3D1_Tutorial1_100_0.png"/>
 </div>
 </div>
 </div>
@@ -2325,11 +2217,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <p><em>Example output:</em></p>
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_bfa51e5a_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_bfa51e5a_3.png" style="width: 1116.0px; height: 827.0px;"/></a>
 <p>The network loss training is fairly stable by 25 epochs, at which point the classifier performs at 45.75% accuracy on the test dataset.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span> <span class="n">seed</span> <span class="mi">2021</span> <span class="n">has</span> <span class="n">been</span> <span class="nb">set</span><span class="o">.</span>
-<span class="n">Training</span> <span class="n">a</span> <span class="n">classifier</span> <span class="n">on</span> <span class="n">the</span> <span class="n">pre</span><span class="o">-</span><span class="n">trained</span> <span class="n">VAE</span> <span class="n">encoder</span> <span class="n">representations</span><span class="o">...</span>
-<span class="mi">100</span><span class="o">%</span>                                    <span class="mi">25</span><span class="o">/</span><span class="mi">25</span> <span class="p">[</span><span class="mi">00</span><span class="p">:</span><span class="mi">21</span><span class="o">&lt;</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span> <span class="mf">1.18</span><span class="n">s</span><span class="o">/</span><span class="n">it</span><span class="p">]</span>
-
-<span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">25</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">25</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
     <span class="n">Training</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">46.48</span><span class="o">%</span>
     <span class="n">Testing</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">45.75</span><span class="o">%</span>
 </pre></div>
@@ -2349,7 +2237,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <tr class="row-even"><td><p><em>33.33%</em></p></td>
 <td><p></p></td>
 <td><p>39.55%</p></td>
-<td><p>98.72%</p></td>
+<td><p>98.38%</p></td>
 <td><p>44.67%</p></td>
 <td><p>45.75%</p></td>
 </tr>
@@ -2366,35 +2254,13 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a685a60b367645b3ae8874628b1e9855"}
+{"version_major": 2, "version_minor": 0, "model_id": "b89a5ca608874f34b4f27f83065a9662"}
 </script></div>
 </div>
 </div>
 <div class="section" id="section-5-1-examining-different-options-for-learning-invariant-representations">
 <h2>Section 5.1: Examining different options for learning invariant representations.<a class="headerlink" href="#section-5-1-examining-different-options-for-learning-invariant-representations" title="Permalink to this headline">¶</a></h2>
 <p>We now take a look at a few options for learning invariant shape representations for a dataset such as dSprites.</p>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: For this notebook to perform best, if possible, in the menu under `Runtime` -&gt; `Change runtime type.`  select `GPU` 
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="interactive-demo-5-1-1-visualizing-a-few-different-image-transformations-available-that-could-be-used-to-learn-invariance">
 <h3>Interactive Demo 5.1.1: Visualizing a few different image transformations available that could be used to learn invariance.<a class="headerlink" href="#interactive-demo-5-1-1-visualizing-a-few-different-image-transformations-available-that-could-be-used-to-learn-invariance" title="Permalink to this headline">¶</a></h3>
 <p>The following code:</p>
@@ -2440,7 +2306,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
 </pre></div>
 </div>
-<img alt="../../../_images/W3D1_Tutorial1_123_1.png" src="../../../_images/W3D1_Tutorial1_123_1.png"/>
+<img alt="../../../_images/W3D1_Tutorial1_112_1.png" src="../../../_images/W3D1_Tutorial1_112_1.png"/>
 </div>
 </div>
 </div>
@@ -2454,35 +2320,13 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3bff2aefd9e64b64833971c563ea46ac"}
+{"version_major": 2, "version_minor": 0, "model_id": "d2260c8b92a64137a61cd650add20a71"}
 </script></div>
 </div>
 </div>
 <div class="section" id="section-6-1-using-image-transformations-to-learn-feature-invariant-representations-in-an-ssl-network">
 <h2>Section 6.1: Using image transformations to learn feature invariant representations in an SSL network.<a class="headerlink" href="#section-6-1-using-image-transformations-to-learn-feature-invariant-representations-in-an-ssl-network" title="Permalink to this headline">¶</a></h2>
 <p>We will now investigate the effects of selecting certain transformations compared to others on the invariance learned by an encoder network trained with a <strong>specific type of SSL algorithm, namely SimCLR</strong>. Specifically, we will observe how pre-training an encoder network with SimCLR affects the performance of a classifier trained on the representations the network has learned.</p>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: For this notebook to perform best, if possible, in the menu under `Runtime` -&gt; `Change runtime type.`  select `GPU` 
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="coding-exercise-6-1-1-complete-a-simclr-loss-function">
 <h3>Coding Exercise 6.1.1: Complete a SimCLR loss function.<a class="headerlink" href="#coding-exercise-6-1-1-complete-a-simclr-loss-function" title="Permalink to this headline">¶</a></h3>
 <p>The following code:</p>
@@ -2524,8 +2368,8 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">custom_simclr_contrastive_loss</span><span class="p">(</span><span class="n">proj_feat1</span><span class="p">,</span> <span class="n">proj_feat2</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-                                   <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">custom_simclr_contrastive_loss</span><span class="p">(</span><span class="n">proj_feat1</span><span class="p">,</span> <span class="n">proj_feat2</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+
   <span class="sd">"""</span>
 <span class="sd">  custom_simclr_contrastive_loss(proj_feat1, proj_feat2)</span>
 <span class="sd">  Returns contrastive loss, given sets of projected features, with positive</span>
@@ -2592,7 +2436,7 @@ Loading VAE encoder from 'neuromatch_ssl_tutorial/checkpoints/vae_encoder_300ep_
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_17bffa3a.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_e123ba8a.py"><em>Click for solution</em></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">custom_simclr_contrastive_loss</span><span class="p">()</span> <span class="ow">is</span> <span class="n">correctly</span> <span class="n">implemented</span><span class="o">.</span>
 </pre></div>
 </div>
@@ -2685,10 +2529,10 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "814d4e2121244faf9db8b6e9e79d4a9e"}
+{"version_major": 2, "version_minor": 0, "model_id": "994bb1989c104a19b153da36e2cdbc09"}
 </script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8323</span><span class="o">/</span><span class="mf">3517275132.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8256</span><span class="o">/</span><span class="mf">3517275132.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">freeze_features</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># keep the encoder frozen while training the classifier</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">num_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># DEMO: Try different numbers of epochs</span>
 <span class="ne">---&gt; </span><span class="mi">13</span>     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
@@ -2742,11 +2586,7 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 </div>
 </div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span> <span class="n">seed</span> <span class="mi">2021</span> <span class="n">has</span> <span class="n">been</span> <span class="nb">set</span><span class="o">.</span>
-<span class="n">Training</span> <span class="n">a</span> <span class="n">classifier</span> <span class="n">on</span> <span class="n">the</span> <span class="n">pre</span><span class="o">-</span><span class="n">trained</span> <span class="n">SimCLR</span> <span class="n">encoder</span> <span class="n">representations</span><span class="o">...</span>
-<span class="mi">100</span><span class="o">%</span>                                    <span class="mi">10</span><span class="o">/</span><span class="mi">10</span> <span class="p">[</span><span class="mi">00</span><span class="p">:</span><span class="mi">08</span><span class="o">&lt;</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">,</span> <span class="mf">1.19</span><span class="n">it</span><span class="o">/</span><span class="n">s</span><span class="p">]</span>
-
-<span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">10</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Network</span> <span class="n">performance</span> <span class="n">after</span> <span class="mi">10</span> <span class="n">classifier</span> <span class="n">training</span> <span class="n">epochs</span> <span class="p">(</span><span class="n">chance</span><span class="p">:</span> <span class="mf">33.33</span><span class="o">%</span><span class="p">):</span>
     <span class="n">Training</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">97.83</span><span class="o">%</span>
     <span class="n">Testing</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">97.53</span><span class="o">%</span>
 </pre></div>
@@ -2768,7 +2608,7 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <tr class="row-even"><td><p><em>33.33%</em></p></td>
 <td><p></p></td>
 <td><p>39.55%</p></td>
-<td><p>98.72%</p></td>
+<td><p>98.38%</p></td>
 <td><p>44.67%</p></td>
 <td><p>45.75%</p></td>
 <td><p>97.53%</p></td>
@@ -2789,23 +2629,6 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <div class="section" id="section-7-1-the-effects-of-using-data-transformations-on-invariance-in-simclr-network-representations">
 <h2>Section 7.1: The effects of using data transformations on invariance in SimCLR network representations.<a class="headerlink" href="#section-7-1-the-effects-of-using-data-transformations-on-invariance-in-simclr-network-representations" title="Permalink to this headline">¶</a></h2>
 <p>We now observe the effects of adding our data transformations on the invariance learned by a pre-trained SimCLR network encoder.</p>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="interactive-demo-7-1-1-visualizing-the-simclr-network-encoder-rsms-organized-along-different-latent-dimensions">
 <h3>Interactive Demo 7.1.1: Visualizing the SimCLR network encoder RSMs, organized along different latent dimensions.<a class="headerlink" href="#interactive-demo-7-1-1-visualizing-the-simclr-network-encoder-rsms-organized-along-different-latent-dimensions" title="Permalink to this headline">¶</a></h3>
 <p>We will now compare the pre-trained SimCLR encoder network RSM to the previously generated encoder RSMs.</p>
@@ -2835,7 +2658,7 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <strong>C.</strong>  What advantages might some encoders have over others?<br/>
 <strong>D.</strong>  Does a good performance by the SimCLR encoder on a contrastive task guarantee good performance on a downstream classification task?<br/>
 <strong>E.</strong>  How might one modify the SimCLR encoder pre-training, for example, if the downstream task were to predict <code class="docutils literal notranslate"><span class="pre">orientation</span></code> instead of <code class="docutils literal notranslate"><span class="pre">shape</span></code>?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_482e5118.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_5d3ad579.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="supporting-images-for-discussion-response-examples-for-7-1-1-all-simclr-encoder-rsms">
 <h3>Supporting images for Discussion response examples for 7.1.1: All SimCLR encoder RSMs<a class="headerlink" href="#supporting-images-for-discussion-response-examples-for-7-1-1-all-simclr-encoder-rsms" title="Permalink to this headline">¶</a></h3>
@@ -2863,23 +2686,6 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <h2>Section 8.1: The effects of reducing the number of negative examples used in the SimCLR contrastive loss.<a class="headerlink" href="#section-8-1-the-effects-of-reducing-the-number-of-negative-examples-used-in-the-simclr-contrastive-loss" title="Permalink to this headline">¶</a></h2>
 <p>As seen above in the contrastive loss implementation, a strategy used to train neural networks with contrastive losses is to use large batch sizes (here, we used 1,000 examples per batch), and to use the representations of different images in a batch as <strong>each other’s negative examples</strong>. So with a batch size of 1,000, each image has one positive paired image (its paired augmentation), and 999 negative paired images (every image but itself, including its own paired augmentation, again). This enables the contrastive loss to obtain a good estimate of the full representational similarity distribution.</p>
 <p>To observe the consequences of sampling using fewer negative examples in the contrastive loss, we use a pre-trained SimCLR network again. However, this one was pre-trained with a parameter called <code class="docutils literal notranslate"><span class="pre">neg_pairs</span></code> set to <code class="docutils literal notranslate"><span class="pre">2</span></code>. Under the hood, this parameter affects only the contrastive loss calculation, allowing it to use <strong>only 2 of the total available negative pairs in a batch, for each image.</strong></p>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>The following code:</p>
 <ul class="simple">
 <li><p>loads the parameters of a SimCLR network pre-trained on the SimCLR contrastive task, but with only 2 negative pairs used per image in the loss calculation, using <code class="docutils literal notranslate"><span class="pre">load.load_encoder()</span></code>,</p></li>
@@ -2948,18 +2754,15 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_696d2dd7.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_2.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_2.png" style="width: 2257.0px; height: 752.0px;"/></a>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_3.png" style="width: 1116.0px; height: 828.0px;"/></a>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Plotting</span> <span class="n">RSMs</span><span class="o">...</span>
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_1.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_1.png" style="width: 2258.0px; height: 759.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_2.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/static/W3D1_Tutorial1_Solution_696d2dd7_2.png" style="width: 1120.0px; height: 833.0px;"/></a>
 </div>
 <div class="section" id="discussion-8-1-1-what-can-we-conclude-about-the-importance-of-negative-pairs-in-computing-the-contrastive-loss-for-models-like-simclr">
 <h3>Discussion 8.1.1: What can we conclude about the importance of negative pairs in computing the contrastive loss for models like SimCLR?<a class="headerlink" href="#discussion-8-1-1-what-can-we-conclude-about-the-importance-of-negative-pairs-in-computing-the-contrastive-loss-for-models-like-simclr" title="Permalink to this headline">¶</a></h3>
 <p><strong>A.</strong>  How does changing the number of negative pairs affect the networks’ RSMs?<br/>
 <strong>B.</strong>  How is the shape classifier likely to perform when the encoder is pre-trained with very few negative pairs?<br/>
 <strong>C.</strong>  What, intuitively, is the role of negative pairs in shaping the feature space that a contrastive model learns, and how does this role relate to the role of positive pairs?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_e37e2fa8.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_205ec8fe.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="supporting-images-for-discussion-response-examples-for-8-1-1-all-simclr-encoder-2-neg-pairs-rsms">
 <h3>Supporting images for Discussion response examples for 8.1.1: All SimCLR encoder (2 neg. pairs) RSMs<a class="headerlink" href="#supporting-images-for-discussion-response-examples-for-8-1-1-all-simclr-encoder-2-neg-pairs-rsms" title="Permalink to this headline">¶</a></h3>
@@ -3024,7 +2827,7 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <tr class="row-even"><td><p><em>33.33%</em></p></td>
 <td><p></p></td>
 <td><p>39.55%</p></td>
-<td><p>98.72%</p></td>
+<td><p>98.38%</p></td>
 <td><p>44.67%</p></td>
 <td><p>45.75%</p></td>
 <td><p>97.53%</p></td>
@@ -3056,23 +2859,6 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <li><p><strong>SimCLR encoder</strong>: As an SSL model can be pre-trained on unlabelled data, we will use the SimCLR encoder pre-trained on the contrastive task using the full dataset, before training the classifier layer with the fraction of labelled images allowed.</p></li>
 </ul>
 <p><em><strong>Note on number of training epochs:</strong> The numbers of epochs are specified below for when the <strong>full training dataset</strong> is used. For each fraction of the dataset a classifier is trained on, the <strong>number of training epochs is scaled up</strong> to compensate for the drop in number of training examples. For example, if we specify 10 epochs for a model, the 0.1 fraction labelled classifier will be trained over ~30 epochs. Also, we use <strong>slightly fewer epochs</strong> than above, here, in the interest of time.</em></p>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="interactive-demo-9-1-1-training-classifiers-on-different-encoders-using-only-a-fraction-of-the-full-labelled-dataset">
 <h3>Interactive Demo 9.1.1: Training classifiers on different encoders, using only a fraction of the full labelled dataset.<a class="headerlink" href="#interactive-demo-9-1-1-training-classifiers-on-different-encoders-using-only-a-fraction-of-the-full-labelled-dataset" title="Permalink to this headline">¶</a></h3>
 <p>In this demo, we select a few fractions (4 to 6) of the full labelled dataset with which to train the classifiers.</p>
@@ -3107,7 +2893,7 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <h3>Discussion 9.1.1: What can we conclude the advantages and disadvantages of the different encoder network types under different conditions?<a class="headerlink" href="#discussion-9-1-1-what-can-we-conclude-the-advantages-and-disadvantages-of-the-different-encoder-network-types-under-different-conditions" title="Permalink to this headline">¶</a></h3>
 <p><strong>A.</strong> Which models are most and least affected by how much labelled data is available?<br/>
 <strong>B.</strong> What might explain why different models are affected differently?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_05af8d25.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_e5b876cb.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="supporting-images-for-discussion-response-examples-for-9-1-1-classifier-performances-for-various-fractions-of-labelled-data">
 <h3>Supporting images for Discussion response examples for 9.1.1: Classifier performances for various fractions of labelled data<a class="headerlink" href="#supporting-images-for-discussion-response-examples-for-9-1-1-classifier-performances-for-various-fractions-of-labelled-data" title="Permalink to this headline">¶</a></h3>
@@ -3143,23 +2929,6 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <p>This sampling bias introduces a correlation between <code class="docutils literal notranslate"><span class="pre">shape</span></code> and <code class="docutils literal notranslate"><span class="pre">posX</span></code> that does not exist in the original dataset.</p>
 <p>We then train each model as above on the dataset, and observe their performance when tested on an unbiased dataset.</p>
 <p><em><strong>Note on dataset size:</strong> This biased sampling also significantly reduces the size of the training dataset available (approximately 6x). Thus, it would not be fair to compare our results here to those obtained previously in the tutorial, when we were using the full dataset. For this reason, <strong>as a control, we will also separately train the models with <code class="docutils literal notranslate"><span class="pre">train_sampler_bias_ctrl</span></code></strong>, a training dataset sampler that does not share the same sampling bias as <code class="docutils literal notranslate"><span class="pre">train_sampler_biased</span></code>, but can only sample as many samples as <code class="docutils literal notranslate"><span class="pre">train_sampler_biased</span></code> can.</em></p>
-<p>###Check setup</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ###Check setup</span>
-<span class="k">try</span><span class="p">:</span>
-  <span class="n">torch</span><span class="o">.</span><span class="n">__version__</span>
-  <span class="n">DEVICE</span> <span class="o">=</span> <span class="n">set_device</span><span class="p">()</span>
-<span class="k">except</span><span class="p">:</span>
-  <span class="k">raise</span> <span class="ne">SyntaxError</span><span class="p">(</span>
-      <span class="s2">"It looks like the Setup section hasn't been run. "</span>
-      <span class="s2">"Be sure to run all the Setup cells, "</span>
-      <span class="s2">"before starting this section."</span>
-      <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># call this before any dataset/network initializing or training,</span>
@@ -3251,8 +3020,8 @@ Training a classifier on the pre-trained SimCLR encoder representations...
   <span class="n">encoder_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"supervised"</span><span class="p">,</span> <span class="s2">"random"</span><span class="p">,</span> <span class="s2">"VAE"</span><span class="p">,</span> <span class="s2">"SimCLR"</span><span class="p">]</span>
 
   <span class="n">num_clf_epochs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Training supervised encoder and classifier for </span><span class="si">{</span><span class="n">num_clf_epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">+ "</span>
-    <span class="sa">f</span><span class="s2">"epochs, and all other classifiers for </span><span class="si">{</span><span class="n">num_clf_epochs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">+ epochs each."</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Training supervised encoder and classifier for </span><span class="si">{</span><span class="n">num_clf_epochs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> "</span>
+    <span class="sa">f</span><span class="s2">"epochs, and all other classifiers for </span><span class="si">{</span><span class="n">num_clf_epochs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> epochs each."</span><span class="p">)</span>
   <span class="n">_</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">train_encoder_clfs_by_fraction_labelled</span><span class="p">(</span>
       <span class="n">encoders</span><span class="o">=</span><span class="n">encoders</span><span class="p">,</span>
       <span class="n">dataset</span><span class="o">=</span><span class="n">dSprites_torchdataset</span><span class="p">,</span>
@@ -3313,7 +3082,7 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <strong>B.</strong> Which types of images in the test set are most likely causing the observed drop in performance?<br/>
 <strong>C.</strong> Why are certain models more robust to the bias introduced here than others?<br/>
 <strong>D.</strong> What are some methods we can employ to help mitigate the negative effects of biases in our training sets on our ability to learn good data representations with our models?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_d0e97f55.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_ebd5812d.py"><em>Click for solution</em></a></p>
 </div>
 <div class="section" id="discussion-10-1-2-how-do-these-principles-apply-more-generally">
 <h3>Discussion 10.1.2: How do these principles apply more generally?<a class="headerlink" href="#discussion-10-1-2-how-do-these-principles-apply-more-generally" title="Permalink to this headline">¶</a></h3>
@@ -3325,7 +3094,7 @@ Training a classifier on the pre-trained SimCLR encoder representations...
 <p>In real-world applications, with more complex or difficult datasets,<br/>
 <strong>A.</strong> What principles can we draw on to successfully apply SSL to learn good data representations in feature space?<br/>
 <strong>B.</strong> What challenges might we face, compared to applying SSL to dSprites?</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_95a75f41.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D1_UnsupervisedAndSelfSupervisedLearning/solutions/W3D1_Tutorial1_Solution_62d01ea1.py"><em>Click for solution</em></a></p>
 </div>
 </div>
 </div>
