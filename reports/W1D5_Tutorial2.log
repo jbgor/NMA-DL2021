@@ -32,8 +32,11 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-# @title Install dependencies
-!sudo apt-get install -y ffmpeg --quiet
-!pip install imageio-ffmpeg --quiet
+%%capture
+# @title Loading Animal Faces
+!rm -r AnimalFaces32x32/
+!git clone https://github.com/arashash/AnimalFaces32x32
+!rm -r afhq/
+!unzip ./AnimalFaces32x32/afhq_32x32.zip
 -------------------
 

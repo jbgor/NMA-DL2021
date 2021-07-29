@@ -1330,18 +1330,18 @@ clear_output()
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7273ab03-3aec-479d-a3ce-8b0d2f9793ea">
-<span class="eqno">(59)<a class="headerlink" href="#equation-7273ab03-3aec-479d-a3ce-8b0d2f9793ea" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1698268f-649b-4102-9d3c-7272ea5c03bb">
+<span class="eqno">(59)<a class="headerlink" href="#equation-1698268f-649b-4102-9d3c-7272ea5c03bb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1713575f-59b1-47b9-8c05-bfec31051696">
-<span class="eqno">(60)<a class="headerlink" href="#equation-1713575f-59b1-47b9-8c05-bfec31051696" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d61ad228-f8ad-4478-b8b8-5847e3143a7e">
+<span class="eqno">(60)<a class="headerlink" href="#equation-d61ad228-f8ad-4478-b8b8-5847e3143a7e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b21262c-008a-46cf-9ec2-2538dffd8626">
-<span class="eqno">(61)<a class="headerlink" href="#equation-0b21262c-008a-46cf-9ec2-2538dffd8626" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6874b4c4-e6b0-4cd3-961c-525f2fc64d43">
+<span class="eqno">(61)<a class="headerlink" href="#equation-6874b4c4-e6b0-4cd3-961c-525f2fc64d43" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1353,8 +1353,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78c820ea-d956-499c-b92b-7245aa43615b">
-<span class="eqno">(62)<a class="headerlink" href="#equation-78c820ea-d956-499c-b92b-7245aa43615b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a9068eeb-05fd-4cef-9eeb-43e71e389628">
+<span class="eqno">(62)<a class="headerlink" href="#equation-a9068eeb-05fd-4cef-9eeb-43e71e389628" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
@@ -1815,11 +1815,11 @@ Calling <code class="docutils literal notranslate"><span class="pre">Word2Vec(se
   <span class="k">return</span> <span class="n">model</span>
 
 <span class="k">def</span> <span class="nf">model_dictionary</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-  <span class="n">words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">w2vmodel</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">)</span>
+  <span class="n">words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">words</span>
 
 <span class="k">def</span> <span class="nf">get_embedding</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
-  <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">w2vmodel</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">key_to_index</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
   <span class="k">else</span><span class="p">:</span>
     <span class="k">return</span> <span class="kc">None</span>
@@ -1865,7 +1865,7 @@ Calling <code class="docutils literal notranslate"><span class="pre">Word2Vec(se
 </div>
 <div class="section" id="section-2-2-visualizing-word-embedding">
 <h2>Section 2.2: Visualizing Word Embedding<a class="headerlink" href="#section-2-2-visualizing-word-embedding" title="Permalink to this headline">¶</a></h2>
-<p>We can now obtain the word embeddings for any word in the dictionary using word2vec. Let’s visualize these embeddings to get an inuition of what these embeddings mean. The word embeddings obtained from word2vec model are in high dimensional space. We will use <code class="docutils literal notranslate"><span class="pre">PCA</span></code> to pick the 2 features that capture the most variance in the embeddings in order to represent them in a 2D space.</p>
+<p>We can now obtain the word embeddings for any word in the dictionary using word2vec. Let’s visualize these embeddings to get an inuition of what these embeddings mean. The word embeddings obtained from word2vec model are in high dimensional space. We will use <code class="docutils literal notranslate"><span class="pre">tSNE</span></code> (t-distributed stochastic neighbor embedding), a statistical method for dimensionality deduction that allow us to visualize high-dimensional data in a 2D or 3D space. Here, we will use <code class="docutils literal notranslate"><span class="pre">tSNE</span></code> from [<code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>] module(https://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html) (if you are not familiar with this method, think about <code class="docutils literal notranslate"><span class="pre">PCA</span></code>) to project our high dimensional embeddings in the 2D space.</p>
 <p>For each word in <code class="docutils literal notranslate"><span class="pre">keys</span></code>, we pick the top 10 similar words (using cosine similarity) and plot them.</p>
 <p>What should be the arrangement of similar words?
 What should be arrangement of the key clusters with respect to each other?</p>
@@ -2339,7 +2339,7 @@ The neural net will have one hidden layer of size 128.</p>
 <span class="n">plot_train_val</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">epochs</span><span class="p">),</span> <span class="n">nn_train_loss</span><span class="p">,</span>
                <span class="n">nn_validation_loss</span><span class="p">,</span>
                <span class="s1">'train loss'</span><span class="p">,</span> <span class="s1">'val loss'</span><span class="p">,</span>
-               <span class="s1">'Vanilla RNN on IMDB text classification'</span><span class="p">,</span>
+               <span class="s1">''</span><span class="p">,</span>
                <span class="s1">'loss [a.u.]'</span><span class="p">,</span>
                <span class="n">color</span><span class="o">=</span><span class="s1">'C0'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper left'</span><span class="p">)</span>
