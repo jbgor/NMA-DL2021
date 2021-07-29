@@ -895,860 +895,25 @@
 <h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
-<span class="c1"># @markdown In the first cell we&#39;ll install all of the necessary dependencies.</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
-<span class="o">!</span>sudo apt-get -q install ffmpeg freeglut3-dev xvfb  # For visualization.
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @title Install dependencies
+# @markdown In the first cell we&#39;ll install all of the necessary dependencies.
+from IPython.display import clear_output
+!sudo apt-get -q install ffmpeg freeglut3-dev xvfb  # For visualization.
 
-<span class="o">!</span>pip install tensorflow --quiet
-<span class="o">!</span>pip install dm-sonnet --quiet
-<span class="o">!</span>pip install imageio-ffmpeg --quiet
-<span class="o">!</span>pip install pybullet --quiet
-<span class="o">!</span>pip install dm-acme<span class="o">[</span>tf<span class="o">]==</span><span class="m">0</span>.2.0 dm-acme<span class="o">[</span>reverb<span class="o">]==</span><span class="m">0</span>.2.0 --quiet
+!pip install tensorflow --quiet
+!pip install dm-sonnet --quiet
+!pip install imageio-ffmpeg --quiet
+!pip install pybullet --quiet
+!pip install dm-acme[tf]==0.2.0 dm-acme[reverb]==0.2.0 --quiet
 
-<span class="n">clear_output</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reading package lists...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building dependency tree...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reading state information...
-xvfb is already the newest version (2:1.20.9-2ubuntu1.2~20.04.2).
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following additional packages will be installed:
-  freeglut3 i965-va-driver intel-media-va-driver libaacs0 libaom0 libass9
-  libasyncns0 libavc1394-0 libavcodec58 libavdevice58 libavfilter7
-  libavformat58 libavresample4 libavutil56 libbdplus0 libbluray2 libbs2b0
-  libcaca0 libcdio-cdda2 libcdio-paranoia2 libcdio18 libchromaprint1
-  libcodec2-0.9 libdc1394-22 libegl-dev libegl-mesa0 libegl1 libflac8
-  libflite1 libgl-dev libgl1-mesa-dev libgles-dev libgles1 libgles2
-  libglu1-mesa libglu1-mesa-dev libglvnd-dev libglx-dev libgme0 libgsm1
-  libiec61883-0 libigdgmm11 libjack-jackd2-0 liblilv-0-0 libmp3lame0
-  libmpg123-0 libmysofa1 libopenal-data libopenal1 libopengl-dev libopengl0
-  libopenjp2-7 libopenmpt0 libopus0 libpostproc55 libpulse0 libraw1394-11
-  librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
-  libsnappy1v5 libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1
-  libsratom-0-0 libssh-gcrypt-4 libswresample3 libswscale5 libtheora0
-  libtwolame0 libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1
-  libvorbisenc2 libwavpack1 libx264-155 libx265-179 libxvidcore4
-  libzvbi-common libzvbi0 mesa-va-drivers mesa-vdpau-drivers
-  ocl-icd-libopencl1 va-driver-all vdpau-driver-all
-Suggested packages:
-  ffmpeg-doc i965-va-driver-shaders libbluray-bdj jackd2 libportaudio2
-  opus-tools pulseaudio libraw1394-doc serdi sndiod sordi speex opencl-icd
-  libvdpau-va-gl1 nvidia-vdpau-driver nvidia-legacy-340xx-vdpau-driver
-  nvidia-legacy-304xx-vdpau-driver
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following NEW packages will be installed:
-  ffmpeg freeglut3 freeglut3-dev i965-va-driver intel-media-va-driver libaacs0
-  libaom0 libass9 libasyncns0 libavc1394-0 libavcodec58 libavdevice58
-  libavfilter7 libavformat58 libavresample4 libavutil56 libbdplus0 libbluray2
-  libbs2b0 libcaca0 libcdio-cdda2 libcdio-paranoia2 libcdio18 libchromaprint1
-  libcodec2-0.9 libdc1394-22 libegl-dev libegl-mesa0 libegl1 libflac8
-  libflite1 libgl-dev libgl1-mesa-dev libgles-dev libgles1 libgles2
-  libglu1-mesa libglu1-mesa-dev libglvnd-dev libglx-dev libgme0 libgsm1
-  libiec61883-0 libigdgmm11 libjack-jackd2-0 liblilv-0-0 libmp3lame0
-  libmpg123-0 libmysofa1 libopenal-data libopenal1 libopengl-dev libopengl0
-  libopenjp2-7 libopenmpt0 libopus0 libpostproc55 libpulse0 libraw1394-11
-  librubberband2 libsamplerate0 libsdl2-2.0-0 libserd-0-0 libshine3
-  libsnappy1v5 libsndfile1 libsndio7.0 libsord-0-0 libsoxr0 libspeex1
-  libsratom-0-0 libssh-gcrypt-4 libswresample3 libswscale5 libtheora0
-  libtwolame0 libva-drm2 libva-x11-2 libva2 libvdpau1 libvidstab1.1
-  libvorbisenc2 libwavpack1 libx264-155 libx265-179 libxvidcore4
-  libzvbi-common libzvbi0 mesa-va-drivers mesa-vdpau-drivers
-  ocl-icd-libopencl1 va-driver-all vdpau-driver-all
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 upgraded, 93 newly installed, 0 to remove and 13 not upgraded.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Need to get 48.2 MB of archives.
-After this operation, 202 MB of additional disk space will be used.
-Get:1 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libaom0 amd64 1.0.0.errata1-3build1 [1160 kB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:2 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libva2 amd64 2.7.0-2 [53.5 kB]
-Get:3 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libva-drm2 amd64 2.7.0-2 [7044 B]
-Get:4 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libva-x11-2 amd64 2.7.0-2 [11.9 kB]
-Get:5 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libvdpau1 amd64 1.3-1ubuntu2 [25.6 kB]
-Get:6 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 ocl-icd-libopencl1 amd64 2.2.11-1ubuntu1 [30.3 kB]
-Get:7 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libavutil56 amd64 7:4.2.4-1ubuntu0.1 [241 kB]
-Get:8 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libcodec2-0.9 amd64 0.9.2-2 [7886 kB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:9 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libgsm1 amd64 1.0.18-2 [24.4 kB]
-Get:10 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libmp3lame0 amd64 3.100-3 [133 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libopenjp2-7 amd64 2.3.1-1ubuntu4.20.04.1 [141 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libopus0 amd64 1.3.1-0ubuntu1 [191 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libshine3 amd64 3.1.1-2 [23.2 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libsnappy1v5 amd64 1.1.8-1build1 [16.7 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libspeex1 amd64 1.2~rc1.2-1.1ubuntu1 [53.2 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libsoxr0 amd64 0.1.3-2build1 [78.0 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libswresample3 amd64 7:4.2.4-1ubuntu0.1 [57.1 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libtheora0 amd64 1.1.1+dfsg.1-15ubuntu2 [162 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libtwolame0 amd64 0.4.0-2 [47.6 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libvorbisenc2 amd64 1.3.6-2ubuntu1 [70.7 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libwavpack1 amd64 5.2.0-1ubuntu0.1 [77.3 kB]
-Get:22 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libx264-155 amd64 2:0.155.2917+git0a84d98-2 [521 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libx265-179 amd64 3.2.1-1build1 [1060 kB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:24 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libxvidcore4 amd64 2:1.3.7-1 [201 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libzvbi-common all 0.2.35-17 [32.5 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libzvbi0 amd64 0.2.35-17 [237 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libavcodec58 amd64 7:4.2.4-1ubuntu0.1 [4876 kB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:28 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libraw1394-11 amd64 2.1.2-1 [30.7 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libavc1394-0 amd64 0.5.4-5 [16.2 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libass9 amd64 1:0.14.0-2 [88.0 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libbluray2 amd64 1:1.2.0-1 [138 kB]
-Get:32 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libchromaprint1 amd64 1.4.3-3build1 [37.6 kB]
-Get:33 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libgme0 amd64 0.6.2-1build1 [123 kB]
-Get:34 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libmpg123-0 amd64 1.25.13-1 [124 kB]
-Get:35 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libopenmpt0 amd64 0.4.11-1build1 [599 kB]
-Get:36 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libssh-gcrypt-4 amd64 0.9.3-2ubuntu2.1 [201 kB]
-Get:37 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libavformat58 amd64 7:4.2.4-1ubuntu0.1 [981 kB]
-Get:38 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libbs2b0 amd64 3.1.0+dfsg-2.2build1 [10.2 kB]
-Get:39 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libflite1 amd64 2.1-release-3 [12.8 MB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:40 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libserd-0-0 amd64 0.30.2-1 [46.6 kB]
-Get:41 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libsord-0-0 amd64 0.16.4-1 [19.5 kB]
-Get:42 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libsratom-0-0 amd64 0.6.4-1 [16.9 kB]
-Get:43 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 liblilv-0-0 amd64 0.24.6-1ubuntu0.1 [40.6 kB]
-Get:44 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libmysofa1 amd64 1.0~dfsg0-1 [39.2 kB]
-Get:45 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libpostproc55 amd64 7:4.2.4-1ubuntu0.1 [55.3 kB]
-Get:46 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libsamplerate0 amd64 0.1.9-2 [939 kB]
-Get:47 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 librubberband2 amd64 1.8.2-1build1 [89.4 kB]
-Get:48 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libswscale5 amd64 7:4.2.4-1ubuntu0.1 [156 kB]
-Get:49 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libvidstab1.1 amd64 1.1.0-2 [35.0 kB]
-Get:50 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libavfilter7 amd64 7:4.2.4-1ubuntu0.1 [1084 kB]
-Get:51 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libcaca0 amd64 0.99.beta19-2.1ubuntu1.20.04.1 [202 kB]
-Get:52 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libcdio18 amd64 2.0.0-2 [58.6 kB]
-Get:53 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libcdio-cdda2 amd64 10.2+2.0.0-1 [17.6 kB]
-Get:54 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libcdio-paranoia2 amd64 10.2+2.0.0-1 [16.2 kB]
-Get:55 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libdc1394-22 amd64 2.2.5-2.1 [79.6 kB]
-Get:56 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libiec61883-0 amd64 1.2.0-3 [24.3 kB]
-Get:57 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libjack-jackd2-0 amd64 1.9.12~dfsg-2ubuntu2 [267 kB]
-Get:58 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libopenal-data all 1:1.19.1-1 [162 kB]
-Get:59 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libsndio7.0 amd64 1.5.0-3 [24.5 kB]
-Get:60 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libopenal1 amd64 1:1.19.1-1 [492 kB]
-Get:61 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libasyncns0 amd64 0.8-6 [12.1 kB]
-Get:62 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libflac8 amd64 1.3.3-1build1 [103 kB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:63 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libsndfile1 amd64 1.0.28-7 [170 kB]
-Get:64 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libpulse0 amd64 1:13.99.1-1ubuntu3.11 [262 kB]
-Get:65 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libsdl2-2.0-0 amd64 2.0.10+dfsg1-3 [407 kB]
-Get:66 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libavdevice58 amd64 7:4.2.4-1ubuntu0.1 [74.3 kB]
-Get:67 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 libavresample4 amd64 7:4.2.4-1ubuntu0.1 [54.2 kB]
-Get:68 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 ffmpeg amd64 7:4.2.4-1ubuntu0.1 [1453 kB]
-Get:69 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 freeglut3 amd64 2.8.1-3 [73.6 kB]
-Get:70 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libglx-dev amd64 1.3.2-1~ubuntu0.20.04.1 [14.0 kB]
-Get:71 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libgl-dev amd64 1.3.2-1~ubuntu0.20.04.1 [97.8 kB]
-Get:72 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libegl-mesa0 amd64 20.2.6-0ubuntu0.20.04.1 [97.7 kB]
-Get:73 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libegl1 amd64 1.3.2-1~ubuntu0.20.04.1 [31.9 kB]
-Get:74 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libegl-dev amd64 1.3.2-1~ubuntu0.20.04.1 [17.2 kB]
-Get:75 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libgles1 amd64 1.3.2-1~ubuntu0.20.04.1 [10.3 kB]
-Get:76 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libgles2 amd64 1.3.2-1~ubuntu0.20.04.1 [15.6 kB]
-Get:77 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libgles-dev amd64 1.3.2-1~ubuntu0.20.04.1 [48.0 kB]
-Get:78 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libopengl0 amd64 1.3.2-1~ubuntu0.20.04.1 [29.3 kB]
-Get:79 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libopengl-dev amd64 1.3.2-1~ubuntu0.20.04.1 [3584 B]
-Get:80 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libglvnd-dev amd64 1.3.2-1~ubuntu0.20.04.1 [11.6 kB]
-Get:81 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 libgl1-mesa-dev amd64 20.2.6-0ubuntu0.20.04.1 [6280 B]
-Get:82 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libglu1-mesa amd64 9.0.1-1build1 [168 kB]
-Get:83 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 libglu1-mesa-dev amd64 9.0.1-1build1 [207 kB]
-Get:84 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 freeglut3-dev amd64 2.8.1-3 [124 kB]
-Get:85 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libigdgmm11 amd64 20.1.1+ds1-1 [111 kB]
-Get:86 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 intel-media-va-driver amd64 20.1.1+dfsg1-1 [1764 kB]
-Get:87 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libaacs0 amd64 0.9.0-2 [50.1 kB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:88 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 libbdplus0 amd64 0.1.2-3 [47.3 kB]
-Get:89 http://azure.archive.ubuntu.com/ubuntu focal-updates/universe amd64 mesa-va-drivers amd64 20.2.6-0ubuntu0.20.04.1 [2618 kB]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Get:90 http://azure.archive.ubuntu.com/ubuntu focal-updates/main amd64 mesa-vdpau-drivers amd64 20.2.6-0ubuntu0.20.04.1 [2744 kB]
-Get:91 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 i965-va-driver amd64 2.4.0-0ubuntu1 [924 kB]
-Get:92 http://azure.archive.ubuntu.com/ubuntu focal/universe amd64 va-driver-all amd64 2.7.0-2 [4020 B]
-Get:93 http://azure.archive.ubuntu.com/ubuntu focal/main amd64 vdpau-driver-all amd64 1.3-1ubuntu2 [4596 B]
-Fetched 48.2 MB in 1s (95.3 MB/s)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting templates from packages: 32%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting templates from packages: 64%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting templates from packages: 96%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting templates from packages: 100%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libaom0:amd64.
-(Reading database ... 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 5%
-(Reading database ... 10%
-(Reading database ... 15%
-(Reading database ... 20%
-(Reading database ... 25%
-(Reading database ... 30%
-(Reading database ... 35%
-(Reading database ... 40%
-(Reading database ... 45%
-(Reading database ... 50%
-(Reading database ... 55%
-(Reading database ... 60%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 65%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 70%
-(Reading database ... 75%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 80%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 85%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 90%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 95%
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Reading database ... 100%
-(Reading database ... 233736 files and directories currently installed.)
-Preparing to unpack .../00-libaom0_1.0.0.errata1-3build1_amd64.deb ...
-Unpacking libaom0:amd64 (1.0.0.errata1-3build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libva2:amd64.
-Preparing to unpack .../01-libva2_2.7.0-2_amd64.deb ...
-Unpacking libva2:amd64 (2.7.0-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libva-drm2:amd64.
-Preparing to unpack .../02-libva-drm2_2.7.0-2_amd64.deb ...
-Unpacking libva-drm2:amd64 (2.7.0-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libva-x11-2:amd64.
-Preparing to unpack .../03-libva-x11-2_2.7.0-2_amd64.deb ...
-Unpacking libva-x11-2:amd64 (2.7.0-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libvdpau1:amd64.
-Preparing to unpack .../04-libvdpau1_1.3-1ubuntu2_amd64.deb ...
-Unpacking libvdpau1:amd64 (1.3-1ubuntu2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package ocl-icd-libopencl1:amd64.
-Preparing to unpack .../05-ocl-icd-libopencl1_2.2.11-1ubuntu1_amd64.deb ...
-Unpacking ocl-icd-libopencl1:amd64 (2.2.11-1ubuntu1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libavutil56:amd64.
-Preparing to unpack .../06-libavutil56_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libavutil56:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libcodec2-0.9:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../07-libcodec2-0.9_0.9.2-2_amd64.deb ...
-Unpacking libcodec2-0.9:amd64 (0.9.2-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libgsm1:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../08-libgsm1_1.0.18-2_amd64.deb ...
-Unpacking libgsm1:amd64 (1.0.18-2) ...
-Selecting previously unselected package libmp3lame0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../09-libmp3lame0_3.100-3_amd64.deb ...
-Unpacking libmp3lame0:amd64 (3.100-3) ...
-Selecting previously unselected package libopenjp2-7:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../10-libopenjp2-7_2.3.1-1ubuntu4.20.04.1_amd64.deb ...
-Unpacking libopenjp2-7:amd64 (2.3.1-1ubuntu4.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libopus0:amd64.
-Preparing to unpack .../11-libopus0_1.3.1-0ubuntu1_amd64.deb ...
-Unpacking libopus0:amd64 (1.3.1-0ubuntu1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libshine3:amd64.
-Preparing to unpack .../12-libshine3_3.1.1-2_amd64.deb ...
-Unpacking libshine3:amd64 (3.1.1-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libsnappy1v5:amd64.
-Preparing to unpack .../13-libsnappy1v5_1.1.8-1build1_amd64.deb ...
-Unpacking libsnappy1v5:amd64 (1.1.8-1build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libspeex1:amd64.
-Preparing to unpack .../14-libspeex1_1.2~rc1.2-1.1ubuntu1_amd64.deb ...
-Unpacking libspeex1:amd64 (1.2~rc1.2-1.1ubuntu1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libsoxr0:amd64.
-Preparing to unpack .../15-libsoxr0_0.1.3-2build1_amd64.deb ...
-Unpacking libsoxr0:amd64 (0.1.3-2build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libswresample3:amd64.
-Preparing to unpack .../16-libswresample3_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libswresample3:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libtheora0:amd64.
-Preparing to unpack .../17-libtheora0_1.1.1+dfsg.1-15ubuntu2_amd64.deb ...
-Unpacking libtheora0:amd64 (1.1.1+dfsg.1-15ubuntu2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libtwolame0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../18-libtwolame0_0.4.0-2_amd64.deb ...
-Unpacking libtwolame0:amd64 (0.4.0-2) ...
-Selecting previously unselected package libvorbisenc2:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../19-libvorbisenc2_1.3.6-2ubuntu1_amd64.deb ...
-Unpacking libvorbisenc2:amd64 (1.3.6-2ubuntu1) ...
-Selecting previously unselected package libwavpack1:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../20-libwavpack1_5.2.0-1ubuntu0.1_amd64.deb ...
-Unpacking libwavpack1:amd64 (5.2.0-1ubuntu0.1) ...
-Selecting previously unselected package libx264-155:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../21-libx264-155_2%3a0.155.2917+git0a84d98-2_amd64.deb ...
-Unpacking libx264-155:amd64 (2:0.155.2917+git0a84d98-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libx265-179:amd64.
-Preparing to unpack .../22-libx265-179_3.2.1-1build1_amd64.deb ...
-Unpacking libx265-179:amd64 (3.2.1-1build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libxvidcore4:amd64.
-Preparing to unpack .../23-libxvidcore4_2%3a1.3.7-1_amd64.deb ...
-Unpacking libxvidcore4:amd64 (2:1.3.7-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libzvbi-common.
-Preparing to unpack .../24-libzvbi-common_0.2.35-17_all.deb ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unpacking libzvbi-common (0.2.35-17) ...
-Selecting previously unselected package libzvbi0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../25-libzvbi0_0.2.35-17_amd64.deb ...
-Unpacking libzvbi0:amd64 (0.2.35-17) ...
-Selecting previously unselected package libavcodec58:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../26-libavcodec58_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libavcodec58:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libraw1394-11:amd64.
-Preparing to unpack .../27-libraw1394-11_2.1.2-1_amd64.deb ...
-Unpacking libraw1394-11:amd64 (2.1.2-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libavc1394-0:amd64.
-Preparing to unpack .../28-libavc1394-0_0.5.4-5_amd64.deb ...
-Unpacking libavc1394-0:amd64 (0.5.4-5) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libass9:amd64.
-Preparing to unpack .../29-libass9_1%3a0.14.0-2_amd64.deb ...
-Unpacking libass9:amd64 (1:0.14.0-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libbluray2:amd64.
-Preparing to unpack .../30-libbluray2_1%3a1.2.0-1_amd64.deb ...
-Unpacking libbluray2:amd64 (1:1.2.0-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libchromaprint1:amd64.
-Preparing to unpack .../31-libchromaprint1_1.4.3-3build1_amd64.deb ...
-Unpacking libchromaprint1:amd64 (1.4.3-3build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libgme0:amd64.
-Preparing to unpack .../32-libgme0_0.6.2-1build1_amd64.deb ...
-Unpacking libgme0:amd64 (0.6.2-1build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libmpg123-0:amd64.
-Preparing to unpack .../33-libmpg123-0_1.25.13-1_amd64.deb ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unpacking libmpg123-0:amd64 (1.25.13-1) ...
-Selecting previously unselected package libopenmpt0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../34-libopenmpt0_0.4.11-1build1_amd64.deb ...
-Unpacking libopenmpt0:amd64 (0.4.11-1build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libssh-gcrypt-4:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../35-libssh-gcrypt-4_0.9.3-2ubuntu2.1_amd64.deb ...
-Unpacking libssh-gcrypt-4:amd64 (0.9.3-2ubuntu2.1) ...
-Selecting previously unselected package libavformat58:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../36-libavformat58_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libavformat58:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libbs2b0:amd64.
-Preparing to unpack .../37-libbs2b0_3.1.0+dfsg-2.2build1_amd64.deb ...
-Unpacking libbs2b0:amd64 (3.1.0+dfsg-2.2build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libflite1:amd64.
-Preparing to unpack .../38-libflite1_2.1-release-3_amd64.deb ...
-Unpacking libflite1:amd64 (2.1-release-3) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libserd-0-0:amd64.
-Preparing to unpack .../39-libserd-0-0_0.30.2-1_amd64.deb ...
-Unpacking libserd-0-0:amd64 (0.30.2-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libsord-0-0:amd64.
-Preparing to unpack .../40-libsord-0-0_0.16.4-1_amd64.deb ...
-Unpacking libsord-0-0:amd64 (0.16.4-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libsratom-0-0:amd64.
-Preparing to unpack .../41-libsratom-0-0_0.6.4-1_amd64.deb ...
-Unpacking libsratom-0-0:amd64 (0.6.4-1) ...
-Selecting previously unselected package liblilv-0-0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../42-liblilv-0-0_0.24.6-1ubuntu0.1_amd64.deb ...
-Unpacking liblilv-0-0:amd64 (0.24.6-1ubuntu0.1) ...
-Selecting previously unselected package libmysofa1:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../43-libmysofa1_1.0~dfsg0-1_amd64.deb ...
-Unpacking libmysofa1:amd64 (1.0~dfsg0-1) ...
-Selecting previously unselected package libpostproc55:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../44-libpostproc55_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libpostproc55:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libsamplerate0:amd64.
-Preparing to unpack .../45-libsamplerate0_0.1.9-2_amd64.deb ...
-Unpacking libsamplerate0:amd64 (0.1.9-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package librubberband2:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../46-librubberband2_1.8.2-1build1_amd64.deb ...
-Unpacking librubberband2:amd64 (1.8.2-1build1) ...
-Selecting previously unselected package libswscale5:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../47-libswscale5_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libswscale5:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libvidstab1.1:amd64.
-Preparing to unpack .../48-libvidstab1.1_1.1.0-2_amd64.deb ...
-Unpacking libvidstab1.1:amd64 (1.1.0-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libavfilter7:amd64.
-Preparing to unpack .../49-libavfilter7_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libavfilter7:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libcaca0:amd64.
-Preparing to unpack .../50-libcaca0_0.99.beta19-2.1ubuntu1.20.04.1_amd64.deb ...
-Unpacking libcaca0:amd64 (0.99.beta19-2.1ubuntu1.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libcdio18:amd64.
-Preparing to unpack .../51-libcdio18_2.0.0-2_amd64.deb ...
-Unpacking libcdio18:amd64 (2.0.0-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libcdio-cdda2:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../52-libcdio-cdda2_10.2+2.0.0-1_amd64.deb ...
-Unpacking libcdio-cdda2:amd64 (10.2+2.0.0-1) ...
-Selecting previously unselected package libcdio-paranoia2:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../53-libcdio-paranoia2_10.2+2.0.0-1_amd64.deb ...
-Unpacking libcdio-paranoia2:amd64 (10.2+2.0.0-1) ...
-Selecting previously unselected package libdc1394-22:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../54-libdc1394-22_2.2.5-2.1_amd64.deb ...
-Unpacking libdc1394-22:amd64 (2.2.5-2.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libiec61883-0:amd64.
-Preparing to unpack .../55-libiec61883-0_1.2.0-3_amd64.deb ...
-Unpacking libiec61883-0:amd64 (1.2.0-3) ...
-Selecting previously unselected package libjack-jackd2-0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../56-libjack-jackd2-0_1.9.12~dfsg-2ubuntu2_amd64.deb ...
-Unpacking libjack-jackd2-0:amd64 (1.9.12~dfsg-2ubuntu2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libopenal-data.
-Preparing to unpack .../57-libopenal-data_1%3a1.19.1-1_all.deb ...
-Unpacking libopenal-data (1:1.19.1-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libsndio7.0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../58-libsndio7.0_1.5.0-3_amd64.deb ...
-Unpacking libsndio7.0:amd64 (1.5.0-3) ...
-Selecting previously unselected package libopenal1:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../59-libopenal1_1%3a1.19.1-1_amd64.deb ...
-Unpacking libopenal1:amd64 (1:1.19.1-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libasyncns0:amd64.
-Preparing to unpack .../60-libasyncns0_0.8-6_amd64.deb ...
-Unpacking libasyncns0:amd64 (0.8-6) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libflac8:amd64.
-Preparing to unpack .../61-libflac8_1.3.3-1build1_amd64.deb ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unpacking libflac8:amd64 (1.3.3-1build1) ...
-Selecting previously unselected package libsndfile1:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../62-libsndfile1_1.0.28-7_amd64.deb ...
-Unpacking libsndfile1:amd64 (1.0.28-7) ...
-Selecting previously unselected package libpulse0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../63-libpulse0_1%3a13.99.1-1ubuntu3.11_amd64.deb ...
-Unpacking libpulse0:amd64 (1:13.99.1-1ubuntu3.11) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libsdl2-2.0-0:amd64.
-Preparing to unpack .../64-libsdl2-2.0-0_2.0.10+dfsg1-3_amd64.deb ...
-Unpacking libsdl2-2.0-0:amd64 (2.0.10+dfsg1-3) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libavdevice58:amd64.
-Preparing to unpack .../65-libavdevice58_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libavdevice58:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libavresample4:amd64.
-Preparing to unpack .../66-libavresample4_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking libavresample4:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package ffmpeg.
-Preparing to unpack .../67-ffmpeg_7%3a4.2.4-1ubuntu0.1_amd64.deb ...
-Unpacking ffmpeg (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package freeglut3:amd64.
-Preparing to unpack .../68-freeglut3_2.8.1-3_amd64.deb ...
-Unpacking freeglut3:amd64 (2.8.1-3) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libglx-dev:amd64.
-Preparing to unpack .../69-libglx-dev_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libglx-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libgl-dev:amd64.
-Preparing to unpack .../70-libgl-dev_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libgl-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libegl-mesa0:amd64.
-Preparing to unpack .../71-libegl-mesa0_20.2.6-0ubuntu0.20.04.1_amd64.deb ...
-Unpacking libegl-mesa0:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libegl1:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../72-libegl1_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libegl1:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Selecting previously unselected package libegl-dev:amd64.
-Preparing to unpack .../73-libegl-dev_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libegl-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libgles1:amd64.
-Preparing to unpack .../74-libgles1_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libgles1:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libgles2:amd64.
-Preparing to unpack .../75-libgles2_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libgles2:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libgles-dev:amd64.
-Preparing to unpack .../76-libgles-dev_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libgles-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libopengl0:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../77-libopengl0_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libopengl0:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Selecting previously unselected package libopengl-dev:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../78-libopengl-dev_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-Unpacking libopengl-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Selecting previously unselected package libglvnd-dev:amd64.
-Preparing to unpack .../79-libglvnd-dev_1.3.2-1~ubuntu0.20.04.1_amd64.deb ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Unpacking libglvnd-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Selecting previously unselected package libgl1-mesa-dev:amd64.
-Preparing to unpack .../80-libgl1-mesa-dev_20.2.6-0ubuntu0.20.04.1_amd64.deb ...
-Unpacking libgl1-mesa-dev:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libglu1-mesa:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../81-libglu1-mesa_9.0.1-1build1_amd64.deb ...
-Unpacking libglu1-mesa:amd64 (9.0.1-1build1) ...
-Selecting previously unselected package libglu1-mesa-dev:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../82-libglu1-mesa-dev_9.0.1-1build1_amd64.deb ...
-Unpacking libglu1-mesa-dev:amd64 (9.0.1-1build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package freeglut3-dev:amd64.
-Preparing to unpack .../83-freeglut3-dev_2.8.1-3_amd64.deb ...
-Unpacking freeglut3-dev:amd64 (2.8.1-3) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libigdgmm11:amd64.
-Preparing to unpack .../84-libigdgmm11_20.1.1+ds1-1_amd64.deb ...
-Unpacking libigdgmm11:amd64 (20.1.1+ds1-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package intel-media-va-driver:amd64.
-Preparing to unpack .../85-intel-media-va-driver_20.1.1+dfsg1-1_amd64.deb ...
-Unpacking intel-media-va-driver:amd64 (20.1.1+dfsg1-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libaacs0:amd64.
-Preparing to unpack .../86-libaacs0_0.9.0-2_amd64.deb ...
-Unpacking libaacs0:amd64 (0.9.0-2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package libbdplus0:amd64.
-Preparing to unpack .../87-libbdplus0_0.1.2-3_amd64.deb ...
-Unpacking libbdplus0:amd64 (0.1.2-3) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package mesa-va-drivers:amd64.
-Preparing to unpack .../88-mesa-va-drivers_20.2.6-0ubuntu0.20.04.1_amd64.deb ...
-Unpacking mesa-va-drivers:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package mesa-vdpau-drivers:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../89-mesa-vdpau-drivers_20.2.6-0ubuntu0.20.04.1_amd64.deb ...
-Unpacking mesa-vdpau-drivers:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package i965-va-driver:amd64.
-Preparing to unpack .../90-i965-va-driver_2.4.0-0ubuntu1_amd64.deb ...
-Unpacking i965-va-driver:amd64 (2.4.0-0ubuntu1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selecting previously unselected package va-driver-all:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../91-va-driver-all_2.7.0-2_amd64.deb ...
-Unpacking va-driver-all:amd64 (2.7.0-2) ...
-Selecting previously unselected package vdpau-driver-all:amd64.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Preparing to unpack .../92-vdpau-driver-all_1.3-1ubuntu2_amd64.deb ...
-Unpacking vdpau-driver-all:amd64 (1.3-1ubuntu2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting up libgme0:amd64 (0.6.2-1build1) ...
-Setting up libssh-gcrypt-4:amd64 (0.9.3-2ubuntu2.1) ...
-Setting up libraw1394-11:amd64 (2.1.2-1) ...
-Setting up libmpg123-0:amd64 (1.25.13-1) ...
-Setting up freeglut3:amd64 (2.8.1-3) ...
-Setting up libspeex1:amd64 (1.2~rc1.2-1.1ubuntu1) ...
-Setting up libshine3:amd64 (3.1.1-2) ...
-Setting up libcaca0:amd64 (0.99.beta19-2.1ubuntu1.20.04.1) ...
-Setting up libtwolame0:amd64 (0.4.0-2) ...
-Setting up libgsm1:amd64 (1.0.18-2) ...
-Setting up libx264-155:amd64 (2:0.155.2917+git0a84d98-2) ...
-Setting up libx265-179:amd64 (3.2.1-1build1) ...
-Setting up libsoxr0:amd64 (0.1.3-2build1) ...
-Setting up libaom0:amd64 (1.0.0.errata1-3build1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting up libmysofa1:amd64 (1.0~dfsg0-1) ...
-Setting up libdc1394-22:amd64 (2.2.5-2.1) ...
-Setting up libcdio18:amd64 (2.0.0-2) ...
-Setting up libxvidcore4:amd64 (2:1.3.7-1) ...
-Setting up libopengl0:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libsnappy1v5:amd64 (1.1.8-1build1) ...
-Setting up libflac8:amd64 (1.3.3-1build1) ...
-Setting up libegl-mesa0:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-Setting up libgles2:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libass9:amd64 (1:0.14.0-2) ...
-Setting up libva2:amd64 (2.7.0-2) ...
-Setting up libigdgmm11:amd64 (20.1.1+ds1-1) ...
-Setting up libcodec2-0.9:amd64 (0.9.2-2) ...
-Setting up libgles1:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libopus0:amd64 (1.3.1-0ubuntu1) ...
-Setting up intel-media-va-driver:amd64 (20.1.1+dfsg1-1) ...
-Setting up libaacs0:amd64 (0.9.0-2) ...
-Setting up libsndio7.0:amd64 (1.5.0-3) ...
-Setting up libbdplus0:amd64 (0.1.2-3) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting up libvidstab1.1:amd64 (1.1.0-2) ...
-Setting up libflite1:amd64 (2.1-release-3) ...
-Setting up libva-drm2:amd64 (2.7.0-2) ...
-Setting up ocl-icd-libopencl1:amd64 (2.2.11-1ubuntu1) ...
-Setting up libasyncns0:amd64 (0.8-6) ...
-Setting up libvdpau1:amd64 (1.3-1ubuntu2) ...
-Setting up libwavpack1:amd64 (5.2.0-1ubuntu0.1) ...
-Setting up libbs2b0:amd64 (3.1.0+dfsg-2.2build1) ...
-Setting up libtheora0:amd64 (1.1.1+dfsg.1-15ubuntu2) ...
-Setting up libegl1:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libopenjp2-7:amd64 (2.3.1-1ubuntu4.20.04.1) ...
-Setting up libglx-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libopenal-data (1:1.19.1-1) ...
-Setting up libglu1-mesa:amd64 (9.0.1-1build1) ...
-Setting up mesa-va-drivers:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-Setting up libopengl-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libbluray2:amd64 (1:1.2.0-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting up libsamplerate0:amd64 (0.1.9-2) ...
-Setting up libva-x11-2:amd64 (2.7.0-2) ...
-Setting up libopenmpt0:amd64 (0.4.11-1build1) ...
-Setting up libgl-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libzvbi-common (0.2.35-17) ...
-Setting up libmp3lame0:amd64 (3.100-3) ...
-Setting up i965-va-driver:amd64 (2.4.0-0ubuntu1) ...
-Setting up libvorbisenc2:amd64 (1.3.6-2ubuntu1) ...
-Setting up libiec61883-0:amd64 (1.2.0-3) ...
-Setting up libserd-0-0:amd64 (0.30.2-1) ...
-Setting up libavc1394-0:amd64 (0.5.4-5) ...
-Setting up mesa-vdpau-drivers:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-Setting up libzvbi0:amd64 (0.2.35-17) ...
-Setting up libegl-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting up libcdio-cdda2:amd64 (10.2+2.0.0-1) ...
-Setting up libcdio-paranoia2:amd64 (10.2+2.0.0-1) ...
-Setting up libopenal1:amd64 (1:1.19.1-1) ...
-Setting up libavutil56:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up va-driver-all:amd64 (2.7.0-2) ...
-Setting up libglu1-mesa-dev:amd64 (9.0.1-1build1) ...
-Setting up libpostproc55:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up librubberband2:amd64 (1.8.2-1build1) ...
-Setting up libjack-jackd2-0:amd64 (1.9.12~dfsg-2ubuntu2) ...
-Setting up vdpau-driver-all:amd64 (1.3-1ubuntu2) ...
-Setting up libsord-0-0:amd64 (0.16.4-1) ...
-Setting up libsratom-0-0:amd64 (0.6.4-1) ...
-Setting up libswscale5:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up libsndfile1:amd64 (1.0.28-7) ...
-Setting up libgles-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up liblilv-0-0:amd64 (0.24.6-1ubuntu0.1) ...
-Setting up libpulse0:amd64 (1:13.99.1-1ubuntu3.11) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting up libglvnd-dev:amd64 (1.3.2-1~ubuntu0.20.04.1) ...
-Setting up libswresample3:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up libavresample4:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up freeglut3-dev:amd64 (2.8.1-3) ...
-Setting up libgl1-mesa-dev:amd64 (20.2.6-0ubuntu0.20.04.1) ...
-Setting up libavcodec58:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up libsdl2-2.0-0:amd64 (2.0.10+dfsg1-3) ...
-Setting up libchromaprint1:amd64 (1.4.3-3build1) ...
-Setting up libavformat58:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up libavfilter7:amd64 (7:4.2.4-1ubuntu0.1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting up libavdevice58:amd64 (7:4.2.4-1ubuntu0.1) ...
-Setting up ffmpeg (7:4.2.4-1ubuntu0.1) ...
-Processing triggers for man-db (2.9.1-1) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
-<span class=" -Color -Color-Red">ERROR: Operation cancelled by user</span>
-<span class=" -Color -Color-Yellow">WARNING: You are using pip version 21.1.3; however, version 21.2.1 is available.</span>
-<span class=" -Color -Color-Yellow">You should consider upgrading via the &#39;/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip&#39; command.</span>
+clear_output()
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
@@ -1775,7 +940,7 @@ Processing triggers for man-db (2.9.1-1) ...
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Import `pybullet` locomotion environments</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Import `pybullet` locomotion environments</span>
 
 <span class="kn">from</span> <span class="nn">pybullet_envs.gym_locomotion_envs</span> <span class="kn">import</span> <span class="n">HopperBulletEnv</span>
 <span class="kn">from</span> <span class="nn">pybullet_envs.gym_locomotion_envs</span> <span class="kn">import</span> <span class="n">Walker2DBulletEnv</span>
@@ -1788,10 +953,10 @@ Processing triggers for man-db (2.9.1-1) ...
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Figure settings</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Figure settings</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>       <span class="c1"># interactive display</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/NeuromatchAcademy/content-creation/main/nma.mplstyle&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1812,7 +977,7 @@ Processing triggers for man-db (2.9.1-1) ...
 <p>Use <code class="docutils literal notranslate"><span class="pre">restore_ckpt_from_drive</span></code> to recover the checkpoint from Google Drive and copy it back to the restarted Colab virtual machine.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_ckpt_to_drive</span><span class="p">(</span><span class="n">agent</span><span class="p">:</span> <span class="s1">&#39;core.Actor&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">save_ckpt_to_drive</span><span class="p">(</span><span class="n">agent</span><span class="p">:</span> <span class="s1">&#39;core.Actor&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
   <span class="sd">&quot;&quot;&quot;Saves agent checkpoint directory to Google Drive.</span>
 <span class="sd">  </span>
 <span class="sd">  WARNING: Will replace the entire content of the </span>
@@ -1855,7 +1020,7 @@ Processing triggers for man-db (2.9.1-1) ...
 <p>Use this function to generate videos of your experiments.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_video</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">framerate</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_video</span><span class="p">(</span><span class="n">frames</span><span class="p">,</span> <span class="n">framerate</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;Generates video from `frames`.</span>
 
 <span class="sd">  Args:</span>
@@ -1895,7 +1060,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>Please note that the hyperparameters <code class="docutils literal notranslate"><span class="pre">layer_sizes</span></code>, <code class="docutils literal notranslate"><span class="pre">vmin</span></code>, <code class="docutils literal notranslate"><span class="pre">vmax</span></code>, <code class="docutils literal notranslate"><span class="pre">num_atoms</span></code> are set to reasonable default values, but may reqiure adjustment. Especially, <code class="docutils literal notranslate"><span class="pre">vmin</span></code> and <code class="docutils literal notranslate"><span class="pre">vmax</span></code> should be used with care. Please see, e.g., https://github.com/deepmind/acme/blob/master/acme/agents/tf/d4pg/README.md for more information.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_networks_d4pg</span><span class="p">(</span><span class="n">action_spec</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_networks_d4pg</span><span class="p">(</span><span class="n">action_spec</span><span class="p">,</span>
                        <span class="n">policy_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
                        <span class="n">critic_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
                        <span class="n">vmin</span><span class="o">=-</span><span class="mf">150.</span><span class="p">,</span>
@@ -1992,7 +1157,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>You can print the full list of environments by running the cell below. Only a subset of them are locomotion environments but feel free to explore the other ones if you’re interested.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pybullet_envs</span><span class="o">.</span><span class="n">getList</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pybullet_envs</span><span class="o">.</span><span class="n">getList</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -2051,7 +1216,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>You can use this approach and this example as the starting point of your project. In many cases, this custom class can be used as is (with only a name change) with other robots in the <code class="docutils literal notranslate"><span class="pre">pybullet</span></code> locomotion environments by inheriting from their respective original environment classes instead of from <code class="docutils literal notranslate"><span class="pre">HopperBulletEnv</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hopper</span><span class="p">(</span><span class="n">HopperBulletEnv</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hopper</span><span class="p">(</span><span class="n">HopperBulletEnv</span><span class="p">):</span>
 
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">render</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">episode_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Modifies `__init__` in `HopperBulletEnv` parent class.&quot;&quot;&quot;</span>
@@ -2130,7 +1295,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>Here, we are creating an example <code class="docutils literal notranslate"><span class="pre">Hopper</span></code> environment. Once created, we are wrapping it with <code class="docutils literal notranslate"><span class="pre">GymWrapper</span></code> to make the native <code class="docutils literal notranslate"><span class="pre">Gym</span></code> environment interface compatible with the one used in the <code class="docutils literal notranslate"><span class="pre">dm-acme</span></code> library, which is the reinforcement learning package that we will be using. <code class="docutils literal notranslate"><span class="pre">dm-acme</span></code> adheres to the interface defined here: https://github.com/deepmind/dm_env. Finally, we also use <code class="docutils literal notranslate"><span class="pre">SinglePrecisionWrapper</span></code> to enforce single-precision on a potentially double-precision environment.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">Hopper</span><span class="p">(</span><span class="n">render</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">Hopper</span><span class="p">(</span><span class="n">render</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="n">env</span> <span class="o">=</span> <span class="n">wrappers</span><span class="o">.</span><span class="n">GymWrapper</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
 <span class="n">env</span> <span class="o">=</span> <span class="n">wrappers</span><span class="o">.</span><span class="n">SinglePrecisionWrapper</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
@@ -2155,7 +1320,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>The task also contains other constraints, such as <code class="docutils literal notranslate"><span class="pre">electricity_cost</span></code>, and certain episode termination conditions. Please start from our custom <code class="docutils literal notranslate"><span class="pre">Hopper</span></code> class in the above cell and work your way backwards to the the environment code for more details!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># x and y coordinates of the target location.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># x and y coordinates of the target location.</span>
 <span class="n">env</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">walk_target_x</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">walk_target_y</span>
 </pre></div>
 </div>
@@ -2174,7 +1339,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <h2>Plot one frame of the environment<a class="headerlink" href="#plot-one-frame-of-the-environment" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
 <span class="n">frame</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rgb_array&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
@@ -2193,7 +1358,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>We haven’t trained the policy yet, but we can still see the environment in action by passing a random control sequence to it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run env for n_steps, apply random actions, and show video.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run env for n_steps, apply random actions, and show video.</span>
 <span class="n">n_steps</span> <span class="o">=</span> <span class="mi">200</span>
 
 <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
@@ -8703,7 +7868,7 @@ LjEwMA==
 <p>Notice the shapes and min/max limits</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Actions:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">env_spec</span><span class="o">.</span><span class="n">actions</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Actions:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">env_spec</span><span class="o">.</span><span class="n">actions</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Observations:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">env_spec</span><span class="o">.</span><span class="n">observations</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rewards:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">env_spec</span><span class="o">.</span><span class="n">rewards</span><span class="p">)</span>
 </pre></div>
@@ -8728,7 +7893,7 @@ Rewards:
 <p>Feel free to explore other properties (attributes) of the <code class="docutils literal notranslate"><span class="pre">env.robot</span></code> object, such as velocities, joint angles, etc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cartesian coordinates of body parts.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cartesian coordinates of body parts.</span>
 <span class="k">for</span> <span class="n">body_part</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">parts</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">body_part</span><span class="si">:</span><span class="s2">10</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">env</span><span class="o">.</span><span class="n">robot</span><span class="o">.</span><span class="n">parts</span><span class="p">[</span><span class="n">body_part</span><span class="p">]</span><span class="o">.</span><span class="n">pose</span><span class="p">()</span><span class="o">.</span><span class="n">xyz</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -8752,7 +7917,7 @@ floor      [0. 0. 0.]
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cartesian components of robot speed.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cartesian components of robot speed.</span>
 <span class="n">env</span><span class="o">.</span><span class="n">robot_body</span><span class="o">.</span><span class="n">speed</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -8777,7 +7942,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>First, lets configure loggers and optimizers:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learner_log_every</span> <span class="o">=</span> <span class="mf">60.</span>  <span class="c1"># Learner logging frequency, seconds.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">learner_log_every</span> <span class="o">=</span> <span class="mf">60.</span>  <span class="c1"># Learner logging frequency, seconds.</span>
 <span class="n">loop_log_every</span> <span class="o">=</span> <span class="mf">60.</span>  <span class="c1"># Environment loop logging frequency, seconds.</span>
 <span class="n">checkpoint</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># Checkpoint saved every 10 minutes.</span>
 
@@ -8803,7 +7968,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>As an example, in the next cell we instantiate the D4PG agent. Examples of other agents (DDPG, DMPO) are provided at the end of the notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create networks.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create networks.</span>
 <span class="n">policy_network</span><span class="p">,</span> <span class="n">critic_network</span> <span class="o">=</span> <span class="n">make_networks_d4pg</span><span class="p">(</span><span class="n">action_spec</span><span class="p">)</span>
 
 <span class="c1"># Create agent.</span>
@@ -8829,7 +7994,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>The training checkpoint (containing the network weights, optimizer parameters, etc.) will be saved every 10 minutes. Please remember to save and then restore the checkpoint from Google Drive if you are restarting the Colab runtime. See example below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_steps</span> <span class="o">=</span> <span class="mi">100_000</span>  <span class="c1"># Number of environment loop steps. Adjust as needed!</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_steps</span> <span class="o">=</span> <span class="mi">100_000</span>  <span class="c1"># Number of environment loop steps. Adjust as needed!</span>
 
 <span class="n">loop</span> <span class="o">=</span> <span class="n">environment_loop</span><span class="o">.</span><span class="n">EnvironmentLoop</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">loop_logger</span><span class="p">)</span>
 
@@ -8901,7 +8066,7 @@ https://github.com/deepmind/acme/tree/master/acme/agents</p>
 <p>Note that we will also collect the reward at each timestep and plot it later.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the environment with the learned policy and display video.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the environment with the learned policy and display video.</span>
 <span class="n">n_steps</span> <span class="o">=</span> <span class="mi">500</span>
 
 <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Frames for video.</span>
@@ -19650,7 +18815,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 <p>Each color represent a separate episode.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env_step</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env_step</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="n">reward</span><span class="p">:</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">env_step</span><span class="p">,</span> <span class="n">env_step</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">episode</span><span class="p">)),</span> <span class="n">episode</span><span class="p">)</span>
   <span class="n">env_step</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span>
@@ -19671,7 +18836,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 <p>Finally, let’s print the total reward for the test episodes</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reward</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reward</span><span class="p">):</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total reward in episode </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -19690,7 +18855,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 <h3>1. Mount drive to temporarily save checkpoints<a class="headerlink" href="#mount-drive-to-temporarily-save-checkpoints" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount drive. -- You may want to add your gDrive</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Mount drive. -- You may want to add your gDrive</span>
 <span class="c1"># drive.mount(&#39;/root/drive&#39;)</span>
 </pre></div>
 </div>
@@ -19701,7 +18866,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 <h3>2. BEFORE restarting the runtime, save checkpoint to drive<a class="headerlink" href="#before-restarting-the-runtime-save-checkpoint-to-drive" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save agent checkpoint to drive.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save agent checkpoint to drive.</span>
 <span class="n">save_ckpt_to_drive</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -19723,7 +18888,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restore checkpoint from drive.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Restore checkpoint from drive.</span>
 <span class="n">restore_ckpt_from_drive</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -19739,7 +18904,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 <h3>4. Optionally, unmount drive<a class="headerlink" href="#optionally-unmount-drive" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unmount drive.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unmount drive.</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">flush_and_unmount</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -19760,7 +18925,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 <h2>DMPO agent<a class="headerlink" href="#dmpo-agent" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create networks.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create networks.</span>
 <span class="n">policy_network</span><span class="p">,</span> <span class="n">critic_network</span> <span class="o">=</span> <span class="n">make_networks_dmpo</span><span class="p">(</span><span class="n">action_spec</span><span class="p">)</span>
 
 <span class="c1"># Create agent.</span>
@@ -19781,7 +18946,7 @@ AAEAAAAATGF2ZjU3LjgzLjEwMA==
 <h2>DDPG agent<a class="headerlink" href="#ddpg-agent" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create networks.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create networks.</span>
 <span class="n">policy_network</span><span class="p">,</span> <span class="n">critic_network</span> <span class="o">=</span> <span class="n">make_networks_ddpg</span><span class="p">(</span><span class="n">action_spec</span><span class="p">)</span>
 
 <span class="c1"># Create agent.</span>
