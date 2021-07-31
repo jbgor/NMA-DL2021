@@ -524,7 +524,7 @@
 </li>
 <li class="toctree-l1 has-children">
 <a class="reference internal" href="../../../projects/docs/projects_overview.html">
-   This is an overview of projects
+   Project ideas
   </a>
 <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
 <label for="toctree-checkbox-19">
@@ -636,11 +636,6 @@
 </ul>
 </li>
 </ul>
-</li>
-<li class="toctree-l1">
-<a class="reference internal" href="../../../projects/docs/project_templates.html">
-   Project Templates
-  </a>
 </li>
 </ul>
 </div>
@@ -1442,18 +1437,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bc3bea09-a505-48cd-be8e-fee60afa7acc">
-<span class="eqno">(60)<a class="headerlink" href="#equation-bc3bea09-a505-48cd-be8e-fee60afa7acc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3432107c-dc34-4a8e-b2ac-ec92d2f584da">
+<span class="eqno">(60)<a class="headerlink" href="#equation-3432107c-dc34-4a8e-b2ac-ec92d2f584da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7e514911-bf36-4608-942e-c0c03cc8f99b">
-<span class="eqno">(61)<a class="headerlink" href="#equation-7e514911-bf36-4608-942e-c0c03cc8f99b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-617ac49d-b313-4786-8a73-c5e9c8426167">
+<span class="eqno">(61)<a class="headerlink" href="#equation-617ac49d-b313-4786-8a73-c5e9c8426167" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2cc6c635-aa35-4764-8feb-4d533459986c">
-<span class="eqno">(62)<a class="headerlink" href="#equation-2cc6c635-aa35-4764-8feb-4d533459986c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-09ec1603-02e5-49c2-b32e-50b3ec496443">
+<span class="eqno">(62)<a class="headerlink" href="#equation-09ec1603-02e5-49c2-b32e-50b3ec496443" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1465,8 +1460,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dd874e0c-f79c-4697-852d-a7e1f794cab5">
-<span class="eqno">(63)<a class="headerlink" href="#equation-dd874e0c-f79c-4697-852d-a7e1f794cab5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2d9d35f1-7140-49db-bf93-c9e3a8b62c8a">
+<span class="eqno">(63)<a class="headerlink" href="#equation-2d9d35f1-7140-49db-bf93-c9e3a8b62c8a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
