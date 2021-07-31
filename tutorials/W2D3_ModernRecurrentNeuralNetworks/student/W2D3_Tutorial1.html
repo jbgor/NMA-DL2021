@@ -524,7 +524,7 @@
 </li>
 <li class="toctree-l1 has-children">
 <a class="reference internal" href="../../../projects/docs/projects_overview.html">
-   Project ideas
+   Project Templates
   </a>
 <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
 <label for="toctree-checkbox-19">
@@ -534,7 +534,7 @@
 <ul>
 <li class="toctree-l2 has-children">
 <a class="reference internal" href="../../../projects/ComputerVision/README.html">
-     Ideas for Computer Vision related projects
+     Computer Vision
     </a>
 <input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/>
 <label for="toctree-checkbox-20">
@@ -571,7 +571,7 @@
 </li>
 <li class="toctree-l2 has-children">
 <a class="reference internal" href="../../../projects/ReinforcementLearning/README.html">
-     Ideas for RL related projects
+     Reinforcement Learning
     </a>
 <input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" type="checkbox"/>
 <label for="toctree-checkbox-21">
@@ -581,14 +581,14 @@
 <ul>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ReinforcementLearning/slides.html">
-       Project Templates
+       Slides
       </a>
 </li>
 </ul>
 </li>
 <li class="toctree-l2 has-children">
 <a class="reference internal" href="../../../projects/NaturalLanguageProcessing/README.html">
-     Ideas for NLP related projects
+     Natural Language Processing
     </a>
 <input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" type="checkbox"/>
 <label for="toctree-checkbox-22">
@@ -598,14 +598,14 @@
 <ul>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/NaturalLanguageProcessing/slides.html">
-       Ideas for Computer Vision related projects
+       Slides
       </a>
 </li>
 </ul>
 </li>
 <li class="toctree-l2 has-children">
 <a class="reference internal" href="../../../projects/Neuroscience/README.html">
-     Ideas for Neuroscience related projects
+     Neuroscience
     </a>
 <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
 <label for="toctree-checkbox-23">
@@ -615,7 +615,7 @@
 <ul>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/Neuroscience/slides.html">
-       Project Templates
+       Slides
       </a>
 </li>
 <li class="toctree-l3">
@@ -1437,18 +1437,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3432107c-dc34-4a8e-b2ac-ec92d2f584da">
-<span class="eqno">(60)<a class="headerlink" href="#equation-3432107c-dc34-4a8e-b2ac-ec92d2f584da" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bee51649-4ffa-4680-9972-6c42e02571a1">
+<span class="eqno">(60)<a class="headerlink" href="#equation-bee51649-4ffa-4680-9972-6c42e02571a1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-617ac49d-b313-4786-8a73-c5e9c8426167">
-<span class="eqno">(61)<a class="headerlink" href="#equation-617ac49d-b313-4786-8a73-c5e9c8426167" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7ea10b84-2aaa-4798-8a8d-9edc0484592b">
+<span class="eqno">(61)<a class="headerlink" href="#equation-7ea10b84-2aaa-4798-8a8d-9edc0484592b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-09ec1603-02e5-49c2-b32e-50b3ec496443">
-<span class="eqno">(62)<a class="headerlink" href="#equation-09ec1603-02e5-49c2-b32e-50b3ec496443" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d79672c-e6a2-46d3-9ff0-75c2a71a1818">
+<span class="eqno">(62)<a class="headerlink" href="#equation-7d79672c-e6a2-46d3-9ff0-75c2a71a1818" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1460,8 +1460,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d9d35f1-7140-49db-bf93-c9e3a8b62c8a">
-<span class="eqno">(63)<a class="headerlink" href="#equation-2d9d35f1-7140-49db-bf93-c9e3a8b62c8a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-49c89570-710f-4e0a-b7e4-3bafd78953a9">
+<span class="eqno">(63)<a class="headerlink" href="#equation-49c89570-710f-4e0a-b7e4-3bafd78953a9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
