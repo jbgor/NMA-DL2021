@@ -643,6 +643,11 @@
        Vision with Lost Glasses: Modelling how the brain deals with noisy input
       </a>
 </li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/Neuroscience/finetuning_fmri.html">
+       Moving beyond Labels: Finetuning CNNs on BOLD response
+      </a>
+</li>
 </ul>
 </li>
 </ul>
@@ -1250,7 +1255,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "982cfe81512e4707b78247578b9adf79"}
+{"version_major": 2, "version_minor": 0, "model_id": "bf931923349341c2b84fad09fffe02fc"}
 </script></div>
 </div>
 </div>
@@ -1273,7 +1278,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "44d49d722aa645ff89ae02646a97ce9b"}
+{"version_major": 2, "version_minor": 0, "model_id": "82e20595b0d74647a7059a8500ea7330"}
 </script></div>
 </div>
 </div>
@@ -1335,18 +1340,18 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "555167d95922421294b8869ac7bfadd4"}
+{"version_major": 2, "version_minor": 0, "model_id": "b17bac4029f741f78855a02f52e1241c"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2887</span><span class="o">/</span><span class="mf">1525311767.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2880</span><span class="o">/</span><span class="mf">1525311767.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">40</span> 
 <span class="g g-Whitespace">     </span><span class="mi">41</span> 
 <span class="ne">---&gt; </span><span class="mi">42</span> <span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">load_mnist_data</span><span class="p">(</span><span class="n">change_tensors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_2887/1525311767.py</span> in <span class="ni">load_mnist_data</span><span class="nt">(change_tensors, download)</span>
+<span class="nn">/tmp/ipykernel_2880/1525311767.py</span> in <span class="ni">load_mnist_data</span><span class="nt">(change_tensors, download)</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>   <span class="c1"># Load train and test sets</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span>   <span class="n">train_set</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="n">download</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">15</span>                              <span class="n">transform</span><span class="o">=</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
@@ -1915,22 +1920,22 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="section" id="coding-exercise-4-implement-momentum">
 <h2>Coding Exercise 4: Implement momentum<a class="headerlink" href="#coding-exercise-4-implement-momentum" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the momentum update given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bd6ee85-e87f-4f07-8315-14ceb3968209">
-<span class="eqno">(43)<a class="headerlink" href="#equation-5bd6ee85-e87f-4f07-8315-14ceb3968209" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d94c405-246e-4040-8894-fd5aa76b02f6">
+<span class="eqno">(43)<a class="headerlink" href="#equation-9d94c405-246e-4040-8894-fd5aa76b02f6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} = w_t - \eta \nabla J(w_t) + \beta (w_t - w_{t-1})
 \end{equation}\]</div>
 <p>It is convenient to re-express this update rule in terms of a recursion. For that, we define ‘velocity’ as the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-423b0d2b-a83d-4582-9ad8-b0278f0aa395">
-<span class="eqno">(44)<a class="headerlink" href="#equation-423b0d2b-a83d-4582-9ad8-b0278f0aa395" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-658e174b-132b-4ffb-a03a-1f48a3baf89e">
+<span class="eqno">(44)<a class="headerlink" href="#equation-658e174b-132b-4ffb-a03a-1f48a3baf89e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_{t-1} := w_{t} - w_{t-1}
 \end{equation}\]</div>
 <p>which leads to the two-step update rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b3bc9af-8f54-4ff5-8f15-addb0f9a2491">
-<span class="eqno">(45)<a class="headerlink" href="#equation-3b3bc9af-8f54-4ff5-8f15-addb0f9a2491" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c48a8e9c-4764-46e4-a440-dfd964e70d14">
+<span class="eqno">(45)<a class="headerlink" href="#equation-c48a8e9c-4764-46e4-a440-dfd964e70d14" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_t = - \eta \nabla J(w_t) + \beta (\underbrace{w_t - w_{t-1}}_{v_{t-1}})
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-fe00245f-7eb5-4083-80d9-3c865946f427">
-<span class="eqno">(46)<a class="headerlink" href="#equation-fe00245f-7eb5-4083-80d9-3c865946f427" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1de32d72-0d33-4847-9175-37d60e2e2a55">
+<span class="eqno">(46)<a class="headerlink" href="#equation-1de32d72-0d33-4847-9175-37d60e2e2a55" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} \leftarrow w_t + v_{t}
 \end{equation}\]</div>
 <p>Pay attention to the positive sign of the update in the last equation, given the definition of <span class="math notranslate nohighlight">\(v_t\)</span>, above.</p>
@@ -2403,8 +2408,8 @@ w_{t+1} \leftarrow w_t + v_{t}
 <div class="section" id="coding-exercise-7-implement-rmsprop">
 <h2>Coding Exercise 7: Implement RMSprop<a class="headerlink" href="#coding-exercise-7-implement-rmsprop" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the update of the RMSprop optimizer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c8369db5-86a4-4248-aaa2-fe0e34e450cd">
-<span class="eqno">(47)<a class="headerlink" href="#equation-c8369db5-86a4-4248-aaa2-fe0e34e450cd" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7c9d2d11-f5e7-4a1a-84f3-b849bee45561">
+<span class="eqno">(47)<a class="headerlink" href="#equation-7c9d2d11-f5e7-4a1a-84f3-b849bee45561" title="Permalink to this equation">¶</a></span>\[\begin{align}
 v_{t} &amp;= \alpha v_{t-1} + (1 - \alpha) \nabla J(w_t)^2 \\ \\
 w_{t+1} &amp;= w_t - \eta \frac{\nabla J(w_t)}{\sqrt{v_t + \epsilon}}
 \end{align}\]</div>
