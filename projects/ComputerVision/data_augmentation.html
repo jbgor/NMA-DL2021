@@ -568,12 +568,12 @@
     <ul class="current">
      <li class="toctree-l3">
       <a class="reference internal" href="slides.html">
-       Project Templates
+       Slides
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="Image_Alignment.html">
-       Intro to Image Alignment
+       Image Alignment
       </a>
      </li>
      <li class="toctree-l3">
@@ -748,181 +748,103 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Data Augmentation in image classification models
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#setup">
    Setup
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#imports">
      Imports
     </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alternative-complementary-gpu-check-up">
+     Alternative / Complementary GPU check-up
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-seeds">
+     Random seeds
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-hyperparameters">
+     Training hyperparameters
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cutout">
+     Cutout
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mixup">
+     Mixup
+    </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#necessary-imports">
-       Necessary imports
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#datasets">
+       Datasets
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cifar-10">
+       CIFAR-10
       </a>
      </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#alternative-complementary-gpu-check-up">
-   Alternative / Complementary GPU check-up
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#random-seeds">
-   Random seeds
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#training-hyperparameters">
-   Training hyperparameters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hyper-parameters">
-     hyper-parameters
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-loaders">
+     Data loaders
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#cutout">
-   Cutout
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cutout-augmentation">
-     cutout Augmentation
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mixup">
-   Mixup
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mixup-augmentation">
-     Mixup Augmentation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#datasets">
-     Datasets
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualization">
+     Visualization
     </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#data">
-       Data
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mixup-visualization">
+       Mixup Visualization
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cutout-visualization">
+       Cutout Visualization
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#torchvision-visualization">
+       Torchvision Visualization
       </a>
      </li>
     </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cifar-10">
-     CIFAR-10
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#architecture-resnet">
+     Architecture: ResNet
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-loaders">
-   Data loaders
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dataloader">
-     Dataloader
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#test-on-random-data">
+     Test on random data
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#visualization">
-   Visualization
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mixup-visualization">
-     Mixup Visualization
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#set-loss-function-and-optimizer">
+     Set loss function and optimizer
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cutout-visualization">
-     Cutout Visualization
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#torchvision-visualization">
-     Torchvision Visualization
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#architecture-resnet">
-   Architecture: ResNet
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model">
-     model
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-on-random-data">
-   Test on random data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#load-the-model">
-     load the Model
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#set-loss-function-and-optimizer">
-   Set loss function and optimizer
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#optimizer-and-criterion">
-     optimizer and criterion
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#train-and-test-loops">
-   Train and test loops
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#training-test-functions">
-     Training &amp; Test functions
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#checkpoint-adjust-learning-rate">
-     checkpoint &amp; adjust_learning_rate
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#start-training">
-     start training
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot-results">
-     plot results
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-and-test-loops">
+     Train and test loops
     </a>
    </li>
   </ul>
@@ -938,16 +860,20 @@
         
               <div>
                 
-  <div class="section" id="data-augmentation-in-image-classification-models">
+  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/wax_projects/projects/ComputerVision/data_augmentation.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="section" id="data-augmentation-in-image-classification-models">
 <h1>Data Augmentation in image classification models<a class="headerlink" href="#data-augmentation-in-image-classification-models" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
-<p><strong>Content creators:</strong> <a class="reference external" href="https://engmubarak48.github.io/jmohamud/index.html">Jama Hussein Mohamud</a> &amp; <a class="reference external" href="https://alexhernandezgarcia.github.io/">Alex Hernandez-Garcia</a></p>
+<p><strong>Content creators:</strong> Jama Hussein Mohamud, Alex Hernandez-Garcia</p>
 <p><strong>Production editors:</strong></p>
+<p><em>Contact info:</em> <a class="reference external" href="https://engmubarak48.github.io/jmohamud/index.html">engmubarak48.github.io/jmohamud/index.html</a>, <a class="reference external" href="https://alexhernandezgarcia.github.io/">alexhernandezgarcia.github.io/</a></p>
 <p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
 <p align='center'><img src='https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True'/></p><p>Data augmentation refers to synthetically increasing the amount of training data by transforming the existing training examples. Data augmentation has been shown to be a very useful technique, especially in computer vision applications. However, there are multiple ways of performing data augmentation and it is yet to be understood which transformations are more effective and why, and how data augmentation interacts with other techniques. In fact, it is common to see different augmentation schemes and setups in different papers. For example, there are perceptually possible image transformations ( related to human visual perception), simple synthetic transformations such as cutout, more artificial transformations such as mixup that even transform the class labels, among many others.</p>
 <p>In this notebook, we will show how to train deep neural networks for image classification with data augmentation and analyse the results.</p>
+</div>
+<hr class="docutils" />
 <div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
 <p>First of all, let’s make sure that there is a GPU available to run this code.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -958,13 +884,11 @@
 </div>
 </div>
 <div class="section" id="imports">
-<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
+<h2>Imports<a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h2>
 <p>Import the necessary Python libraries</p>
-<div class="section" id="necessary-imports">
-<h4>Necessary imports<a class="headerlink" href="#necessary-imports" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Necessary imports</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Necessary imports</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -988,8 +912,6 @@
 <span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
 </pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -1024,9 +946,7 @@
 </div>
 <div class="section" id="training-hyperparameters">
 <h2>Training hyperparameters<a class="headerlink" href="#training-hyperparameters" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="hyper-parameters">
-<h3>hyper-parameters<a class="headerlink" href="#hyper-parameters" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## @title hyper-parameters</span>
 <span class="n">use_cuda</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
@@ -1046,14 +966,11 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="cutout">
 <h2>Cutout<a class="headerlink" href="#cutout" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="cutout-augmentation">
-<h3>cutout Augmentation<a class="headerlink" href="#cutout-augmentation" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title cutout Augmentation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title cutout Augmentation</span>
 
 <span class="k">class</span> <span class="nc">Cutout</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1101,7 +1018,6 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="mixup">
 <h2>Mixup<a class="headerlink" href="#mixup" title="Permalink to this headline">¶</a></h2>
 <p>Mixup is a data augmentation technique that combines pairs of examples via a convex combination of the images and the labels. Given images <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_j\)</span> with labels <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(y_j\)</span>, respectively, and <span class="math notranslate nohighlight">\(\lambda \in [0, 1]\)</span>, mixup creates a new image <span class="math notranslate nohighlight">\(\hat{x}\)</span> with label <span class="math notranslate nohighlight">\(\hat{y}\)</span> the following way:</p>
@@ -1111,11 +1027,9 @@
 \hat{y} = \lambda y_i + (1 - \lambda) y_j
 \end{split}\]</div>
 <p>You may check the <a class="reference external" href="https://arxiv.org/abs/1710.09412">original paper</a> and <a class="reference external" href="https://github.com/hongyi-zhang/mixup">code repository</a>.</p>
-<div class="section" id="mixup-augmentation">
-<h3>Mixup Augmentation<a class="headerlink" href="#mixup-augmentation" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Mixup Augmentation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Mixup Augmentation</span>
 
 <span class="k">def</span> <span class="nf">mixup_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Compute the mixup data. Return mixed inputs, pairs of targets, and lambda</span>
@@ -1138,15 +1052,12 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="datasets">
 <h3>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h3>
 <p>We will start using CIFAR-10 data set from PyTorch, but with small tweaks we can get any other data we are interested in.</p>
-<div class="section" id="data">
-<h4>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Data</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;==&gt; Preparing data..&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">percentageSplit</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">,</span> <span class="n">percent</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
     <span class="n">set1_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">percent</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">))</span>
@@ -1188,7 +1099,6 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="cifar-10">
 <h3>CIFAR-10<a class="headerlink" href="#cifar-10" title="Permalink to this headline">¶</a></h3>
 <p>CIFAR-10 is a data set of 50,000 colour (RGB) training images and 10,000 test images, of size 32 x 32 pixels. Each image is labelled as 1 of 10 possible classes:</p>
@@ -1221,11 +1131,9 @@
 <div class="section" id="data-loaders">
 <h2>Data loaders<a class="headerlink" href="#data-loaders" title="Permalink to this headline">¶</a></h2>
 <p>A dataloader is an optimized data iterator that provides functionality for efficient shuffling, transformation and batching of the data.</p>
-<div class="section" id="dataloader">
-<h3>Dataloader<a class="headerlink" href="#dataloader" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Dataloader </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataloader </span>
 <span class="n">num_workers</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;----&gt; number of workers: </span><span class="si">{</span><span class="n">num_workers</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -1235,7 +1143,6 @@
 <span class="n">testloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
     <span class="n">testset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1311,11 +1218,9 @@
 <p>ResNet is a family of network architectures whose main property is that the network is organised as a stack of <em>residual blocks</em>. Residual blocks consist of a stack of layers whose output is added the input, making a <em>shortcut connection</em>.</p>
 <p>See the <a class="reference external" href="https://arxiv.org/abs/1512.03385">original paper</a> for more details.</p>
 <p>ResNet is just a popular choice out of many others, but data augmentation works well in general. We just picked ResNet for illustration purposes.</p>
-<div class="section" id="model">
-<h3>model<a class="headerlink" href="#model" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title model</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># title model</span>
 <span class="sd">&#39;&#39;&#39;ResNet in PyTorch.</span>
 <span class="sd">Reference:</span>
 <span class="sd">[1] Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun</span>
@@ -1425,14 +1330,11 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="test-on-random-data">
 <h2>Test on random data<a class="headerlink" href="#test-on-random-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="load-the-model">
-<h3>load the Model<a class="headerlink" href="#load-the-model" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title load the Model</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load the Model</span>
 <span class="n">net</span> <span class="o">=</span> <span class="n">ResNet18</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----&gt; verify if model is run on random data&#39;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">32</span><span class="p">)))</span>
@@ -1455,15 +1357,12 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="set-loss-function-and-optimizer">
 <h2>Set loss function and optimizer<a class="headerlink" href="#set-loss-function-and-optimizer" title="Permalink to this headline">¶</a></h2>
 <p>We use the cross entropy loss, commonly used for classification, and stochastic gradient descent (SGD) as optimizer, with momentum and weight decay.</p>
-<div class="section" id="optimizer-and-criterion">
-<h3>optimizer and criterion<a class="headerlink" href="#optimizer-and-criterion" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title optimizer and criterion </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># optimizer and criterion </span>
 
 <span class="k">def</span> <span class="nf">mixup_criterion</span><span class="p">(</span><span class="n">y_a</span><span class="p">,</span> <span class="n">y_b</span><span class="p">,</span> <span class="n">lam</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
@@ -1479,14 +1378,11 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="train-and-test-loops">
 <h2>Train and test loops<a class="headerlink" href="#train-and-test-loops" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="training-test-functions">
-<h3>Training &amp; Test functions<a class="headerlink" href="#training-test-functions" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Training &amp; Test functions</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training &amp; Test functions</span>
 <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Epoch: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span>
     <span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
@@ -1558,12 +1454,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="checkpoint-adjust-learning-rate">
-<h3>checkpoint &amp; adjust_learning_rate<a class="headerlink" href="#checkpoint-adjust-learning-rate" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title checkpoint &amp; adjust_learning_rate</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># checkpoint &amp; adjust_learning_rate</span>
 <span class="k">def</span> <span class="nf">checkpoint</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
     <span class="c1"># Save checkpoint.</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Saving..&#39;</span><span class="p">)</span>
@@ -1593,10 +1486,7 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="start-training">
-<h3>start training<a class="headerlink" href="#start-training" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title start training</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">logname</span><span class="p">):</span>
@@ -1616,12 +1506,9 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="plot-results">
-<h3>plot results<a class="headerlink" href="#plot-results" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title plot results</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/results/ResNet_.csv&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -1652,7 +1539,6 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>

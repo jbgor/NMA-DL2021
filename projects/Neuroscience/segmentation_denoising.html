@@ -566,12 +566,12 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../ComputerVision/slides.html">
-       Project Templates
+       Slides
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../ComputerVision/Image_Alignment.html">
-       Intro to Image Alignment
+       Image Alignment
       </a>
      </li>
      <li class="toctree-l3">
@@ -777,13 +777,6 @@
     <a class="reference internal nav-link" href="#setup">
      Setup
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#install-dependencies">
-       Install dependencies
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#data-loading">
@@ -809,25 +802,11 @@
       <a class="reference internal nav-link" href="#test-performance">
        Test performance
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#padding-code-for-test-images">
-         Padding code for test images
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#setting-threshold-for-finding-cells">
        Setting threshold for finding cells
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#average-precision-function-fill-holes-and-remove-small-masks-function">
-         average_precision function + fill_holes_and_remove_small_masks function
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
@@ -866,7 +845,7 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/code/segmentation_denoising.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/code/segmentation_denoising.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="section" id="segmentation-and-denoising">
 <h1>Segmentation and Denoising<a class="headerlink" href="#segmentation-and-denoising" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
@@ -947,9 +926,7 @@ This Notebook was developed by Carsen Stringer. It borrows from:</p>
 <h1>Segmenting neurons in a dish<a class="headerlink" href="#segmenting-neurons-in-a-dish" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="install-dependencies">
-<h3>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @title Install dependencies
 !pip install opencv-python --quiet
@@ -977,7 +954,6 @@ This Notebook was developed by Carsen Stringer. It borrows from:</p>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1060,7 +1036,7 @@ This Notebook was developed by Carsen Stringer. It borrows from:</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>there are 22 cells in this image
 </pre></div>
 </div>
-<img alt="../../_images/segmentation_denoising_14_1.png" src="../../_images/segmentation_denoising_14_1.png" />
+<img alt="../../_images/segmentation_denoising_13_1.png" src="../../_images/segmentation_denoising_13_1.png" />
 </div>
 </div>
 <p>What labels will we use? We can’t use numbers like masks.
@@ -1217,7 +1193,7 @@ The standard approach is to create a “not-cell” and a “cell” probability
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/segmentation_denoising_18_0.png" src="../../_images/segmentation_denoising_18_0.png" />
+<img alt="../../_images/segmentation_denoising_17_0.png" src="../../_images/segmentation_denoising_17_0.png" />
 </div>
 </div>
 </div>
@@ -1555,9 +1531,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 <div class="section" id="test-performance">
 <h3>Test performance<a class="headerlink" href="#test-performance" title="Permalink to this headline">¶</a></h3>
 <p>Let’s see how the network performs on a test image.</p>
-<div class="section" id="padding-code-for-test-images">
-<h4>Padding code for test images<a class="headerlink" href="#padding-code-for-test-images" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Padding code for test images</span>
 
@@ -1638,8 +1612,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/segmentation_denoising_28_0.png" src="../../_images/segmentation_denoising_28_0.png" />
-</div>
+<img alt="../../_images/segmentation_denoising_26_0.png" src="../../_images/segmentation_denoising_26_0.png" />
 </div>
 </div>
 </div>
@@ -1647,9 +1620,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 <h3>Setting threshold for finding cells<a class="headerlink" href="#setting-threshold-for-finding-cells" title="Permalink to this headline">¶</a></h3>
 <p>We have found areas of “not cell” and “cell”. To create an instance segmentation we need to assign each pixel in a cell to a specific cell rather than a general class. To do this, we will need to find a threshold that produces the best segmentations on our validation set. How do we define a good segmentation? We can use a measure called intersection-over-union (IoU) and call a cell a good cell if it overlaps with a ground-truth cell with an IoU greater than some value. We have taken code from [cellpose/metrics.py] to do this. These functions are based on functions from [stardist], another neat algorithm I recommend checking out!</p>
 <p>This code below computes the average precision (which you want to maximize) for a given threshold. You’ll want to try several thresholds and choose one (probably coding up a loop over reasonable thresholds).</p>
-<div class="section" id="average-precision-function-fill-holes-and-remove-small-masks-function">
-<h4>average_precision function + fill_holes_and_remove_small_masks function<a class="headerlink" href="#average-precision-function-fill-holes-and-remove-small-masks-function" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title average_precision function + fill_holes_and_remove_small_masks function</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linear_sum_assignment</span>
@@ -1866,7 +1837,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.49772316
 </pre></div>
 </div>
-<img alt="../../_images/segmentation_denoising_32_1.png" src="../../_images/segmentation_denoising_32_1.png" />
+<img alt="../../_images/segmentation_denoising_29_1.png" src="../../_images/segmentation_denoising_29_1.png" />
 </div>
 </div>
 <p>Once you choose a threshold, you’ll want to use it on your test images.</p>
@@ -1901,7 +1872,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5300687
 </pre></div>
 </div>
-<img alt="../../_images/segmentation_denoising_34_1.png" src="../../_images/segmentation_denoising_34_1.png" />
+<img alt="../../_images/segmentation_denoising_31_1.png" src="../../_images/segmentation_denoising_31_1.png" />
 </div>
 </div>
 <p>What kinds of errors is the network making?</p>
@@ -1922,8 +1893,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/segmentation_denoising_36_0.png" src="../../_images/segmentation_denoising_36_0.png" />
-</div>
+<img alt="../../_images/segmentation_denoising_33_0.png" src="../../_images/segmentation_denoising_33_0.png" />
 </div>
 </div>
 </div>
@@ -1978,7 +1948,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/segmentation_denoising_40_0.png" src="../../_images/segmentation_denoising_40_0.png" />
+<img alt="../../_images/segmentation_denoising_37_0.png" src="../../_images/segmentation_denoising_37_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2021,7 +1991,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/segmentation_denoising_41_0.png" src="../../_images/segmentation_denoising_41_0.png" />
+<img alt="../../_images/segmentation_denoising_38_0.png" src="../../_images/segmentation_denoising_38_0.png" />
 </div>
 </div>
 </div>
@@ -2042,7 +2012,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 64.55im
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/segmentation_denoising_43_0.png" src="../../_images/segmentation_denoising_43_0.png" />
+<img alt="../../_images/segmentation_denoising_40_0.png" src="../../_images/segmentation_denoising_40_0.png" />
 </div>
 </div>
 </div>

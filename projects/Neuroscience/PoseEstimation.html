@@ -566,12 +566,12 @@
     <ul>
      <li class="toctree-l3">
       <a class="reference internal" href="../ComputerVision/slides.html">
-       Project Templates
+       Slides
       </a>
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="../ComputerVision/Image_Alignment.html">
-       Intro to Image Alignment
+       Image Alignment
       </a>
      </li>
      <li class="toctree-l3">
@@ -760,10 +760,40 @@
   <a class="reference internal nav-link" href="#setup">
    Setup
   </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mount-your-gdrive">
+   Mount your gDrive
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visulaize-the-data">
+   Visulaize the data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architectures">
+   Architectures
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#evaluation">
+   Evaluation
+  </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-dependencies">
-     Install dependencies
+    <a class="reference internal nav-link" href="#error-distribution">
+     Error distribution
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visulaization-of-layers">
+     Visulaization of layers
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#final-evaluation-on-the-test-set">
+     Final evaluation on the test set
     </a>
    </li>
   </ul>
@@ -779,7 +809,7 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/code/PoseEstimation.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/projects_wax/projects/Neuroscience/PoseEstimation.ipynb" target="_parent"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="section" id="animal-pose-estimation">
 <h1>Animal Pose Estimation<a class="headerlink" href="#animal-pose-estimation" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
@@ -833,9 +863,7 @@ This Notebook was developed by Kristin Branson. It borrows from:</p>
 <hr class="docutils" />
 <div class="section" id="setup">
 <h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="install-dependencies">
-<h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h2>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @title Install dependencies
 !pip install opencv-python --quiet
@@ -848,23 +876,85 @@ This Notebook was developed by Kristin Branson. It borrows from:</p>
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># file path stuff</span>
-<span class="kn">import</span> <span class="nn">cv2</span>  <span class="c1"># opencv</span>
-<span class="kn">import</span> <span class="nn">json</span>  <span class="c1"># reading json files</span>
-<span class="kn">import</span> <span class="nn">torch</span>  <span class="c1"># pytorch</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torchvision</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>  <span class="c1"># for plotting</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>  <span class="c1"># waitbar</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>  <span class="c1"># listing files</span>
-<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>  <span class="c1"># accessing files on Google Drive</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper function for plotting outputs</span>
+<span class="k">def</span> <span class="nf">PlotLabelAndPrediction</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">hm_pred</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title_string</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  PlotLabelAndPrediction(batch,pred,idx=None):</span>
+<span class="sd">  Plot the input, labels, and predictions for a batch. </span>
+<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">isbatch</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">idx</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">isbatch</span><span class="p">:</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span>
+  <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,]</span>
+  <span class="n">locs_pred</span> <span class="o">=</span> <span class="n">heatmap2landmarks</span><span class="p">(</span><span class="n">hm_pred</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">locs</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_landmarks</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">nlandmarks</span><span class="p">):</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">locs</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">locs</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+               <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
+      <span class="n">batchid</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">batchid</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title_string</span><span class="si">}{</span><span class="n">batchid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">locs</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_landmarks</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
+      <span class="n">locs_pred_curr</span> <span class="o">=</span> <span class="n">locs_pred</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">locs_pred_curr</span> <span class="o">=</span> <span class="n">locs_pred</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">nlandmarks</span><span class="p">):</span>
+      <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">locs_pred_curr</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">locs_pred_curr</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+               <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;pred&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">hmim</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_heatmap_image</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hmim</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
+      <span class="n">predcurr</span> <span class="o">=</span> <span class="n">hm_pred</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">predcurr</span> <span class="o">=</span> <span class="n">hm_pred</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">heatmap2image</span><span class="p">(</span><span class="n">predcurr</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;pred&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -878,90 +968,162 @@ This Notebook was developed by Kristin Branson. It borrows from:</p>
 </pre></div>
 </div>
 </div>
-</div>
-<p>Get the pose data set. To do this, you need to make a shortcut to a shared Google Drive directory in your Google Drive.</p>
-<ol class="simple">
-<li><p>Go to the shared Google Drive: https://drive.google.com/drive/folders/1a06ZAmQXvUqZZQGI9XWWjABl4vOF8v6Z?usp=sharing</p></li>
-<li><p>Select “Add shortcut to Drive” and select “My Drive”.
-<img alt="Screenshot Add shortcut to Drive Step 2" src="https://drive.google.com/uc?id=1312M-3Amy4wYg5deJP2d0Qh6n7IHh6vi" /></p></li>
-</ol>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Prepare all the data
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numpy version: 1.19.5
 
-# Mount Google Drive
-print(&#39;The first time you run this, it will ask you to verify that Google Colab can access your Google Drive.&#39;)
-print(&#39;Follow the instructions -- go to the linked website, and copy-paste the provided code.&#39;)
-drive.flush_and_unmount()
-drive.mount(&#39;/content/drive&#39;, force_remount=True)
-assert os.path.exists(&#39;/content/drive/My Drive&#39;), &#39;Google drive not mounted&#39;
-#print(&#39;Contents of My Drive:&#39;)
-#!ls &#39;/content/drive/My Drive&#39;
+CUDA available: True
 
-# Unzip fly pose data
-datadir = &#39;view0&#39;
-if not os.path.exists(datadir):
-  assert os.path.exists(&#39;/content/drive/My Drive/fly_bubble_pose/fly_bubble_20201204.tar.gz&#39;), &#39;Fly pose data zip file not found&#39;
-  !tar -xvzf &#39;/content/drive/My Drive/fly_bubble_pose/fly_bubble_20201204.tar.gz&#39; &gt; /dev/null
-  assert os.path.exists(&#39;view0&#39;), &#39;view0 not created after unzipping data&#39;
-else:
-  print(&#39;Fly pose data already unzipped&#39;)
-
-# Make sure all the data exists
-traindir = os.path.join(datadir,&#39;train&#39;)
-trainannfile = os.path.join(datadir,&#39;train_annotations.json&#39;)
-testdir = os.path.join(datadir,&#39;test&#39;)
-testannfile = os.path.join(datadir,&#39;test_annotations.json&#39;)
-assert os.path.exists(traindir) and os.path.exists(testdir) and os.path.exists(trainannfile) and os.path.exists(testannfile), &#39;Could not find all necessary data after unzipping&#39;
-print(&#39;Found all the fly pose data&#39;)
-# Read annotation information
-with open(trainannfile) as f:
-  trainann = json.load(f)
-f.close()
-ntrainims = len(trainann[&#39;images&#39;])
-# Make sure we have all the images
-t = glob(os.path.join(traindir,&#39;*.png&#39;))
-print(&#39;N. train images = %d, number of images unzipped = %d&#39;%(ntrainims,len(t)))
-assert ntrainims==len(t), &#39;number of annotations and number of images do not match&#39;
-
-# get some features of the data set
-i = 0
-filestr = trainann[&#39;images&#39;][0][&#39;file_name&#39;]
-imfile = os.path.join(traindir,filestr)
-im = cv2.imread(imfile,cv2.IMREAD_UNCHANGED)
-imsize = im.shape
-if len(imsize) == 2:
-  imsize += (1,)
-print(&#39;input image size:&#39;+str(imsize))
-
-landmark_names = [&#39;head_fc&#39;,&#39;head_bl&#39;,&#39;head_br&#39;,&#39;thorax_fr&#39;,&#39;thorax_fl&#39;,&#39;thorax_bc&#39;,
-                  &#39;abdomen&#39;,&#39;leg_ml_in&#39;,&#39;leg_ml_c&#39;,&#39;leg_mr_in&#39;,&#39;leg_mr_c&#39;,
-                  &#39;leg_fl_tip&#39;,&#39;leg_ml_tip&#39;,&#39;leg_bl_tip&#39;,&#39;leg_br_tip&#39;,&#39;leg_mr_tip&#39;,&#39;leg_fr_tip&#39;]
-nlandmarks = trainann[&#39;annotations&#39;][0][&#39;num_keypoints&#39;]
-assert nlandmarks == len(landmark_names)
+torch version: 1.9.0+cu102
 </pre></div>
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the data</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">tarfile</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;fly_bubble_20201204.tar.gz&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://osf.io/q7vhy/download&#39;</span>
+<span class="n">datadir</span> <span class="o">=</span> <span class="s1">&#39;view0&#39;</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ftar</span><span class="p">:</span>
+    <span class="n">ftar</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fly pose data have been downloaded.&#39;</span><span class="p">)</span>
+
+<span class="c1"># Untar fly pose data</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">datadir</span><span class="p">):</span>
+  <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>  <span class="c1"># specify which folder to extract to</span>
+    <span class="c1"># remove tar file</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fly pose data have been unzipped.&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fly pose data already unzipped.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fly pose data already unzipped.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="mount-your-gdrive">
+<h1>Mount your gDrive<a class="headerlink" href="#mount-your-gdrive" title="Permalink to this headline">¶</a></h1>
+<p>Get the pose data set. To do this, you need to make a shortcut to a shared Google Drive directory in your Google Drive.</p>
+<ol class="simple">
+<li><p>Go to the shared Google Drive: https://drive.google.com/drive/folders/1a06ZAmQXvUqZZQGI9XWWjABl4vOF8v6Z?usp=sharing</p></li>
+<li><p>Select “Add shortcut to Drive” and select “My Drive”.
+<img alt="Screenshot Add shortcut to Drive Step 2" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/Screenshot_AddShortcutToPoseData.png" /></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gDrive</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @markdown set the `gDrive=True` and run the cell.
+if gDrive:
+  from google.colab import drive
+  print(&#39;The first time you run this, it will ask you to verify that Google Colab can access your Google Drive.&#39;)
+  print(&#39;Follow the instructions -- go to the linked website, and copy-paste the provided code.&#39;)
+  drive.flush_and_unmount()
+  drive.mount(&#39;/content/drive&#39;, force_remount=True)
+  assert os.path.exists(&#39;/content/drive/My Drive&#39;), &#39;Google drive not mounted&#39;
+  
+  # Unzip fly pose data
+  datadir = &#39;view0&#39;
+  if not os.path.exists(datadir):
+    assert os.path.exists(&#39;/content/drive/My Drive/fly_bubble_pose/fly_bubble_20201204.tar.gz&#39;), &#39;Fly pose data zip file not found&#39;
+    !tar -xvzf &#39;/content/drive/My Drive/fly_bubble_pose/fly_bubble_20201204.tar.gz&#39; &gt; /dev/null
+    assert os.path.exists(datadir), &#39;view0 not created after unzipping data&#39;
+  else:
+    print(&#39;Fly pose data already unzipped&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure all the data exists</span>
+<span class="n">traindir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">trainannfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span> <span class="s1">&#39;train_annotations.json&#39;</span><span class="p">)</span>
+<span class="n">testdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="n">testannfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">datadir</span><span class="p">,</span> <span class="s1">&#39;test_annotations.json&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">traindir</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">testdir</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">trainannfile</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">testannfile</span><span class="p">),</span> <span class="s1">&#39;Could not find all necessary data after unzipping&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Found all the fly pose data&#39;</span><span class="p">)</span>
+
+<span class="c1"># Read annotation information</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">trainannfile</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">trainann</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">ntrainims</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">trainann</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">])</span>
+<span class="c1"># Make sure we have all the images</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traindir</span><span class="p">,</span><span class="s1">&#39;*.png&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N. train images = </span><span class="si">{</span><span class="n">ntrainims</span><span class="si">}</span><span class="s2">, number of images unzipped = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">ntrainims</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;number of annotations and number of images do not match&#39;</span>
+
+<span class="c1"># get some features of the data set</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">filestr</span> <span class="o">=</span> <span class="n">trainann</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span>
+<span class="n">imfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traindir</span><span class="p">,</span><span class="n">filestr</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imfile</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
+<span class="n">imsize</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">shape</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">imsize</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+  <span class="n">imsize</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;input image size: </span><span class="si">{</span><span class="n">imsize</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">landmark_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;head_fc&#39;</span><span class="p">,</span> <span class="s1">&#39;head_bl&#39;</span><span class="p">,</span> <span class="s1">&#39;head_br&#39;</span><span class="p">,</span> <span class="s1">&#39;thorax_fr&#39;</span><span class="p">,</span> <span class="s1">&#39;thorax_fl&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;thorax_bc&#39;</span><span class="p">,</span> <span class="s1">&#39;abdomen&#39;</span><span class="p">,</span> <span class="s1">&#39;leg_ml_in&#39;</span><span class="p">,</span> <span class="s1">&#39;leg_ml_c&#39;</span><span class="p">,</span><span class="s1">&#39; leg_mr_in&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;leg_mr_c&#39;</span><span class="p">,</span> <span class="s1">&#39;leg_fl_tip&#39;</span><span class="p">,</span> <span class="s1">&#39;leg_ml_tip&#39;</span><span class="p">,</span> <span class="s1">&#39;leg_bl_tip&#39;</span><span class="p">,</span>
+                  <span class="s1">&#39;leg_br_tip&#39;</span><span class="p">,</span><span class="s1">&#39;leg_mr_tip&#39;</span><span class="p">,</span><span class="s1">&#39;leg_fr_tip&#39;</span><span class="p">]</span>
+<span class="n">nlandmarks</span> <span class="o">=</span> <span class="n">trainann</span><span class="p">[</span><span class="s1">&#39;annotations&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;num_keypoints&#39;</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">nlandmarks</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">landmark_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Found all the fly pose data
+N. train images = 4216, number of images unzipped = 4216
+input image size: (181, 181, 1)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="visulaize-the-data">
+<h1>Visulaize the data<a class="headerlink" href="#visulaize-the-data" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show some example images</span>
 <span class="n">nimsshow</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># number of images to plot</span>
 <span class="n">imsshow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">ntrainims</span><span class="p">,</span><span class="n">nimsshow</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">nimsshow</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># make the figure bigger</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">nimsshow</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># make the figure bigger</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nimsshow</span><span class="p">):</span>
   <span class="n">filestr</span> <span class="o">=</span> <span class="n">trainann</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">][</span><span class="n">imsshow</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span>
-  <span class="n">imfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traindir</span><span class="p">,</span><span class="n">filestr</span><span class="p">)</span>
-  <span class="n">im</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imfile</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
+  <span class="n">imfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traindir</span><span class="p">,</span> <span class="n">filestr</span><span class="p">)</span>
+  <span class="n">im</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imfile</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nimsshow</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
   <span class="n">x</span> <span class="o">=</span> <span class="n">trainann</span><span class="p">[</span><span class="s1">&#39;annotations&#39;</span><span class="p">][</span><span class="n">imsshow</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;keypoints&#39;</span><span class="p">][::</span><span class="mi">3</span><span class="p">]</span>
   <span class="n">y</span> <span class="o">=</span> <span class="n">trainann</span><span class="p">[</span><span class="s1">&#39;annotations&#39;</span><span class="p">][</span><span class="n">imsshow</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;keypoints&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">]</span>
-  <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nlandmarks</span><span class="p">),</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nlandmarks</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">filestr</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PoseEstimation_15_0.png" src="../../_images/PoseEstimation_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1316,7 +1478,165 @@ assert nlandmarks == len(landmark_names)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;image&#39;: tensor([[[[0.8314, 0.8275, 0.8235,  ..., 0.8510, 0.8588, 0.8471],
+          [0.8275, 0.8235, 0.8235,  ..., 0.8627, 0.8549, 0.8510],
+          [0.8275, 0.8275, 0.8235,  ..., 0.8549, 0.8549, 0.8549],
+          ...,
+          [0.8078, 0.8118, 0.8078,  ..., 0.8353, 0.8314, 0.8353],
+          [0.8078, 0.8078, 0.8078,  ..., 0.8314, 0.8314, 0.8353],
+          [0.8078, 0.8039, 0.8118,  ..., 0.8353, 0.8353, 0.8314]]],
+
+
+        [[[0.8627, 0.8549, 0.8549,  ..., 0.8588, 0.8510, 0.8510],
+          [0.8471, 0.8627, 0.8588,  ..., 0.8549, 0.8549, 0.8510],
+          [0.8588, 0.8588, 0.8549,  ..., 0.8471, 0.8510, 0.8471],
+          ...,
+          [0.8510, 0.8510, 0.8471,  ..., 0.8510, 0.8471, 0.8471],
+          [0.8510, 0.8510, 0.8431,  ..., 0.8471, 0.8431, 0.8392],
+          [0.8471, 0.8471, 0.8510,  ..., 0.8431, 0.8431, 0.8471]]]]), &#39;landmarks&#39;: tensor([[[ 90.5385,  62.7739],
+         [ 82.1512,  71.1277],
+         [ 97.7700,  71.9199],
+         [ 96.6834,  74.8510],
+         [ 82.9120,  74.7246],
+         [ 89.4837,  92.3216],
+         [ 89.8202, 115.6112],
+         [ 80.7033,  86.7916],
+         [ 74.4863,  88.9200],
+         [ 98.9904,  85.6427],
+         [103.3257,  88.0042],
+         [ 80.3462,  53.4641],
+         [ 64.0090,  92.6734],
+         [ 68.7978, 118.0353],
+         [108.2679, 112.2780],
+         [109.2617,  86.2139],
+         [ 97.2775,  59.7020]],
+
+        [[ 90.0569,  63.2178],
+         [ 82.7785,  72.3158],
+         [ 96.8803,  72.3158],
+         [ 96.6529,  75.0452],
+         [ 83.0059,  75.5001],
+         [ 89.3745,  93.4686],
+         [ 90.0569, 114.1665],
+         [ 80.7314,  83.4608],
+         [ 73.9080,  85.0530],
+         [ 99.3823,  84.5981],
+         [106.6607,  87.3275],
+         [ 79.3667,  61.6257],
+         [ 57.3041,  70.0413],
+         [ 70.9511, 107.7979],
+         [110.0724, 119.8527],
+         [116.8959,  83.0059],
+         [107.1156,  44.1121]]]), &#39;heatmaps&#39;: tensor([[[[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         ...,
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]]],
+
+
+        [[[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         ...,
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]],
+
+         [[0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          ...,
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.],
+          [0., 0., 0.,  ..., 0., 0., 0.]]]]), &#39;id&#39;: tensor([3750, 1656])}
+</pre></div>
 </div>
+<img alt="../../_images/PoseEstimation_17_1.png" src="../../_images/PoseEstimation_17_1.png" />
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="architectures">
+<h1>Architectures<a class="headerlink" href="#architectures" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define network structure - UNet</span>
@@ -1344,7 +1664,7 @@ assert nlandmarks == len(landmark_names)
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">mid_channels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mid_channels</span><span class="p">:</span>
-      <span class="n">mid_channels</span> <span class="o">=</span> <span class="n">out_channels</span>
+        <span class="n">mid_channels</span> <span class="o">=</span> <span class="n">out_channels</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">double_conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">mid_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">mid_channels</span><span class="p">),</span>
@@ -1383,8 +1703,7 @@ assert nlandmarks == len(landmark_names)
       <span class="bp">self</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Upsample</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span> <span class="n">align_corners</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">DoubleConv</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">in_channels</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="n">in_channels</span> <span class="p">,</span> <span class="n">in_channels</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
-                                   <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ConvTranspose2d</span><span class="p">(</span><span class="n">in_channels</span> <span class="p">,</span> <span class="n">in_channels</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">conv</span> <span class="o">=</span> <span class="n">DoubleConv</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">)</span>
 
 
@@ -1399,8 +1718,7 @@ assert nlandmarks == len(landmark_names)
     <span class="c1"># if you have padding issues, see</span>
     <span class="c1"># https://github.com/HaiyongJiang/U-Net-Pytorch-Unstructured-Buggy/commit/0e854509c2cea854e247a9c615f175f76fbb2e3a</span>
     <span class="c1"># https://github.com/xiaopeng-liao/Pytorch-UNet/commit/8ebac70e633bac59fc22bb5195e513d5832fb3bd</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">x1</span>  <span class="c1"># torch.cat([x2, x1], dim=1)</span>
-
+    <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x2</span><span class="p">,</span> <span class="n">x1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 
@@ -1427,13 +1745,13 @@ assert nlandmarks == len(landmark_names)
     <span class="c1"># number of channels in the first layer</span>
     <span class="n">nchannels_inc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nchannels_inc</span>
     <span class="c1"># increase the number of channels by a factor of 2 each layer</span>
-    <span class="n">nchannels_down1</span> <span class="o">=</span> <span class="n">nchannels_inc</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="n">nchannels_down2</span> <span class="o">=</span> <span class="n">nchannels_down1</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="n">nchannels_down3</span> <span class="o">=</span> <span class="n">nchannels_down2</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">nchannels_down1</span> <span class="o">=</span> <span class="n">nchannels_inc</span><span class="o">*</span><span class="mi">2</span>
+    <span class="n">nchannels_down2</span> <span class="o">=</span> <span class="n">nchannels_down1</span><span class="o">*</span><span class="mi">2</span>
+    <span class="n">nchannels_down3</span> <span class="o">=</span> <span class="n">nchannels_down2</span><span class="o">*</span><span class="mi">2</span>
     <span class="c1"># decrease the number of channels by a factor of 2 each layer</span>
-    <span class="n">nchannels_up1</span> <span class="o">=</span> <span class="n">nchannels_down3</span> <span class="o">//</span> <span class="mi">2</span>
-    <span class="n">nchannels_up2</span> <span class="o">=</span> <span class="n">nchannels_up1</span> <span class="o">//</span> <span class="mi">2</span>
-    <span class="n">nchannels_up3</span> <span class="o">=</span> <span class="n">nchannels_up2</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">nchannels_up1</span> <span class="o">=</span> <span class="n">nchannels_down3</span><span class="o">//</span><span class="mi">2</span>
+    <span class="n">nchannels_up2</span> <span class="o">=</span> <span class="n">nchannels_up1</span><span class="o">//</span><span class="mi">2</span>
+    <span class="n">nchannels_up3</span> <span class="o">=</span> <span class="n">nchannels_up2</span><span class="o">//</span><span class="mi">2</span>
 
     <span class="k">if</span> <span class="n">bilinear</span><span class="p">:</span> 
       <span class="n">factor</span> <span class="o">=</span> <span class="mi">2</span>
@@ -1446,34 +1764,34 @@ assert nlandmarks == len(landmark_names)
     <span class="bp">self</span><span class="o">.</span><span class="n">layer_down2</span> <span class="o">=</span> <span class="n">Down</span><span class="p">(</span><span class="n">nchannels_down1</span><span class="p">,</span> <span class="n">nchannels_down2</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">layer_down3</span> <span class="o">=</span> <span class="n">Down</span><span class="p">(</span><span class="n">nchannels_down2</span><span class="p">,</span> <span class="n">nchannels_down3</span><span class="o">//</span><span class="n">factor</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">layer_up1</span> <span class="o">=</span> <span class="n">Up</span><span class="p">(</span><span class="n">nchannels_down3</span><span class="p">,</span> <span class="n">nchannels_up1</span> <span class="o">//</span> <span class="n">factor</span><span class="p">,</span><span class="n">bilinear</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">layer_up2</span> <span class="o">=</span> <span class="n">Up</span><span class="p">(</span><span class="n">nchannels_up1</span><span class="p">,</span> <span class="n">nchannels_up2</span> <span class="o">//</span> <span class="n">factor</span><span class="p">,</span> <span class="n">bilinear</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">layer_up3</span> <span class="o">=</span> <span class="n">Up</span><span class="p">(</span><span class="n">nchannels_up2</span><span class="p">,</span> <span class="n">nchannels_up3</span> <span class="o">//</span> <span class="n">factor</span><span class="p">,</span> <span class="n">bilinear</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">layer_up1</span> <span class="o">=</span> <span class="n">Up</span><span class="p">(</span><span class="n">nchannels_down3</span><span class="p">,</span> <span class="n">nchannels_up1</span><span class="o">//</span><span class="n">factor</span><span class="p">,</span> <span class="n">bilinear</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">layer_up2</span> <span class="o">=</span> <span class="n">Up</span><span class="p">(</span><span class="n">nchannels_up1</span><span class="p">,</span> <span class="n">nchannels_up2</span><span class="o">//</span><span class="n">factor</span><span class="p">,</span> <span class="n">bilinear</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">layer_up3</span> <span class="o">=</span> <span class="n">Up</span><span class="p">(</span><span class="n">nchannels_up2</span><span class="p">,</span> <span class="n">nchannels_up3</span><span class="o">//</span><span class="n">factor</span><span class="p">,</span> <span class="n">bilinear</span><span class="p">)</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">layer_outc</span> <span class="o">=</span> <span class="n">OutConv</span><span class="p">(</span><span class="n">nchannels_up3</span> <span class="o">//</span> <span class="n">factor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_landmarks</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">layer_outc</span> <span class="o">=</span> <span class="n">OutConv</span><span class="p">(</span><span class="n">nchannels_up3</span><span class="o">//</span><span class="n">factor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_landmarks</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">img1</span><span class="p">,</span> <span class="n">img2</span><span class="p">,</span> <span class="n">img3</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_inc</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inc: shape = </span><span class="si">{</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_down1</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">img1</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;down1: shape = </span><span class="si">{</span><span class="n">x2</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">x3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_down2</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">img2</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;down2: shape = </span><span class="si">{</span><span class="n">x3</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_inc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_down1</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x2</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">x3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_down2</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x3</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">x4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_down3</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;down3: shape = </span><span class="si">{</span><span class="n">x4</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x4</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_up1</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">x3</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;up1: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>       
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>       
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_up2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;up2: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_up3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;up3: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_outc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;outc: shape = </span><span class="si">{</span><span class="n">logits</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;outc: shape = </span><span class="si">{</span><span class="n">logits</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">logits</span>
 
-  <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">))</span>
+  <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">))</span>
 
   <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -1492,10 +1810,10 @@ assert nlandmarks == len(landmark_names)
 
 
 <span class="k">def</span> <span class="nf">heatmap2landmarks</span><span class="p">(</span><span class="n">hms</span><span class="p">):</span>
-  <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">hms</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">)),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">hms</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">)),</span>
+                  <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
   <span class="n">locs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">))</span>
-  <span class="n">locs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">locs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
-
+  <span class="n">locs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">locs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span><span class="n">hms</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:])</span>
   <span class="k">return</span> <span class="n">locs</span>
 </pre></div>
 </div>
@@ -1507,72 +1825,32 @@ assert nlandmarks == len(landmark_names)
 <span class="n">net</span> <span class="o">=</span> <span class="n">UNet</span><span class="p">(</span><span class="n">n_channels</span><span class="o">=</span><span class="n">imsize</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">n_landmarks</span><span class="o">=</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">nlandmarks</span><span class="p">)</span>
 <span class="n">net</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># have to be careful about what is done on the CPU vs GPU</span>
 
-<span class="c1"># helper function for plotting outputs</span>
-<span class="k">def</span> <span class="nf">PlotLabelAndPrediction</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span><span class="n">hm_pred</span><span class="p">,</span><span class="n">idx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">title_string</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  PlotLabelAndPrediction(batch,pred,idx=None):</span>
-<span class="sd">  Plot the input, labels, and predictions for a batch. </span>
-<span class="sd">  &quot;&quot;&quot;</span>
-  <span class="n">isbatch</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
-
-  <span class="k">if</span> <span class="n">idx</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">isbatch</span><span class="p">:</span>
-    <span class="n">idx</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]))</span>
-  <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,]</span>
-  <span class="n">locs_pred</span> <span class="o">=</span> <span class="n">heatmap2landmarks</span><span class="p">(</span><span class="n">hm_pred</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">im</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-    <span class="n">locs</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_landmarks</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">nlandmarks</span><span class="p">):</span>
-      <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">locs</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">locs</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
-               <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
-      <span class="n">batchid</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="n">batchid</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title_string</span><span class="si">}{</span><span class="n">batchid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
-    <span class="n">locs</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_landmarks</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
-      <span class="n">locs_pred_curr</span> <span class="o">=</span> <span class="n">locs_pred</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="n">locs_pred_curr</span> <span class="o">=</span> <span class="n">locs_pred</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">train_dataset</span><span class="o">.</span><span class="n">nlandmarks</span><span class="p">):</span>
-      <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">locs_pred_curr</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">locs_pred_curr</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-               <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
-               <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;pred&#39;</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
-    <span class="n">hmim</span> <span class="o">=</span> <span class="n">COCODataset</span><span class="o">.</span><span class="n">get_heatmap_image</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hmim</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">isbatch</span><span class="p">:</span>
-      <span class="n">predcurr</span> <span class="o">=</span> <span class="n">hm_pred</span><span class="p">[</span><span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="n">predcurr</span> <span class="o">=</span> <span class="n">hm_pred</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">heatmap2image</span><span class="p">(</span><span class="n">predcurr</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">))</span>
-    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;pred&#39;</span><span class="p">)</span>
-
 <span class="c1"># try the network out before training</span>
 <span class="n">batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">))</span>
 <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
   <span class="n">hms0</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">),</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span> <span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])),</span> <span class="n">dpi</span><span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])),</span> <span class="n">dpi</span><span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">PlotLabelAndPrediction</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">hms0</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>inc: shape = torch.Size([2, 8, 181, 181])
+inc: shape = torch.Size([2, 16, 90, 90])
+inc: shape = torch.Size([2, 32, 45, 45])
+inc: shape = torch.Size([2, 32, 22, 22])
+inc: shape = torch.Size([2, 16, 45, 45])
+inc: shape = torch.Size([2, 8, 90, 90])
+inc: shape = torch.Size([2, 4, 181, 181])
+outc: shape = torch.Size([2, 17, 181, 181])
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+</pre></div>
+</div>
+<img alt="../../_images/PoseEstimation_20_2.png" src="../../_images/PoseEstimation_20_2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1617,9 +1895,16 @@ assert nlandmarks == len(landmark_names)
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
 <span class="n">timestamp</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">T%H%M%S&#39;</span><span class="p">)</span>
-<span class="n">savedir</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/My Drive/PoseEstimationNets&#39;</span>
+<span class="c1"># If you use your gDrive do not forget to set `gDrive` to `True`</span>
+<span class="k">if</span> <span class="n">gDrive</span><span class="p">:</span>
+  <span class="n">savedir</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/My Drive/PoseEstimationNets&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">savedir</span> <span class="o">=</span> <span class="s1">&#39;/content/PoseEstimationNets&#39;</span>
+
+<span class="c1"># if the folder does not exist, create it.</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">savedir</span><span class="p">):</span>
   <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">savedir</span><span class="p">)</span>
+
 <span class="n">checkpointdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">savedir</span><span class="p">,</span> <span class="s1">&#39;UNet&#39;</span> <span class="o">+</span> <span class="n">timestamp</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">checkpointdir</span><span class="p">)</span>
 
@@ -1660,7 +1945,10 @@ assert nlandmarks == len(landmark_names)
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">loadepoch</span><span class="p">,</span> <span class="n">nepochs</span><span class="p">):</span>
   <span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">()</span> <span class="c1"># put in train mode (affects batchnorm)</span>
   <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">ntrainims</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Epoch </span><span class="si">{</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">nepochs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;img&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
+  <span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">ntrainims</span><span class="p">,</span>
+            <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Epoch </span><span class="si">{</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">nepochs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;img&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
+
     <span class="c1"># loop through each batch in the training data</span>
     <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">train_dataloader</span><span class="p">:</span>
       <span class="c1"># compute the loss</span>
@@ -1707,6 +1995,31 @@ assert nlandmarks == len(landmark_names)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/3:  90%|█████████ | 3795/4216 [00:37&lt;00:04, 100.65img/s, loss (batch)=0.00442]
+Epoch 2/3:   0%|          | 16/4216 [00:00&lt;00:44, 93.41img/s, loss (batch)=0.00413]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss (epoch) = 25.095398906618357
+Saving network state at epoch 1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2/3:  90%|█████████ | 3795/4216 [00:38&lt;00:04, 97.56img/s, loss (batch)=0.0034] 
+Epoch 3/3:   0%|          | 18/4216 [00:00&lt;00:41, 101.90img/s, loss (batch)=0.00337]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss (epoch) = 7.080515159992501
+Saving network state at epoch 2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 3/3:  90%|█████████ | 3795/4216 [00:38&lt;00:04, 99.38img/s, loss (batch)=0.00364]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>loss (epoch) = 6.50796192814596
+Saving network state at epoch 3
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1727,7 +2040,15 @@ assert nlandmarks == len(landmark_names)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PoseEstimation_23_0.png" src="../../_images/PoseEstimation_23_0.png" />
+<img alt="../../_images/PoseEstimation_23_1.png" src="../../_images/PoseEstimation_23_1.png" />
 </div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="evaluation">
+<h1>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluate the training and validation error</span>
@@ -1778,6 +2099,8 @@ assert nlandmarks == len(landmark_names)
 </div>
 </div>
 </div>
+<div class="section" id="error-distribution">
+<h2>Error distribution<a class="headerlink" href="#error-distribution" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the error distribution</span>
@@ -1813,6 +2136,9 @@ assert nlandmarks == len(landmark_names)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PoseEstimation_27_0.png" src="../../_images/PoseEstimation_27_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1833,7 +2159,17 @@ assert nlandmarks == len(landmark_names)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PoseEstimation_28_0.png" src="../../_images/PoseEstimation_28_0.png" />
+<img alt="../../_images/PoseEstimation_28_1.png" src="../../_images/PoseEstimation_28_1.png" />
+<img alt="../../_images/PoseEstimation_28_2.png" src="../../_images/PoseEstimation_28_2.png" />
+<img alt="../../_images/PoseEstimation_28_3.png" src="../../_images/PoseEstimation_28_3.png" />
+<img alt="../../_images/PoseEstimation_28_4.png" src="../../_images/PoseEstimation_28_4.png" />
 </div>
+</div>
+</div>
+<div class="section" id="visulaization-of-layers">
+<h2>Visulaization of layers<a class="headerlink" href="#visulaization-of-layers" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the first layer of convolutional features</span>
@@ -1841,17 +2177,26 @@ assert nlandmarks == len(landmark_names)
   <span class="n">w</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">layer_inc</span><span class="o">.</span><span class="n">double_conv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 <span class="n">nr</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])))</span>
 <span class="n">nc</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">nr</span><span class="p">))</span>
-<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
   <span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">))</span>
   <span class="n">fil</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
   <span class="k">if</span> <span class="n">fil</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
     <span class="n">fil</span> <span class="o">=</span> <span class="n">fil</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
   <span class="n">ax</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fil</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PoseEstimation_30_0.png" src="../../_images/PoseEstimation_30_0.png" />
 </div>
+</div>
+</div>
+<div class="section" id="final-evaluation-on-the-test-set">
+<h2>Final evaluation on the test set<a class="headerlink" href="#final-evaluation-on-the-test-set" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># final evaluation on the test set. for proper evaluation, and to avoid overfitting</span>
@@ -1873,6 +2218,11 @@ assert nlandmarks == len(landmark_names)
                                               <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">l2err_per_landmark_test</span><span class="p">,</span> <span class="n">test_ids</span> <span class="o">=</span> <span class="n">eval_net</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">test_dataloader</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N. test images = 1800, number of images unzipped = 1800
 </pre></div>
 </div>
 </div>
@@ -1916,6 +2266,9 @@ assert nlandmarks == len(landmark_names)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PoseEstimation_33_0.png" src="../../_images/PoseEstimation_33_0.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1935,6 +2288,13 @@ assert nlandmarks == len(landmark_names)
   <span class="n">PlotLabelAndPrediction</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">pred</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>  <span class="c1">#,title_string=&#39;Err = %s &#39;%errstr)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/PoseEstimation_34_0.png" src="../../_images/PoseEstimation_34_0.png" />
+<img alt="../../_images/PoseEstimation_34_1.png" src="../../_images/PoseEstimation_34_1.png" />
+<img alt="../../_images/PoseEstimation_34_2.png" src="../../_images/PoseEstimation_34_2.png" />
+<img alt="../../_images/PoseEstimation_34_3.png" src="../../_images/PoseEstimation_34_3.png" />
+<img alt="../../_images/PoseEstimation_34_4.png" src="../../_images/PoseEstimation_34_4.png" />
 </div>
 </div>
 </div>

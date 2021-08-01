@@ -544,12 +544,12 @@
 <ul>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/slides.html">
-       Project Templates
+       Slides
       </a>
 </li>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/Image_Alignment.html">
-       Intro to Image Alignment
+       Image Alignment
       </a>
 </li>
 <li class="toctree-l3">
@@ -1437,18 +1437,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bee51649-4ffa-4680-9972-6c42e02571a1">
-<span class="eqno">(60)<a class="headerlink" href="#equation-bee51649-4ffa-4680-9972-6c42e02571a1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3692bce1-a8fd-4168-b32b-91b332f606cd">
+<span class="eqno">(60)<a class="headerlink" href="#equation-3692bce1-a8fd-4168-b32b-91b332f606cd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ea10b84-2aaa-4798-8a8d-9edc0484592b">
-<span class="eqno">(61)<a class="headerlink" href="#equation-7ea10b84-2aaa-4798-8a8d-9edc0484592b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5ad3750d-ac47-492e-af8f-57796cbf5c91">
+<span class="eqno">(61)<a class="headerlink" href="#equation-5ad3750d-ac47-492e-af8f-57796cbf5c91" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d79672c-e6a2-46d3-9ff0-75c2a71a1818">
-<span class="eqno">(62)<a class="headerlink" href="#equation-7d79672c-e6a2-46d3-9ff0-75c2a71a1818" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ebbfa6e-0449-40e2-9348-2dd4e48185cd">
+<span class="eqno">(62)<a class="headerlink" href="#equation-9ebbfa6e-0449-40e2-9348-2dd4e48185cd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1460,8 +1460,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49c89570-710f-4e0a-b7e4-3bafd78953a9">
-<span class="eqno">(63)<a class="headerlink" href="#equation-49c89570-710f-4e0a-b7e4-3bafd78953a9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-47194bc7-953f-4f40-9a3b-9097f3f8544b">
+<span class="eqno">(63)<a class="headerlink" href="#equation-47194bc7-953f-4f40-9a3b-9097f3f8544b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
