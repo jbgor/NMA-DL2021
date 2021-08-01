@@ -548,13 +548,18 @@
       </a>
 </li>
 <li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ComputerVision/ideas_and_datasets.html">
+       Ideas
+      </a>
+</li>
+<li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/em_synapses.html">
        Knowledge Extraction from a Convolutional Neural Network
       </a>
 </li>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/spectrogram_analysis.html">
-       Music classification and generation with spectrograms
+       Music Spectrograms
       </a>
 </li>
 <li class="toctree-l3">
@@ -594,6 +599,28 @@
        Slides
       </a>
 </li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/ideas_and_datasets.html">
+       Ideas
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/robolympics.html">
+       NMA Robolympics: Controlling robots using reinforcement learning
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/lunar_lander.html">
+       Performance Analysis of DQN Algorithm on the Lunar Lander task
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/human_rl.html">
+<strong>
+        ⚠️ This is a work in progress.
+       </strong>
+</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2 has-children">
@@ -611,6 +638,11 @@
        Slides
       </a>
 </li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/NaturalLanguageProcessing/ideas_and_datasets.html">
+       Ideas
+      </a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2 has-children">
@@ -626,6 +658,11 @@
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/Neuroscience/slides.html">
        Slides
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/Neuroscience/ideas_and_datasets.html">
+       Ideas
       </a>
 </li>
 <li class="toctree-l3">
@@ -1457,18 +1494,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee102ee1-335c-4cd7-b44e-2ed2e0a8aa0f">
-<span class="eqno">(60)<a class="headerlink" href="#equation-ee102ee1-335c-4cd7-b44e-2ed2e0a8aa0f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c0e37d93-d120-42fa-9c10-69f2209880f1">
+<span class="eqno">(60)<a class="headerlink" href="#equation-c0e37d93-d120-42fa-9c10-69f2209880f1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b504fbef-d72e-452b-be6c-99c1d1d67a1a">
-<span class="eqno">(61)<a class="headerlink" href="#equation-b504fbef-d72e-452b-be6c-99c1d1d67a1a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-87380119-a3dc-440c-820b-3f48d2775986">
+<span class="eqno">(61)<a class="headerlink" href="#equation-87380119-a3dc-440c-820b-3f48d2775986" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74594511-ba06-47a2-8b75-48d0faf1f833">
-<span class="eqno">(62)<a class="headerlink" href="#equation-74594511-ba06-47a2-8b75-48d0faf1f833" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fccbe2f6-487a-42b9-81cd-5bed858e941e">
+<span class="eqno">(62)<a class="headerlink" href="#equation-fccbe2f6-487a-42b9-81cd-5bed858e941e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1480,8 +1517,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d8634c9e-941b-4ab4-bd8c-c09f90b7802d">
-<span class="eqno">(63)<a class="headerlink" href="#equation-d8634c9e-941b-4ab4-bd8c-c09f90b7802d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7b758960-15c8-4930-956e-5f8fed1443ec">
+<span class="eqno">(63)<a class="headerlink" href="#equation-7b758960-15c8-4930-956e-5f8fed1443ec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\

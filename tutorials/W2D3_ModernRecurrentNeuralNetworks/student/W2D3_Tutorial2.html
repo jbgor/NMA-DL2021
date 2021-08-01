@@ -548,13 +548,18 @@
       </a>
 </li>
 <li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ComputerVision/ideas_and_datasets.html">
+       Ideas
+      </a>
+</li>
+<li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/em_synapses.html">
        Knowledge Extraction from a Convolutional Neural Network
       </a>
 </li>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/spectrogram_analysis.html">
-       Music classification and generation with spectrograms
+       Music Spectrograms
       </a>
 </li>
 <li class="toctree-l3">
@@ -594,6 +599,28 @@
        Slides
       </a>
 </li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/ideas_and_datasets.html">
+       Ideas
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/robolympics.html">
+       NMA Robolympics: Controlling robots using reinforcement learning
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/lunar_lander.html">
+       Performance Analysis of DQN Algorithm on the Lunar Lander task
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ReinforcementLearning/human_rl.html">
+<strong>
+        ⚠️ This is a work in progress.
+       </strong>
+</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2 has-children">
@@ -611,6 +638,11 @@
        Slides
       </a>
 </li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/NaturalLanguageProcessing/ideas_and_datasets.html">
+       Ideas
+      </a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2 has-children">
@@ -626,6 +658,11 @@
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/Neuroscience/slides.html">
        Slides
+      </a>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="../../../projects/Neuroscience/ideas_and_datasets.html">
+       Ideas
       </a>
 </li>
 <li class="toctree-l3">
@@ -1369,7 +1406,7 @@ Random seed 2021 has been set.
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f5964e5722454afaba0c12cbb2f033f7"}
+{"version_major": 2, "version_minor": 0, "model_id": "5a99f968a94142e0ba5e5d599a2ff3af"}
 </script></div>
 </div>
 <p>Recurrent neural networks, or RNNs , are a family of neural networks for processing sequential data. Just as a convolutional network is specialized for processing a grid of values X such as an image, a recurrent neural network is specialized for processing a sequence of values. RNNs prove useful in many scenarios where other deep learning models are not effective.</p>
@@ -1380,8 +1417,8 @@ Random seed 2021 has been set.
 <p>The following provides more data than the video (but can be skipped for now). For more detail, see the sources, the <a class="reference external" href="https://www.deeplearningbook.org/contents/rnn.html">deep learning book</a>, and <a class="reference external" href="https://d2l.ai/chapter_recurrent-neural-networks/rnn.html">d2l.ai</a></p>
 <p>When the recurrent network is trained to perform a task that requires predicting the future from the past, the network typically learns to use a hidden state at time step <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(H_t\)</span> as a kind of lossy summary of the task-relevant aspects of the past sequence of inputs up to <span class="math notranslate nohighlight">\(t\)</span>. This summary is in general necessarily lossy, since it maps an arbitrary length sequence <span class="math notranslate nohighlight">\((X_t, X_{t-1}, X_{t-2}, . . . , X_{2}, X_{1})\)</span> to a ﬁxed length vector <span class="math notranslate nohighlight">\(H_t\)</span>.</p>
 <p>We can represent the unfolded recurrence after <span class="math notranslate nohighlight">\(t\)</span> steps with a function <span class="math notranslate nohighlight">\(G_t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8ff55228-3738-46aa-8bc0-a18b2e79458e">
-<span class="eqno">(64)<a class="headerlink" href="#equation-8ff55228-3738-46aa-8bc0-a18b2e79458e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-28732599-3560-4c1b-8c9a-18158cc1286d">
+<span class="eqno">(64)<a class="headerlink" href="#equation-28732599-3560-4c1b-8c9a-18158cc1286d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H_t &amp;= G_t(X_t, X_{t-1}, X_{t-2}, \dots, X_{2}, X_{1}) \\
 &amp;= f(H_{t−1}, X_{t}; \theta)
 \end{align}\]</div>
@@ -1394,13 +1431,13 @@ H_t &amp;= G_t(X_t, X_{t-1}, X_{t-2}, \dots, X_{2}, X_{1}) \\
 </ul>
 <p>We will now formally write down the equations of a recurrent unit.</p>
 <p>Assume that we have a minibatch of inputs <span class="math notranslate nohighlight">\(X_t \in R^{nxd}\)</span> at time step <span class="math notranslate nohighlight">\(t\)</span> . In other words, for a minibatch of <span class="math notranslate nohighlight">\(n\)</span> sequence examples, each row of <span class="math notranslate nohighlight">\(X_t\)</span>  corresponds to one example at time step <span class="math notranslate nohighlight">\(t\)</span> from the sequence. Next, we denote by <span class="math notranslate nohighlight">\(H_t \in R^{nxh}\)</span> the hidden variable of time step <span class="math notranslate nohighlight">\(t\)</span>. Unlike the MLP, here we save the hidden variable <span class="math notranslate nohighlight">\(H_{t-1}\)</span> from the previous time step and introduce a new weight parameter <span class="math notranslate nohighlight">\(W_{hh} \in R^{hxh}\)</span> to describe how to use the hidden variable of the previous time step in the current time step. Specifically, the calculation of the hidden variable of the current time step is determined by the input of the current time step together with the hidden variable of the previous time step:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dac9e5ca-de30-428e-b849-6fa57b8e6688">
-<span class="eqno">(65)<a class="headerlink" href="#equation-dac9e5ca-de30-428e-b849-6fa57b8e6688" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d72fd507-c437-459e-b8a2-26ed46962cfb">
+<span class="eqno">(65)<a class="headerlink" href="#equation-d72fd507-c437-459e-b8a2-26ed46962cfb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_t = \phi(X_t W_{xh} + H_{t-1}W_{hh} + b_h)
 \end{equation}\]</div>
 <p>For time step <span class="math notranslate nohighlight">\(t\)</span>, the output of the output layer is similar to the computation in the MLP:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7436171-92fe-4d4c-af8b-45fbc13e1f02">
-<span class="eqno">(66)<a class="headerlink" href="#equation-b7436171-92fe-4d4c-af8b-45fbc13e1f02" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8db74be1-49d5-4ad7-b1e5-4babee2fce26">
+<span class="eqno">(66)<a class="headerlink" href="#equation-8db74be1-49d5-4ad7-b1e5-4babee2fce26" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 O_t = H_t W_{hq} + b_q
 \end{equation}\]</div>
 <p>Parameters of the RNN include the weights <span class="math notranslate nohighlight">\(W_{xh} \in R^{dxh}, W_{hh} \in R^{hxh}\)</span> , and the bias <span class="math notranslate nohighlight">\(b_h \in R^{1xh}\)</span> of the hidden layer, together with the weights <span class="math notranslate nohighlight">\(W_{hq} \in R^{hxq}\)</span> and the bias <span class="math notranslate nohighlight">\(b_q \in R^{1xq}\)</span> of the output layer. It is worth mentioning that even at different time steps, RNNs always use these model parameters. Therefore, the parameterization cost of an RNN does not grow as the number of time steps increases.</p>
@@ -1424,195 +1461,202 @@ O_t = H_t W_{hq} + b_q
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 0.00/84.1M [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 32.8k/84.1M [00:00&lt;04:21, 322kB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 32.8k/84.1M [00:00&lt;05:35, 251kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 81.9k/84.1M [00:00&lt;03:25, 408kB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 81.9k/84.1M [00:00&lt;04:19, 324kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 131k/84.1M [00:00&lt;03:12, 436kB/s] 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 131k/84.1M [00:00&lt;04:01, 348kB/s] 
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 213k/84.1M [00:00&lt;02:26, 573kB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 213k/84.1M [00:00&lt;03:02, 459kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 311k/84.1M [00:00&lt;01:58, 704kB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 311k/84.1M [00:00&lt;02:29, 562kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 442k/84.1M [00:00&lt;01:34, 885kB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 426k/84.1M [00:00&lt;02:04, 671kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 573k/84.1M [00:00&lt;01:22, 1.01MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 590k/84.1M [00:00&lt;01:37, 859kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 754k/84.1M [00:00&lt;01:07, 1.24MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 770k/84.1M [00:01&lt;01:21, 1.03MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 950k/84.1M [00:00&lt;00:57, 1.44MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 983k/84.1M [00:01&lt;01:08, 1.22MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|▏         | 1.21M/84.1M [00:01&lt;00:47, 1.76MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|▏         | 1.26M/84.1M [00:01&lt;00:55, 1.50MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   2%|▏         | 1.52M/84.1M [00:01&lt;00:38, 2.14MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   2%|▏         | 1.61M/84.1M [00:01&lt;00:42, 1.93MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   2%|▏         | 1.93M/84.1M [00:01&lt;00:30, 2.67MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   3%|▎         | 2.11M/84.1M [00:01&lt;00:33, 2.45MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   3%|▎         | 2.44M/84.1M [00:01&lt;00:24, 3.34MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   3%|▎         | 2.80M/84.1M [00:01&lt;00:23, 3.39MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   4%|▍         | 3.16M/84.1M [00:01&lt;00:18, 4.41MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   4%|▍         | 3.69M/84.1M [00:01&lt;00:18, 4.37MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   5%|▍         | 4.15M/84.1M [00:01&lt;00:13, 5.90MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   6%|▌         | 4.72M/84.1M [00:01&lt;00:13, 5.84MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   6%|▋         | 5.46M/84.1M [00:01&lt;00:09, 7.89MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   6%|▋         | 5.39M/84.1M [00:02&lt;00:12, 6.06MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   9%|▊         | 7.34M/84.1M [00:01&lt;00:07, 10.9MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   8%|▊         | 6.62M/84.1M [00:02&lt;00:10, 7.75MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  12%|█▏        | 9.99M/84.1M [00:01&lt;00:04, 15.3MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   9%|▉         | 7.70M/84.1M [00:02&lt;00:08, 8.58MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  16%|█▌        | 13.4M/84.1M [00:01&lt;00:03, 20.4MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  11%|█         | 9.18M/84.1M [00:02&lt;00:07, 10.3MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  21%|██        | 17.8M/84.1M [00:02&lt;00:02, 26.8MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  13%|█▎        | 10.9M/84.1M [00:02&lt;00:05, 12.2MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  28%|██▊       | 23.4M/84.1M [00:02&lt;00:01, 34.4MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  16%|█▌        | 13.3M/84.1M [00:02&lt;00:04, 15.5MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  35%|███▌      | 29.6M/84.1M [00:02&lt;00:01, 41.8MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  18%|█▊        | 15.3M/84.1M [00:02&lt;00:04, 16.6MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  42%|████▏     | 35.7M/84.1M [00:02&lt;00:01, 44.9MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  22%|██▏       | 18.1M/84.1M [00:02&lt;00:03, 19.9MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  49%|████▉     | 41.6M/84.1M [00:02&lt;00:00, 47.7MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  25%|██▍       | 21.0M/84.1M [00:02&lt;00:02, 22.3MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  57%|█████▋    | 47.7M/84.1M [00:02&lt;00:00, 50.1MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  29%|██▉       | 24.6M/84.1M [00:02&lt;00:02, 26.5MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  64%|██████▍   | 53.7M/84.1M [00:02&lt;00:00, 51.1MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  34%|███▍      | 28.5M/84.1M [00:03&lt;00:01, 30.2MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  71%|███████   | 59.7M/84.1M [00:02&lt;00:00, 52.9MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  39%|███▉      | 32.8M/84.1M [00:03&lt;00:01, 33.8MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  78%|███████▊  | 66.0M/84.1M [00:02&lt;00:00, 54.9MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  44%|████▍     | 37.2M/84.1M [00:03&lt;00:01, 36.8MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  85%|████████▍ | 71.5M/84.1M [00:03&lt;00:00, 54.4MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  49%|████▉     | 41.0M/84.1M [00:03&lt;00:01, 37.2MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  91%|█████████▏| 77.0M/84.1M [00:03&lt;00:00, 46.7MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  54%|█████▍    | 45.4M/84.1M [00:03&lt;00:00, 38.9MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  97%|█████████▋| 81.8M/84.1M [00:03&lt;00:00, 46.0MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  59%|█████▊    | 49.3M/84.1M [00:03&lt;00:00, 38.4MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz: 100%|██████████| 84.1M/84.1M [00:03&lt;00:00, 24.8MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  63%|██████▎   | 53.4M/84.1M [00:03&lt;00:00, 39.3MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  68%|██████▊   | 57.3M/84.1M [00:03&lt;00:00, 39.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  73%|███████▎  | 61.6M/84.1M [00:03&lt;00:00, 40.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  78%|███████▊  | 65.7M/84.1M [00:03&lt;00:00, 40.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  83%|████████▎ | 70.0M/84.1M [00:04&lt;00:00, 40.9MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  88%|████████▊ | 74.4M/84.1M [00:04&lt;00:00, 40.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  94%|█████████▎| 78.7M/84.1M [00:04&lt;00:00, 41.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  99%|█████████▊| 83.0M/84.1M [00:04&lt;00:00, 41.1MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz: 100%|██████████| 84.1M/84.1M [00:04&lt;00:00, 19.2MB/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">normalize_resource_url</span><span class="nt">(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">181</span>         <span class="n">protocol</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">split_resource_url</span><span class="p">(</span><span class="n">resource_url</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span>     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">split_resource_url</span><span class="nt">(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="sd">"""</span>
-<span class="ne">--&gt; </span><span class="mi">136</span><span class="sd">     protocol, path_ = resource_url.split(":", 1)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span><span class="sd">     if protocol == "nltk":</span>
-
-<span class="ne">ValueError</span>: not enough values to unpack (expected 2, got 1)
-
-<span class="sd">During handling of the above exception, another exception occurred:</span>
-
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="sd">/tmp/ipykernel_10015/261226027.py in &lt;module&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="sd"> # @markdown Dataset Loading with default params</span>
-<span class="ne">----&gt; </span><span class="mi">2</span><span class="sd"> TEXT, vocab_size, train_iter, valid_iter, test_iter = load_dataset(seed=SEED)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10109</span><span class="o">/</span><span class="mf">261226027.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># @markdown Dataset Loading with default params</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">train_iter</span><span class="p">,</span> <span class="n">valid_iter</span><span class="p">,</span> <span class="n">test_iter</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_10015/4015461846.py</span> in <span class="ni">load_dataset</span><span class="nt">(sentence_length, batch_size, seed)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span><span class="sd">   LABEL = data.LabelField(dtype=torch.float)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span><span class="sd"> </span>
-<span class="ne">---&gt; </span><span class="mi">36</span><span class="sd">   train_data, test_data = datasets.IMDB.splits(TEXT, LABEL)</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd">   # If no specific vector embeddings are specified,</span>
+<span class="nn">/tmp/ipykernel_10109/4015461846.py</span> in <span class="ni">load_dataset</span><span class="nt">(sentence_length, batch_size, seed)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>   <span class="n">LABEL</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">LabelField</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> 
+<span class="ne">---&gt; </span><span class="mi">36</span>   <span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">IMDB</span><span class="o">.</span><span class="n">splits</span><span class="p">(</span><span class="n">TEXT</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> 
+<span class="g g-Whitespace">     </span><span class="mi">38</span>   <span class="c1"># If no specific vector embeddings are specified,</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchtext/datasets/imdb.py</span> in <span class="ni">splits</span><span class="nt">(cls, text_field, label_field, root, train, test, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span><span class="sd">         return super(IMDB, cls).splits(</span>
-<span class="g g-Whitespace">     </span><span class="mi">54</span><span class="sd">             root=root, text_field=text_field, label_field=label_field,</span>
-<span class="ne">---&gt; </span><span class="mi">55</span><span class="sd">             train=train, validation=None, test=test, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span><span class="sd">     @classmethod</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">IMDB</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="n">splits</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">54</span>             <span class="n">root</span><span class="o">=</span><span class="n">root</span><span class="p">,</span> <span class="n">text_field</span><span class="o">=</span><span class="n">text_field</span><span class="p">,</span> <span class="n">label_field</span><span class="o">=</span><span class="n">label_field</span><span class="p">,</span>
+<span class="ne">---&gt; </span><span class="mi">55</span>             <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> 
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="nd">@classmethod</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchtext/data/dataset.py</span> in <span class="ni">splits</span><span class="nt">(cls, path, root, train, validation, test, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span><span class="sd">             path = cls.download(root)</span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span><span class="sd">         train_data = None if train is None else cls(</span>
-<span class="ne">---&gt; </span><span class="mi">78</span><span class="sd">             os.path.join(path, train), **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">79</span><span class="sd">         val_data = None if validation is None else cls(</span>
-<span class="g g-Whitespace">     </span><span class="mi">80</span><span class="sd">             os.path.join(path, validation), **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span>             <span class="n">path</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span>         <span class="n">train_data</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">train</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">cls</span><span class="p">(</span>
+<span class="ne">---&gt; </span><span class="mi">78</span>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">train</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>         <span class="n">val_data</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">validation</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">cls</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span>             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">validation</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchtext/datasets/imdb.py</span> in <span class="ni">__init__</span><span class="nt">(self, path, text_field, label_field, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span><span class="sd">                 with io.open(fname, 'r', encoding="utf-8") as f:</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span><span class="sd">                     text = f.readline()</span>
-<span class="ne">---&gt; </span><span class="mi">35</span><span class="sd">                 examples.append(data.Example.fromlist([text, label], fields))</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="sd">         super(IMDB, self).__init__(examples, fields, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span>                 <span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>                     <span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">35</span>                 <span class="n">examples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Example</span><span class="o">.</span><span class="n">fromlist</span><span class="p">([</span><span class="n">text</span><span class="p">,</span> <span class="n">label</span><span class="p">],</span> <span class="n">fields</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> 
+<span class="g g-Whitespace">     </span><span class="mi">37</span>         <span class="nb">super</span><span class="p">(</span><span class="n">IMDB</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">examples</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchtext/data/example.py</span> in <span class="ni">fromlist</span><span class="nt">(cls, data, fields)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="sd">                         setattr(ex, n, f.preprocess(val))</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span><span class="sd">                 else:</span>
-<span class="ne">---&gt; </span><span class="mi">85</span><span class="sd">                     setattr(ex, name, field.preprocess(val))</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span><span class="sd">         return ex</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span>                         <span class="nb">setattr</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span>                 <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">85</span>                     <span class="nb">setattr</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">preprocess</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span>         <span class="k">return</span> <span class="n">ex</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span> 
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchtext/data/field.py</span> in <span class="ni">preprocess</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span><span class="sd">             x = Pipeline(lambda s: six.text_type(s, encoding='utf-8'))(x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span><span class="sd">         if self.sequential and isinstance(x, six.text_type):</span>
-<span class="ne">--&gt; </span><span class="mi">215</span><span class="sd">             x = self.tokenize(x.rstrip('\n'))</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="sd">         if self.lower:</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd">             x = Pipeline(six.text_type.lower)(x)</span>
+<span class="g g-Whitespace">    </span><span class="mi">213</span>             <span class="n">x</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequential</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">215</span>             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">216</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span>             <span class="n">x</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="o">.</span><span class="n">lower</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">word_tokenize</span><span class="nt">(text, language, preserve_line)</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span><span class="sd">     :type preserve_line: bool</span>
-<span class="g g-Whitespace">    </span><span class="mi">129</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">130</span>     <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span><span class="p">]</span> <span class="k">if</span> <span class="n">preserve_line</span> <span class="k">else</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">language</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>     <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span><span class="p">]</span> <span class="k">if</span> <span class="n">preserve_line</span> <span class="k">else</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">language</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">131</span>     <span class="k">return</span> <span class="p">[</span>
-<span class="nn">    132         token for sent in sentences for token</span> in <span class="ni">_treebank_word_tokenizer.tokenize</span><span class="nt">(sent)</span>
+<span class="nn">--&gt; 132         token for sent in sentences for token</span> in <span class="ni">_treebank_word_tokenizer.tokenize</span><span class="nt">(sent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="p">]</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">sent_tokenize</span><span class="nt">(text, language)</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>     <span class="p">:</span><span class="n">param</span> <span class="n">language</span><span class="p">:</span> <span class="n">the</span> <span class="n">model</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Punkt</span> <span class="n">corpus</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>     <span class="sd">"""</span>
-<span class="ne">--&gt; </span><span class="mi">107</span><span class="sd">     tokenizer = load("tokenizers/punkt/{0}.pickle".format(language))</span>
-<span class="g g-Whitespace">    </span><span class="mi">108</span><span class="sd">     return tokenizer.tokenize(text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">109</span><span class="sd"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/tokenize/__init__.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>     <span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">text</span><span class="p">]</span> <span class="k">if</span> <span class="n">preserve_line</span> <span class="k">else</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">language</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span>     <span class="k">return</span> <span class="p">[</span>
+<span class="nn">--&gt; 132         token for sent in sentences for token</span> in <span class="ni">_treebank_word_tokenizer.tokenize</span><span class="nt">(sent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="p">]</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">load</span><span class="nt">(resource_url, format, cache, verbose, logic_parser, fstruct_reader, encoding)</span>
-<span class="g g-Whitespace">    </span><span class="mi">715</span><span class="sd">     :param encoding: the encoding of the input; only used for text formats.</span>
-<span class="g g-Whitespace">    </span><span class="mi">716</span><span class="sd">     """</span>
-<span class="ne">--&gt; </span><span class="mi">717</span>     <span class="n">resource_url</span> <span class="o">=</span> <span class="n">normalize_resource_url</span><span class="p">(</span><span class="n">resource_url</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span>     <span class="n">resource_url</span> <span class="o">=</span> <span class="n">add_py3_data</span><span class="p">(</span><span class="n">resource_url</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span> 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/tokenize/destructive.py</span> in <span class="ni">tokenize</span><span class="nt">(self, text, convert_parentheses, return_str)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span> 
+<span class="g g-Whitespace">    </span><span class="mi">131</span>         <span class="k">for</span> <span class="n">regexp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTRACTIONS2</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">132</span>             <span class="n">text</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">" \1 \2 "</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>         <span class="k">for</span> <span class="n">regexp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTRACTIONS3</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span>             <span class="n">text</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">" \1 \2 "</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/data.py</span> in <span class="ni">normalize_resource_url</span><span class="nt">(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="s2">"""</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span><span class="s2">     try:</span>
-<span class="ne">--&gt; </span><span class="mi">181</span><span class="s2">         protocol, name = split_resource_url(resource_url)</span>
-<span class="g g-Whitespace">    </span><span class="mi">182</span><span class="s2">     except ValueError:</span>
-<span class="g g-Whitespace">    </span><span class="mi">183</span><span class="s2">         # the resource url has no protocol, use the nltk protocol by default</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/re.py</span> in <span class="ni">_subx</span><span class="nt">(pattern, template)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span> <span class="k">def</span> <span class="nf">_subx</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">template</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="c1"># internal: Pattern.sub/subn implementation helper</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>     <span class="n">template</span> <span class="o">=</span> <span class="n">_compile_repl</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">template</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">template</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="c1"># literal replacement</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1826,8 +1870,8 @@ O_t = H_t W_{hq} + b_q
 <h2>Section 1.4: Vanishing and Exploding Gradients<a class="headerlink" href="#section-1-4-vanishing-and-exploding-gradients" title="Permalink to this headline">¶</a></h2>
 <p>For an RNN to learn via backprop through time on a loss calculated at time <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(\mathcal{L}_T\)</span>, with respect to an input <span class="math notranslate nohighlight">\(t\)</span> time steps in the past, the RNN weights must be updated based on how they contributed to the hidden state at this past time step. This contribution is learned through the term <span class="math notranslate nohighlight">\(\frac{\partial h_{-t}}{\partial W}\)</span>, in the gradient of the loss, <span class="math notranslate nohighlight">\(\frac{\partial\mathcal{L}_T}{\partial W}\)</span>.</p>
 <p>However, because one has to backpropagate error through <span class="math notranslate nohighlight">\(t-1\)</span> hidden states, <span class="math notranslate nohighlight">\(\frac{\partial h_{-t}}{\partial W}\)</span> is multiplied by <span class="math notranslate nohighlight">\(\prod_{i=0}^{t-1} \frac{\partial{h_i}}{\partial{h_{i-1}}}\)</span> in the expression for <span class="math notranslate nohighlight">\(\frac{\partial\mathcal{L}_T}{\partial W}\)</span>, which are summarized mathematically:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4179fe80-e775-4d7e-bbb9-44116d7cdf05">
-<span class="eqno">(67)<a class="headerlink" href="#equation-4179fe80-e775-4d7e-bbb9-44116d7cdf05" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-92224c41-38f4-4bba-ba7c-9e982ecf2b2b">
+<span class="eqno">(67)<a class="headerlink" href="#equation-92224c41-38f4-4bba-ba7c-9e982ecf2b2b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial{\mathcal{L}_T}}{\partial{W}} \propto \frac{\partial h_t }{ \partial W} + \sum_{k=0}^{t-1} \left( \prod_{i=k+1}^{t} \frac{\partial{h_i}}{\partial{h_{i-1}}} \right) \frac{\partial{h_k}}{\partial{W}}
 \end{equation}\]</div>
 <p>The product term leads to two common problems during the backpropagation of time-series data:</p>
@@ -1855,44 +1899,44 @@ O_t = H_t W_{hq} + b_q
 <ul class="simple">
 <li><p>Forget Gate: <em>Should I throw away information from this cell?</em></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-4fbff3e5-ef2a-4fe8-a1c2-625da58034d4">
-<span class="eqno">(68)<a class="headerlink" href="#equation-4fbff3e5-ef2a-4fe8-a1c2-625da58034d4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8758b0fd-600c-46e7-8466-628bdde3f23a">
+<span class="eqno">(68)<a class="headerlink" href="#equation-8758b0fd-600c-46e7-8466-628bdde3f23a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 f_t = \sigma (W_f \cdot [h_{t-1}, x_t] + b_f)
 \end{equation}\]</div>
 <ul>
 <li><p>Input Gate:</p>
 <ul>
 <li><p><em>Should I add new values to this cell?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-33d016ea-ddb9-4988-bbcb-08764aafe184">
-<span class="eqno">(69)<a class="headerlink" href="#equation-33d016ea-ddb9-4988-bbcb-08764aafe184" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4579b93a-c520-4fa5-a99d-fb0909ec470f">
+<span class="eqno">(69)<a class="headerlink" href="#equation-4579b93a-c520-4fa5-a99d-fb0909ec470f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       i_t = \sigma (W_i \cdot [h_{t-1}, x_t] + b_i)
       \end{equation}\]</div>
 </li>
 <li><p><em>What new candidate values should I store?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-46f5afad-3b89-48bf-8602-898a47e68535">
-<span class="eqno">(70)<a class="headerlink" href="#equation-46f5afad-3b89-48bf-8602-898a47e68535" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f50067e1-561f-4981-8028-962240911e83">
+<span class="eqno">(70)<a class="headerlink" href="#equation-f50067e1-561f-4981-8028-962240911e83" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       \tilde{C}_t = tanh (W_C \cdot [h_{t-1}, x_t] + b_C)
       \end{equation}\]</div>
 </li>
 </ul>
 </li>
 <li><p>Update cell state: <em>Forget things from the past and add new things from the candidates</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-d88470ef-4d79-4a86-8027-fa1653c76e83">
-<span class="eqno">(71)<a class="headerlink" href="#equation-d88470ef-4d79-4a86-8027-fa1653c76e83" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5ed2820a-c4c4-4186-bf07-febb6180ff06">
+<span class="eqno">(71)<a class="headerlink" href="#equation-5ed2820a-c4c4-4186-bf07-febb6180ff06" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   C_t = (f_t \cdot C_{t-1}) + (i_t \cdot \tilde{C}_t)
   \end{equation}\]</div>
 </li>
 <li><p>Output Gate:</p>
 <ul>
 <li><p><em>What information should I output?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-b85caab7-eb9f-4b59-8e1a-5ee77a72654c">
-<span class="eqno">(72)<a class="headerlink" href="#equation-b85caab7-eb9f-4b59-8e1a-5ee77a72654c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1b05e04-c8d5-4b8e-9812-7b4d91b7946b">
+<span class="eqno">(72)<a class="headerlink" href="#equation-f1b05e04-c8d5-4b8e-9812-7b4d91b7946b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       o_t = \sigma (W_o \cdot [h_{t-1}, x_t] + b_o)
       \end{equation}\]</div>
 </li>
 <li><p><em>How much of the cell state should I store in the hidden state?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-6f21825b-02f7-42d8-9ec2-4b76e3ab2b40">
-<span class="eqno">(73)<a class="headerlink" href="#equation-6f21825b-02f7-42d8-9ec2-4b76e3ab2b40" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-34720dd7-3100-4aea-9caf-1aa0176357f3">
+<span class="eqno">(73)<a class="headerlink" href="#equation-34720dd7-3100-4aea-9caf-1aa0176357f3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       h_t = o_t \cdot tanh(C_t)
       \end{equation}\]</div>
 </li>
@@ -2035,30 +2079,30 @@ f_t = \sigma (W_f \cdot [h_{t-1}, x_t] + b_f)
 <p>The GRU architecture looks very similar to the LSTM, and is often used as an alternative to the traditional LSTM. It also contains some variations that reduce it’s complexity. For example, it combines the forget and input gates into a single “update gate”; it contains a “hidden state” but not a “cell state”. In the next section we will be using GRUs as the choice of recurrent unit in our models, but you can always swap out the GRU for an LSTM later on (make sure that you take care of input and output dimensions in this case). Here is a description of the parts of the GRU:</p>
 <ul>
 <li><p>Reset Gate: <em>How much of the previous hidden state should I remember?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-be83b951-10dd-4f24-b0f0-c289b3eabea8">
-<span class="eqno">(74)<a class="headerlink" href="#equation-be83b951-10dd-4f24-b0f0-c289b3eabea8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d07a9512-9250-4ded-8f0a-f2d073b956bf">
+<span class="eqno">(74)<a class="headerlink" href="#equation-d07a9512-9250-4ded-8f0a-f2d073b956bf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   r_t = \sigma (W_r \cdot [h_{t-1}, x_t])
   \end{equation}\]</div>
 </li>
 <li><p>Update Gate:</p>
 <ul>
 <li><p><em>How much of the new state is different from the old state?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-8f09e9f0-12ea-4d3e-8271-b3bb91e3d1a8">
-<span class="eqno">(75)<a class="headerlink" href="#equation-8f09e9f0-12ea-4d3e-8271-b3bb91e3d1a8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d4df294e-6a4f-4926-8bc6-f2205bb1de41">
+<span class="eqno">(75)<a class="headerlink" href="#equation-d4df294e-6a4f-4926-8bc6-f2205bb1de41" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       z_t = \sigma (W_z \cdot [h_{t-1}, x_t])
       \end{equation}\]</div>
 </li>
 <li><p><em>What new candidate values should I store?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-7de47a44-2ba1-4223-aa1b-09e322b323c2">
-<span class="eqno">(76)<a class="headerlink" href="#equation-7de47a44-2ba1-4223-aa1b-09e322b323c2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2195d7b9-5cb7-4e13-9f1c-7400e2ff281c">
+<span class="eqno">(76)<a class="headerlink" href="#equation-2195d7b9-5cb7-4e13-9f1c-7400e2ff281c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       \tilde{h}_t = tanh (W \cdot [r_t \cdot h_{t-1}, x_t])
       \end{equation}\]</div>
 </li>
 </ul>
 </li>
 <li><p>Update hidden state: <em>Deciding how much of the old hidden state to keep and discard</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-b7b73ac1-b8e0-466a-aff9-c884e39aa21b">
-<span class="eqno">(77)<a class="headerlink" href="#equation-b7b73ac1-b8e0-466a-aff9-c884e39aa21b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1bb00583-a07d-4884-8d6c-3b6ac44eeec9">
+<span class="eqno">(77)<a class="headerlink" href="#equation-1bb00583-a07d-4884-8d6c-3b6ac44eeec9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   h_t = ((1-z_t) \cdot h_{t-1} ) + (z_t \cdot \tilde{h}_t)
   \end{equation}\]</div>
 </li>
@@ -2217,13 +2261,13 @@ simple seq2seq models are composed of two parts: the encoder, the context (“st
 <h2>Coding Exercise 3: Encoder<a class="headerlink" href="#coding-exercise-3-encoder" title="Permalink to this headline">¶</a></h2>
 <p>Let us consider a sequence example (<span class="math notranslate nohighlight">\(batch\_size=1\)</span>). Suppose that the input sequence is <span class="math notranslate nohighlight">\(x_1, \ldots, x_T\)</span>, such that <span class="math notranslate nohighlight">\(x_t\)</span> is the <span class="math notranslate nohighlight">\(t^{\mathrm{th}}\)</span> token in the input text sequence. At time step <span class="math notranslate nohighlight">\(t\)</span>, the RNN transforms the input feature vector <span class="math notranslate nohighlight">\(\mathbf{x}_t\)</span> for <span class="math notranslate nohighlight">\(x_t\)</span> and the hidden state <span class="math notranslate nohighlight">\(\mathbf{h} _{t-1}\)</span> from the previous time step into the current hidden state <span class="math notranslate nohighlight">\(\mathbf{h}_t\)</span>.</p>
 <p>We can use a function <span class="math notranslate nohighlight">\(f\)</span> to express the transformation of the RNN’s recurrent layer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5364e07e-0c15-4ac5-96cf-fb736a656ea7">
-<span class="eqno">(78)<a class="headerlink" href="#equation-5364e07e-0c15-4ac5-96cf-fb736a656ea7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-af0d4b0c-b4c4-485d-8d47-93aaa50ddfc4">
+<span class="eqno">(78)<a class="headerlink" href="#equation-af0d4b0c-b4c4-485d-8d47-93aaa50ddfc4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h}_t = f(\mathbf{x}_t, \mathbf{h}_{t-1})
 \end{equation}\]</div>
 <p>In general, the encoder transforms the hidden states at all the time steps into the context variable through a customized function <span class="math notranslate nohighlight">\(q\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1e005ab2-0c93-4f19-9d4f-c53df0dd8d63">
-<span class="eqno">(79)<a class="headerlink" href="#equation-1e005ab2-0c93-4f19-9d4f-c53df0dd8d63" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dc8515f6-ef53-415a-8909-bc145be2f629">
+<span class="eqno">(79)<a class="headerlink" href="#equation-dc8515f6-ef53-415a-8909-bc145be2f629" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{c} =  q(\mathbf{h}_1, \ldots, \mathbf{h}_T)
 \end{equation}\]</div>
 <p>For example, when choosing <span class="math notranslate nohighlight">\(q(\mathbf{h}_1, \ldots, \mathbf{h}_T) = \mathbf{h}_T\)</span>  the context variable is just the hidden state <span class="math notranslate nohighlight">\(\mathbf{h}_T\)</span> of the input sequence at the final time step.</p>
@@ -2291,8 +2335,8 @@ the embedding layer fetches the <span class="math notranslate nohighlight">\(i^{
 the probability of the decoder output <span class="math notranslate nohighlight">\(y_{t'}\)</span> is conditional on the previous output subsequence <span class="math notranslate nohighlight">\(y_1, \ldots, y_{t'-1}\)</span> and the context variable <span class="math notranslate nohighlight">\(\mathbf{c}\)</span>, i.e., <span class="math notranslate nohighlight">\(P(y_{t'} \mid y_1, \ldots, y_{t'-1}, \mathbf{c})\)</span>.</p>
 <p>To model this conditional probability on sequences, we can use another RNN as the decoder. At any time step <span class="math notranslate nohighlight">\(t^\prime\)</span> on the output sequence, the RNN takes the output <span class="math notranslate nohighlight">\(y_{t^\prime-1}\)</span> from the previous time step and the context variable <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> as its input, then transforms them and the previous hidden state <span class="math notranslate nohighlight">\(\mathbf{s}_{t^\prime-1}\)</span> into the hidden state <span class="math notranslate nohighlight">\(\mathbf{s}_{t^\prime}\)</span> at the current time step.</p>
 <p>As a result, we can use a function <span class="math notranslate nohighlight">\(g\)</span> to express the transformation of the decoder’s hidden layer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81edade4-a1f3-415d-a297-bc373af4057b">
-<span class="eqno">(80)<a class="headerlink" href="#equation-81edade4-a1f3-415d-a297-bc373af4057b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e59a16a4-f2b0-4a28-9ea6-ac84e2061817">
+<span class="eqno">(80)<a class="headerlink" href="#equation-e59a16a4-f2b0-4a28-9ea6-ac84e2061817" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{s}_{t^\prime} = g(y_{t^\prime-1}, \mathbf{c}, \mathbf{s}_{t^\prime-1})
 \end{equation}\]</div>
 <p>After obtaining the hidden state of the decoder, we can use an output layer and the softmax operation to compute the conditional probability distribution
@@ -2542,8 +2586,8 @@ To explain, given a label sequence <span class="math notranslate nohighlight">\(
 <p>Besides, let <span class="math notranslate nohighlight">\(\mathrm{len}_{\text{label}}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{len}_{\text{pred}}\)</span>
 be the numbers of tokens in the label sequence and the predicted sequence, respectively.</p>
 <p>Then, BLEU is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7da4914d-4451-4dcf-b0f1-7e13ec9792e5">
-<span class="eqno">(81)<a class="headerlink" href="#equation-7da4914d-4451-4dcf-b0f1-7e13ec9792e5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c88f20ec-480d-4bab-8841-6ae7dd07fb26">
+<span class="eqno">(81)<a class="headerlink" href="#equation-c88f20ec-480d-4bab-8841-6ae7dd07fb26" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \exp\left(\min\left(0, 1 - \frac{\mathrm{len}_{\text{label}}}{\mathrm{len}_{\text{pred}}}\right)\right) \prod_{n=1}^k p_n^{1/2^n},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is the longest <span class="math notranslate nohighlight">\(n\)</span>-grams for matching.</p>
