@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; Neuromatch Academy: Deep Learning</title>
+    <title>Focus on what matters: inferring low-dimensional dynamics from neural recordings &#8212; Neuromatch Academy: Deep Learning</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -481,7 +481,7 @@
   Project Booklet
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../README.html">
    Introduction to projects
@@ -544,16 +544,16 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../docs/projects_overview.html">
    Project Templates
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
   <label for="toctree-checkbox-19">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2 has-children">
     <a class="reference internal" href="../ComputerVision/README.html">
      Computer Vision
@@ -667,16 +667,16 @@
      </li>
     </ul>
    </li>
-   <li class="toctree-l2 has-children">
+   <li class="toctree-l2 current active has-children">
     <a class="reference internal" href="README.html">
      Neuroscience
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" type="checkbox"/>
     <label for="toctree-checkbox-23">
      <i class="fas fa-chevron-down">
      </i>
     </label>
-    <ul>
+    <ul class="current">
      <li class="toctree-l3">
       <a class="reference internal" href="slides.html">
        Slides
@@ -710,6 +710,11 @@
      <li class="toctree-l3">
       <a class="reference internal" href="finetuning_fmri.html">
        Moving beyond Labels: Finetuning CNNs on BOLD response
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Focus on what matters: inferring low-dimensional dynamics from neural recordings
       </a>
      </li>
     </ul>
@@ -807,7 +812,61 @@
                 <i class="fas fa-list"></i> Contents
             </div>
             <nav id="bd-toc-nav">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Focus on what matters: inferring low-dimensional dynamics from neural recordings
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objective">
+   Objective:
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-required-modules-and-set-matplotlib-defaults">
+     Import required modules and set matplotlib defaults
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulate-some-data-from-a-linear-dynamical-system">
+   Simulate some data from a linear dynamical system
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#define-rnn">
+   Define RNN
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-and-prepare-data">
+   Plot and Prepare data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-the-rnn">
+   Train the RNN
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compare-true-firing-rates-with-the-predicted">
+   Compare true firing rates with the predicted.
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#view-firing-rates-for-all-neurons-in-one-trial">
+     View firing rates for all neurons in one trial
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualize-the-latent-dynamics">
+   Visualize the latent dynamics
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -819,7 +878,285 @@
         
               <div>
                 
-  
+  <div class="section" id="focus-on-what-matters-inferring-low-dimensional-dynamics-from-neural-recordings">
+<h1>Focus on what matters: inferring low-dimensional dynamics from neural recordings<a class="headerlink" href="#focus-on-what-matters-inferring-low-dimensional-dynamics-from-neural-recordings" title="Permalink to this headline">¶</a></h1>
+<p><strong>By Neuromatch Academy</strong></p>
+<p><strong>Content creators:</strong> Marius Pachitariu, Pedram Mouseli, Lucas Tavares, Jonny Coutinho,
+Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
+<p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
+<p align='center'><img src='https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True'/></p></div>
+<div class="section" id="objective">
+<h1>Objective:<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h1>
+<p>It is very difficult to interpret the activity of single neurons in the brain, because their firing patterns are noisy, and it is not clear how a single neuron can contribute to cognition and behavior. However, neurons in the brain participate in local, regional and brainwide dynamics. No neuron is isolated from these dynamics, and much of a single neuron’s activity can be predicted from the dynamics. Furthermore, only populations of neurons as a whole can control cognition and behavior. Hence it is crucial to identify these dynamical patterns and relate them to stimuli or behaviors.</p>
+<p>In this notebook, we generate simulated data from a low-dimensional dynamical system and then use seq-to-seq methods to predict one subset of neurons from another. This allows us to identify the low-dimensional dynamics that are sufficient to explain the activity of neurons in the simulation. The methods described in this notebook can be applied to large-scale neural recordings of hundreds to tens of thousans of neurons, such as the ones from the NMA-CN course.</p>
+<div class="section" id="import-required-modules-and-set-matplotlib-defaults">
+<h2>Import required modules and set matplotlib defaults<a class="headerlink" href="#import-required-modules-and-set-matplotlib-defaults" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span> 
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span><span class="mi">15</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.spines.top&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.spines.right&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.autolayout&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simulate-some-data-from-a-linear-dynamical-system">
+<h1>Simulate some data from a linear dynamical system<a class="headerlink" href="#simulate-some-data-from-a-linear-dynamical-system" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># set the seed</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># 100 trials is typical of neural data</span>
+<span class="n">ntrials</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># we simulate 200 neurons</span>
+<span class="n">NN</span>      <span class="o">=</span> <span class="mi">400</span> 
+
+<span class="c1"># we will pretend like every &quot;bin&quot; is 10ms, so the trial length is 2500ms</span>
+<span class="n">NT</span>      <span class="o">=</span> <span class="mi">250</span>
+
+<span class="c1"># let&#39;s use 10 latent components</span>
+<span class="n">ncomp</span>   <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># this is the recurrent dynamics matrix, which we made diagonal for simplicity</span>
+<span class="c1"># values have to be smaller than 1 for stability</span>
+<span class="n">A0</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mf">.8</span> <span class="o">+</span> <span class="mf">.2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">ncomp</span><span class="p">,))</span>
+
+<span class="c1"># this is the projection matrix from components to neurons</span>
+<span class="n">C0</span> <span class="o">=</span> <span class="mf">.025</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ncomp</span><span class="p">,</span> <span class="n">NN</span><span class="p">)</span>
+
+<span class="c1"># We generate the dynamics of the low-d system. We initialize the latent state. </span>
+
+<span class="c1"># start by initializing the latents</span>
+<span class="n">y</span>       <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ncomp</span><span class="p">)</span>
+<span class="n">latents</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">NT</span><span class="p">,</span> <span class="n">ntrials</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">))</span>
+<span class="c1"># we run the dynamics forward and add noise (or &quot;innovations&quot;) at each timestep</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NT</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">@</span> <span class="n">A0</span> <span class="o">+</span>  <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ntrials</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">)</span> 
+    <span class="n">latents</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># we now project the latents to the neuron space and threshold to generate firing rates</span>
+<span class="n">rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">latents</span> <span class="o">@</span> <span class="n">C0</span><span class="p">)</span>
+
+<span class="c1"># now we draw poisson counts to simulate the number of spikes a neuron fires randomly</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-rnn">
+<h1>Define RNN<a class="headerlink" href="#define-rnn" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Net</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">,</span> <span class="n">NN1</span><span class="p">,</span> <span class="n">NN2</span><span class="p">,</span> <span class="n">bidi</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Net</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># play with some of the options in the RNN! </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">NN1</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                          <span class="n">bidirectional</span> <span class="o">=</span> <span class="n">bidi</span><span class="p">,</span> <span class="n">nonlinearity</span> <span class="o">=</span> <span class="s1">&#39;tanh&#39;</span><span class="p">)</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ncomp</span><span class="p">,</span> <span class="n">NN2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">bidirectional</span><span class="p">:</span>
+          <span class="c1"># if the rnn is bidirectional, it concatenates the activations from the forward and backward pass</span>
+          <span class="c1"># we want to add them instead, so as to enforce the latents to match between the forward and backward pass</span>
+          <span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[:,:,:</span><span class="n">ncomp</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[:,:,</span><span class="n">ncomp</span><span class="p">:])</span><span class="o">/</span><span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="n">q</span> <span class="o">=</span> <span class="n">y</span>
+
+        <span class="c1"># the softplus function is just like a relu but it&#39;s smoothed out so we can&#39;t predict 0</span>
+        <span class="c1"># if we predict 0 and there was a spike, that&#39;s an instant Inf in the Poisson log-likelihood which leads to failure</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">z</span><span class="p">,</span> <span class="n">q</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-and-prepare-data">
+<h1>Plot and Prepare data<a class="headerlink" href="#plot-and-prepare-data" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cell #&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;# Spikes in 0.01 s time bin&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example trial&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/neuro_seq_to_seq_9_0.png" src="../../_images/neuro_seq_to_seq_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># we separate the neuron data into two populations: the input and output</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:,:</span><span class="mi">200</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">x</span><span class="p">[:,:,</span><span class="mi">200</span><span class="p">:])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+
+<span class="n">NN1</span> <span class="o">=</span> <span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">NN2</span> <span class="o">=</span> <span class="n">x0</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># we initialize the neural network</span>
+<span class="n">net</span>       <span class="o">=</span> <span class="n">Net</span><span class="p">(</span><span class="n">ncomp</span><span class="p">,</span> <span class="n">NN1</span><span class="p">,</span> <span class="n">NN2</span><span class="p">,</span> <span class="n">bidi</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="c1"># special thing:  we initialize the biases of the last layer in the neural network</span>
+<span class="c1"># we set them as the mean firing rates of the neurons. </span>
+<span class="c1"># this should make the initial predictions close to the mean, because the latents don&#39;t contribute much</span>
+<span class="n">net</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">x1</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># we set up the optimizer. Adjust the learning rate if the training is slow or if it explodes. </span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">.005</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-the-rnn">
+<h1>Train the RNN<a class="headerlink" href="#train-the-rnn" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># you can keep re-running this cell if you think the cost might decrease further</span>
+
+<span class="c1"># we define the Poisson log-likelihood loss</span>
+<span class="k">def</span> <span class="nf">Poisson_loss</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spk</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">lam</span> <span class="o">-</span> <span class="n">spk</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
+
+<span class="n">niter</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="p">):</span> 
+    <span class="c1"># the network outputs the single-neuron prediction and the latents</span>
+    <span class="n">z</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>    
+
+    <span class="c1"># our log-likelihood cost</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">Poisson_loss</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1"># train the network as usual</span>
+    <span class="n">cost</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>    
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">k</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;iteration </span><span class="si">%d</span><span class="s1">, cost </span><span class="si">%2.4f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">cost</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration 0, cost 0.4160
+iteration 100, cost 0.2584
+iteration 200, cost 0.2442
+iteration 300, cost 0.2392
+iteration 400, cost 0.2379
+iteration 500, cost 0.2374
+iteration 600, cost 0.2369
+iteration 700, cost 0.2368
+iteration 800, cost 0.2367
+iteration 900, cost 0.2366
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compare-true-firing-rates-with-the-predicted">
+<h1>Compare true firing rates with the predicted.<a class="headerlink" href="#compare-true-firing-rates-with-the-predicted" title="Permalink to this headline">¶</a></h1>
+<p>Note that for real data we only get the spikes, not the true firing rates!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rpred</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="n">nn</span> <span class="o">=</span> <span class="mi">29</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rates</span><span class="p">[:,</span><span class="n">nn</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rpred</span><span class="p">[:,</span><span class="n">nn</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mf">.5</span> <span class="o">+</span> <span class="n">x</span><span class="p">[:,</span><span class="n">nn</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;rates (true)&#39;</span><span class="p">,</span> <span class="s1">&#39;rates (predicted)&#39;</span><span class="p">,</span> <span class="s1">&#39;spikes&#39;</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Neuron </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">nn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Neuron 29&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/neuro_seq_to_seq_14_1.png" src="../../_images/neuro_seq_to_seq_14_1.png" />
+</div>
+</div>
+<div class="section" id="view-firing-rates-for-all-neurons-in-one-trial">
+<h2>View firing rates for all neurons in one trial<a class="headerlink" href="#view-firing-rates-for-all-neurons-in-one-trial" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rates</span><span class="p">[:,</span> <span class="mi">12</span><span class="p">,:</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cell #&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;True rates (trial 12)&#39;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rpred</span><span class="p">[:,</span> <span class="mi">12</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (ms)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Cell #&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Inferred rates (trial 12)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/neuro_seq_to_seq_16_0.png" src="../../_images/neuro_seq_to_seq_16_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="visualize-the-latent-dynamics">
+<h1>Visualize the latent dynamics<a class="headerlink" href="#visualize-the-latent-dynamics" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ycpu</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ycpu</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;All latents on trial 0&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ycpu</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;All trials for latent 0&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/neuro_seq_to_seq_18_0.png" src="../../_images/neuro_seq_to_seq_18_0.png" />
+</div>
+</div>
+<p>Not much to see for the latents. This is not surprising, since we generated them with random data, so they look just like a random walk process.</p>
+<p>Now apply this model on real data and see if you can interpret the latents.</p>
+</div>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
