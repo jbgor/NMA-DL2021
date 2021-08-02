@@ -558,6 +558,11 @@
       </a>
 </li>
 <li class="toctree-l3">
+<a class="reference internal" href="../../../projects/ComputerVision/spectrogram_analysis.html">
+       Music classification and generation with spectrograms
+      </a>
+</li>
+<li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/screws.html">
        Setup matplotlib
       </a>
@@ -1395,7 +1400,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "68d4b748cabd4437b669f90617e1434f"}
+{"version_major": 2, "version_minor": 0, "model_id": "e03f823262dd4a7ea27de1703a1a0d9f"}
 </script></div>
 </div>
 <p>Download BigGAN (a generative model) and a few standard image datasets while the above video plays</p>
@@ -1411,184 +1416,145 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/234411737 [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 2375680/234411737 [00:00&lt;00:14, 15795427.22B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 4772864/234411737 [00:00&lt;00:04, 47724020.41B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 6093824/234411737 [00:00&lt;00:08, 26212025.33B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▍         | 10884096/234411737 [00:00&lt;00:04, 55595543.58B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▍         | 10277888/234411737 [00:00&lt;00:06, 32623380.74B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 16766976/234411737 [00:00&lt;00:04, 53881785.19B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▌         | 14159872/234411737 [00:00&lt;00:06, 34911893.48B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|▉         | 22405120/234411737 [00:00&lt;00:03, 54832677.02B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 18620416/234411737 [00:00&lt;00:05, 38258619.91B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█▏        | 27898880/234411737 [00:00&lt;00:05, 40141979.95B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|▉         | 22544384/234411737 [00:00&lt;00:07, 28894172.85B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 14%|█▍        | 32381952/234411737 [00:00&lt;00:04, 41244941.37B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|█         | 25796608/234411737 [00:00&lt;00:08, 25329306.26B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|█▌        | 36843520/234411737 [00:00&lt;00:05, 36630545.97B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 29938688/234411737 [00:01&lt;00:07, 29199118.99B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 17%|█▋        | 40790016/234411737 [00:01&lt;00:07, 27230347.67B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 14%|█▍        | 33316864/234411737 [00:01&lt;00:06, 30370384.53B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 19%|█▉        | 43992064/234411737 [00:01&lt;00:07, 24908314.69B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|█▌        | 36601856/234411737 [00:01&lt;00:06, 29222285.61B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|██        | 48573440/234411737 [00:01&lt;00:06, 28189374.90B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|█▊        | 41465856/234411737 [00:01&lt;00:05, 34359903.56B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 22%|██▏       | 51710976/234411737 [00:01&lt;00:07, 24954254.16B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 19%|█▉        | 45101056/234411737 [00:01&lt;00:05, 31922965.51B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 24%|██▍       | 56961024/234411737 [00:01&lt;00:06, 29113565.28B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|██        | 49808384/234411737 [00:01&lt;00:05, 35919986.98B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 26%|██▌       | 60109824/234411737 [00:01&lt;00:06, 28568208.66B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 23%|██▎       | 53572608/234411737 [00:01&lt;00:05, 31736569.53B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|██▊       | 66469888/234411737 [00:01&lt;00:04, 36861757.17B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 59650048/234411737 [00:01&lt;00:04, 39120129.11B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 31%|███       | 72715264/234411737 [00:02&lt;00:03, 43329371.11B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 63835136/234411737 [00:02&lt;00:06, 27909553.01B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|███▎      | 77911040/234411737 [00:02&lt;00:03, 45617393.73B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 29%|██▊       | 67244032/234411737 [00:02&lt;00:07, 21078049.39B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 36%|███▌      | 83870720/234411737 [00:02&lt;00:03, 38793999.93B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 31%|███       | 71669760/234411737 [00:02&lt;00:06, 25210737.47B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|███▊      | 90187776/234411737 [00:02&lt;00:03, 44531144.00B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|███▎      | 76742656/234411737 [00:02&lt;00:06, 24190028.31B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|████      | 96570368/234411737 [00:02&lt;00:02, 49386246.43B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 34%|███▍      | 79888384/234411737 [00:02&lt;00:06, 25552603.35B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 43%|████▎     | 101911552/234411737 [00:02&lt;00:03, 42867209.87B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▌      | 82895872/234411737 [00:02&lt;00:06, 24174864.38B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 46%|████▌     | 108271616/234411737 [00:02&lt;00:02, 47903839.05B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 37%|███▋      | 85620736/234411737 [00:03&lt;00:06, 23689754.09B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 49%|████▊     | 114199552/234411737 [00:02&lt;00:02, 50834452.04B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 39%|███▊      | 90413056/234411737 [00:03&lt;00:04, 29197182.61B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 51%|█████     | 119616512/234411737 [00:03&lt;00:02, 48745844.98B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 40%|███▉      | 93652992/234411737 [00:03&lt;00:04, 29943368.62B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 124732416/234411737 [00:03&lt;00:03, 34925087.86B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 42%|████▏     | 98407424/234411737 [00:03&lt;00:03, 34502625.77B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▍    | 128913408/234411737 [00:03&lt;00:03, 34037229.15B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|████▎     | 102098944/234411737 [00:03&lt;00:06, 21345619.36B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|█████▋    | 134117376/234411737 [00:03&lt;00:02, 38007591.63B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 46%|████▌     | 107297792/234411737 [00:03&lt;00:05, 23755240.28B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 59%|█████▉    | 138389504/234411737 [00:03&lt;00:02, 36245272.44B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 110223360/234411737 [00:04&lt;00:05, 23335765.09B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 61%|██████    | 142596096/234411737 [00:03&lt;00:02, 33734854.90B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 48%|████▊     | 113471488/234411737 [00:04&lt;00:04, 25208827.08B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 64%|██████▎   | 148918272/234411737 [00:03&lt;00:02, 40679750.66B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|████▉     | 117149696/234411737 [00:04&lt;00:04, 27828501.84B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 153348096/234411737 [00:04&lt;00:02, 34957913.13B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 51%|█████▏    | 120262656/234411737 [00:04&lt;00:04, 26246129.79B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 157626368/234411737 [00:04&lt;00:02, 35562157.19B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 124700672/234411737 [00:04&lt;00:03, 30641346.18B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 69%|██████▉   | 161446912/234411737 [00:04&lt;00:02, 32850322.31B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 129537024/234411737 [00:04&lt;00:04, 24115778.91B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 72%|███████▏  | 167877632/234411737 [00:04&lt;00:01, 40380020.43B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|█████▋    | 134208512/234411737 [00:04&lt;00:03, 25659897.22B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 74%|███████▍  | 174227456/234411737 [00:04&lt;00:01, 46271395.45B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|█████▉    | 139675648/234411737 [00:04&lt;00:02, 31594924.93B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|███████▋  | 179188736/234411737 [00:04&lt;00:01, 38260823.43B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 61%|██████    | 143334400/234411737 [00:05&lt;00:03, 26361003.74B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 78%|███████▊  | 183456768/234411737 [00:04&lt;00:01, 36403437.55B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 63%|██████▎   | 146638848/234411737 [00:05&lt;00:03, 27738461.37B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|███████▉  | 187402240/234411737 [00:05&lt;00:01, 24419198.62B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 64%|██████▍   | 149794816/234411737 [00:05&lt;00:04, 21111901.25B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 83%|████████▎ | 193759232/234411737 [00:05&lt;00:01, 31576442.57B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 152374272/234411737 [00:05&lt;00:03, 22003456.25B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 200118272/234411737 [00:05&lt;00:00, 38205625.04B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 156096512/234411737 [00:05&lt;00:03, 20267466.10B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 204896256/234411737 [00:05&lt;00:00, 39013131.24B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 68%|██████▊   | 159372288/234411737 [00:05&lt;00:03, 22693211.72B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 89%|████████▉ | 209699840/234411737 [00:05&lt;00:00, 37900217.79B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 164453376/234411737 [00:06&lt;00:02, 28895514.21B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 92%|█████████▏| 214883328/234411737 [00:05&lt;00:00, 41238181.21B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 72%|███████▏  | 167795712/234411737 [00:06&lt;00:02, 23488118.03B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████▎| 219426816/234411737 [00:06&lt;00:00, 23430413.03B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 74%|███████▎  | 172661760/234411737 [00:06&lt;00:02, 28811463.49B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|█████████▌| 224739328/234411737 [00:06&lt;00:00, 26449397.30B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 176826368/234411737 [00:06&lt;00:01, 31789118.13B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 97%|█████████▋| 228299776/234411737 [00:06&lt;00:00, 25716764.81B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 77%|███████▋  | 180593664/234411737 [00:06&lt;00:01, 28441310.77B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|█████████▉| 231498752/234411737 [00:06&lt;00:00, 26261515.68B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 79%|███████▊  | 184536064/234411737 [00:06&lt;00:01, 28229493.53B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 81%|████████  | 188868608/234411737 [00:06&lt;00:01, 31743028.33B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 83%|████████▎ | 194219008/234411737 [00:06&lt;00:01, 37172721.16B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 200287232/234411737 [00:07&lt;00:00, 43350879.09B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 204928000/234411737 [00:07&lt;00:01, 25321877.97B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 89%|████████▉ | 208549888/234411737 [00:07&lt;00:01, 24421521.10B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 211744768/234411737 [00:07&lt;00:01, 22237192.41B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 92%|█████████▏| 214987776/234411737 [00:07&lt;00:00, 24159999.41B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 93%|█████████▎| 217887744/234411737 [00:08&lt;00:00, 22785682.22B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████▍| 220498944/234411737 [00:08&lt;00:00, 21479603.20B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|█████████▌| 225546240/234411737 [00:08&lt;00:00, 27841119.76B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 98%|█████████▊| 228721664/234411737 [00:08&lt;00:00, 22049199.49B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|█████████▉| 233126912/234411737 [00:08&lt;00:00, 26075204.40B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 234411737/234411737 [00:08&lt;00:00, 26999238.38B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 234411737/234411737 [00:06&lt;00:00, 35426190.63B/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1597,7 +1563,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/715 [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 715/715 [00:00&lt;00:00, 652224.31B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 715/715 [00:00&lt;00:00, 845006.30B/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1677,9 +1643,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "255756855eab4670a43e5559ec3c4890"}
+{"version_major": 2, "version_minor": 0, "model_id": "bfff228ac7b941068d9858aaf35284f8"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "bcd705602ee44890bbebe09ce2ddf1b3"}
+{"version_major": 2, "version_minor": 0, "model_id": "6f399cee3d8d407e81372302486ee43d"}
 </script><img alt="../../../_images/W2D5_Tutorial1_32_2.png" src="../../../_images/W2D5_Tutorial1_32_2.png"/>
 </div>
 </div>
@@ -1787,9 +1753,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "080b994a595f41028eeae4c7553ab2b8"}
+{"version_major": 2, "version_minor": 0, "model_id": "aa9fa2ce1ca14afd9e0c5a7c06091ee6"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1ee5595c66b34595ac6e8d23aa7641fc"}
+{"version_major": 2, "version_minor": 0, "model_id": "c04a9d096065404db1b9aebe849dafe5"}
 </script></div>
 </div>
 </div>
@@ -1803,7 +1769,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "74469106ae87485bacf07800f77963ae"}
+{"version_major": 2, "version_minor": 0, "model_id": "33f2b419c0494bb3a706466e8c08a305"}
 </script></div>
 </div>
 <p>In the video the concept of a latent variable model was introduced. We saw how PCA (principal component analysis) can be extended into a generative model with latent variables called pPCA. For pPCA the latent variables (z in the video) are the projections onto the principal component axes.</p>
@@ -1891,8 +1857,8 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <p><strong>Step 2</strong>: “Generate” from the pPCA model of the thermometer data.</p>
 <p>Complete the code so it properly generates from the pPCA model. At present we aren’t accounting for the “sensor noise” the sensor noise is the variance that the PC axes isn’t accounting for. Thus, you’ll note that the current output sits on the PC axes and doesn’t look like the original data distribution!!</p>
 <p>Here is the equation for sampling from the pPCA model:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12676f5a-c4c4-4ff5-a9bf-727825222476">
-<span class="eqno">(83)<a class="headerlink" href="#equation-12676f5a-c4c4-4ff5-a9bf-727825222476" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a088f12a-8152-483f-aa58-080a9d42bdca">
+<span class="eqno">(83)<a class="headerlink" href="#equation-a088f12a-8152-483f-aa58-080a9d42bdca" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \mathbf{I})
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -1953,7 +1919,7 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "d26def6846ca455d9aa2ea03626a39bb"}
+{"version_major": 2, "version_minor": 0, "model_id": "fc89f7a749b34aee95386f115da928ff"}
 </script></div>
 </div>
 <p>Download MNIST and CIFAR10 image datasets while the above video plays</p>
@@ -2021,13 +1987,13 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <div class="section" id="section-3-1-conceptual-introduction-to-autoencoders">
 <h2>Section 3.1: Conceptual introduction to AutoEncoders<a class="headerlink" href="#section-3-1-conceptual-introduction-to-autoencoders" title="Permalink to this headline">¶</a></h2>
 <p>Now we’ll create our first autoencoder. It will reduce images down to <span class="math notranslate nohighlight">\(K\)</span> dimensions. The architecture will be quite simple: the input will be linearly mapped to a single hidden (or latent) layer <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> with <span class="math notranslate nohighlight">\(K\)</span> units, which will then be linearly mapped back to an output that is the same size as the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea7acb0c-139b-402b-bc8f-d68ebe89a15f">
-<span class="eqno">(84)<a class="headerlink" href="#equation-ea7acb0c-139b-402b-bc8f-d68ebe89a15f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a2afa024-885e-42ba-b6d7-487b78f235a2">
+<span class="eqno">(84)<a class="headerlink" href="#equation-a2afa024-885e-42ba-b6d7-487b78f235a2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \longrightarrow \mathbf{h} \longrightarrow \mathbf{x'}
 \end{equation}\]</div>
 <p>The loss function we’ll use will simply be mean squared error (MSE) quantifying how well the reconstruction (<span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>) matches the original image (<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-784dc59b-3d64-47fe-ad3e-f41688ea4979">
-<span class="eqno">(85)<a class="headerlink" href="#equation-784dc59b-3d64-47fe-ad3e-f41688ea4979" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fd83ebbf-5ffe-489b-a9b0-64a8ab0c439a">
+<span class="eqno">(85)<a class="headerlink" href="#equation-fd83ebbf-5ffe-489b-a9b0-64a8ab0c439a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{MSE Loss} = \sum_{i=1}^{N} ||\mathbf{x}_i - \mathbf{x'}_i||^2_2
 \end{equation}\]</div>
 <p>If all goes well, then the AutoEncoder will learn, <strong>end to end</strong>, a good “encoding” or “compression” of inputs to a latent representation (<span class="math notranslate nohighlight">\(\mathbf{x \longrightarrow h}\)</span>) as well as a good “decoding” of that latent representation to a reconstruction of the original input (<span class="math notranslate nohighlight">\(\mathbf{h \longrightarrow x'}\)</span>).</p>
@@ -2173,17 +2139,17 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f9aa4e13db424029986df658a5dad678"}
+{"version_major": 2, "version_minor": 0, "model_id": "2d8f2a62c76542f591087fea9fffba49"}
 </script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9963</span><span class="o">/</span><span class="mf">2806122885.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_14548</span><span class="o">/</span><span class="mf">2806122885.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span> 
 <span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">image_moments</span><span class="p">((</span><span class="n">im</span> <span class="k">for</span> <span class="n">im</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">),</span>
 <span class="ne">---&gt; </span><span class="mi">13</span>                         <span class="n">n_batches</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span> <span class="o">//</span> <span class="mi">32</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> 
 <span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">pca_encode</span><span class="p">,</span> <span class="n">pca_decode</span> <span class="o">=</span> <span class="n">pca_encoder_decoder</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_9963/1260270458.py</span> in <span class="ni">image_moments</span><span class="nt">(image_batches, n_batches)</span>
+<span class="nn">/tmp/ipykernel_14548/1260270458.py</span> in <span class="ni">image_moments</span><span class="nt">(image_batches, n_batches)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">m1</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">+</span> <span class="n">im</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">m2</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">+</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2583,25 +2549,25 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <p><em>Recognition models and density networks</em></p>
 <p>Variational AutoEncoders (VAEs) are a lot like the classic AutoEncoders (AEs), but where we explicitly think about probability distributions. In the language of VAEs, the <strong>encoder</strong> is replaced with a <strong>recognition model</strong>, and the <strong>decoder</strong> is replaced with a <strong>density network</strong>.</p>
 <p>Where in a classic autoencoder the encoder maps from images to a single hidden vector,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cb0198b1-1f4b-430c-8a60-def2a01c281c">
-<span class="eqno">(86)<a class="headerlink" href="#equation-cb0198b1-1f4b-430c-8a60-def2a01c281c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9530288d-5066-4535-ad0f-faf0f180f07b">
+<span class="eqno">(86)<a class="headerlink" href="#equation-9530288d-5066-4535-ad0f-faf0f180f07b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{AE}}{\longrightarrow} \mathbf{h} \, ,
 \end{equation}\]</div>
 <p>in a VAE we would say that a recognition model maps from inputs to entire <strong>distributions</strong> over hidden vectors,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3369ccce-8926-42ac-878b-bae0d05b83d7">
-<span class="eqno">(87)<a class="headerlink" href="#equation-3369ccce-8926-42ac-878b-bae0d05b83d7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a217821-357a-4318-90fc-4cec9a3f5064">
+<span class="eqno">(87)<a class="headerlink" href="#equation-6a217821-357a-4318-90fc-4cec9a3f5064" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{VAE}}{\longrightarrow} q_{\mathbf{w_e}}(\mathbf{z}) \, ,
 \end{equation}\]</div>
 <p>which we will then sample from. Here <span class="math notranslate nohighlight">\(\mathbf{w_e}\)</span> refers to the weights of the recognition model, which parametarize our distribution generating network. We’ll say more in a moment about what kind of distribution <span class="math notranslate nohighlight">\(q_{\mathbf{w_e}}(\mathbf{z})\)</span> is.
 Part of what makes VAEs work is that the loss function will require good reconstructions of the input not just for a single <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>, but <em>on average</em> from samples of <span class="math notranslate nohighlight">\(\mathbf{z} \sim q_{\mathbf{w_e}}(\mathbf{z})\)</span>.</p>
 <p>In the classic autoencoder, we had a decoder which maps from hidden vectors to reconstructions of the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-64970a1d-9d35-49dc-97c9-6ccf8ee2bfbb">
-<span class="eqno">(88)<a class="headerlink" href="#equation-64970a1d-9d35-49dc-97c9-6ccf8ee2bfbb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05d5e421-9cff-481d-8a3d-0e980e946093">
+<span class="eqno">(88)<a class="headerlink" href="#equation-05d5e421-9cff-481d-8a3d-0e980e946093" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h} \overset{\text{AE}}{\longrightarrow} \mathbf{x'} \, .
 \end{equation}\]</div>
 <p>In a density network, reconstructions are expressed in terms of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-99c95571-b1ec-4b85-bc72-e5b461e1ddd5">
-<span class="eqno">(89)<a class="headerlink" href="#equation-99c95571-b1ec-4b85-bc72-e5b461e1ddd5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3137725a-d8ea-4179-af54-aa4489224ab4">
+<span class="eqno">(89)<a class="headerlink" href="#equation-3137725a-d8ea-4179-af54-aa4489224ab4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \overset{\text{VAE}}{\longrightarrow} p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})
 \end{equation}\]</div>
 <p>where, as above, <span class="math notranslate nohighlight">\(p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})\)</span> is defined by mapping <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> through a density network then treating the resulting <span class="math notranslate nohighlight">\(f(\mathbf{z};\mathbf{w_d})\)</span> as the mean of a (Gaussian) distribution over <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Similarly, our reconstruction distribution is parametarized by the weights of the density network.</p>
@@ -2609,13 +2575,13 @@ Part of what makes VAEs work is that the loss function will require good reconst
 <div class="section" id="section-4-2-generating-novel-images-from-the-decoder">
 <h2>Section 4.2: Generating novel images from the decoder<a class="headerlink" href="#section-4-2-generating-novel-images-from-the-decoder" title="Permalink to this headline">¶</a></h2>
 <p>If we isolate the decoder part of the AutoEncoder, what we have is a neural network that takes as input a vector of size <span class="math notranslate nohighlight">\(K\)</span> and produces as output an image that looks something like our training data. Recall that in our earlier notation, we had an input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that was mapped to a low-dimensional hidden representation <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> which was then decoded into a reconstruction of the input, <span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e70e80b9-9694-4daa-b594-2ac6051b161f">
-<span class="eqno">(90)<a class="headerlink" href="#equation-e70e80b9-9694-4daa-b594-2ac6051b161f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e679764d-2521-47c5-b462-eaaa07f8943e">
+<span class="eqno">(90)<a class="headerlink" href="#equation-e679764d-2521-47c5-b462-eaaa07f8943e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{encode}}{\longrightarrow} \mathbf{h} \overset{\text{decode}}{\longrightarrow} \mathbf{x'}\, .
 \end{equation}\]</div>
 <p>Partly as a matter of convention, and partly to distinguish where we are going next from the previous section, we’re going to introduce a new variable, <span class="math notranslate nohighlight">\(\mathbf{z} \in \mathbb{R}^K\)</span>, which will take the place of <span class="math notranslate nohighlight">\(\mathbf{h}\)</span>. The key difference is that while <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> is produced by the encoder for a particular <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> will be drawn out of thin air from a prior of our choosing:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33f0019a-2616-42cb-a398-799dc124183d">
-<span class="eqno">(91)<a class="headerlink" href="#equation-33f0019a-2616-42cb-a398-799dc124183d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6b9aa005-5d1e-4993-9877-e198bf3d964e">
+<span class="eqno">(91)<a class="headerlink" href="#equation-6b9aa005-5d1e-4993-9877-e198bf3d964e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \sim p(\mathbf{z})\\ \mathbf{z} \overset{\text{decode}}{\longrightarrow} \mathbf{x}\, .
 \end{equation}\]</div>
 <p>(Note that it is also common convention to drop the “prime” on <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> when it is no longer being thought of as a “reconstruction”).</p>
