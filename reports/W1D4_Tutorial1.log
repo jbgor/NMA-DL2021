@@ -32,15 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-# Define a new model and set params
-model = Net().to(DEVICE)
-optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
-
-# Train the model on MNIST
-nEpochs = 3
-print(f"Training model on {nEpochs} epochs...")
-for epoch in range(1, nEpochs+1):
-  train(model, x_train, t_train, optimizer, epoch, device=DEVICE)
-  test(model, x_test, t_test, device=DEVICE)
+['from IPython.display import clear_output', '', 'def load_mnist_data(change_tensors=False, download=True):', '  """Load training and test examples for the MNIST digits dataset', '']
+...
+['', '  return train_set, test_set', '', '', 'train_set, test_set = load_mnist_data(change_tensors=True)']
 -------------------
 
