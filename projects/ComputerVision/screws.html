@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Something Screwy - image recognition, detection, and classification of screws &#8212; Neuromatch Academy: Deep Learning</title>
+    <title>Setup matplotlib &#8212; Neuromatch Academy: Deep Learning</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -586,7 +586,7 @@
      </li>
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       Something Screwy - image recognition, detection, and classification of screws
+       Setup matplotlib
       </a>
      </li>
      <li class="toctree-l3">
@@ -825,41 +825,15 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Something Screwy - image recognition, detection, and classification of screws
+   Setup matplotlib
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setup">
-   Setup
+  <a class="reference internal nav-link" href="#data-loading-a-name-dataloading-a">
+   Data loading
+   <a name="dataloading">
+   </a>
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setup-matplotlib">
-     Setup matplotlib
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#data-loading-a-name-dataloading-a">
-     Data loading
-     <a name="dataloading">
-     </a>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#helper-functions-a-name-helpers-a">
-     Helper functions
-     <a name="helpers">
-     </a>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#let-s-check-out-some-data-a-name-datainspection-a">
-     Let’s check out some data
-     <a name="datainspection">
-     </a>
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#e1-object-classification">
@@ -872,13 +846,6 @@
      <a name="nutsetup">
      </a>
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#preparing-our-first-network-a-name-nutwork-a">
-     Preparing our first network
-     <a name="nutwork">
-     </a>
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#import-setup-torch">
@@ -888,67 +855,6 @@
     </ul>
    </li>
   </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#e2-damaged-screw-detection-a-name-damagedscrew-a">
-   E2. Damaged screw detection
-   <a name="damagedscrew">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#e3-multi-class-classification-a-name-multiclass-a">
-   E3. Multi-class classification
-   <a name="multiclass">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#m1-object-detection-a-name-objectdetection-a">
-   M1. Object detection
-   <a name="objectdetection">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#m2-network-performance-introspection-a-name-inspection-a">
-   M2. Network performance/introspection
-   <a name="inspection">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#m3-oriented-bounding-boxes-a-name-oriented-a">
-   M3. Oriented bounding boxes
-   <a name="oriented">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#m4-class-clustering-a-name-clustering-a">
-   M4. Class clustering
-   <a name="clustering">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#h1-perspective-and-scale-a-name-perspective-a">
-   H1. Perspective and scale
-   <a name="perspective">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#h2-transfer-learning-a-name-transfer-a">
-   H2. Transfer Learning
-   <a name="transfer">
-   </a>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-links">
-   Other links:
-  </a>
  </li>
 </ul>
 
@@ -961,31 +867,35 @@
         
               <div>
                 
-  <div class="section" id="something-screwy-image-recognition-detection-and-classification-of-screws">
-<h1>Something Screwy - image recognition, detection, and classification of screws<a class="headerlink" href="#something-screwy-image-recognition-detection-and-classification-of-screws" title="Permalink to this headline">¶</a></h1>
-<p><strong>By Neuromatch Academy</strong></p>
-<p><strong>Content creators:</strong> Joe Donovan</p>
+  <p>#Something Screwy - image recognition, detection, and classification of screws
+<strong>By Neuromatch Academy</strong></p>
+<p><strong>Content creators:</strong> Joe Donovan (joe311&#64;gmail.com)</p>
 <p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
 <p align='center'><img src='https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True'/></p><p>Useful link:
 NMA daily guide to projects - https://deeplearning.neuromatch.io/projects/docs/project_guidance.html</p>
 <p>The overall goal of the project is to learn about object recognition, classification, and detection.
 You’ll start with simple networks, and potentially work up to larger pretained models. Your loss function is to optimize learning, not model performance.</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
+<p>##Structure
+###<a class="reference external" href="#dataloading">Data loading &amp; structure</a> and <a class="reference external" href="#helpers">helpers</a>
+###<a class="reference external" href="#datainspection">Data inspection</a>
+###E1. Object classification - <a class="reference external" href="#nutsetup">setup</a> and <a class="reference external" href="#nutwork">network</a>
+###E2. <a class="reference external" href="#damagedscrew">Damaged screw detection</a>
+###E3. <a class="reference external" href="#multiclass">Multi-class classification</a>
+###M1. <a class="reference external" href="#objectdetection">Object detection</a>
+###M2. <a class="reference external" href="#inspection">Network performance/introspection</a>
+###M3. <a class="reference external" href="#oriented">Oriented bounding boxes</a>
+###M4. <a class="reference external" href="#clustering">Class clustering</a>
+###H1. <a class="reference external" href="#perspective">Perspective and scale</a>
+###H2. <a class="reference external" href="#transfer">Transfer Learning</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">json</span> 
-<span class="c1"># import urllib</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
-<span class="c1"># from tqdm import tqdm</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
 <span class="kn">from</span> <span class="nn">shapely.geometry.polygon</span> <span class="kn">import</span> <span class="n">Polygon</span>
 </pre></div>
@@ -993,10 +903,10 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </div>
 </div>
 <div class="section" id="setup-matplotlib">
-<h2>Setup matplotlib<a class="headerlink" href="#setup-matplotlib" title="Permalink to this headline">¶</a></h2>
+<h1>Setup matplotlib<a class="headerlink" href="#setup-matplotlib" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Setup matplotlib </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Setup matplotlib </span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">gridspec</span> 
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">patches</span><span class="p">,</span> <span class="n">transforms</span> <span class="k">as</span> <span class="n">plt_transforms</span>
@@ -1012,17 +922,17 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </div>
 </div>
 <div class="section" id="data-loading-a-name-dataloading-a">
-<h2>Data loading <a name="dataloading"></a><a class="headerlink" href="#data-loading-a-name-dataloading-a" title="Permalink to this headline">¶</a></h2>
+<h1>Data loading <a name="dataloading"></a><a class="headerlink" href="#data-loading-a-name-dataloading-a" title="Permalink to this headline">¶</a></h1>
 <p>Let’s start by downloading the data and taking a look at it</p>
 <p>Properly understanding and exploring the structure of your data is a crucial step to any project</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Download dataset, took around 4 minutes for me 
-# https://www.mvtec.com/company/research/datasets/mvtec-screws
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#Download dataset, took around 4 minutes for me 
+#https://www.mvtec.com/company/research/datasets/mvtec-screws
 
 if not os.path.isfile(&#39;mvtec_screws_v1.0.tar.gz&#39;):
   !wget ftp://guest:GU.205dldo@ftp.softronics.ch/mvtec_screws/v1.0/mvtec_screws_v1.0.tar.gz
-# unpack tar datafile
+#unpack tar datafile
 datapath = &#39;screwdata&#39;
 if not os.path.exists(datapath):
   !mkdir screwdata
@@ -1030,150 +940,19 @@ if not os.path.exists(datapath):
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-08-01 13:17:41--  ftp://guest:*password*@ftp.softronics.ch/mvtec_screws/v1.0/mvtec_screws_v1.0.tar.gz
-           =&gt; ‘mvtec_screws_v1.0.tar.gz’
-Resolving ftp.softronics.ch (ftp.softronics.ch)... 168.119.117.96
-Connecting to ftp.softronics.ch (ftp.softronics.ch)|168.119.117.96|:21... connected.
-Logging in as guest ... Logged in!
-==&gt; SYST ... done.    ==&gt; PWD ... done.
-==&gt; TYPE I ... done.  ==&gt; CWD (1) /mvtec_screws/v1.0 ... done.
-==&gt; SIZE mvtec_screws_v1.0.tar.gz ... 1361662840
-==&gt; PASV ... done.    ==&gt; RETR mvtec_screws_v1.0.tar.gz ... done.
-Length: 1361662840 (1.3G) (unauthoritative)
-
-mvtec_screws_v1.0.t 100%[===================&gt;]   1.27G  6.25MB/s    in 3m 28s  
-
-2021-08-01 13:21:13 (6.25 MB/s) - ‘mvtec_screws_v1.0.tar.gz’ saved [1361662840]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Some json files and a folder full of images</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Some json files and a folder full of images</span>
 <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">datapath</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mvtec_screws_splitted.hdict&#39;,
- &#39;mvtec_screws_test.json&#39;,
- &#39;mvtec_screws_test.hdict&#39;,
- &#39;mvtec_screws_train.hdict&#39;,
- &#39;images&#39;,
- &#39;mvtec_screws_val.hdict&#39;,
- &#39;mvtec_screws_train.json&#39;,
- &#39;README_v1.0.txt&#39;,
- &#39;mvtec_screws.json&#39;,
- &#39;mvtec_screws_val.json&#39;,
- &#39;mvtec_screws.hdict&#39;]
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># There&#39;s some details in the readme
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#There&#39;s some details in the readme
 !cat screwdata/README_v1.0.txt
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*******************************************
-* MVTec Screws V1.0                       *
-*                                         *
-* Author: MVTec Software GmbH, July 2020. *
-*         https://www.mvtec.com           *
-*******************************************
-
-All files are as in the MVTec Screws example dataset for oriented object detection, released with
-HALCON version 19.05. The state of the dataset and images is as of release version 20.05.
-
-***********
-* License *
-***********
-
-The dataset, i.e. the images and the annotations, are licensed under the creative commons
-Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license. See
-https://creativecommons.org/licenses/by-nc-sa/4.0/ for more information.
-For using the data in a way that falls under the commercial use clause of the license,
-please contact us.
-
-***************
-* Attribution *
-***************
-
-If you use this dataset in scientific work, please cite our paper:
-
-Markus Ulrich, Patrick Follmann, Jan-Hendrik Neudeck: 
-A comparison of shape-based matching with deep-learning-based object detection;
-in: Technisches Messen, 2019, DOI 10.1515/teme-2019-0076.
-
-************
-* Content: *
-************
-
-MVTec Screws contains 384 images of 13 different types of screws and nuts on a wooden background.
-The objects are labeled by oriented bounding boxes and their respective category. Overall, there
-are 4426 of such annotations.
-The exemplary splits are those that have been used in the above mentioned publication. Initially,
-they have been selected randomly, such that approximately 70% of the instances of each category are
-within the training split, and 15% each in the validation and test splits.
-
-* folder images contains the screw images.
-* mvtec_screws.json contains the annotations for all images in COCO format.
-* mvtec_screws_train/val/test.json contain examplary splits as mentioned above, in COCO format.
-* mvtec_screws.hdict contains the DLDataset unsplitted.
-* mvtec_screws_split.hdict contains the DLDataset with splits.
-
-******************************
-* Usage of DLDataset-format: *
-******************************
-
-The .hdict files can be used within HALCON by reading them, e.g. via
-
-read_dict (&lt;path_to_mvtec_screws.hdict&gt;, [], [], DLDataset)
-
-The image path has to be set to the location of the images folder &lt;path_to_images_folder&gt; by
-
-set_dict_tuple(DLDataset, &#39;image_dir&#39;, &lt;path_to_images_folder&gt;)
-
-To store this information within the dataset, the dataset should be written by
-write_dict (DLDataset, &lt;path_to_mvtec_screws.hdict&gt;, [], [])
-
-In HALCON object detection we use subpixel-precise annotations with a pixel-centered coordinate-system, i.e.
-the center of the top-left corner of the image is at (0.0, 0.0), while the top-left corner of the image is
-located at (-.5, -.5). Note that when used within HALCON the dataset does not need to be converted, as this
-format is also used within the deep learning based object detection of HALCON.
-
-***************
-* COCO Format *
-***************
-
-MVTec screws is a dataset for oriented box detection. We use a format that is very similar to that of the
-COCO dataset (cocodataset.org). However, we need 5 parameters per box annotation to store the orientation.
-We use the following labels.
-
-Each box contains 5 parameters (row, col, width, height, phi), where
-
-* &#39;row&#39; is the subpixel-precise center row (vertical axis of the coordinate system) of the box.
-* &#39;col&#39; is the subpixel-precise center column (horizontal axis of the coordinate system) of the box.
-* &#39;width&#39; is the subpixel-precise width of the box. I.e. the length of the box parallel to the orientation 
-  of the box.
-* &#39;height&#39; is the subpixel-precise width of the box. I.e. the length of the box perpendicular to the
-  orientation of the box.
-* &#39;phi&#39; is the orientation of the box in radian, given in a mathematically positive sense and with respect
-  to the horizontal (column) image axis. E.g. for phi = 0.0 the box is oriented towards the right side of 
-  the image, for phi = pi/2 towards the top, for phi = pi towards the left, and for phi=-pi/2 towards the 
-  bottom. Phi is always in the range (-pi, pi].
-
-Note that width and height are defined in contrast to the DLDataset format in HALCON, where we use 
-semi-axis lengths.
-
-Coordinate system: In comparison to the pixel-centered coordinate-system of HALCON mentioned above,
-                   for COCO it is common to set the origin to the top-left-corner of the top-left
-				   pixel, hence in comparison to the DLDataset-format, (row,col) are shifted by (.5, .5).
 </pre></div>
 </div>
 </div>
@@ -1190,13 +969,6 @@ Coordinate system: In comparison to the pixel-centered coordinate-system of HALC
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;categories&#39;, &#39;images&#39;, &#39;annotations&#39;, &#39;licenses&#39;, &#39;info&#39;])
-{&#39;file_name&#39;: &#39;screws_001.png&#39;, &#39;height&#39;: 1440, &#39;width&#39;: 1920, &#39;id&#39;: 1, &#39;license&#39;: 1}
-{&#39;area&#39;: 3440.97, &#39;bbox&#39;: [184.5, 876.313, 55, 62.5631, 0], &#39;category_id&#39;: 7, &#39;id&#39;: 1001, &#39;image_id&#39;: 1, &#39;is_crowd&#39;: 0}
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1207,7 +979,7 @@ Coordinate system: In comparison to the pixel-centered coordinate-system of HALC
 <span class="n">imgdict</span> <span class="o">=</span> <span class="p">{</span><span class="n">l</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]:</span><span class="n">l</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">]}</span>
 <span class="c1">#read in all images, can take some time</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">imgdict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-  <span class="n">i</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imgdir</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]))</span>
+  <span class="n">i</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imgdir</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]))[:,:,:</span><span class="mi">3</span><span class="p">]</span> <span class="c1">#drop alpha channel, if it&#39;s there</span>
 
 <span class="c1">#remap annotations to dict by image_id</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
@@ -1224,9 +996,7 @@ Coordinate system: In comparison to the pixel-centered coordinate-system of HALC
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="helper-functions-a-name-helpers-a">
-<h2>Helper functions <a name="helpers"></a><a class="headerlink" href="#helper-functions-a-name-helpers-a" title="Permalink to this headline">¶</a></h2>
+<p>##Helper functions <a name="helpers"></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#helpful function for extracting rotated subimages etc</span>
@@ -1265,16 +1035,14 @@ Coordinate system: In comparison to the pixel-centered coordinate-system of HALC
   <span class="n">subimg</span> <span class="o">=</span> <span class="n">im</span><span class="p">[</span><span class="n">rot_bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span><span class="n">rot_bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">rot_bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]:</span><span class="n">rot_bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]]</span>
   <span class="n">rotated_im</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">subimg</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">+</span><span class="mi">180</span><span class="p">)</span>
   <span class="n">newcenter</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rotated_im</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
-  <span class="n">rotated_im</span> <span class="o">=</span> <span class="n">rotated_im</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span> 
+  <span class="n">rotated_im</span> <span class="o">=</span> <span class="n">rotated_im</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="n">newcenter</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1">#drop alpha channel, if it&#39;s there</span>
 
   <span class="k">return</span> <span class="n">rotated_im</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="let-s-check-out-some-data-a-name-datainspection-a">
-<h2>Let’s check out some data <a name="datainspection"></a><a class="headerlink" href="#let-s-check-out-some-data-a-name-datainspection-a" title="Permalink to this headline">¶</a></h2>
+<p>##Let’s check out some data <a name="datainspection"></a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Let&#39;s look at one image and it&#39;s associated annotations</span>
@@ -1310,17 +1078,6 @@ Coordinate system: In comparison to the pixel-centered coordinate-system of HALC
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:16: MatplotlibDeprecationWarning: Adding an axes using the same arguments as a previous axes currently reuses the earlier instance.  In a future version, a new instance will always be created and returned.  Meanwhile, this warning can be suppressed, and the future behavior ensured, by passing a unique label to each axes instance.
-  app.launch_new_instance()
-/usr/local/lib/python3.7/dist-packages/google/colab/_event_manager.py:28: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  func(*args, **kwargs)
-/usr/local/lib/python3.7/dist-packages/IPython/core/pylabtools.py:125: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  fig.canvas.print_figure(bytes_io, **kw)
-</pre></div>
-</div>
-<img alt="../../_images/screws_16_1.png" src="../../_images/screws_16_1.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1343,23 +1100,6 @@ Coordinate system: In comparison to the pixel-centered coordinate-system of HALC
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Category ID 7 has 365 items
-Category ID 3 has 317 items
-Category ID 2 has 314 items
-Category ID 8 has 367 items
-Category ID 6 has 393 items
-Category ID 5 has 387 items
-Category ID 4 has 315 items
-Category ID 1 has 313 items
-Category ID 9 has 320 items
-Category ID 11 has 346 items
-Category ID 10 has 347 items
-Category ID 12 has 322 items
-Category ID 13 has 321 items
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1376,25 +1116,8 @@ Category ID 13 has 321 items
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/screws_19_0.png" src="../../_images/screws_19_0.png" />
-<img alt="../../_images/screws_19_1.png" src="../../_images/screws_19_1.png" />
-<img alt="../../_images/screws_19_2.png" src="../../_images/screws_19_2.png" />
-<img alt="../../_images/screws_19_3.png" src="../../_images/screws_19_3.png" />
-<img alt="../../_images/screws_19_4.png" src="../../_images/screws_19_4.png" />
-<img alt="../../_images/screws_19_5.png" src="../../_images/screws_19_5.png" />
-<img alt="../../_images/screws_19_6.png" src="../../_images/screws_19_6.png" />
-<img alt="../../_images/screws_19_7.png" src="../../_images/screws_19_7.png" />
-<img alt="../../_images/screws_19_8.png" src="../../_images/screws_19_8.png" />
-<img alt="../../_images/screws_19_9.png" src="../../_images/screws_19_9.png" />
-<img alt="../../_images/screws_19_10.png" src="../../_images/screws_19_10.png" />
-<img alt="../../_images/screws_19_11.png" src="../../_images/screws_19_11.png" />
-<img alt="../../_images/screws_19_12.png" src="../../_images/screws_19_12.png" />
 </div>
 </div>
-</div>
-</div>
-<hr class="docutils" />
 <div class="section" id="e1-object-classification">
 <h1>E1. Object classification<a class="headerlink" href="#e1-object-classification" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="setting-up-for-our-first-challenge-a-name-nutsetup-a">
@@ -1402,10 +1125,11 @@ Category ID 13 has 321 items
 <p>The challenge of detecting hetergogenously sized objects scattered throughout an image can be challenging, so let’s start with something simpler - detecting whether a fixed sized image contains a nut or is blank.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start with fixed sized patches that either have a screw or not</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Start with fixed sized patches that either have a screw or not</span>
 <span class="n">use_categories</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
-<span class="c1"># for screw patches use categories that have smaller bounding boxes</span>
+<span class="c1">#for screw patches use categories that have smaller bounding boxes</span>
 <span class="n">patch_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+<span class="n">num_patches_per_category</span> <span class="o">=</span> <span class="mi">500</span>
 
 <span class="n">nut_patches</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">img_id</span><span class="p">,</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">imgdict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
@@ -1413,15 +1137,16 @@ Category ID 13 has 321 items
     <span class="k">if</span> <span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;category_id&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">use_categories</span><span class="p">:</span>
       <span class="n">bbox</span> <span class="o">=</span> <span class="n">annotation</span><span class="p">[</span><span class="s1">&#39;bbox&#39;</span><span class="p">]</span>
       <span class="n">rot_center</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">theta</span> <span class="o">=</span> <span class="n">unpack_bbox</span><span class="p">(</span><span class="n">bbox</span><span class="p">)</span>
-      <span class="n">subimg</span> <span class="o">=</span> <span class="n">extract_subimg</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span> <span class="n">rot_center</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">nut_patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subimg</span><span class="p">)</span>
+      <span class="n">subimg</span> <span class="o">=</span> <span class="n">extract_subimg</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span> <span class="n">rot_center</span><span class="p">,</span> <span class="n">patch_size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">patch_size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">subimg</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">patch_size</span><span class="p">):</span> 
+        <span class="n">nut_patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subimg</span><span class="p">)</span>
       <span class="c1"># plt.figure()</span>
       <span class="c1"># plt.imshow(subimg)</span>
 
-  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nut_patches</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">:</span>
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nut_patches</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">num_patches_per_category</span><span class="p">:</span>
     <span class="k">break</span>
 
-<span class="c1"># Select random blank patches </span>
+<span class="c1">#Select random blank patches </span>
 <span class="n">blank_patches</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nut_patches</span><span class="p">)):</span>
   <span class="k">while</span> <span class="kc">True</span><span class="p">:</span> <span class="c1">#until a suitable random patch is found</span>
@@ -1439,9 +1164,9 @@ Category ID 13 has 321 items
 
   <span class="c1"># plt.figure()</span>
   <span class="c1"># plt.imshow(rand_patch)</span>
-<span class="c1"># TODO seems like rarely the patches aren&#39;t fully blank - are some labels missing??</span>
+<span class="c1">#TODO seems like rarely the patches aren&#39;t fully blank - are some labels missing??</span>
 
-<span class="c1"># could also use some images from cifar etc. </span>
+<span class="c1">#could also use some images from cifar etc. </span>
 <span class="n">num_examples</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_examples</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">.05</span><span class="p">)</span>
@@ -1455,38 +1180,37 @@ Category ID 13 has 321 items
 <span class="n">patch_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">nut_patches</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">,]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">blank_patches</span><span class="p">)</span>  <span class="c1">#1 if nut</span>
 <span class="n">all_patches</span> <span class="o">=</span> <span class="n">nut_patches</span> <span class="o">+</span> <span class="n">blank_patches</span> <span class="c1">#list concat</span>
 
-<span class="c1"># randomly shuffle</span>
+<span class="c1">#randomly shuffle</span>
 <span class="n">shuffle_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">patch_labels</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">patch_labels</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">patch_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">patch_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shuffle_idx</span><span class="p">]</span>
 <span class="n">all_patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">all_patches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shuffle_idx</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/google/colab/_event_manager.py:28: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  func(*args, **kwargs)
-/usr/local/lib/python3.7/dist-packages/IPython/core/pylabtools.py:125: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  fig.canvas.print_figure(bytes_io, **kw)
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Check shapes are correct</span>
+<span class="c1"># assert all([p.shape == (128,128,3) for p in all_patches])</span>
+<span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_patches</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
 </pre></div>
 </div>
-<img alt="../../_images/screws_22_1.png" src="../../_images/screws_22_1.png" />
 </div>
 </div>
-</div>
-<div class="section" id="preparing-our-first-network-a-name-nutwork-a">
-<h2>Preparing our first network  <a name="nutwork"></a><a class="headerlink" href="#preparing-our-first-network-a-name-nutwork-a" title="Permalink to this headline">¶</a></h2>
-<p>Before immediately jumping into coding a network, first think about what the structure of the network should look like.
+<p>##Preparing our first network  <a name="nutwork"></a>
+Before immediately jumping into coding a network, first think about what the structure of the network should look like.
 Hint - it’s often helpful to start thinking about the shape/dimensionality of the inputs and outputs</p>
 <div class="section" id="import-setup-torch">
 <h3>Import/setup torch<a class="headerlink" href="#import-setup-torch" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Import/setup torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Import/setup torch</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 <span class="kn">import</span> <span class="nn">torchvision</span>
 <span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
+<span class="kn">from</span> <span class="nn">torchsummary</span> <span class="kn">import</span> <span class="n">summary</span>
 
 <span class="c1">#check GPU etc. </span>
 <span class="k">def</span> <span class="nf">set_device</span><span class="p">():</span>
@@ -1505,10 +1229,23 @@ Hint - it’s often helpful to start thinking about the shape/dimensionality of 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU is enabled in this notebook. 
-If you want to disable it, in the menu under `Runtime` -&gt; 
-`Hardware accelerator.` and select `None` from the dropdown menu
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Preprocess data </span>
+<span class="n">preprocess</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+   <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+   <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span> <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])</span>
+<span class="p">])</span>
+
+<span class="n">train_frac</span> <span class="o">=</span> <span class="mf">.2</span>
+<span class="n">train_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_patches</span><span class="p">)</span><span class="o">*</span><span class="n">train_frac</span><span class="p">)</span>
+<span class="c1"># test_nuumber = all_patches.len()-train_number</span>
+<span class="n">train_patches</span><span class="p">,</span> <span class="n">train_labels</span> <span class="o">=</span> <span class="n">all_patches</span><span class="p">[:</span><span class="n">train_number</span><span class="p">],</span> <span class="n">patch_labels</span><span class="p">[:</span><span class="n">train_number</span><span class="p">]</span>
+<span class="n">test_patches</span><span class="p">,</span> <span class="n">test_labels</span> <span class="o">=</span> <span class="n">all_patches</span><span class="p">[</span><span class="n">train_number</span><span class="p">:],</span> <span class="n">patch_labels</span><span class="p">[</span><span class="n">train_number</span><span class="p">:]</span>
+
+<span class="c1"># plt.figure()</span>
+<span class="c1"># plt.imshow(preprocess(all_patches[0]).permute(1,2, 0)</span>
 </pre></div>
 </div>
 </div>
@@ -1519,26 +1256,34 @@ If you want to disable it, in the menu under `Runtime` -&gt;
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
+    <span class="n">LeakyReLU</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">()</span>
+    <span class="n">MaxPool2d</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">LeakyReLU</span><span class="p">,</span>
+        <span class="n">MaxPool2d</span><span class="p">,</span> 
 
-        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span> 
+        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+        <span class="c1"># nn.Conv2d(32, 32, kernel_size=5),</span>
+        <span class="n">LeakyReLU</span><span class="p">,</span>
+        <span class="n">MaxPool2d</span><span class="p">,</span> 
 
-        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">LeakyReLU</span><span class="p">(),</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+        <span class="n">LeakyReLU</span><span class="p">,</span>
+        <span class="n">MaxPool2d</span><span class="p">,</span> 
         
         <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
 
-        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> 
+        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+        <span class="c1"># nn.Dropout(),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
 
-        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">120</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">84</span><span class="p">),</span>
-        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">84</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="c1"># nn.Conv2d(3, 6, 5),</span>
+        <span class="c1"># nn.MaxPool2d(2, 2),</span>
+        <span class="c1"># nn.Conv2d(6, 16, 5),</span>
+        <span class="c1"># nn.Linear(16 * 5 * 5, 120),</span>
+        <span class="c1"># nn.Linear(120, 84),</span>
+        <span class="c1"># nn.Linear(84, 2),</span>
 
     <span class="p">)</span>
 
@@ -1553,169 +1298,123 @@ If you want to disable it, in the menu under `Runtime` -&gt;
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Inspect model structure and layer sizes</span>
+<span class="n">summary</span><span class="p">(</span><span class="n">snet</span><span class="p">,</span> <span class="n">input_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Loss </span>
 <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 
 <span class="n">loss_fn</span><span class="o">=</span><span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
-<span class="n">optimizer</span><span class="o">=</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">snet</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span><span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">optimizer</span><span class="o">=</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">snet</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.000001</span><span class="p">,</span><span class="n">momentum</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train </span>
-<span class="n">num_epoch</span> <span class="o">=</span> <span class="mi">10</span> 
-<span class="n">train_losses</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">valid_losses</span><span class="o">=</span><span class="p">[]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Train </span>
+<span class="n">num_epoch</span> <span class="o">=</span> <span class="mi">5</span> 
+<span class="n">train_losses</span><span class="o">=</span> <span class="p">[]</span> <span class="c1">#loss per epoch</span>
+<span class="n">test_losses</span><span class="o">=</span> <span class="p">[]</span> <span class="c1">#loss per epoch</span>
+<span class="n">test_corrects</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#% correct per epoch</span>
 
-<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-  <span class="n">train_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">test_correct</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+  <span class="k">for</span> <span class="n">img</span><span class="p">,</span><span class="n">lbl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_patches</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">):</span>
+    <span class="n">img</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+    <span class="n">lbl</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+    <span class="n">predict</span><span class="o">=</span><span class="n">snet</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="n">test_correct</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predict</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="o">==</span> <span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="n">test_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_correct</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Before starting: </span><span class="si">{</span><span class="n">test_correct</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">% of test images correct&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epoch</span><span class="p">):</span>
+  <span class="n">train_loss</span><span class="o">=</span><span class="mf">0.0</span>
+  <span class="n">test_loss</span><span class="o">=</span><span class="mf">0.0</span>
+  <span class="n">test_correct</span> <span class="o">=</span> <span class="p">[]</span>
 
   <span class="n">snet</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-  <span class="c1"># for img, lbl in train_ds_loader:</span>
-  <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">lbl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">all_patches</span><span class="p">,</span> <span class="n">patch_labels</span><span class="p">):</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">ii</span><span class="p">[::</span><span class="mi">4</span><span class="p">,</span> <span class="p">::</span><span class="mi">4</span><span class="p">,</span> <span class="p">:])</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-    <span class="n">lbl</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+  <span class="c1"># for img,lbl in train_ds_loader:</span>
+  <span class="k">for</span> <span class="n">img</span><span class="p">,</span><span class="n">lbl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">train_patches</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">):</span>
+    <span class="n">img</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+    <span class="n">lbl</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="c1"># print(img.shape)</span>
     <span class="n">predict</span><span class="o">=</span><span class="n">snet</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-    <span class="n">loss</span><span class="o">=</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">lbl</span><span class="p">)</span>
+    <span class="n">loss</span><span class="o">=</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span><span class="n">lbl</span><span class="p">)</span>
     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
     <span class="n">train_loss</span><span class="o">+=</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
   
-  <span class="nb">print</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
+  <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">img</span><span class="p">,</span><span class="n">lbl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_patches</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">):</span>
+      <span class="n">img</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+      <span class="n">lbl</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+      <span class="n">predict</span><span class="o">=</span><span class="n">snet</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+      <span class="n">loss</span><span class="o">=</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span><span class="n">lbl</span><span class="p">)</span>
+      <span class="n">test_loss</span><span class="o">+=</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">*</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+      <span class="n">test_correct</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">predict</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="o">==</span> <span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+
+  <span class="n">test_correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_correct</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
   <span class="n">train_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
-  <span class="c1"># print(&#39;Epoch:{} Train Loss:{:.4f} valid Losss:{:.4f}&#39;.format(epoch,train_loss,valid_loss))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-27-f0de3fbfc305&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> 
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">predict</span><span class="o">=</span><span class="n">snet</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">loss</span><span class="o">=</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">predict</span><span class="p">,</span> <span class="n">lbl</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+  <span class="n">test_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_loss</span><span class="p">)</span>
+  <span class="n">test_corrects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_correct</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epoch:</span><span class="si">{}</span><span class="s1"> Train Loss:</span><span class="si">{:.3f}</span><span class="s1"> Test Losss:</span><span class="si">{:.3f}</span><span class="s1"> Percent correct: </span><span class="si">{:.2f}</span><span class="s1">%&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span><span class="n">train_loss</span><span class="p">,</span><span class="n">test_loss</span><span class="p">,</span> <span class="n">test_correct</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span> 
 
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">&lt;ipython-input-21-094fd80a1e22&gt;</span> in <span class="ni">forward</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="c1"># Simply pass the data through the layers</span>
-<span class="ne">---&gt; </span><span class="mi">30</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span> 
-<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="n">snet</span> <span class="o">=</span> <span class="n">SimpleScrewNet</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/modules/container.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">139</span>             <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>         <span class="k">return</span> <span class="nb">input</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span> 
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/modules/container.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">139</span>             <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>         <span class="k">return</span> <span class="nb">input</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span> 
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/modules/pooling.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">162</span>         <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span>                             <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ceil_mode</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">164</span>                             <span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span> 
-<span class="g g-Whitespace">    </span><span class="mi">166</span> 
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/_jit_internal.py</span> in <span class="ni">fn</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">403</span>             <span class="k">return</span> <span class="n">if_true</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">405</span>             <span class="k">return</span> <span class="n">if_false</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span> 
-<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="k">if</span> <span class="n">if_true</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">if_false</span><span class="o">.</span><span class="vm">__doc__</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py</span> in <span class="ni">_max_pool2d</span><span class="nt">(input, kernel_size, stride, padding, dilation, ceil_mode, return_indices)</span>
-<span class="g g-Whitespace">    </span><span class="mi">716</span>     <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">717</span>         <span class="n">stride</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="p">[])</span>
-<span class="ne">--&gt; </span><span class="mi">718</span>     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">dilation</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">719</span> 
-<span class="g g-Whitespace">    </span><span class="mi">720</span> 
-
-<span class="ne">RuntimeError</span>: Given input size: (3x1x1). Calculated output size: (3x0x0). Output size is too small
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>torch.Size([1, 3, 32, 32])
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#calculate percentage correct</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">img</span><span class="p">,</span><span class="n">lbl</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_patches</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">):</span>
+      <span class="n">img</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+      <span class="n">lbl</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">torch</span><span class="o">.</span><span class="n">as_tensor</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+      <span class="n">predict</span><span class="o">=</span><span class="n">snet</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+      <span class="n">correct</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">predict</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span> <span class="o">==</span> <span class="n">lbl</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">correct</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">}</span><span class="s1">% of test images correct&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">lbl</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<hr class="docutils" />
-<div class="section" id="e2-damaged-screw-detection-a-name-damagedscrew-a">
-<h1>E2. Damaged screw detection<a name="damagedscrew"></a><a class="headerlink" href="#e2-damaged-screw-detection-a-name-damagedscrew-a" title="Permalink to this headline">¶</a></h1>
+<p>##E2. Damaged screw detection<a name="damagedscrew"></a></p>
 <p>There’s a dataset with anamolous screws on Kaggle - https://www.kaggle.com/ruruamour/screw-dataset</p>
 <p>Download and inspect the dataset, then setup a network for classification of damaged or normal screw</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Here&#39;s a code snippet for downloading from kaggle
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#Here&#39;s a code snippet for downloading from kaggle
 !mkdir ~/.kaggle
 !touch ~/.kaggle/kaggle.json
 
-# create/download api token from Kaggle -&gt; upper right side -&gt; account -&gt; API -&gt; create API token, and copy it here
+#create/download api token from Kaggle -&gt; upper right side -&gt; account -&gt; API -&gt; create API token, and copy it here
 api_token = {&quot;username&quot;:&quot;username here&quot;,&quot;key&quot;:&quot;enter api key here&quot;}
 
 import json
 
 with open(&#39;/root/.kaggle/kaggle.json&#39;, &#39;w&#39;) as file:
-  json.dump(api_token, file)
+    json.dump(api_token, file)
 
 !chmod 600 ~/.kaggle/kaggle.json
 
@@ -1724,68 +1423,46 @@ with open(&#39;/root/.kaggle/kaggle.json&#39;, &#39;w&#39;) as file:
 </div>
 </div>
 </div>
-</div>
-<hr class="docutils" />
-<div class="section" id="e3-multi-class-classification-a-name-multiclass-a">
-<h1>E3. Multi-class classification <a name="multiclass"></a><a class="headerlink" href="#e3-multi-class-classification-a-name-multiclass-a" title="Permalink to this headline">¶</a></h1>
-<p>So far we’ve been doing object classification on single classes from the dataset.
+<p>##E3. Multi-class classification <a name="multiclass"></a>
+So far we’ve been doing object classification on single classes from the dataset.
 Change your network to use the 13 classes from the original dataset to classify images of fixed sized into the 13 classes.
 Note that not all classes are the same sized, so you’ll have to use larger image patches and likely change the configuration of your network some.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reminder, you can use extract_subimg(im, rot_center, width, height, theta) to extract image patches</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Reminder, you can use extract_subimg(im, rot_center, width, height, theta) to extract image patches</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<hr class="docutils" />
-<div class="section" id="m1-object-detection-a-name-objectdetection-a">
-<h1>M1. Object detection<a name="objectdetection"></a><a class="headerlink" href="#m1-object-detection-a-name-objectdetection-a" title="Permalink to this headline">¶</a></h1>
+<p>##M1. Object detection<a name="objectdetection"></a></p>
 <p>Object classification of fixed sized images with a single item is nice, but for many real world tasks detection of multiple objects throughout an image is crucial. Now we will try to create a network for object detection.</p>
 <p>Here’s a useful intro to some of the different types of object classification tasks:
 https://machinelearningmastery.com/object-recognition-with-deep-learning/</p>
 <p>First start by thinking about how the network could capture the location of multiple objects - a single classifer layer at the end of the network won’t be enough. The <a class="reference external" href="https://arxiv.org/abs/1506.02640">YOLO paper</a> might be a helpful read as well as <a class="reference external" href="https://towardsdatascience.com/r-cnn-fast-r-cnn-faster-r-cnn-yolo-object-detection-algorithms-36d53571365e">this algorithm comparison</a>.
 Try to implement your own network (keep in mind for a practice training time you won’t be able to use as deep of a network as many of the papers).</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="m2-network-performance-introspection-a-name-inspection-a">
-<h1>M2. Network performance/introspection <a name="inspection"></a><a class="headerlink" href="#m2-network-performance-introspection-a-name-inspection-a" title="Permalink to this headline">¶</a></h1>
-<p>An important skill for deep learning, as well as any data or programming task is to know how to inspect and debug the performance of your system.
+<p>##M2. Network performance/introspection <a name="inspection"></a>
+An important skill for deep learning, as well as any data or programming task is to know how to inspect and debug the performance of your system.
 Check out what your intermediate layers are actually learning - does this give you any hints to improve your performance?
 The <a class="reference external" href="https://deeplearning.neuromatch.io/tutorials/W1D2_LinearDeepLearning/student/W1D2_Tutorial3.html">W1D2 tutorial</a> might also be useful.</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="m3-oriented-bounding-boxes-a-name-oriented-a">
-<h1>M3. Oriented bounding boxes<a name="oriented"></a><a class="headerlink" href="#m3-oriented-bounding-boxes-a-name-oriented-a" title="Permalink to this headline">¶</a></h1>
-<p>The standard yolo just draws bounding boxes, and doesn’t handle rotated objects elegantly
+<p>##M3. Oriented bounding boxes<a name="oriented"></a>
+The standard yolo just draws bounding boxes, and doesn’t handle rotated objects elegantly
 There’s several works that extend <a class="reference external" href="https://github.com/feifeiwei/OBB-YOLOv3">yolo with oriented boxes</a> or have other network structures that can produce oriented bounding boxes(<a class="reference external" href="https://github.com/yijingru/BBAVectors-Oriented-Object-Detection">see here</a>)</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="m4-class-clustering-a-name-clustering-a">
-<h1>M4. Class clustering <a name="clustering"></a><a class="headerlink" href="#m4-class-clustering-a-name-clustering-a" title="Permalink to this headline">¶</a></h1>
-<p>We’ve been using provided labels to define our object classes (a form of supervised learning). For many datasets you won’t labels or they will be incomplete.</p>
+<p>##M4. Class clustering <a name="clustering"></a>
+We’ve been using provided labels to define our object classes (a form of supervised learning). For many datasets you won’t labels or they will be incomplete.</p>
 <p>Try unsupervised clustering to segment the data into groups.
 Either classical approaches which <a class="reference external" href="https://scikit-learn.org/stable/unsupervised_learning.html">sklearn</a> will be very helpful for, or using deep learning approaches (<a class="reference external" href="https://towardsdatascience.com/image-clustering-implementation-with-pytorch-587af1d14123">example 1</a>, <a class="reference external" href="https://github.com/facebookresearch/deepcluster">example 2</a>).</p>
 <p>How do the unsupervised clusters compare with the provided labels?</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="h1-perspective-and-scale-a-name-perspective-a">
-<h1>H1. Perspective and scale<a name="perspective"></a><a class="headerlink" href="#h1-perspective-and-scale-a-name-perspective-a" title="Permalink to this headline">¶</a></h1>
-</div>
-<hr class="docutils" />
-<div class="section" id="h2-transfer-learning-a-name-transfer-a">
-<h1>H2. Transfer Learning <a name="transfer"></a><a class="headerlink" href="#h2-transfer-learning-a-name-transfer-a" title="Permalink to this headline">¶</a></h1>
-<p>There’s many models for object detection/segmentation, for instance:
+<p>##H1. Perspective and scale<a name="perspective"></a></p>
+<p>##H2. Transfer Learning <a name="transfer"></a>
+There’s many models for object detection/segmentation, for instance:
 <a class="reference external" href="https://github.com/eriklindernoren/PyTorch-YOLOv3">yolo3 minimal</a>, <a class="reference external" href="https://github.com/ultralytics/yolov5">yolov5</a>, <a class="reference external" href="https://github.com/facebookresearch/detectron2">detetectron2</a>, <a class="reference external" href="https://models.roboflow.com/object-detection/scaled-yolov4">Scaled-YOLOv4</a></p>
 <p>I’d recommend reading the original <a class="reference external" href="https://arxiv.org/abs/1506.02640">YOLO paper</a> and then starting with <a class="reference external" href="https://github.com/eriklindernoren/PyTorch-YOLOv3">yolo3 minimal</a> (less performance, but more readable code than the more complicated frameworks)</p>
 <p>Starting from one of these pretrained networks train it on your screw dataset. How does it’s performance compare to your simpler network’s performance?</p>
-</div>
-<hr class="docutils" />
-<div class="section" id="other-links">
-<h1>Other links:<a class="headerlink" href="#other-links" title="Permalink to this headline">¶</a></h1>
-<p>Library of open 3D cad models of bolts etc.</p>
+<p>##Other links:
+Library of open 3D cad models of bolts etc.</p>
 <p>https://www.bolts-library.org/en/index.html</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
