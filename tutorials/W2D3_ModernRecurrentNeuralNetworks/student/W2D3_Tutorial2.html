@@ -1133,14 +1133,14 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to /home/runner/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping tokenizers/punkt.zip.
+[nltk_data]   Unzipping tokenizers/punkt.zip.
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package averaged_perceptron_tagger to
 [nltk_data]     /home/runner/nltk_data...
-[nltk_data]   Unzipping taggers/averaged_perceptron_tagger.zip.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping taggers/averaged_perceptron_tagger.zip.
 [nltk_data] Downloading package brown to /home/runner/nltk_data...
 </pre></div>
 </div>
@@ -1424,7 +1424,7 @@ Random seed 2021 has been set.
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4f87b62880d743938ad3c77ddedfbd87"}
+{"version_major": 2, "version_minor": 0, "model_id": "597c2e0de29c410e9775eb61e32a8a0b"}
 </script></div>
 </div>
 <p>Recurrent neural networks, or RNNs , are a family of neural networks for processing sequential data. Just as a convolutional network is specialized for processing a grid of values X such as an image, a recurrent neural network is specialized for processing a sequence of values. RNNs prove useful in many scenarios where other deep learning models are not effective.</p>
@@ -1435,8 +1435,8 @@ Random seed 2021 has been set.
 <p>The following provides more data than the video (but can be skipped for now). For more detail, see the sources, the <a class="reference external" href="https://www.deeplearningbook.org/contents/rnn.html">deep learning book</a>, and <a class="reference external" href="https://d2l.ai/chapter_recurrent-neural-networks/rnn.html">d2l.ai</a></p>
 <p>When the recurrent network is trained to perform a task that requires predicting the future from the past, the network typically learns to use a hidden state at time step <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(H_t\)</span> as a kind of lossy summary of the task-relevant aspects of the past sequence of inputs up to <span class="math notranslate nohighlight">\(t\)</span>. This summary is in general necessarily lossy, since it maps an arbitrary length sequence <span class="math notranslate nohighlight">\((X_t, X_{t-1}, X_{t-2}, . . . , X_{2}, X_{1})\)</span> to a ﬁxed length vector <span class="math notranslate nohighlight">\(H_t\)</span>.</p>
 <p>We can represent the unfolded recurrence after <span class="math notranslate nohighlight">\(t\)</span> steps with a function <span class="math notranslate nohighlight">\(G_t\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-84959286-fd34-4359-8f43-5afa66ab35f1">
-<span class="eqno">(64)<a class="headerlink" href="#equation-84959286-fd34-4359-8f43-5afa66ab35f1" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fb3f8a8a-80fd-471d-9bca-8104fa02068c">
+<span class="eqno">(64)<a class="headerlink" href="#equation-fb3f8a8a-80fd-471d-9bca-8104fa02068c" title="Permalink to this equation">¶</a></span>\[\begin{align}
 H_t &amp;= G_t(X_t, X_{t-1}, X_{t-2}, \dots, X_{2}, X_{1}) \\
 &amp;= f(H_{t−1}, X_{t}; \theta)
 \end{align}\]</div>
@@ -1449,13 +1449,13 @@ H_t &amp;= G_t(X_t, X_{t-1}, X_{t-2}, \dots, X_{2}, X_{1}) \\
 </ul>
 <p>We will now formally write down the equations of a recurrent unit.</p>
 <p>Assume that we have a minibatch of inputs <span class="math notranslate nohighlight">\(X_t \in R^{nxd}\)</span> at time step <span class="math notranslate nohighlight">\(t\)</span> . In other words, for a minibatch of <span class="math notranslate nohighlight">\(n\)</span> sequence examples, each row of <span class="math notranslate nohighlight">\(X_t\)</span>  corresponds to one example at time step <span class="math notranslate nohighlight">\(t\)</span> from the sequence. Next, we denote by <span class="math notranslate nohighlight">\(H_t \in R^{nxh}\)</span> the hidden variable of time step <span class="math notranslate nohighlight">\(t\)</span>. Unlike the MLP, here we save the hidden variable <span class="math notranslate nohighlight">\(H_{t-1}\)</span> from the previous time step and introduce a new weight parameter <span class="math notranslate nohighlight">\(W_{hh} \in R^{hxh}\)</span> to describe how to use the hidden variable of the previous time step in the current time step. Specifically, the calculation of the hidden variable of the current time step is determined by the input of the current time step together with the hidden variable of the previous time step:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4d1b8de9-e4c7-46b5-a662-2a711fcab43f">
-<span class="eqno">(65)<a class="headerlink" href="#equation-4d1b8de9-e4c7-46b5-a662-2a711fcab43f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c47c819a-d5e4-4b32-a0f5-66b8ae6ba80b">
+<span class="eqno">(65)<a class="headerlink" href="#equation-c47c819a-d5e4-4b32-a0f5-66b8ae6ba80b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 H_t = \phi(X_t W_{xh} + H_{t-1}W_{hh} + b_h)
 \end{equation}\]</div>
 <p>For time step <span class="math notranslate nohighlight">\(t\)</span>, the output of the output layer is similar to the computation in the MLP:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77a31f93-93de-4fe8-8cab-ff9462efd8c3">
-<span class="eqno">(66)<a class="headerlink" href="#equation-77a31f93-93de-4fe8-8cab-ff9462efd8c3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-90f0062c-d8e1-462b-8efd-58fcf8dc5ada">
+<span class="eqno">(66)<a class="headerlink" href="#equation-90f0062c-d8e1-462b-8efd-58fcf8dc5ada" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 O_t = H_t W_{hq} + b_q
 \end{equation}\]</div>
 <p>Parameters of the RNN include the weights <span class="math notranslate nohighlight">\(W_{xh} \in R^{dxh}, W_{hh} \in R^{hxh}\)</span> , and the bias <span class="math notranslate nohighlight">\(b_h \in R^{1xh}\)</span> of the hidden layer, together with the weights <span class="math notranslate nohighlight">\(W_{hq} \in R^{hxq}\)</span> and the bias <span class="math notranslate nohighlight">\(b_q \in R^{1xq}\)</span> of the output layer. It is worth mentioning that even at different time steps, RNNs always use these model parameters. Therefore, the parameterization cost of an RNN does not grow as the number of time steps increases.</p>
@@ -1479,49 +1479,88 @@ O_t = H_t W_{hq} + b_q
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 0.00/84.1M [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 81.9k/84.1M [00:00&lt;01:42, 819kB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 32.8k/84.1M [00:00&lt;04:21, 321kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 246k/84.1M [00:00&lt;01:12, 1.16MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 81.9k/84.1M [00:00&lt;03:25, 409kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 737k/84.1M [00:00&lt;00:32, 2.54MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 164k/84.1M [00:00&lt;02:27, 571kB/s] 
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   2%|▏         | 1.70M/84.1M [00:00&lt;00:17, 4.74MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 279k/84.1M [00:00&lt;01:48, 775kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   4%|▍         | 3.28M/84.1M [00:00&lt;00:09, 8.29MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   0%|          | 410k/84.1M [00:00&lt;01:28, 945kB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   7%|▋         | 5.98M/84.1M [00:00&lt;00:05, 14.2MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 557k/84.1M [00:00&lt;01:14, 1.12MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  14%|█▍        | 11.8M/84.1M [00:00&lt;00:02, 27.8MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|          | 803k/84.1M [00:00&lt;00:54, 1.52MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  25%|██▌       | 21.2M/84.1M [00:00&lt;00:01, 48.2MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   1%|▏         | 1.21M/84.1M [00:00&lt;00:36, 2.27MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  37%|███▋      | 31.2M/84.1M [00:00&lt;00:00, 63.9MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   2%|▏         | 1.82M/84.1M [00:00&lt;00:24, 3.38MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  49%|████▉     | 41.1M/84.1M [00:01&lt;00:00, 74.7MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   3%|▎         | 2.82M/84.1M [00:01&lt;00:15, 5.28MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  61%|██████▏   | 51.6M/84.1M [00:01&lt;00:00, 83.8MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   5%|▌         | 4.34M/84.1M [00:01&lt;00:09, 8.11MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  74%|███████▍  | 62.3M/84.1M [00:01&lt;00:00, 90.8MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:   7%|▋         | 6.31M/84.1M [00:01&lt;00:06, 11.3MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  86%|████████▋ | 72.6M/84.1M [00:01&lt;00:00, 94.3MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  11%|█         | 9.19M/84.1M [00:01&lt;00:04, 16.2MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  98%|█████████▊| 82.3M/84.1M [00:01&lt;00:00, 95.1MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  15%|█▍        | 12.6M/84.1M [00:01&lt;00:03, 21.4MB/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz: 100%|██████████| 84.1M/84.1M [00:01&lt;00:00, 56.7MB/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  21%|██        | 17.6M/84.1M [00:01&lt;00:02, 29.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  27%|██▋       | 22.9M/84.1M [00:01&lt;00:01, 36.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  33%|███▎      | 28.1M/84.1M [00:01&lt;00:01, 41.4MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  40%|████      | 34.0M/84.1M [00:01&lt;00:01, 44.9MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  47%|████▋     | 39.8M/84.1M [00:01&lt;00:00, 47.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  54%|█████▍    | 45.5M/84.1M [00:02&lt;00:00, 49.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  61%|██████    | 51.4M/84.1M [00:02&lt;00:00, 50.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  67%|██████▋   | 56.6M/84.1M [00:02&lt;00:00, 45.8MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  73%|███████▎  | 61.8M/84.1M [00:02&lt;00:00, 46.6MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  79%|███████▉  | 66.5M/84.1M [00:02&lt;00:00, 45.5MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  84%|████████▍ | 71.1M/84.1M [00:02&lt;00:00, 44.0MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  90%|████████▉ | 75.5M/84.1M [00:02&lt;00:00, 43.2MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz:  95%|█████████▍| 79.9M/84.1M [00:02&lt;00:00, 42.7MB/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>aclImdb_v1.tar.gz: 100%|██████████| 84.1M/84.1M [00:02&lt;00:00, 28.3MB/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1529,11 +1568,11 @@ O_t = H_t W_{hq} + b_q
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9689</span><span class="o">/</span><span class="mf">261226027.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_14260</span><span class="o">/</span><span class="mf">261226027.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># @markdown Dataset Loading with default params</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">TEXT</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">train_iter</span><span class="p">,</span> <span class="n">valid_iter</span><span class="p">,</span> <span class="n">test_iter</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_9689/4015461846.py</span> in <span class="ni">load_dataset</span><span class="nt">(sentence_length, batch_size, seed)</span>
+<span class="nn">/tmp/ipykernel_14260/4015461846.py</span> in <span class="ni">load_dataset</span><span class="nt">(sentence_length, batch_size, seed)</span>
 <span class="g g-Whitespace">     </span><span class="mi">34</span>   <span class="n">LABEL</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">LabelField</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">35</span> 
 <span class="ne">---&gt; </span><span class="mi">36</span>   <span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">IMDB</span><span class="o">.</span><span class="n">splits</span><span class="p">(</span><span class="n">TEXT</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">)</span>
@@ -1588,11 +1627,18 @@ O_t = H_t W_{hq} + b_q
 <span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="p">]</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/nltk/tokenize/destructive.py</span> in <span class="ni">tokenize</span><span class="nt">(self, text, convert_parentheses, return_str)</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span> 
-<span class="g g-Whitespace">    </span><span class="mi">131</span>         <span class="k">for</span> <span class="n">regexp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTRACTIONS2</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">132</span>             <span class="n">text</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">" \1 \2 "</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span>         <span class="k">for</span> <span class="n">regexp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONTRACTIONS3</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span>             <span class="n">text</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">" \1 \2 "</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span> 
+<span class="g g-Whitespace">    </span><span class="mi">110</span>         <span class="k">for</span> <span class="n">regexp</span><span class="p">,</span> <span class="n">substitution</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">PUNCTUATION</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">111</span>             <span class="n">text</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">substitution</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span> 
+<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="c1"># Handles parentheses.</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/re.py</span> in <span class="ni">_subx</span><span class="nt">(pattern, template)</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span> <span class="k">def</span> <span class="nf">_subx</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">template</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>     <span class="c1"># internal: Pattern.sub/subn implementation helper</span>
+<span class="ne">--&gt; </span><span class="mi">311</span>     <span class="n">template</span> <span class="o">=</span> <span class="n">_compile_repl</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">template</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">template</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>         <span class="c1"># literal replacement</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1806,8 +1852,8 @@ O_t = H_t W_{hq} + b_q
 <h2>Section 1.4: Vanishing and Exploding Gradients<a class="headerlink" href="#section-1-4-vanishing-and-exploding-gradients" title="Permalink to this headline">¶</a></h2>
 <p>For an RNN to learn via backprop through time on a loss calculated at time <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(\mathcal{L}_T\)</span>, with respect to an input <span class="math notranslate nohighlight">\(t\)</span> time steps in the past, the RNN weights must be updated based on how they contributed to the hidden state at this past time step. This contribution is learned through the term <span class="math notranslate nohighlight">\(\frac{\partial h_{-t}}{\partial W}\)</span>, in the gradient of the loss, <span class="math notranslate nohighlight">\(\frac{\partial\mathcal{L}_T}{\partial W}\)</span>.</p>
 <p>However, because one has to backpropagate error through <span class="math notranslate nohighlight">\(t-1\)</span> hidden states, <span class="math notranslate nohighlight">\(\frac{\partial h_{-t}}{\partial W}\)</span> is multiplied by <span class="math notranslate nohighlight">\(\prod_{i=0}^{t-1} \frac{\partial{h_i}}{\partial{h_{i-1}}}\)</span> in the expression for <span class="math notranslate nohighlight">\(\frac{\partial\mathcal{L}_T}{\partial W}\)</span>, which are summarized mathematically:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ae55304a-0ae1-4a7f-9fca-2a0d9ea9eda4">
-<span class="eqno">(67)<a class="headerlink" href="#equation-ae55304a-0ae1-4a7f-9fca-2a0d9ea9eda4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e470509-6214-4e78-9ebe-283c2499b40e">
+<span class="eqno">(67)<a class="headerlink" href="#equation-9e470509-6214-4e78-9ebe-283c2499b40e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial{\mathcal{L}_T}}{\partial{W}} \propto \frac{\partial h_t }{ \partial W} + \sum_{k=0}^{t-1} \left( \prod_{i=k+1}^{t} \frac{\partial{h_i}}{\partial{h_{i-1}}} \right) \frac{\partial{h_k}}{\partial{W}}
 \end{equation}\]</div>
 <p>The product term leads to two common problems during the backpropagation of time-series data:</p>
@@ -1835,44 +1881,44 @@ O_t = H_t W_{hq} + b_q
 <ul class="simple">
 <li><p>Forget Gate: <em>Should I throw away information from this cell?</em></p></li>
 </ul>
-<div class="amsmath math notranslate nohighlight" id="equation-f4da49e6-ecef-4033-9ff9-ab819a44f833">
-<span class="eqno">(68)<a class="headerlink" href="#equation-f4da49e6-ecef-4033-9ff9-ab819a44f833" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-33bd1bb4-eeb0-4775-b575-8afe3078371a">
+<span class="eqno">(68)<a class="headerlink" href="#equation-33bd1bb4-eeb0-4775-b575-8afe3078371a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 f_t = \sigma (W_f \cdot [h_{t-1}, x_t] + b_f)
 \end{equation}\]</div>
 <ul>
 <li><p>Input Gate:</p>
 <ul>
 <li><p><em>Should I add new values to this cell?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-21404113-3724-46ec-b2b3-384b936cc4cd">
-<span class="eqno">(69)<a class="headerlink" href="#equation-21404113-3724-46ec-b2b3-384b936cc4cd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ecf57052-e335-40e5-910f-8581cd998b2f">
+<span class="eqno">(69)<a class="headerlink" href="#equation-ecf57052-e335-40e5-910f-8581cd998b2f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       i_t = \sigma (W_i \cdot [h_{t-1}, x_t] + b_i)
       \end{equation}\]</div>
 </li>
 <li><p><em>What new candidate values should I store?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb127f2b-f4f5-4032-8bc2-f125d56c2cf2">
-<span class="eqno">(70)<a class="headerlink" href="#equation-bb127f2b-f4f5-4032-8bc2-f125d56c2cf2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-36d83065-e73f-42cf-afde-9b3d031fa542">
+<span class="eqno">(70)<a class="headerlink" href="#equation-36d83065-e73f-42cf-afde-9b3d031fa542" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       \tilde{C}_t = tanh (W_C \cdot [h_{t-1}, x_t] + b_C)
       \end{equation}\]</div>
 </li>
 </ul>
 </li>
 <li><p>Update cell state: <em>Forget things from the past and add new things from the candidates</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-6b7f3acd-73f1-4d08-8230-3e15f790bbfb">
-<span class="eqno">(71)<a class="headerlink" href="#equation-6b7f3acd-73f1-4d08-8230-3e15f790bbfb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9ab43c21-a316-41e2-8263-da862fbe0aae">
+<span class="eqno">(71)<a class="headerlink" href="#equation-9ab43c21-a316-41e2-8263-da862fbe0aae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   C_t = (f_t \cdot C_{t-1}) + (i_t \cdot \tilde{C}_t)
   \end{equation}\]</div>
 </li>
 <li><p>Output Gate:</p>
 <ul>
 <li><p><em>What information should I output?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5796633-93ff-4d56-b5c2-c4e68c6315e9">
-<span class="eqno">(72)<a class="headerlink" href="#equation-c5796633-93ff-4d56-b5c2-c4e68c6315e9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b8a4dd34-77b2-4276-97e2-2f28282ecb7a">
+<span class="eqno">(72)<a class="headerlink" href="#equation-b8a4dd34-77b2-4276-97e2-2f28282ecb7a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       o_t = \sigma (W_o \cdot [h_{t-1}, x_t] + b_o)
       \end{equation}\]</div>
 </li>
 <li><p><em>How much of the cell state should I store in the hidden state?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1128b15-3334-4cc5-9ab8-818bd55c42ba">
-<span class="eqno">(73)<a class="headerlink" href="#equation-c1128b15-3334-4cc5-9ab8-818bd55c42ba" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d7f3ce01-5f65-42ba-8ff0-05259ab2904c">
+<span class="eqno">(73)<a class="headerlink" href="#equation-d7f3ce01-5f65-42ba-8ff0-05259ab2904c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       h_t = o_t \cdot tanh(C_t)
       \end{equation}\]</div>
 </li>
@@ -2015,30 +2061,30 @@ f_t = \sigma (W_f \cdot [h_{t-1}, x_t] + b_f)
 <p>The GRU architecture looks very similar to the LSTM, and is often used as an alternative to the traditional LSTM. It also contains some variations that reduce it’s complexity. For example, it combines the forget and input gates into a single “update gate”; it contains a “hidden state” but not a “cell state”. In the next section we will be using GRUs as the choice of recurrent unit in our models, but you can always swap out the GRU for an LSTM later on (make sure that you take care of input and output dimensions in this case). Here is a description of the parts of the GRU:</p>
 <ul>
 <li><p>Reset Gate: <em>How much of the previous hidden state should I remember?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-234d2b4c-05d6-4264-9536-1636267f0ebe">
-<span class="eqno">(74)<a class="headerlink" href="#equation-234d2b4c-05d6-4264-9536-1636267f0ebe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4c5cecd4-f048-43fd-92d1-fb85aed00a94">
+<span class="eqno">(74)<a class="headerlink" href="#equation-4c5cecd4-f048-43fd-92d1-fb85aed00a94" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   r_t = \sigma (W_r \cdot [h_{t-1}, x_t])
   \end{equation}\]</div>
 </li>
 <li><p>Update Gate:</p>
 <ul>
 <li><p><em>How much of the new state is different from the old state?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-bdc324fe-bafb-4076-83c6-35473288c4d1">
-<span class="eqno">(75)<a class="headerlink" href="#equation-bdc324fe-bafb-4076-83c6-35473288c4d1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c6174956-39e0-4bb6-8ba3-a42e154c1536">
+<span class="eqno">(75)<a class="headerlink" href="#equation-c6174956-39e0-4bb6-8ba3-a42e154c1536" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       z_t = \sigma (W_z \cdot [h_{t-1}, x_t])
       \end{equation}\]</div>
 </li>
 <li><p><em>What new candidate values should I store?</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-5dc9f1a0-71ff-47c2-b062-d39ac68083b6">
-<span class="eqno">(76)<a class="headerlink" href="#equation-5dc9f1a0-71ff-47c2-b062-d39ac68083b6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c9bc486-1407-4c57-a1ea-20129b9c3b19">
+<span class="eqno">(76)<a class="headerlink" href="#equation-5c9bc486-1407-4c57-a1ea-20129b9c3b19" title="Permalink to this equation">¶</a></span>\[\begin{equation}
       \tilde{h}_t = tanh (W \cdot [r_t \cdot h_{t-1}, x_t])
       \end{equation}\]</div>
 </li>
 </ul>
 </li>
 <li><p>Update hidden state: <em>Deciding how much of the old hidden state to keep and discard</em></p>
-<div class="amsmath math notranslate nohighlight" id="equation-2df0febc-930f-426e-b5e1-96e68f12555a">
-<span class="eqno">(77)<a class="headerlink" href="#equation-2df0febc-930f-426e-b5e1-96e68f12555a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff366f68-35fb-4cce-9247-c07a7927be11">
+<span class="eqno">(77)<a class="headerlink" href="#equation-ff366f68-35fb-4cce-9247-c07a7927be11" title="Permalink to this equation">¶</a></span>\[\begin{equation}
   h_t = ((1-z_t) \cdot h_{t-1} ) + (z_t \cdot \tilde{h}_t)
   \end{equation}\]</div>
 </li>
@@ -2197,13 +2243,13 @@ simple seq2seq models are composed of two parts: the encoder, the context (“st
 <h2>Coding Exercise 3: Encoder<a class="headerlink" href="#coding-exercise-3-encoder" title="Permalink to this headline">¶</a></h2>
 <p>Let us consider a sequence example (<span class="math notranslate nohighlight">\(batch\_size=1\)</span>). Suppose that the input sequence is <span class="math notranslate nohighlight">\(x_1, \ldots, x_T\)</span>, such that <span class="math notranslate nohighlight">\(x_t\)</span> is the <span class="math notranslate nohighlight">\(t^{\mathrm{th}}\)</span> token in the input text sequence. At time step <span class="math notranslate nohighlight">\(t\)</span>, the RNN transforms the input feature vector <span class="math notranslate nohighlight">\(\mathbf{x}_t\)</span> for <span class="math notranslate nohighlight">\(x_t\)</span> and the hidden state <span class="math notranslate nohighlight">\(\mathbf{h} _{t-1}\)</span> from the previous time step into the current hidden state <span class="math notranslate nohighlight">\(\mathbf{h}_t\)</span>.</p>
 <p>We can use a function <span class="math notranslate nohighlight">\(f\)</span> to express the transformation of the RNN’s recurrent layer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79a4691c-708c-4697-9537-e76fafd26113">
-<span class="eqno">(78)<a class="headerlink" href="#equation-79a4691c-708c-4697-9537-e76fafd26113" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a4beb547-ccfd-4f37-81e4-f4f544c8356e">
+<span class="eqno">(78)<a class="headerlink" href="#equation-a4beb547-ccfd-4f37-81e4-f4f544c8356e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h}_t = f(\mathbf{x}_t, \mathbf{h}_{t-1})
 \end{equation}\]</div>
 <p>In general, the encoder transforms the hidden states at all the time steps into the context variable through a customized function <span class="math notranslate nohighlight">\(q\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-01dc9ada-face-42ec-b908-22509826aab1">
-<span class="eqno">(79)<a class="headerlink" href="#equation-01dc9ada-face-42ec-b908-22509826aab1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2719583c-b4b2-4f29-b77b-08d37da14cdc">
+<span class="eqno">(79)<a class="headerlink" href="#equation-2719583c-b4b2-4f29-b77b-08d37da14cdc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{c} =  q(\mathbf{h}_1, \ldots, \mathbf{h}_T)
 \end{equation}\]</div>
 <p>For example, when choosing <span class="math notranslate nohighlight">\(q(\mathbf{h}_1, \ldots, \mathbf{h}_T) = \mathbf{h}_T\)</span>  the context variable is just the hidden state <span class="math notranslate nohighlight">\(\mathbf{h}_T\)</span> of the input sequence at the final time step.</p>
@@ -2271,8 +2317,8 @@ the embedding layer fetches the <span class="math notranslate nohighlight">\(i^{
 the probability of the decoder output <span class="math notranslate nohighlight">\(y_{t'}\)</span> is conditional on the previous output subsequence <span class="math notranslate nohighlight">\(y_1, \ldots, y_{t'-1}\)</span> and the context variable <span class="math notranslate nohighlight">\(\mathbf{c}\)</span>, i.e., <span class="math notranslate nohighlight">\(P(y_{t'} \mid y_1, \ldots, y_{t'-1}, \mathbf{c})\)</span>.</p>
 <p>To model this conditional probability on sequences, we can use another RNN as the decoder. At any time step <span class="math notranslate nohighlight">\(t^\prime\)</span> on the output sequence, the RNN takes the output <span class="math notranslate nohighlight">\(y_{t^\prime-1}\)</span> from the previous time step and the context variable <span class="math notranslate nohighlight">\(\mathbf{c}\)</span> as its input, then transforms them and the previous hidden state <span class="math notranslate nohighlight">\(\mathbf{s}_{t^\prime-1}\)</span> into the hidden state <span class="math notranslate nohighlight">\(\mathbf{s}_{t^\prime}\)</span> at the current time step.</p>
 <p>As a result, we can use a function <span class="math notranslate nohighlight">\(g\)</span> to express the transformation of the decoder’s hidden layer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a6040bc4-b981-4ff2-874a-d067dc16a998">
-<span class="eqno">(80)<a class="headerlink" href="#equation-a6040bc4-b981-4ff2-874a-d067dc16a998" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7908f636-5fc4-497d-9dc1-b1843b8a4cac">
+<span class="eqno">(80)<a class="headerlink" href="#equation-7908f636-5fc4-497d-9dc1-b1843b8a4cac" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{s}_{t^\prime} = g(y_{t^\prime-1}, \mathbf{c}, \mathbf{s}_{t^\prime-1})
 \end{equation}\]</div>
 <p>After obtaining the hidden state of the decoder, we can use an output layer and the softmax operation to compute the conditional probability distribution
@@ -2522,8 +2568,8 @@ To explain, given a label sequence <span class="math notranslate nohighlight">\(
 <p>Besides, let <span class="math notranslate nohighlight">\(\mathrm{len}_{\text{label}}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{len}_{\text{pred}}\)</span>
 be the numbers of tokens in the label sequence and the predicted sequence, respectively.</p>
 <p>Then, BLEU is defined as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cba46167-869a-4ea9-b3b8-3a4a92dc633d">
-<span class="eqno">(81)<a class="headerlink" href="#equation-cba46167-869a-4ea9-b3b8-3a4a92dc633d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3bd1c4c3-65ec-416c-8982-ff63f2df4bdc">
+<span class="eqno">(81)<a class="headerlink" href="#equation-3bd1c4c3-65ec-416c-8982-ff63f2df4bdc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \exp\left(\min\left(0, 1 - \frac{\mathrm{len}_{\text{label}}}{\mathrm{len}_{\text{pred}}}\right)\right) \prod_{n=1}^k p_n^{1/2^n},
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is the longest <span class="math notranslate nohighlight">\(n\)</span>-grams for matching.</p>
