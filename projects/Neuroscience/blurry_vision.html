@@ -966,7 +966,8 @@
         
               <div>
                 
-  <div class="section" id="vision-with-lost-glasses-modelling-how-the-brain-deals-with-noisy-input">
+  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/Neuroscience/blurry_vision.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="section" id="vision-with-lost-glasses-modelling-how-the-brain-deals-with-noisy-input">
 <h1>Vision with Lost Glasses: Modelling how the brain deals with noisy input<a class="headerlink" href="#vision-with-lost-glasses-modelling-how-the-brain-deals-with-noisy-input" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Rishika Mohanta, Furkan Özçelik, Salomey Osei</p>
@@ -998,7 +999,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">requests</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">tqdm.notebook</span> <span class="k">as</span> <span class="nn">tqdm</span>
@@ -1095,7 +1095,12 @@
 
 <span class="c1"># @markdown `dataset_blur_5` contains the images with a Gaussian Blur (radius = 5)</span>
 
-<span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;catvdog_clear.zip&quot;</span><span class="p">,</span><span class="s2">&quot;catvdog_blur_2.zip&quot;</span><span class="p">,</span><span class="s2">&quot;catvdog_blur_5.zip&quot;</span><span class="p">]</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">requests</span>
+
+<span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;catvdog_clear.zip&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;catvdog_blur_2.zip&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;catvdog_blur_5.zip&quot;</span><span class="p">]</span>
+
 <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://osf.io/hj2gd/download&quot;</span><span class="p">,</span>
         <span class="s2">&quot;https://osf.io/xp6qd/download&quot;</span><span class="p">,</span>
         <span class="s2">&quot;https://osf.io/wj43a/download&quot;</span><span class="p">]</span>
@@ -1112,7 +1117,7 @@
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fid</span><span class="p">:</span>
           <span class="n">fid</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>  
+<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
   <span class="n">zip_ref</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
   <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
   <span class="n">zip_ref</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -1158,9 +1163,11 @@
 <span class="p">)</span>
 
 <span class="c1"># function to apply a training-validation set split on a dataset</span>
-<span class="k">def</span> <span class="nf">validation_split</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="n">val_ratio</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">):</span>
-  <span class="n">train_indices</span><span class="p">,</span> <span class="n">val_indices</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">)),</span><span class="n">train_data</span><span class="o">.</span><span class="n">targets</span><span class="p">,</span>
-                                                      <span class="n">stratify</span><span class="o">=</span><span class="n">train_data</span><span class="o">.</span><span class="n">targets</span><span class="p">,</span><span class="n">test_size</span><span class="o">=</span><span class="n">val_ratio</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">validation_split</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">val_ratio</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">):</span>
+  <span class="n">train_indices</span><span class="p">,</span> <span class="n">val_indices</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">)),</span>
+                                                      <span class="n">train_data</span><span class="o">.</span><span class="n">targets</span><span class="p">,</span>
+                                                      <span class="n">stratify</span><span class="o">=</span><span class="n">train_data</span><span class="o">.</span><span class="n">targets</span><span class="p">,</span>
+                                                      <span class="n">test_size</span><span class="o">=</span><span class="n">val_ratio</span><span class="p">)</span>
   <span class="n">train_split</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">train_indices</span><span class="p">)</span>
   <span class="n">val_split</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">val_indices</span><span class="p">)</span>
   <span class="k">return</span> <span class="n">train_split</span><span class="p">,</span><span class="n">val_split</span>
@@ -1170,14 +1177,26 @@
 
 <span class="c1"># Define Dataloaders for Training, Validation and Test sets</span>
 <span class="n">clear_train_split</span><span class="p">,</span><span class="n">clear_val_split</span> <span class="o">=</span> <span class="n">validation_split</span><span class="p">(</span><span class="n">clear_train_data</span><span class="p">)</span>
-<span class="n">clear_train_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">clear_train_split</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">clear_val_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">clear_val_split</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">clear_test_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">clear_test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">clear_train_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">clear_train_split</span><span class="p">,</span>
+                                                  <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                  <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">clear_val_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">clear_val_split</span><span class="p">,</span>
+                                                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">clear_test_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">clear_test_data</span><span class="p">,</span>
+                                                 <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                 <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">noisy_train_split</span><span class="p">,</span><span class="n">noisy_val_split</span> <span class="o">=</span> <span class="n">validation_split</span><span class="p">(</span><span class="n">noisy_train_data</span><span class="p">)</span>
-<span class="n">noisy_train_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">noisy_train_split</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">noisy_val_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">noisy_val_split</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">noisy_test_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">noisy_test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">noisy_train_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">noisy_train_split</span><span class="p">,</span>
+                                                  <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                  <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">noisy_val_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">noisy_val_split</span><span class="p">,</span>
+                                                <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">noisy_test_batches</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">noisy_test_data</span><span class="p">,</span>
+                                                 <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                                                 <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1312,7 +1331,7 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an neural network object and visualise it with an example image</span>
-<span class="n">net</span><span class="o">=</span><span class="n">AlexNet</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">downscale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">AlexNet</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">downscale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">writer</span> <span class="o">=</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="s1">&#39;runs/AlexNet&#39;</span><span class="p">)</span>
 <span class="n">writer</span><span class="o">.</span><span class="n">add_graph</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">clear_dog_image</span><span class="p">)</span>
 <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -1333,8 +1352,8 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function for running some epochs of training</span>
 <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">,</span> <span class="n">train_batch</span><span class="p">,</span> <span class="n">val_batch</span><span class="p">,</span>
-          <span class="n">training_losses</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validation_losses</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1">#Training</span>
- 
+          <span class="n">training_losses</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">validation_losses</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">):</span> <span class="c1">#Training</span>
+
   <span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
   <span class="k">if</span> <span class="n">training_losses</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">training_losses</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1342,8 +1361,8 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
     <span class="n">validation_losses</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">)):</span>
     <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_batch</span><span class="p">):</span>
-      <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-      <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+      <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
       <span class="c1"># reset the parameter gradients</span>
       <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
       <span class="c1"># forward pass + backward pass + optimize</span>
@@ -1353,8 +1372,8 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
       <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
       <span class="n">training_losses</span> <span class="o">+=</span> <span class="p">[</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()]</span>
     <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">val_batch</span><span class="p">):</span>
-      <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-      <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+      <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+      <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
       <span class="c1"># forward pass only</span>
       <span class="n">prediction</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
       <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
@@ -1370,13 +1389,13 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define function to calculate current accuracy with a given dataloader</span>
-<span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span> <span class="c1">#Get the accuracies</span>
+<span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">):</span> <span class="c1">#Get the accuracies</span>
   <span class="n">net</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
   <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-    <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+  <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
 
     <span class="n">prediction</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prediction</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1387,15 +1406,15 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
   <span class="k">return</span> <span class="n">count</span><span class="p">,</span> <span class="n">acc</span>
 
 
-<span class="c1"># define function to evaluate and print training and test accuracy </span>
-<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="c1"># define function to evaluate and print training and test accuracy</span>
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
   <span class="n">net</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-  <span class="n">train_count</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">clear_train_batches</span><span class="p">)</span>
-  <span class="n">test_count</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">clear_test_batches</span><span class="p">)</span>
+  <span class="n">train_count</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">clear_train_batches</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+  <span class="n">test_count</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">clear_test_batches</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy on the </span><span class="si">{</span><span class="n">train_count</span><span class="si">}</span><span class="s1"> clear training samples </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy on the </span><span class="si">{</span><span class="n">test_count</span><span class="si">}</span><span class="s1"> clear testing samples </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-  <span class="n">train_count</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">noisy_train_batches</span><span class="p">)</span>
-  <span class="n">test_count</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">noisy_test_batches</span><span class="p">)</span>
+  <span class="n">train_count</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">noisy_train_batches</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+  <span class="n">test_count</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">accuracy</span><span class="p">(</span><span class="n">noisy_test_batches</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy on the </span><span class="si">{</span><span class="n">train_count</span><span class="si">}</span><span class="s1"> blurry training samples </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy on the </span><span class="si">{</span><span class="n">test_count</span><span class="si">}</span><span class="s1"> blurry testing samples </span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1416,18 +1435,16 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define network, loss function and optimizer</span>
-<span class="n">net</span> <span class="o">=</span> <span class="n">AlexNet</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">downscale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">AlexNet</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">downscale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">3e-4</span><span class="p">)</span>
 <span class="n">net</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
 
 <span class="c1"># Evaluate before training</span>
-<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s2">&quot;before training&quot;</span><span class="p">)</span>
+<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;before training&quot;</span><span class="p">)</span>
 
 <span class="c1"># Define number of epochs</span>
-<span class="n">num_pretraining_epochs</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">num_training_epochs</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">num_epochs</span> <span class="o">=</span> <span class="n">num_pretraining_epochs</span> <span class="o">+</span> <span class="n">num_training_epochs</span>
 
 <span class="c1"># Save network weights</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;naive_before_training&quot;</span><span class="p">)</span>
@@ -1435,13 +1452,14 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="c1"># Training loop</span>
 <span class="n">naive_training_losses</span><span class="p">,</span> <span class="n">naive_validation_losses</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">num_training_epochs</span><span class="p">,</span>
                                                        <span class="n">noisy_train_batches</span><span class="p">,</span>
-                                                       <span class="n">noisy_val_batches</span><span class="p">)</span>
+                                                       <span class="n">noisy_val_batches</span><span class="p">,</span>
+                                                       <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
 
 <span class="c1"># Save network weights</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;naive_after_training&quot;</span><span class="p">)</span>
 
 <span class="c1"># Evaluate after training</span>
-<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="s2">&quot;after training&quot;</span><span class="p">)</span>
+<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;after training&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot Loss over epochs</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -1475,7 +1493,7 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="n">net</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
 
 <span class="c1"># Evaluate before pretraining</span>
-<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="s2">&quot;before training&quot;</span><span class="p">)</span>
+<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;before training&quot;</span><span class="p">)</span>
 
 <span class="c1"># Define number of epochs</span>
 <span class="n">num_pretraining_epochs</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1488,10 +1506,11 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="c1"># Pretraining loop</span>
 <span class="n">training_losses</span><span class="p">,</span> <span class="n">validation_losses</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">num_pretraining_epochs</span><span class="p">,</span>
                                            <span class="n">clear_train_batches</span><span class="p">,</span>
-                                           <span class="n">clear_val_batches</span><span class="p">)</span>
+                                           <span class="n">clear_val_batches</span><span class="p">,</span>
+                                           <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
 
 <span class="c1"># Evaluate after pretraining</span>
-<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="s2">&quot;after pretraining&quot;</span><span class="p">)</span>
+<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;after pretraining&quot;</span><span class="p">)</span>
 
 <span class="c1"># Save network weights</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;expert_after_pretraining&quot;</span><span class="p">)</span>
@@ -1501,23 +1520,24 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
                                                                    <span class="n">noisy_train_batches</span><span class="p">,</span>
                                                                    <span class="n">noisy_val_batches</span><span class="p">,</span>
                                                                    <span class="n">training_losses</span><span class="o">=</span><span class="n">training_losses</span><span class="p">,</span>
-                                                                   <span class="n">validation_losses</span><span class="o">=</span><span class="n">validation_losses</span><span class="p">)</span>
+                                                                   <span class="n">validation_losses</span><span class="o">=</span><span class="n">validation_losses</span><span class="p">,</span>
+                                                                   <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
 
 <span class="c1"># Save network weights</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;expert_after_training&quot;</span><span class="p">)</span>
 
 <span class="c1"># Evaluate after training</span>
-<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="s2">&quot;after training&quot;</span><span class="p">)</span>
+<span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;after training&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot Loss over epochs</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_epochs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
          <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">experienced_training_losses</span><span class="p">,</span>
-                                             <span class="n">num_pretraining_epochs</span> <span class="o">+</span> <span class="n">num_training_epochs</span><span class="p">)],</span>
+                                             <span class="n">num_epochs</span><span class="p">)],</span>
          <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Training Loss&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_epochs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
          <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">experienced_validation_losses</span><span class="p">,</span>
-                                             <span class="n">num_pretraining_epochs</span> <span class="o">+</span> <span class="n">num_training_epochs</span><span class="p">)],</span>
+                                             <span class="n">num_epochs</span><span class="p">)],</span>
          <span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Validation Loss&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">num_pretraining_epochs</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Epochs&quot;</span><span class="p">)</span>
@@ -1542,7 +1562,7 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper Function to plot the 16 filters of the first layer</span>
-<span class="k">def</span> <span class="nf">plot_filter</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_filter</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
   <span class="n">layer</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
     <span class="n">params</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
@@ -1630,7 +1650,7 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper functions to get and plot intermediate layer output</span>
 
-<span class="k">def</span> <span class="nf">plot_intermediate_layers</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">net</span><span class="p">,</span><span class="n">return_layers</span><span class="o">=</span><span class="n">return_layers</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_intermediate_layers</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">net</span><span class="p">,</span> <span class="n">return_layers</span><span class="o">=</span><span class="n">return_layers</span><span class="p">):</span>
   <span class="c1"># Get output for the image from the intermediate layers</span>
   <span class="n">intermediate_output</span> <span class="o">=</span> <span class="n">LayerGetter</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">return_layers</span><span class="o">=</span><span class="n">return_layers</span><span class="p">)(</span><span class="n">image</span><span class="p">)</span>
   <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -1712,9 +1732,9 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <p>Clearly, the network output is only somewhat similar between pretraining and training. The differences seem to suggest that the process of learning over blurred images did change the features the network focused which probably contibuted to improved response to blurry images.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown If you wish to generate cat and dog images with other degrees of blur or different type of noise </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown If you wish to generate cat and dog images with other degrees of blur or different type of noise</span>
 <span class="c1"># @markdown refer to this cell which contains the code for dataset cleaning and filtering the original dataset.</span>
-<span class="c1"># @markdown Feel free to uncomment and change the code to generate other variations of the dataset. </span>
+<span class="c1"># @markdown Feel free to uncomment and change the code to generate other variations of the dataset.</span>
 
 <span class="c1"># @markdown *Note: The dataset generation process can take a while to run.*</span>
 
@@ -1824,17 +1844,17 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="c1">#   im = Image.open(dog_files[i]).convert(&#39;RGB&#39;)</span>
 <span class="c1">#   im = im.filter(ImageFilter.GaussianBlur(radius = 5))</span>
 <span class="c1">#   im.save(target)</span>
-  
+
 <span class="c1"># rmtree(&quot;PetImages&quot;)</span>
 
 <span class="c1"># def zipdir(path, ziph):</span>
 <span class="c1">#     # ziph is zipfile handle</span>
 <span class="c1">#     for root, dirs, files in os.walk(path):</span>
 <span class="c1">#         for file in files:</span>
-<span class="c1">#             ziph.write(os.path.join(root, file), </span>
-<span class="c1">#                        os.path.relpath(os.path.join(root, file), </span>
+<span class="c1">#             ziph.write(os.path.join(root, file),</span>
+<span class="c1">#                        os.path.relpath(os.path.join(root, file),</span>
 <span class="c1">#                                        os.path.join(path, &#39;..&#39;)))</span>
-            
+
 <span class="c1"># zipf = zipfile.ZipFile(&#39;catvdog_clear.zip&#39;, &#39;w&#39;, zipfile.ZIP_DEFLATED)</span>
 <span class="c1"># zipdir(&#39;dataset/&#39;, zipf)</span>
 <span class="c1"># zipf.close()</span>
