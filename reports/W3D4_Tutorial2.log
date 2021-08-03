@@ -32,15 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-# Define a new model and set params
-model = Net().to(DEVICE)
-optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
-
-# Train the model on MNIST
-nEpochs = 3
-print(f"Training model on {nEpochs} epochs...")
-for epoch in range(1, nEpochs+1):
-  train(model, x_train, t_train, optimizer, epoch, device=DEVICE)
-  test(model, x_test, t_test, device=DEVICE)
+['# @title Download and unzip the dataset', 'import requests, os', 'from zipfile import ZipFile', '', 'print("Start downloading and unzipping `MTFL` dataset...")']
+...
+['else:', '  print(f"The file {fname} does not exist")', '', 'os.chdir(name)', 'print("Download completed.")']
 -------------------
 
