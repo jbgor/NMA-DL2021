@@ -891,7 +891,8 @@
         
               <div>
                 
-  <div class="section" id="focus-on-what-matters-inferring-low-dimensional-dynamics-from-neural-recordings">
+  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/Neuroscience/neuro_seq_to_seq.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="section" id="focus-on-what-matters-inferring-low-dimensional-dynamics-from-neural-recordings">
 <h1>Focus on what matters: inferring low-dimensional dynamics from neural recordings<a class="headerlink" href="#focus-on-what-matters-inferring-low-dimensional-dynamics-from-neural-recordings" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Marius Pachitariu, Pedram Mouseli, Lucas Tavares, Jonny Coutinho,
@@ -957,7 +958,7 @@ Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
 <span class="n">ntrials</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="c1"># we simulate 200 neurons</span>
-<span class="n">NN</span> <span class="o">=</span> <span class="mi">400</span> 
+<span class="n">NN</span> <span class="o">=</span> <span class="mi">400</span>
 
 <span class="c1"># we will pretend like every &quot;bin&quot; is 10ms, so the trial length is 2500ms</span>
 <span class="n">NT</span> <span class="o">=</span> <span class="mi">250</span>
@@ -972,14 +973,14 @@ Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
 <span class="c1"># this is the projection matrix from components to neurons</span>
 <span class="n">C0</span> <span class="o">=</span> <span class="mf">.025</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ncomp</span><span class="p">,</span> <span class="n">NN</span><span class="p">)</span>
 
-<span class="c1"># We generate the dynamics of the low-d system. We initialize the latent state. </span>
+<span class="c1"># We generate the dynamics of the low-d system. We initialize the latent state.</span>
 
 <span class="c1"># start by initializing the latents</span>
 <span class="n">y</span>       <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ncomp</span><span class="p">)</span>
 <span class="n">latents</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">NT</span><span class="p">,</span> <span class="n">ntrials</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">))</span>
 <span class="c1"># we run the dynamics forward and add noise (or &quot;innovations&quot;) at each timestep</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NT</span><span class="p">):</span>
-  <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">@</span> <span class="n">A0</span> <span class="o">+</span>  <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ntrials</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">)</span> 
+  <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="o">@</span> <span class="n">A0</span> <span class="o">+</span>  <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">ntrials</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">)</span>
   <span class="n">latents</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
 
 <span class="c1"># we now project the latents to the neuron space and threshold to generate firing rates</span>
@@ -1001,9 +1002,9 @@ Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">,</span> <span class="n">NN1</span><span class="p">,</span> <span class="n">NN2</span><span class="p">,</span> <span class="n">bidi</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">Net</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
-    <span class="c1"># play with some of the options in the RNN! </span>
+    <span class="c1"># play with some of the options in the RNN!</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">NN1</span><span class="p">,</span> <span class="n">ncomp</span><span class="p">,</span> <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dropout</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-                      <span class="n">bidirectional</span> <span class="o">=</span> <span class="n">bidi</span><span class="p">,</span> <span class="n">nonlinearity</span> <span class="o">=</span> <span class="s1">&#39;tanh&#39;</span><span class="p">)</span>        
+                      <span class="n">bidirectional</span> <span class="o">=</span> <span class="n">bidi</span><span class="p">,</span> <span class="n">nonlinearity</span> <span class="o">=</span> <span class="s1">&#39;tanh&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">ncomp</span><span class="p">,</span> <span class="n">NN2</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -1020,7 +1021,7 @@ Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
     <span class="c1"># the softplus function is just like a relu but it&#39;s smoothed out so we can&#39;t predict 0</span>
     <span class="c1"># if we predict 0 and there was a spike, that&#39;s an instant Inf in the Poisson log-likelihood which leads to failure</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">q</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">z</span><span class="p">,</span> <span class="n">q</span>
 </pre></div>
 </div>
@@ -1042,9 +1043,6 @@ Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/neuro_seq_to_seq_14_0.png" src="../../_images/neuro_seq_to_seq_14_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1059,11 +1057,11 @@ Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
 <span class="n">net</span> <span class="o">=</span> <span class="n">Net</span><span class="p">(</span><span class="n">ncomp</span><span class="p">,</span> <span class="n">NN1</span><span class="p">,</span> <span class="n">NN2</span><span class="p">,</span> <span class="n">bidi</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
 <span class="c1"># special thing:  we initialize the biases of the last layer in the neural network</span>
-<span class="c1"># we set them as the mean firing rates of the neurons. </span>
+<span class="c1"># we set them as the mean firing rates of the neurons.</span>
 <span class="c1"># this should make the initial predictions close to the mean, because the latents don&#39;t contribute much</span>
 <span class="n">net</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">x1</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
 
-<span class="c1"># we set up the optimizer. Adjust the learning rate if the training is slow or if it explodes. </span>
+<span class="c1"># we set up the optimizer. Adjust the learning rate if the training is slow or if it explodes.</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">.005</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1082,34 +1080,20 @@ Blessing Itoro, Gaurang Mahajan, Rishika Mohanta</p>
   <span class="k">return</span> <span class="n">lam</span> <span class="o">-</span> <span class="n">spk</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
 
 <span class="n">niter</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="p">):</span> 
-    <span class="c1"># the network outputs the single-neuron prediction and the latents</span>
-    <span class="n">z</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>    
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niter</span><span class="p">):</span>
+  <span class="c1"># the network outputs the single-neuron prediction and the latents</span>
+  <span class="n">z</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
 
-    <span class="c1"># our log-likelihood cost</span>
-    <span class="n">cost</span> <span class="o">=</span> <span class="n">Poisson_loss</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  <span class="c1"># our log-likelihood cost</span>
+  <span class="n">cost</span> <span class="o">=</span> <span class="n">Poisson_loss</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 
-    <span class="c1"># train the network as usual</span>
-    <span class="n">cost</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>    
-    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+  <span class="c1"># train the network as usual</span>
+  <span class="n">cost</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+  <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+  <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 
-    <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;iteration </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, cost </span><span class="si">{</span><span class="n">cost</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration 0, cost 0.4126
-iteration 100, cost 0.2568
-iteration 200, cost 0.2431
-iteration 300, cost 0.2388
-iteration 400, cost 0.2385
-iteration 500, cost 0.2372
-iteration 600, cost 0.2368
-iteration 700, cost 0.2367
-iteration 800, cost 0.2366
-iteration 900, cost 0.2365
+  <span class="k">if</span> <span class="n">k</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;iteration </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">, cost </span><span class="si">{</span><span class="n">cost</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1135,9 +1119,6 @@ iteration 900, cost 0.2365
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/neuro_seq_to_seq_19_0.png" src="../../_images/neuro_seq_to_seq_19_0.png" />
-</div>
 </div>
 <div class="section" id="view-firing-rates-for-all-neurons-in-one-trial">
 <h2>View firing rates for all neurons in one trial<a class="headerlink" href="#view-firing-rates-for-all-neurons-in-one-trial" title="Permalink to this headline">¶</a></h2>
@@ -1159,9 +1140,6 @@ iteration 900, cost 0.2365
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/neuro_seq_to_seq_21_0.png" src="../../_images/neuro_seq_to_seq_21_0.png" />
-</div>
 </div>
 </div>
 </div>
@@ -1172,7 +1150,7 @@ iteration 900, cost 0.2365
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ycpu</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ycpu</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;All latents on trial 0&#39;</span><span class="p">)</span>
@@ -1183,9 +1161,6 @@ iteration 900, cost 0.2365
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/neuro_seq_to_seq_23_0.png" src="../../_images/neuro_seq_to_seq_23_0.png" />
 </div>
 </div>
 <p>Not much to see for the latents. This is not surprising, since we generated them with random data, so they look just like a random walk process.</p>

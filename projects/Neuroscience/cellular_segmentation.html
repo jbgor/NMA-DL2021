@@ -941,8 +941,7 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/Neuroscience/cellular_segmentation.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
-<div class="section" id="segmentation-and-denoising">
+  <div class="section" id="segmentation-and-denoising">
 <h1>Segmentation and Denoising<a class="headerlink" href="#segmentation-and-denoising" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Carsen Stringer</p>
@@ -968,43 +967,13 @@
 </ul>
 <p>The first part of this notebook will set up a basic <a class="reference external" href="https://arxiv.org/abs/1505.04597">U-net</a> convolutional network to do cellular segmentation using a curated version of this <a class="reference external" href="http://www.cellimagelibrary.org/images/CCDB_6843">dataset</a>, which the first cell of the notebook will download for you. These are images with a cytoplasm stain (whole cell stained) and a nuclear stain (channels 1 and 2 of the images). The segmentation masks provided are for the cytoplasm (whole cell segmentation). There is code to train and test the network with a simple cost function.</p>
 <p><img alt="cellimagelibray" src="https://www.cellpose.org/static/images/img02.png" /></p>
-<p>Project ideas:</p>
-<ol class="simple">
-<li><p>(medium) Do transfer learning with this network to a new set of images. There are image labels for other <a class="reference external" href="https://bbbc.broadinstitute.org/image_sets">datasets</a> for instance provided by Anne Carpenter’s lab at the Broad. Maybe your cellular segmenter can work on <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC010">worms</a> or other animals! Note that the network is learning the approximate sizes of objects, so you may need to rescale other images accordingly. To label new images you may need to use a tool like <a class="reference external" href="https://www.napari.org">napari</a>.
-<img alt="bison" src="https://static01.nyt.com/images/2007/01/09/science/bison.3.600.jpg?quality=90&amp;auto=webp" /></p></li>
-<li><p>(easy-medium) Improve the segmentation. Some possible ideas to explore:</p></li>
-</ol>
-<ul class="simple">
-<li><p>(easy) Data augmentation: It is common to train a network to be robust to certain kinds of perturbations by adding random perturbations to the training data.</p></li>
-<li><p>(easy) Data manipulation: How much does it matter to use the nuclear channel when predicting cellular segmentations? Does it matter more for some cells rather than others?</p></li>
-<li><p>(easy to medium) Loss function: as you’ll see in the notebook, the current loss function, which uses zeros and ones to predict where cell pixels are, isn’t necessarily the best loss function. We could add another loss such as the distance of a pixel to the boundary of the cell, or some other loss that captures the boundaries somehow to help with overmerging of cells. You could also try having the network predict the image itself (like an autoencoder) and see if that helps it learn better filters for segmentation.</p></li>
-<li><p>(easy to hard) Architecture / optimization algorithm: Feed-forward convolutional networks have been engineered (e.g. by adding batch normalization layers) to be pretty robust to the exact choice of gradient descent algorithm, but there is still room for improvement in this code. For instance</p>
-<ul>
-<li><p>try adding more convolutional layers within each block and connect them with residual connections.</p></li>
-<li><p>how important are the skip connections are from the downsampling layers to the upsampling layers? what happens if we remove them?</p></li>
-<li><p>what happens when we add more convolutional channels per layer?</p></li>
-<li><p>can we reduce the number of parameters by adding squeeze layers? does this help performance?</p></li>
-</ul>
-</li>
-</ul>
-<ol class="simple">
-<li><p>(medium to hard) Dig into the network to try to understand its computations, e.g.</p></li>
-</ol>
-<ul class="simple">
-<li><p>Check out the representations of the network in the middle block. Do certain cellular images show different types of activations in this layer?</p></li>
-<li><p>What sorts of convolutional filters are present in the downsampling vs upsampling layers?</p></li>
-</ul>
+<p>Can you do transfer learning with this network on new images? There are image labels for other <a class="reference external" href="https://bbbc.broadinstitute.org/image_sets">datasets</a> for instance provided by Anne Carpenter’s lab at the Broad. Maybe your cellular segmenter can work on <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC010">worms</a> or a herd of bison! Note that the network is learning the approximate sizes of objects, so you may need to rescale other images accordingly. To label new images you may need to use a tool like <a class="reference external" href="https://www.napari.org">napari</a>.
+<img alt="bison" src="https://static01.nyt.com/images/2007/01/09/science/bison.3.600.jpg?quality=90&amp;auto=webp" /></p>
 <p><strong>Note</strong>: The data provided consists of both a training and a test set. It is important to not overfit to the test set, and only use it for a final evaluation. This code splits the training set into a training and a validation data set. Use this split data for testing out different algorithms. Then, after you finish developing your algorithm you can evaluate it on the test data.</p>
 </div>
 <div class="section" id="analysis-of-neural-activity-data">
 <h2>Analysis of neural activity data<a class="headerlink" href="#analysis-of-neural-activity-data" title="Permalink to this headline">¶</a></h2>
 <p>Often in neuroscience we have temporal data which consists of a movie of neuronal activity recorded using a microscope. Processing these movies can require several steps. We will focus on the neural detection step because that is a problem that we can use convolutional networks to help us with. The second part of this notebook therefore applies the model from the first part to the maximum image of the neural movie. This detects some neurons in the recording. Could we detect more neurons though if we denoise the movie first? Also what happens if we use more information across frames to detect cells? You may also want to explore denoising neural data from other sources (see other curated datasets in the NMA projects folder). None of these approaches are implemented here so this is a more open-ended project.</p>
-<p><strong>Project ideas:</strong></p>
-<ol class="simple">
-<li><p>(medium) Train a u-net to predict a single imaging frame from its temporal neighbors to create a denoising algorithm for this data. See this <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2020.10.15.341602v2.full">paper</a> from Lecoq et al for more details.</p></li>
-<li><p>(medium to hard) Take what you learned from denoising neural imaging data and apply to other neural data these concepts. What can you learn from a neural “denoiser” can it tell you something about neural connectivity? What if you fit it to only predict forward or backward?</p></li>
-<li><p>(hard) Train a recurrent neural network to predict neural imaging data or neural activity into the future.</p></li>
-</ol>
 <ul class="simple">
 <li><p>imaging data loaded in <a class="reference external" href="https://github.com/mouseland/suite2p">suite2p</a></p></li>
 </ul>
@@ -1130,6 +1099,12 @@ This Notebook was developed by Carsen Stringer. It borrows from:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>there are 55 cells in this image
+</pre></div>
+</div>
+<img alt="../../_images/cellular_segmentation_13_1.png" src="../../_images/cellular_segmentation_13_1.png" />
 </div>
 </div>
 <p>What labels will we use? We can’t use numbers like masks.
@@ -1284,6 +1259,9 @@ The standard approach is to create a “not-cell” and a “cell” probability
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_17_0.png" src="../../_images/cellular_segmentation_17_0.png" />
 </div>
 </div>
 </div>
@@ -1543,6 +1521,77 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50:   0%|          | 0/77 [00:00&lt;?, ?img/s]/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+Epoch 1/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.69img/s, loss (epoch)=7.32]
+Epoch 2/50:   0%|          | 0/77 [00:00&lt;?, ?img/s, loss (batch)=0.75]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.71img/s, loss (epoch)=4.09]
+Epoch 3/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.17img/s, loss (epoch)=1.49]
+Epoch 4/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.59img/s, loss (epoch)=1.16]
+Epoch 5/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.45img/s, loss (epoch)=1.21]
+Epoch 6/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.00img/s, loss (epoch)=1.24]
+Epoch 7/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.97img/s, loss (epoch)=1.2]
+Epoch 8/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.75img/s, loss (epoch)=1.16]
+Epoch 9/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.82img/s, loss (epoch)=1.04]
+Epoch 10/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.66img/s, loss (epoch)=1.01]
+Epoch 11/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.24img/s, loss (epoch)=1]
+Epoch 12/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.41img/s, loss (epoch)=1.06]
+Epoch 13/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.42img/s, loss (epoch)=1.02]
+Epoch 14/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.47img/s, loss (epoch)=1.41]
+Epoch 15/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.06img/s, loss (epoch)=1.56]
+Epoch 16/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.08img/s, loss (epoch)=2.61]
+Epoch 17/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.84img/s, loss (epoch)=1.39]
+Epoch 18/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.00img/s, loss (epoch)=1.12]
+Epoch 19/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.66img/s, loss (epoch)=1.14]
+Epoch 20/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.70img/s, loss (epoch)=1.03]
+Epoch 21/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.00img/s, loss (epoch)=0.989]
+Epoch 22/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.75img/s, loss (epoch)=1.01]
+Epoch 23/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.31img/s, loss (epoch)=0.969]
+Epoch 24/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.48img/s, loss (epoch)=0.944]
+Epoch 25/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.93img/s, loss (epoch)=0.889]
+Epoch 26/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.89img/s, loss (epoch)=0.981]
+Epoch 27/50:   0%|          | 0/77 [00:00&lt;?, ?img/s, loss (batch)=0.118]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 26
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 27/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.51img/s, loss (epoch)=0.994]
+Epoch 28/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.93img/s, loss (epoch)=0.955]
+Epoch 29/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.99img/s, loss (epoch)=0.926]
+Epoch 30/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.96img/s, loss (epoch)=0.874]
+Epoch 31/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.66img/s, loss (epoch)=0.93]
+Epoch 32/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.45img/s, loss (epoch)=0.852]
+Epoch 33/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.58img/s, loss (epoch)=0.956]
+Epoch 34/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.53img/s, loss (epoch)=0.967]
+Epoch 35/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.27img/s, loss (epoch)=0.926]
+Epoch 36/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.32img/s, loss (epoch)=0.924]
+Epoch 37/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.09img/s, loss (epoch)=0.823]
+Epoch 38/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.08img/s, loss (epoch)=0.862]
+Epoch 39/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.94img/s, loss (epoch)=0.907]
+Epoch 40/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.51img/s, loss (epoch)=0.888]
+Epoch 41/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.88img/s, loss (epoch)=0.905]
+Epoch 42/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.71img/s, loss (epoch)=0.878]
+Epoch 43/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.91img/s, loss (epoch)=0.891]
+Epoch 44/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.67img/s, loss (epoch)=0.835]
+Epoch 45/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.81img/s, loss (epoch)=0.895]
+Epoch 46/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.47img/s, loss (epoch)=0.853]
+Epoch 47/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.49img/s, loss (epoch)=0.868]
+Epoch 48/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.34img/s, loss (epoch)=0.888]
+Epoch 49/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.43img/s, loss (epoch)=0.931]
+Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23img/s, loss (epoch)=0.94]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 50
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="test-performance">
 <h3>Test performance<a class="headerlink" href="#test-performance" title="Permalink to this headline">¶</a></h3>
@@ -1628,6 +1677,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_27_0.png" src="../../_images/cellular_segmentation_27_0.png" />
 </div>
 </div>
 </div>
@@ -1851,6 +1903,12 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3360647
+</pre></div>
+</div>
+<img alt="../../_images/cellular_segmentation_31_1.png" src="../../_images/cellular_segmentation_31_1.png" />
+</div>
 </div>
 <p>Once you choose a threshold, you’ll want to use it on your test images.</p>
 <div class="cell docutils container">
@@ -1880,6 +1938,12 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.48372927
+</pre></div>
+</div>
+<img alt="../../_images/cellular_segmentation_33_1.png" src="../../_images/cellular_segmentation_33_1.png" />
+</div>
 </div>
 <p>What kinds of errors is the network making?</p>
 <p>U-nets with this type of prediction (CELL/NOT CELL) typically overmerge cells. You may see some examples below. In the text at the beginning, ways to avoid this problem are discussed and also one instance (distance to boundary) is implemented in the cellpose repository.</p>
@@ -1897,6 +1961,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_35_0.png" src="../../_images/cellular_segmentation_35_0.png" />
 </div>
 </div>
 </div>
@@ -1932,6 +1999,11 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imaging data of shape: (4500, 325, 556)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="finding-cells">
 <h2>Finding cells<a class="headerlink" href="#finding-cells" title="Permalink to this headline">¶</a></h2>
@@ -1945,6 +2017,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_39_0.png" src="../../_images/cellular_segmentation_39_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1969,6 +2044,8 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">img_torch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">img_padded</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># also need to add a first dimension</span>
 <span class="n">out</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">img_torch</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">slices</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+
+<span class="c1"># THIS CELL_THRESHOLD NEEDS TO BE SET BY HAND! IT VARIES FROM NETWORK TO NETWORK</span>
 <span class="n">masks</span> <span class="o">=</span> <span class="n">get_masks_unet</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">cell_threshold</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">masks</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="p">(</span><span class="n">Lx</span><span class="p">,</span> <span class="n">Ly</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">INTER_NEAREST</span><span class="p">)</span>
 
@@ -1985,6 +2062,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_40_0.png" src="../../_images/cellular_segmentation_40_0.png" />
 </div>
 </div>
 </div>
@@ -2003,6 +2083,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_42_0.png" src="../../_images/cellular_segmentation_42_0.png" />
 </div>
 </div>
 </div>

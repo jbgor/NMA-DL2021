@@ -51,6 +51,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="shortcut icon" href="../../_static/nma-dl-logo-square-4xp.jpeg"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -937,26 +939,22 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Imports</span>
-<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">copy</span> 
+<span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.utils.model_zoo</span> <span class="k">as</span> <span class="nn">model_zoo</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span><span class="p">,</span> <span class="n">optim</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">TensorDataset</span><span class="p">,</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
 <span class="kn">from</span> <span class="nn">torch_intermediate_layer_getter</span> <span class="kn">import</span> <span class="n">IntermediateLayerGetter</span> <span class="k">as</span> <span class="n">MidGetter</span>
 
-<span class="kn">import</span> <span class="nn">torchvision</span>
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span>
 <span class="kn">import</span> <span class="nn">torchvision.models</span> <span class="k">as</span> <span class="nn">models</span>
 
 
-<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">squareform</span>
+<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
 </pre></div>
 </div>
@@ -1004,9 +1002,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/finetuning_fmri_11_0.png" src="../../_images/finetuning_fmri_11_0.png" />
-</div>
 </div>
 </div>
 </div>
@@ -1015,10 +1010,10 @@
 <h1>Dataset Structure<a class="headerlink" href="#dataset-structure" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">dat</span></code> has the following fields:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">stimuli</span></code>: stim x i x j array of grayscale stimulus images</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stimuli_test</span></code>: stim x i x j array of grayscale stimulus images in the test set</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">responses</span></code>: stim x voxel array of z-scored BOLD response amplitude</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">responses_test</span></code>:  stim x voxel array of z-scored BOLD response amplitude in the test set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stimuli</span></code>: stim <span class="math notranslate nohighlight">\(x_i \, \, x_j\)</span> array of grayscale stimulus images</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stimuli_test</span></code>: stim <span class="math notranslate nohighlight">\(x_i \, \, x_j\)</span> array of grayscale stimulus images in the test set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">responses</span></code>: stim <span class="math notranslate nohighlight">\(x\)</span> voxel array of <span class="math notranslate nohighlight">\(z\)</span>-scored BOLD response amplitude</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">responses_test</span></code>:  stim <span class="math notranslate nohighlight">\(x\)</span> voxel array of <span class="math notranslate nohighlight">\(z\)</span>-scored BOLD response amplitude in the test set</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">roi</span></code>: array of voxel labels</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">roi_names</span></code>: array of names corresponding to voxel labels</p></li>
 </ul>
@@ -1063,23 +1058,23 @@
 <h2>Custom dataloader for loading images in numpy array<a class="headerlink" href="#custom-dataloader-for-loading-images-in-numpy-array" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Custom dataloader for loading images in numpy array </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Custom dataloader for loading images in numpy array</span>
 <span class="k">class</span> <span class="nc">MyDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">targets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
-      
+
   <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-    
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    
+
     <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
-  
+
   <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
       <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 
@@ -1167,10 +1162,10 @@
 
 			<span class="c1"># statistics</span>
 			<span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">inputs</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-   
+
 		<span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="n">dataset_sizes</span><span class="p">[</span><span class="n">phase</span><span class="p">]</span>
 		<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">phase</span><span class="si">}</span><span class="s2"> Loss: </span><span class="si">{</span><span class="n">epoch_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-  
+
 		<span class="c1"># deep copy the model</span>
 		<span class="k">if</span> <span class="n">phase</span> <span class="o">==</span> <span class="s1">&#39;val&#39;</span> <span class="ow">and</span> <span class="n">epoch_loss</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
 			<span class="n">best_loss</span> <span class="o">=</span> <span class="n">epoch_loss</span>
@@ -1180,43 +1175,6 @@
 
 <span class="c1"># load best model weights</span>
 <span class="n">net</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">best_model_wts</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 0/4
---------------------
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
-  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>train Loss: 0.4811
-val Loss: 0.0509
-
-Epoch 1/4
---------------------
-train Loss: 0.4681
-val Loss: 0.0503
-
-Epoch 2/4
---------------------
-train Loss: 0.4678
-val Loss: 0.0501
-
-Epoch 3/4
---------------------
-train Loss: 0.4677
-val Loss: 0.0501
-
-Epoch 4/4
---------------------
-train Loss: 0.4677
-val Loss: 0.0501
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;All keys matched successfully&gt;
 </pre></div>
 </div>
 </div>
@@ -1267,7 +1225,7 @@ val Loss: 0.0501
 <span class="n">Rts_v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;responses_test&quot;</span><span class="p">][:,</span> <span class="n">v1_id</span><span class="p">])</span>
 <span class="n">Rts_lo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="s2">&quot;responses_test&quot;</span><span class="p">][:,</span> <span class="n">loc_id</span><span class="p">])</span>
 
-<span class="c1"># Observed dissimilarity  - Correlation </span>
+<span class="c1"># Observed dissimilarity  - Correlation</span>
 <span class="n">fMRI_dist_metric_ft</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span>  <span class="c1"># [&#39;correlation&#39;, &#39;euclidean&#39;]</span>
 <span class="n">fMRI_dist_metric_im</span> <span class="o">=</span> <span class="s2">&quot;correlation&quot;</span>  <span class="c1"># [&#39;correlation&#39;, &#39;euclidean&#39;]</span>
 
@@ -1290,12 +1248,6 @@ val Loss: 0.0501
   <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">dnet_im</span><span class="p">,</span> <span class="n">dobs_v1_im</span><span class="p">)</span>
   <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">dnet_ft</span><span class="p">,</span> <span class="n">dobs_lo_ft</span><span class="p">)</span>
   <span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pearsonr</span><span class="p">(</span><span class="n">dnet_im</span><span class="p">,</span> <span class="n">dobs_lo_im</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/scipy/stats/stats.py:3508: PearsonRConstantInputWarning: An input array is constant; the correlation coefficent is not defined.
-  warnings.warn(PearsonRConstantInputWarning())
 </pre></div>
 </div>
 </div>
@@ -1324,10 +1276,6 @@ val Loss: 0.0501
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/finetuning_fmri_25_0.png" src="../../_images/finetuning_fmri_25_0.png" />
-<img alt="../../_images/finetuning_fmri_25_1.png" src="../../_images/finetuning_fmri_25_1.png" />
 </div>
 </div>
 </div>
