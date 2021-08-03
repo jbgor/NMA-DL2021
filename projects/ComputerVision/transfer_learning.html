@@ -1133,6 +1133,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
+GPU is enabled in this notebook.
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="training-hyperparameters">
@@ -1205,6 +1211,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==&gt; Preparing data..
+Downloading https://www.cs.toronto.edu/~kriz/cifar-100-python.tar.gz to ./CIFAR100/cifar-100-python.tar.gz
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "3dd2d265bd4a44de80738813df1a1b1e", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./CIFAR100/cifar-100-python.tar.gz to ./CIFAR100
+Files already downloaded and verified
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="cifar-100">
 <h3>CIFAR-100<a class="headerlink" href="#cifar-100" title="Permalink to this headline">¶</a></h3>
@@ -1216,6 +1234,14 @@
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Training data shape: </span><span class="si">{</span><span class="n">trainset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test data shape: </span><span class="si">{</span><span class="n">testset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of classes: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">trainset</span><span class="o">.</span><span class="n">targets</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Object type: &lt;class &#39;torchvision.datasets.cifar.CIFAR100&#39;&gt;
+Training data shape: (50000, 32, 32, 3)
+Test data shape: (10000, 32, 32, 3)
+Number of classes: 100
 </pre></div>
 </div>
 </div>
@@ -1238,6 +1264,11 @@
     <span class="n">trainset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
 <span class="n">testloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
     <span class="n">testset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----&gt; number of workers: 2
 </pre></div>
 </div>
 </div>
@@ -1383,6 +1414,14 @@
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span> <span class="s1">&#39;GPUs.&#39;</span><span class="p">)</span>
   <span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">True</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using CUDA..&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----&gt; verify if model is run on random data
+model loaded
+Using 1 GPUs.
+Using CUDA..
 </pre></div>
 </div>
 </div>
@@ -1534,6 +1573,97 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0
+0 391 Loss: 4.748 | Acc: 0.781% (1/128)
+0 79 Loss: 3.545 | Acc: 12.500% (16/128)
+Saving..
+Epoch: 0 | train acc: 8.527999877929688 | test acc: 13.369999885559082
+
+Epoch: 1
+0 391 Loss: 3.597 | Acc: 16.406% (21/128)
+0 79 Loss: 3.157 | Acc: 23.438% (30/128)
+Saving..
+Epoch: 1 | train acc: 18.392000198364258 | test acc: 21.829999923706055
+
+Epoch: 2
+0 391 Loss: 2.932 | Acc: 26.562% (34/128)
+0 79 Loss: 2.450 | Acc: 39.844% (51/128)
+Saving..
+Epoch: 2 | train acc: 27.016000747680664 | test acc: 31.079999923706055
+
+Epoch: 3
+0 391 Loss: 2.649 | Acc: 35.938% (46/128)
+0 79 Loss: 2.134 | Acc: 39.844% (51/128)
+Saving..
+Epoch: 3 | train acc: 35.84000015258789 | test acc: 35.70000076293945
+
+Epoch: 4
+0 391 Loss: 2.153 | Acc: 41.406% (53/128)
+0 79 Loss: 1.911 | Acc: 49.219% (63/128)
+Saving..
+Epoch: 4 | train acc: 42.827999114990234 | test acc: 43.619998931884766
+
+Epoch: 5
+0 391 Loss: 1.878 | Acc: 50.000% (64/128)
+0 79 Loss: 2.149 | Acc: 43.750% (56/128)
+Saving..
+Epoch: 5 | train acc: 48.87200164794922 | test acc: 45.380001068115234
+
+Epoch: 6
+0 391 Loss: 1.814 | Acc: 51.562% (66/128)
+0 79 Loss: 1.847 | Acc: 46.875% (60/128)
+Saving..
+Epoch: 6 | train acc: 53.59000015258789 | test acc: 50.310001373291016
+
+Epoch: 7
+0 391 Loss: 1.514 | Acc: 56.250% (72/128)
+0 79 Loss: 1.568 | Acc: 51.562% (66/128)
+Saving..
+Epoch: 7 | train acc: 57.35200119018555 | test acc: 54.209999084472656
+
+Epoch: 8
+0 391 Loss: 1.194 | Acc: 62.500% (80/128)
+0 79 Loss: 1.403 | Acc: 59.375% (76/128)
+Saving..
+Epoch: 8 | train acc: 60.61600112915039 | test acc: 57.20000076293945
+
+Epoch: 9
+0 391 Loss: 1.124 | Acc: 69.531% (89/128)
+0 79 Loss: 1.339 | Acc: 64.844% (83/128)
+Saving..
+Epoch: 9 | train acc: 63.55400085449219 | test acc: 58.900001525878906
+
+Epoch: 10
+0 391 Loss: 1.013 | Acc: 72.656% (93/128)
+0 79 Loss: 1.225 | Acc: 66.406% (85/128)
+Epoch: 10 | train acc: 65.91999816894531 | test acc: 58.83000183105469
+
+Epoch: 11
+0 391 Loss: 0.971 | Acc: 64.844% (83/128)
+0 79 Loss: 1.491 | Acc: 63.281% (81/128)
+Epoch: 11 | train acc: 68.05000305175781 | test acc: 57.560001373291016
+
+Epoch: 12
+0 391 Loss: 1.028 | Acc: 70.312% (90/128)
+0 79 Loss: 1.358 | Acc: 63.281% (81/128)
+Saving..
+Epoch: 12 | train acc: 69.99600219726562 | test acc: 60.099998474121094
+
+Epoch: 13
+0 391 Loss: 0.699 | Acc: 82.812% (106/128)
+0 79 Loss: 1.299 | Acc: 63.281% (81/128)
+Saving..
+Epoch: 13 | train acc: 71.9739990234375 | test acc: 60.220001220703125
+
+Epoch: 14
+0 391 Loss: 0.768 | Acc: 75.781% (97/128)
+0 79 Loss: 1.182 | Acc: 74.219% (95/128)
+Saving..
+Epoch: 14 | train acc: 73.69400024414062 | test acc: 62.90999984741211
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1596,6 +1726,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==&gt; Preparing target domain data..
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./CIFAR10/cifar-10-python.tar.gz
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ef171f0d74cc467ab4b78cd32bba5071", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./CIFAR10/cifar-10-python.tar.gz to ./CIFAR10
+Files already downloaded and verified
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="select-a-subset-of-the-data">
@@ -1608,6 +1750,11 @@
 
 <span class="n">trainset</span> <span class="o">=</span> <span class="n">percentageSplit</span><span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">percent</span> <span class="o">=</span> <span class="n">percent</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of the new trainset: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trainset</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>size of the new trainset:  30000
 </pre></div>
 </div>
 </div>
@@ -1627,6 +1774,11 @@
     <span class="n">trainset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
 <span class="n">testloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
     <span class="n">testset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----&gt; number of workers: 2
 </pre></div>
 </div>
 </div>
@@ -1661,6 +1813,13 @@
   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load pretrained model with msg: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
 <span class="k">else</span><span class="p">:</span>
   <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;No pretrained weights found&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> ===&gt; loading pretrained model from:  /content/checkpoint/pretrain.t7
+Best Accuracy: tensor(62.9100)
+Load pretrained model with msg: &lt;All keys matched successfully&gt;
 </pre></div>
 </div>
 </div>
@@ -1712,6 +1871,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total Parameters: 11173962 Trainable parameters:  5130
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1738,6 +1902,67 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0
+0 235 Loss: 2.302 | Acc: 16.406% (21/128)
+0 79 Loss: 0.630 | Acc: 79.688% (102/128)
+Saving..
+Epoch: 0 | train acc: 71.086669921875 | test acc: 75.08999633789062
+
+Epoch: 1
+0 235 Loss: 0.757 | Acc: 72.656% (93/128)
+0 79 Loss: 0.619 | Acc: 79.688% (102/128)
+Saving..
+Epoch: 1 | train acc: 75.86000061035156 | test acc: 76.54000091552734
+
+Epoch: 2
+0 235 Loss: 0.666 | Acc: 75.781% (97/128)
+0 79 Loss: 0.640 | Acc: 78.125% (100/128)
+Saving..
+Epoch: 2 | train acc: 77.04000091552734 | test acc: 76.55000305175781
+
+Epoch: 3
+0 235 Loss: 0.579 | Acc: 81.250% (104/128)
+0 79 Loss: 0.577 | Acc: 79.688% (102/128)
+Saving..
+Epoch: 3 | train acc: 77.56999969482422 | test acc: 77.2300033569336
+
+Epoch: 4
+0 235 Loss: 0.661 | Acc: 78.125% (100/128)
+0 79 Loss: 0.613 | Acc: 76.562% (98/128)
+Saving..
+Epoch: 4 | train acc: 77.6866683959961 | test acc: 77.44999694824219
+
+Epoch: 5
+0 235 Loss: 0.627 | Acc: 80.469% (103/128)
+0 79 Loss: 0.626 | Acc: 80.469% (103/128)
+Epoch: 5 | train acc: 78.163330078125 | test acc: 77.37999725341797
+
+Epoch: 6
+0 235 Loss: 0.602 | Acc: 77.344% (99/128)
+0 79 Loss: 0.607 | Acc: 78.125% (100/128)
+Saving..
+Epoch: 6 | train acc: 78.42333221435547 | test acc: 78.02999877929688
+
+Epoch: 7
+0 235 Loss: 0.537 | Acc: 75.781% (97/128)
+0 79 Loss: 0.608 | Acc: 79.688% (102/128)
+Saving..
+Epoch: 7 | train acc: 78.49333190917969 | test acc: 78.1500015258789
+
+Epoch: 8
+0 235 Loss: 0.578 | Acc: 75.781% (97/128)
+0 79 Loss: 0.650 | Acc: 76.562% (98/128)
+Epoch: 8 | train acc: 78.15333557128906 | test acc: 76.83000183105469
+
+Epoch: 9
+0 235 Loss: 0.583 | Acc: 77.344% (99/128)
+0 79 Loss: 0.616 | Acc: 77.344% (99/128)
+Saving..
+Epoch: 9 | train acc: 78.66999816894531 | test acc: 78.20999908447266
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1751,6 +1976,76 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>epoch</th>
+      <th>train loss</th>
+      <th>train acc</th>
+      <th>test loss</th>
+      <th>test acc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.819690</td>
+      <td>71.086670</td>
+      <td>0.713260</td>
+      <td>75.089996</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0.680940</td>
+      <td>75.860001</td>
+      <td>0.674431</td>
+      <td>76.540001</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>0.650245</td>
+      <td>77.040001</td>
+      <td>0.675883</td>
+      <td>76.550003</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>0.638555</td>
+      <td>77.570000</td>
+      <td>0.652776</td>
+      <td>77.230003</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>0.630500</td>
+      <td>77.686668</td>
+      <td>0.666428</td>
+      <td>77.449997</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1759,6 +2054,12 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average Accuracy over </span><span class="si">{</span><span class="n">max_epochs_target</span><span class="si">}</span><span class="s1"> epochs:&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">)</span><span class="o">//</span><span class="nb">len</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;best accuraccy over </span><span class="si">{</span><span class="n">max_epochs_target</span><span class="si">}</span><span class="s1"> epochs:&#39;</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average Accuracy over 10 epochs: 77.0
+best accuraccy over 10 epochs: 78.20999908447266
 </pre></div>
 </div>
 </div>
@@ -1777,6 +2078,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/transfer_learning_60_0.png" src="../../_images/transfer_learning_60_0.png" />
 </div>
 </div>
 </div>

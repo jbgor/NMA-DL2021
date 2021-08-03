@@ -1082,6 +1082,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
+GPU is enabled in this notebook.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;cuda&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="training-hyperparameters">
 <h3>Training hyperparameters<a class="headerlink" href="#training-hyperparameters" title="Permalink to this headline">¶</a></h3>
@@ -1168,8 +1177,8 @@
 <div class="section" id="mixup">
 <h2>Mixup<a class="headerlink" href="#mixup" title="Permalink to this headline">¶</a></h2>
 <p>Mixup is a data augmentation technique that combines pairs of examples via a convex combination of the images and the labels. Given images <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_j\)</span> with labels <span class="math notranslate nohighlight">\(y_i\)</span> and <span class="math notranslate nohighlight">\(y_j\)</span>, respectively, and <span class="math notranslate nohighlight">\(\lambda \in [0, 1]\)</span>, mixup creates a new image <span class="math notranslate nohighlight">\(\hat{x}\)</span> with label <span class="math notranslate nohighlight">\(\hat{y}\)</span> the following way:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9861552f-88e1-4ac4-9404-3704f51031d4">
-<span class="eqno">(112)<a class="headerlink" href="#equation-9861552f-88e1-4ac4-9404-3704f51031d4" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8ca26e84-f27d-477c-8d40-3484705594c0">
+<span class="eqno">(112)<a class="headerlink" href="#equation-8ca26e84-f27d-477c-8d40-3484705594c0" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{x} &amp;= \lambda x_i + (1 - \lambda) x_j \\
 \hat{y} &amp;= \lambda y_i + (1 - \lambda) y_j
 \end{align}\]</div>
@@ -1255,6 +1264,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==&gt; Preparing data...
+Downloading https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz to ./CIFAR10/cifar-10-python.tar.gz
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "3a3a8eff5d924100831e7e7cd0202361", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./CIFAR10/cifar-10-python.tar.gz to ./CIFAR10
+Files already downloaded and verified
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="cifar-10">
 <h3>CIFAR-10<a class="headerlink" href="#cifar-10" title="Permalink to this headline">¶</a></h3>
@@ -1272,6 +1293,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Object type: &lt;class &#39;torchvision.datasets.cifar.CIFAR10&#39;&gt;
+Training data shape: (50000, 32, 32, 3)
+Test data shape: (10000, 32, 32, 3)
+Number of classes: 10
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1279,6 +1308,11 @@
 <span class="n">percent</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">trainset</span> <span class="o">=</span> <span class="n">percentageSplit</span><span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">percent</span> <span class="o">=</span> <span class="n">percent</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;size of the new trainset: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">trainset</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>size of the new trainset: 50000
 </pre></div>
 </div>
 </div>
@@ -1299,6 +1333,11 @@
     <span class="n">trainset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
 <span class="n">testloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
     <span class="n">testset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----&gt; number of workers: 4
 </pre></div>
 </div>
 </div>
@@ -1353,6 +1392,9 @@
   <span class="n">plot_mixed_images</span><span class="p">(</span><span class="n">batch_X</span><span class="p">[:</span><span class="mi">4</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/data_augmentation_36_0.png" src="../../_images/data_augmentation_36_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1507,6 +1549,14 @@
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span> <span class="s1">&#39;GPUs.&#39;</span><span class="p">)</span>
   <span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">True</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using CUDA..&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----&gt; verify if model is run on random data
+model loaded
+Using 1 GPUs.
+Using CUDA..
 </pre></div>
 </div>
 </div>
@@ -1675,6 +1725,96 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 0
+0 391 Loss: 2.443 | Acc: 10.938% (14/128)
+0 79 Loss: 1.531 | Acc: 46.094% (59/128)
+Saving..
+Epoch: 0 | train acc: 31.604000091552734 | test acc: 44.2599983215332
+
+Epoch: 1
+0 391 Loss: 1.619 | Acc: 39.844% (51/128)
+0 79 Loss: 1.199 | Acc: 60.156% (77/128)
+Saving..
+Epoch: 1 | train acc: 47.03200149536133 | test acc: 54.41999816894531
+
+Epoch: 2
+0 391 Loss: 1.301 | Acc: 53.906% (69/128)
+0 79 Loss: 1.013 | Acc: 61.719% (79/128)
+Saving..
+Epoch: 2 | train acc: 56.257999420166016 | test acc: 62.599998474121094
+
+Epoch: 3
+0 391 Loss: 1.036 | Acc: 64.062% (82/128)
+0 79 Loss: 0.909 | Acc: 69.531% (89/128)
+Saving..
+Epoch: 3 | train acc: 62.43199920654297 | test acc: 65.6500015258789
+
+Epoch: 4
+0 391 Loss: 0.839 | Acc: 68.750% (88/128)
+0 79 Loss: 0.859 | Acc: 70.312% (90/128)
+Saving..
+Epoch: 4 | train acc: 67.0 | test acc: 69.08999633789062
+
+Epoch: 5
+0 391 Loss: 0.922 | Acc: 64.844% (83/128)
+0 79 Loss: 0.660 | Acc: 76.562% (98/128)
+Saving..
+Epoch: 5 | train acc: 70.1259994506836 | test acc: 72.52999877929688
+
+Epoch: 6
+0 391 Loss: 0.833 | Acc: 65.625% (84/128)
+0 79 Loss: 0.616 | Acc: 78.125% (100/128)
+Saving..
+Epoch: 6 | train acc: 73.45999908447266 | test acc: 73.45999908447266
+
+Epoch: 7
+0 391 Loss: 0.686 | Acc: 75.000% (96/128)
+0 79 Loss: 0.533 | Acc: 81.250% (104/128)
+Saving..
+Epoch: 7 | train acc: 75.99600219726562 | test acc: 75.91000366210938
+
+Epoch: 8
+0 391 Loss: 0.626 | Acc: 78.125% (100/128)
+0 79 Loss: 0.458 | Acc: 82.031% (105/128)
+Saving..
+Epoch: 8 | train acc: 78.42400360107422 | test acc: 79.11000061035156
+
+Epoch: 9
+0 391 Loss: 0.465 | Acc: 85.938% (110/128)
+0 79 Loss: 0.465 | Acc: 87.500% (112/128)
+Saving..
+Epoch: 9 | train acc: 80.72599792480469 | test acc: 80.37000274658203
+
+Epoch: 10
+0 391 Loss: 0.509 | Acc: 81.250% (104/128)
+0 79 Loss: 0.523 | Acc: 79.688% (102/128)
+Epoch: 10 | train acc: 82.16400146484375 | test acc: 79.25
+
+Epoch: 11
+0 391 Loss: 0.423 | Acc: 82.031% (105/128)
+0 79 Loss: 0.610 | Acc: 78.125% (100/128)
+Epoch: 11 | train acc: 83.96199798583984 | test acc: 79.68000030517578
+
+Epoch: 12
+0 391 Loss: 0.221 | Acc: 89.844% (115/128)
+0 79 Loss: 0.467 | Acc: 82.812% (106/128)
+Saving..
+Epoch: 12 | train acc: 85.61799621582031 | test acc: 80.88999938964844
+
+Epoch: 13
+0 391 Loss: 0.427 | Acc: 85.938% (110/128)
+0 79 Loss: 0.522 | Acc: 82.812% (106/128)
+Saving..
+Epoch: 13 | train acc: 87.21199798583984 | test acc: 81.54000091552734
+
+Epoch: 14
+0 391 Loss: 0.216 | Acc: 93.750% (120/128)
+0 79 Loss: 0.386 | Acc: 86.719% (111/128)
+Epoch: 14 | train acc: 88.08000183105469 | test acc: 81.44999694824219
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1684,6 +1824,76 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>epoch</th>
+      <th>train loss</th>
+      <th>train acc</th>
+      <th>test loss</th>
+      <th>test acc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1.932130</td>
+      <td>31.604000</td>
+      <td>1.535233</td>
+      <td>44.259998</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1.446863</td>
+      <td>47.032001</td>
+      <td>1.262779</td>
+      <td>54.419998</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>1.212518</td>
+      <td>56.257999</td>
+      <td>1.069593</td>
+      <td>62.599998</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>1.051850</td>
+      <td>62.431999</td>
+      <td>0.996476</td>
+      <td>65.650002</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>0.928131</td>
+      <td>67.000000</td>
+      <td>0.898354</td>
+      <td>69.089996</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1692,6 +1902,12 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average test Accuracy over </span><span class="si">{</span><span class="n">end_apochs</span><span class="si">}</span><span class="s2"> epochs: </span><span class="si">{</span><span class="nb">sum</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">)</span><span class="o">//</span><span class="nb">len</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;best test accuraccy over </span><span class="si">{</span><span class="n">end_apochs</span><span class="si">}</span><span class="s2"> epochs: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Average test Accuracy over 15 epochs: 72.0
+best test accuraccy over 15 epochs: 81.54000091552734
 </pre></div>
 </div>
 </div>
@@ -1711,6 +1927,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/data_augmentation_55_0.png" src="../../_images/data_augmentation_55_0.png" />
 </div>
 </div>
 </div>
