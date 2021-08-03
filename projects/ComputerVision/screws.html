@@ -1092,6 +1092,13 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU is enabled in this notebook. 
+If you want to disable it, in the menu under `Runtime` -&gt; 
+`Hardware accelerator.` and select `None` from the dropdown menu
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1124,11 +1131,32 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data archive downloading...
+Download completed.
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Some json files and a folder full of images</span>
 <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">datapath</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;mvtec_screws_train.hdict&#39;,
+ &#39;mvtec_screws.json&#39;,
+ &#39;mvtec_screws_val.json&#39;,
+ &#39;mvtec_screws_test.hdict&#39;,
+ &#39;mvtec_screws_val.hdict&#39;,
+ &#39;mvtec_screws_train.json&#39;,
+ &#39;README_v1.0.txt&#39;,
+ &#39;mvtec_screws.hdict&#39;,
+ &#39;mvtec_screws_test.json&#39;,
+ &#39;mvtec_screws_splitted.hdict&#39;,
+ &#39;images&#39;]
 </pre></div>
 </div>
 </div>
@@ -1142,6 +1170,104 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>*******************************************
+* MVTec Screws V1.0                       *
+*                                         *
+* Author: MVTec Software GmbH, July 2020. *
+*         https://www.mvtec.com           *
+*******************************************
+
+All files are as in the MVTec Screws example dataset for oriented object detection, released with
+HALCON version 19.05. The state of the dataset and images is as of release version 20.05.
+
+***********
+* License *
+***********
+
+The dataset, i.e. the images and the annotations, are licensed under the creative commons
+Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license. See
+https://creativecommons.org/licenses/by-nc-sa/4.0/ for more information.
+For using the data in a way that falls under the commercial use clause of the license,
+please contact us.
+
+***************
+* Attribution *
+***************
+
+If you use this dataset in scientific work, please cite our paper:
+
+Markus Ulrich, Patrick Follmann, Jan-Hendrik Neudeck: 
+A comparison of shape-based matching with deep-learning-based object detection;
+in: Technisches Messen, 2019, DOI 10.1515/teme-2019-0076.
+
+************
+* Content: *
+************
+
+MVTec Screws contains 384 images of 13 different types of screws and nuts on a wooden background.
+The objects are labeled by oriented bounding boxes and their respective category. Overall, there
+are 4426 of such annotations.
+The exemplary splits are those that have been used in the above mentioned publication. Initially,
+they have been selected randomly, such that approximately 70% of the instances of each category are
+within the training split, and 15% each in the validation and test splits.
+
+* folder images contains the screw images.
+* mvtec_screws.json contains the annotations for all images in COCO format.
+* mvtec_screws_train/val/test.json contain examplary splits as mentioned above, in COCO format.
+* mvtec_screws.hdict contains the DLDataset unsplitted.
+* mvtec_screws_split.hdict contains the DLDataset with splits.
+
+******************************
+* Usage of DLDataset-format: *
+******************************
+
+The .hdict files can be used within HALCON by reading them, e.g. via
+
+read_dict (&lt;path_to_mvtec_screws.hdict&gt;, [], [], DLDataset)
+
+The image path has to be set to the location of the images folder &lt;path_to_images_folder&gt; by
+
+set_dict_tuple(DLDataset, &#39;image_dir&#39;, &lt;path_to_images_folder&gt;)
+
+To store this information within the dataset, the dataset should be written by
+write_dict (DLDataset, &lt;path_to_mvtec_screws.hdict&gt;, [], [])
+
+In HALCON object detection we use subpixel-precise annotations with a pixel-centered coordinate-system, i.e.
+the center of the top-left corner of the image is at (0.0, 0.0), while the top-left corner of the image is
+located at (-.5, -.5). Note that when used within HALCON the dataset does not need to be converted, as this
+format is also used within the deep learning based object detection of HALCON.
+
+***************
+* COCO Format *
+***************
+
+MVTec screws is a dataset for oriented box detection. We use a format that is very similar to that of the
+COCO dataset (cocodataset.org). However, we need 5 parameters per box annotation to store the orientation.
+We use the following labels.
+
+Each box contains 5 parameters (row, col, width, height, phi), where
+
+* &#39;row&#39; is the subpixel-precise center row (vertical axis of the coordinate system) of the box.
+* &#39;col&#39; is the subpixel-precise center column (horizontal axis of the coordinate system) of the box.
+* &#39;width&#39; is the subpixel-precise width of the box. I.e. the length of the box parallel to the orientation 
+  of the box.
+* &#39;height&#39; is the subpixel-precise width of the box. I.e. the length of the box perpendicular to the
+  orientation of the box.
+* &#39;phi&#39; is the orientation of the box in radian, given in a mathematically positive sense and with respect
+  to the horizontal (column) image axis. E.g. for phi = 0.0 the box is oriented towards the right side of 
+  the image, for phi = pi/2 towards the top, for phi = pi towards the left, and for phi=-pi/2 towards the 
+  bottom. Phi is always in the range (-pi, pi].
+
+Note that width and height are defined in contrast to the DLDataset format in HALCON, where we use 
+semi-axis lengths.
+
+Coordinate system: In comparison to the pixel-centered coordinate-system of HALCON mentioned above,
+                   for COCO it is common to set the origin to the top-left-corner of the top-left
+				   pixel, hence in comparison to the DLDataset-format, (row,col) are shifted by (.5, .5).
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1152,6 +1278,13 @@ You’ll start with simple networks, and potentially work up to larger pretained
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;annotations&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;categories&#39;, &#39;images&#39;, &#39;annotations&#39;, &#39;licenses&#39;, &#39;info&#39;])
+{&#39;file_name&#39;: &#39;screws_001.png&#39;, &#39;height&#39;: 1440, &#39;width&#39;: 1920, &#39;id&#39;: 1, &#39;license&#39;: 1}
+{&#39;area&#39;: 3440.97, &#39;bbox&#39;: [184.5, 876.313, 55, 62.5631, 0], &#39;category_id&#39;: 7, &#39;id&#39;: 1001, &#39;image_id&#39;: 1, &#39;is_crowd&#39;: 0}
 </pre></div>
 </div>
 </div>
@@ -1227,6 +1360,14 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:18: MatplotlibDeprecationWarning: Adding an axes using the same arguments as a previous axes currently reuses the earlier instance.  In a future version, a new instance will always be created and returned.  Meanwhile, this warning can be suppressed, and the future behavior ensured, by passing a unique label to each axes instance.
+/usr/local/lib/python3.7/dist-packages/IPython/core/pylabtools.py:125: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.canvas.print_figure(bytes_io, **kw)
+</pre></div>
+</div>
+<img alt="../../_images/screws_22_1.png" src="../../_images/screws_22_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1249,6 +1390,23 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Category ID 7 has 365 items
+Category ID 3 has 317 items
+Category ID 2 has 314 items
+Category ID 8 has 367 items
+Category ID 6 has 393 items
+Category ID 5 has 387 items
+Category ID 4 has 315 items
+Category ID 1 has 313 items
+Category ID 9 has 320 items
+Category ID 11 has 346 items
+Category ID 10 has 347 items
+Category ID 12 has 322 items
+Category ID 13 has 321 items
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1263,6 +1421,21 @@ You’ll start with simple networks, and potentially work up to larger pretained
     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">category_names</span><span class="p">[</span><span class="n">catid</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">catid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/screws_25_0.png" src="../../_images/screws_25_0.png" />
+<img alt="../../_images/screws_25_1.png" src="../../_images/screws_25_1.png" />
+<img alt="../../_images/screws_25_2.png" src="../../_images/screws_25_2.png" />
+<img alt="../../_images/screws_25_3.png" src="../../_images/screws_25_3.png" />
+<img alt="../../_images/screws_25_4.png" src="../../_images/screws_25_4.png" />
+<img alt="../../_images/screws_25_5.png" src="../../_images/screws_25_5.png" />
+<img alt="../../_images/screws_25_6.png" src="../../_images/screws_25_6.png" />
+<img alt="../../_images/screws_25_7.png" src="../../_images/screws_25_7.png" />
+<img alt="../../_images/screws_25_8.png" src="../../_images/screws_25_8.png" />
+<img alt="../../_images/screws_25_9.png" src="../../_images/screws_25_9.png" />
+<img alt="../../_images/screws_25_10.png" src="../../_images/screws_25_10.png" />
+<img alt="../../_images/screws_25_11.png" src="../../_images/screws_25_11.png" />
+<img alt="../../_images/screws_25_12.png" src="../../_images/screws_25_12.png" />
 </div>
 </div>
 </div>
@@ -1334,12 +1507,26 @@ You’ll start with simple networks, and potentially work up to larger pretained
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/google/colab/_event_manager.py:28: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  func(*args, **kwargs)
+/usr/local/lib/python3.7/dist-packages/IPython/core/pylabtools.py:125: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.canvas.print_figure(bytes_io, **kw)
+</pre></div>
+</div>
+<img alt="../../_images/screws_28_1.png" src="../../_images/screws_28_1.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check shapes are correct</span>
 <span class="c1"># assert all([p.shape == (128,128,3) for p in all_patches])</span>
 <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">all_patches</span><span class="p">)</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
 </pre></div>
 </div>
 </div>
@@ -1368,6 +1555,12 @@ Hint - it’s often helpful to start thinking about the shape/dimensionality of 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/screws_31_1.png" src="../../_images/screws_31_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1419,6 +1612,39 @@ Hint - it’s often helpful to start thinking about the shape/dimensionality of 
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inspect model structure and layer sizes</span>
 <span class="n">snet</span> <span class="o">=</span> <span class="n">SimpleScrewNet</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 <span class="n">summary</span><span class="p">(</span><span class="n">snet</span><span class="p">,</span> <span class="n">input_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 16, 61, 61]           2,368
+         LeakyReLU-2           [-1, 16, 61, 61]               0
+         MaxPool2d-3           [-1, 16, 30, 30]               0
+            Conv2d-4           [-1, 32, 26, 26]          12,832
+         LeakyReLU-5           [-1, 32, 26, 26]               0
+         MaxPool2d-6           [-1, 32, 13, 13]               0
+            Conv2d-7             [-1, 64, 9, 9]          51,264
+         LeakyReLU-8             [-1, 64, 9, 9]               0
+         MaxPool2d-9             [-1, 64, 4, 4]               0
+          Flatten-10                 [-1, 1024]               0
+           Linear-11                   [-1, 64]          65,600
+           Linear-12                    [-1, 2]             130
+================================================================
+Total params: 132,194
+Trainable params: 132,194
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.19
+Forward/backward pass size (MB): 1.48
+Params size (MB): 0.50
+Estimated Total Size (MB): 2.18
+----------------------------------------------------------------
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
 </pre></div>
 </div>
 </div>
@@ -1486,6 +1712,16 @@ Hint - it’s often helpful to start thinking about the shape/dimensionality of 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before starting: 65.09% of test images correct
+Epoch:0 Train Loss:112.225 Test Losss:247.266 Percent correct: 91.90%
+Epoch:1 Train Loss:59.007 Test Losss:165.984 Percent correct: 95.51%
+Epoch:2 Train Loss:41.921 Test Losss:130.771 Percent correct: 96.88%
+Epoch:3 Train Loss:33.456 Test Losss:111.266 Percent correct: 97.26%
+Epoch:4 Train Loss:28.284 Test Losss:98.298 Percent correct: 97.63%
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1502,6 +1738,11 @@ Hint - it’s often helpful to start thinking about the shape/dimensionality of 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.976% of test images correct
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1513,6 +1754,12 @@ Hint - it’s often helpful to start thinking about the shape/dimensionality of 
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loss&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Loss&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/screws_37_1.png" src="../../_images/screws_37_1.png" />
 </div>
 </div>
 </div>

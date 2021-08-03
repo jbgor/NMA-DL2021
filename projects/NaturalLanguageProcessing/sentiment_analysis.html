@@ -988,6 +988,82 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>polarity</th>
+      <th>id</th>
+      <th>date</th>
+      <th>query</th>
+      <th>user</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1467810369</td>
+      <td>Mon Apr 06 22:19:45 PDT 2009</td>
+      <td>NO_QUERY</td>
+      <td>_TheSpecialOne_</td>
+      <td>@switchfoot http://twitpic.com/2y1zl - Awww, t...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1467810672</td>
+      <td>Mon Apr 06 22:19:49 PDT 2009</td>
+      <td>NO_QUERY</td>
+      <td>scotthamilton</td>
+      <td>is upset that he can't update his Facebook by ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1467810917</td>
+      <td>Mon Apr 06 22:19:53 PDT 2009</td>
+      <td>NO_QUERY</td>
+      <td>mattycus</td>
+      <td>@Kenichan I dived many times for the ball. Man...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1467811184</td>
+      <td>Mon Apr 06 22:19:57 PDT 2009</td>
+      <td>NO_QUERY</td>
+      <td>ElleCTF</td>
+      <td>my whole body feels itchy and like its on fire</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1467811193</td>
+      <td>Mon Apr 06 22:19:57 PDT 2009</td>
+      <td>NO_QUERY</td>
+      <td>Karoli</td>
+      <td>@nationwideclass no, it's not behaving at all....</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>For this project we will use only the text and the polarity of the tweet. Notice that polarity is 0 for negative tweets and 4 for positive tweet.</p>
 <div class="cell docutils container">
@@ -1012,6 +1088,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1: @paisleypaisley LOL why do i get ideas so far in advance? it&#39;s not even june yet! we need a third knitter to have our own summer group 
+0: worst headache ever 
+0: @ewaniesciuszko  i am so sad i wont see you! I miss you already. and yeah! that&#39;s perfect; i come back the 18th!
+1: doesn&#39;t know how to spell conked 
+0: &amp;quot;So we stand here now and no one knows us at all I won&#39;t get used to this I won&#39;t get used to being gone&amp;quot;...I miss home and everyone  -a
+</pre></div>
+</div>
+</div>
 </div>
 <p>An interesting thing to analyze is the Word Distribution. In order to count the occurrences of each word, we should tokenize the sentences first.</p>
 <div class="cell docutils container">
@@ -1023,11 +1108,29 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before Tokenize:  worst headache ever 
+After Tokenize:  [&#39;worst&#39;, &#39;headache&#39;, &#39;ever&#39;]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_train_token</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">x_train_text</span><span class="p">)]</span>
 <span class="n">x_test_token</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">x_test_text</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "499e7fb54aa048afb3cba78dd8d6bb0e", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "fff9bd0ae74e46b0ad97ad980a834a58", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1044,6 +1147,12 @@
 <span class="n">sorted_words</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">words</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of different Tokens in our Dataset: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_words</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sorted_words</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of different Tokens in our Dataset: 669284
+[&#39;.&#39;, &#39;i&#39;, &#39;!&#39;, &quot;&#39;&quot;, &#39;to&#39;, &#39;the&#39;, &#39;,&#39;, &#39;a&#39;, &#39;my&#39;, &#39;it&#39;, &#39;and&#39;, &#39;you&#39;, &#39;?&#39;, &#39;is&#39;, &#39;for&#39;, &#39;in&#39;, &#39;s&#39;, &#39;of&#39;, &#39;t&#39;, &#39;on&#39;, &#39;that&#39;, &#39;me&#39;, &#39;so&#39;, &#39;have&#39;, &#39;m&#39;, &#39;but&#39;, &#39;just&#39;, &#39;with&#39;, &#39;be&#39;, &#39;at&#39;, &#39;not&#39;, &#39;was&#39;, &#39;this&#39;, &#39;now&#39;, &#39;can&#39;, &#39;good&#39;, &#39;up&#39;, &#39;day&#39;, &#39;all&#39;, &#39;get&#39;, &#39;out&#39;, &#39;like&#39;, &#39;are&#39;, &#39;no&#39;, &#39;go&#39;, &#39;http&#39;, &#39;-&#39;, &#39;today&#39;, &#39;do&#39;, &#39;too&#39;, &#39;your&#39;, &#39;work&#39;, &#39;going&#39;, &#39;love&#39;, &#39;we&#39;, &#39;got&#39;, &#39;what&#39;, &#39;lol&#39;, &#39;time&#39;, &#39;back&#39;, &#39;from&#39;, &#39;u&#39;, &#39;one&#39;, &#39;will&#39;, &#39;know&#39;, &#39;about&#39;, &#39;im&#39;, &#39;really&#39;, &#39;don&#39;, &#39;am&#39;, &#39;had&#39;, &#39;)&#39;, &#39;see&#39;, &#39;some&#39;, &#39;there&#39;, &#39;its&#39;, &#39;&amp;amp&#39;, &#39;how&#39;, &#39;if&#39;, &#39;still&#39;, &#39;they&#39;, &#39;&amp;quot&#39;, &#39;night&#39;, &#39;(&#39;, &#39;well&#39;, &#39;want&#39;, &#39;new&#39;, &#39;think&#39;, &#39;2&#39;, &#39;home&#39;, &#39;thanks&#39;, &#39;ll&#39;, &#39;oh&#39;, &#39;when&#39;, &#39;as&#39;, &#39;he&#39;, &#39;more&#39;, &#39;here&#39;, &#39;much&#39;, &#39;off&#39;]
 </pre></div>
 </div>
 </div>
@@ -1065,6 +1174,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The 0.13970153178620734% most common words account for the 80.00532743602652% of the occurrences
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1072,6 +1186,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/sentiment_analysis_24_0.png" src="../../_images/sentiment_analysis_24_0.png" />
 </div>
 </div>
 <p>It is very common to find this kind of distribution when analyzing corpus of text. This is referred to as the <a class="reference external" href="https://en.wikipedia.org/wiki/Zipf%27s_law">zipf’s law</a>.</p>
@@ -1118,12 +1235,28 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before Vectorize:  doesn&#39;t know how to spell conked 
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice that the matriz is sparse</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;After Vectorize: &#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x_train_cv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After Vectorize: 
+  (0, 528584)	1
+  (0, 165468)	1
+  (0, 300381)	1
+  (0, 242211)	1
+  (0, 489893)	1
+  (0, 134160)	1
 </pre></div>
 </div>
 </div>
@@ -1136,12 +1269,33 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
+                   intercept_scaling=1, l1_ratio=None, max_iter=100,
+                   multi_class=&#39;auto&#39;, n_jobs=None, penalty=&#39;l2&#39;,
+                   random_state=None, solver=&#39;saga&#39;, tol=0.0001, verbose=0,
+                   warm_start=False)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test_cv</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+           0       0.81      0.79      0.80    160000
+           1       0.79      0.81      0.80    160000
+
+    accuracy                           0.80    320000
+   macro avg       0.80      0.80      0.80    320000
+weighted avg       0.80      0.80      0.80    320000
 </pre></div>
 </div>
 </div>
@@ -1160,6 +1314,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 589260)
+589260
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1168,11 +1328,59 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>roni: -3.862597673594883
+inaperfectworld: -3.5734362290886375
+dontyouhate: -3.500197620227523
+xbllygbsn: -3.412645372640648
+anqju: -3.336405291553548
+sad: -3.200522312464158
+pakcricket: -3.1949158120163412
+condolences: -3.132498019366488
+heartbreaking: -3.066508733796654
+saddest: -3.041999809733714
+sadd: -3.029070563580306
+heartbroken: -3.0287688233900174
+boohoo: -3.022608649696793
+sadface: -2.9918411285807234
+rachelle_lefevr: -2.925057253107806
+disappointing: -2.902524113779547
+lvbu: -2.894705935001672
+saddens: -2.8855127179984654
+bummed: -2.83650014970307
+neda: -2.792944556837498
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">words_sk</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:]):</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">vocabulary_</span><span class="p">[</span><span class="n">w</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iamsoannoyed: 2.8494314732277672
+myfax: 2.797451563471618
+jennamadison: 2.5667257393706113
+yeyy: 2.478028598852801
+tryout: 2.4383315790116677
+goldymom: 2.4374026022205535
+wooohooo: 2.40297322137544
+thesupergirl: 2.3565118467330004
+iammaxathotspot: 2.311648368632618
+londicreations: 2.3074490293400993
+smilin: 2.2991891636718216
+worries: 2.2899429774914717
+sinfulsignorita: 2.2798963640981817
+finchensnail: 2.264302079155878
+smackthis: 2.2376679263761083
+kv: 2.2158393907798413
+tojosan: 2.211784259253832
+russmarshalek: 2.2095374025599384
+traciknoppe: 2.1768297770350835
+congratulations: 2.171590496227557
 </pre></div>
 </div>
 </div>
@@ -1211,12 +1419,22 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU is enabled in this notebook.
+</pre></div>
+</div>
+</div>
 </div>
 <p>First we will create a Dictionary (<code class="docutils literal notranslate"><span class="pre">word_to_idx</span></code>). This dictionary will map each Token (usually words) to an index (an integer number). We want to limit our dictionary to a certain number of tokens (<code class="docutils literal notranslate"><span class="pre">num_words_dict</span></code>), so we will include in our ditionary those with more occurrences.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># From previous section, we have a list with the most used tokens</span>
 <span class="n">sorted_words</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;.&#39;, &#39;i&#39;, &#39;!&#39;, &quot;&#39;&quot;, &#39;to&#39;, &#39;the&#39;, &#39;,&#39;, &#39;a&#39;, &#39;my&#39;, &#39;it&#39;]
 </pre></div>
 </div>
 </div>
@@ -1293,6 +1511,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before converting:  [&#39;worst&#39;, &#39;headache&#39;, &#39;ever&#39;]
+After converting:  [721, 458, 237]
+</pre></div>
+</div>
+</div>
 </div>
 <p>We need all the sequences to have the same length. To select an adequate sequence length, let’s explore some statistics about the length of the tweets:</p>
 <div class="cell docutils container">
@@ -1301,6 +1525,13 @@
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Max tweet word length: &#39;</span><span class="p">,</span><span class="n">tweet_lens</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean tweet word length: &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">tweet_lens</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;99% percent under: &#39;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">tweet_lens</span><span class="p">,</span><span class="mf">0.99</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max tweet word length:  229
+Mean tweet word length:  15.0
+99% percent under:  37.0
 </pre></div>
 </div>
 </div>
@@ -1351,6 +1582,14 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Before padding:  [1, 3, 71, 24, 122, 3, 533, 74, 13, 4, 3, 102, 13, 209, 2, 12, 150, 4, 22, 5, 18, 667, 3, 138, 61, 7, 3296, 4]
+After padding:  [   0    0    0    0    0    0    0    0    0    0    0    0    1    3
+   71   24  122    3  533   74   13    4    3  102   13  209    2   12
+  150    4   22    5   18  667    3  138   61    7 3296    4]
+</pre></div>
+</div>
+</div>
 </div>
 <p>Now, let’s convert the data to pytorch format.</p>
 <div class="cell docutils container">
@@ -1380,6 +1619,25 @@
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample input size: &#39;</span><span class="p">,</span> <span class="n">sample_x</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="c1"># batch_size, seq_length</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample input: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sample_x</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sample input: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sample_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample input size:  torch.Size([100, 40])
+Sample input: 
+ tensor([[    0,     0,     0,  ...,     4,     4,     4],
+        [    0,     0,     0,  ...,  7447, 14027,     2],
+        [    0,     0,     0,  ...,   100, 22241,     4],
+        ...,
+        [    0,     0,     0,  ...,  2702,  4409,     2],
+        [    0,     0,     0,  ...,   162,    17,     1],
+        [    0,     0,     0,  ...,    67, 12904,    49]])
+Sample input: 
+ tensor([0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0,
+        0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1,
+        0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0,
+        1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0,
+        0, 0, 1, 0])
 </pre></div>
 </div>
 </div>
@@ -1501,6 +1759,17 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SentimentRNN(
+  (embedding): Embedding(30000, 32)
+  (lstm): LSTM(32, 64, num_layers=2, batch_first=True, dropout=0.25)
+  (dropout): Dropout(p=0.25, inplace=False)
+  (fc): Linear(in_features=64, out_features=1, bias=True)
+  (sig): Sigmoid()
+)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1508,6 +1777,11 @@
 <span class="n">model_parameters</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
 <span class="n">params</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model_parameters</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total Number of parameters: &#39;</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total Number of parameters:  1018433
 </pre></div>
 </div>
 </div>
@@ -1627,6 +1901,35 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1
+train_loss : 0.4367361353733577 val_loss : 0.39174133955966683
+train_accuracy : 79.530625 val_accuracy : 82.3628125
+Validation loss decreased (inf --&gt; 0.391741).  Saving model ...
+==================================================
+Epoch 2
+train_loss : 0.3765802335098851 val_loss : 0.3724124691961333
+train_accuracy : 83.19140625 val_accuracy : 83.42031250000001
+Validation loss decreased (0.391741 --&gt; 0.372412).  Saving model ...
+==================================================
+Epoch 3
+train_loss : 0.35746844720793886 val_loss : 0.365050206175074
+train_accuracy : 84.16882812499999 val_accuracy : 83.7440625
+Validation loss decreased (0.372412 --&gt; 0.365050).  Saving model ...
+==================================================
+Epoch 4
+train_loss : 0.34491546426317654 val_loss : 0.36467386982403693
+train_accuracy : 84.879140625 val_accuracy : 83.77
+Validation loss decreased (0.365050 --&gt; 0.364674).  Saving model ...
+==================================================
+Epoch 5
+train_loss : 0.33429012800217606 val_loss : 0.36189084346871825
+train_accuracy : 85.44296875 val_accuracy : 84.0221875
+Validation loss decreased (0.364674 --&gt; 0.361891).  Saving model ...
+==================================================
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1648,6 +1951,9 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/sentiment_analysis_74_0.png" src="../../_images/sentiment_analysis_74_0.png" />
 </div>
 </div>
 </div>

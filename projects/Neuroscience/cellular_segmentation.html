@@ -1128,6 +1128,12 @@ This Notebook was developed by Carsen Stringer. It borrows from:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>there are 68 cells in this image
+</pre></div>
+</div>
+<img alt="../../_images/cellular_segmentation_16_1.png" src="../../_images/cellular_segmentation_16_1.png" />
+</div>
 </div>
 <p>What labels will we use? We can’t use numbers like masks.
 The standard approach is to create a “not-cell” and a “cell” probability map for the network to learn. Then this map is thresholded (the threshold is found with a validation set) to find cells.</p>
@@ -1282,6 +1288,9 @@ The standard approach is to create a “not-cell” and a “cell” probability
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_20_0.png" src="../../_images/cellular_segmentation_20_0.png" />
 </div>
 </div>
 </div>
@@ -1542,6 +1551,77 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50:   0%|          | 0/77 [00:00&lt;?, ?img/s]/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+Epoch 1/50: 100%|██████████| 77/77 [00:00&lt;00:00, 97.89img/s, loss (epoch)=7.45]
+Epoch 2/50:  21%|██        | 16/77 [00:00&lt;00:00, 127.23img/s, loss (batch)=0.518]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.93img/s, loss (epoch)=3.67]
+Epoch 3/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.30img/s, loss (epoch)=1.65]
+Epoch 4/50: 100%|██████████| 77/77 [00:00&lt;00:00, 123.25img/s, loss (epoch)=1.2]
+Epoch 5/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.62img/s, loss (epoch)=1.15]
+Epoch 6/50: 100%|██████████| 77/77 [00:00&lt;00:00, 121.46img/s, loss (epoch)=1.16]
+Epoch 7/50: 100%|██████████| 77/77 [00:00&lt;00:00, 124.27img/s, loss (epoch)=1.2]
+Epoch 8/50: 100%|██████████| 77/77 [00:00&lt;00:00, 122.31img/s, loss (epoch)=1.44]
+Epoch 9/50: 100%|██████████| 77/77 [00:00&lt;00:00, 120.15img/s, loss (epoch)=1.1]
+Epoch 10/50: 100%|██████████| 77/77 [00:00&lt;00:00, 123.49img/s, loss (epoch)=1.1]
+Epoch 11/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.27img/s, loss (epoch)=1.06]
+Epoch 12/50: 100%|██████████| 77/77 [00:00&lt;00:00, 120.96img/s, loss (epoch)=1.08]
+Epoch 13/50: 100%|██████████| 77/77 [00:00&lt;00:00, 121.05img/s, loss (epoch)=0.969]
+Epoch 14/50: 100%|██████████| 77/77 [00:00&lt;00:00, 120.42img/s, loss (epoch)=0.967]
+Epoch 15/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.99img/s, loss (epoch)=1]
+Epoch 16/50: 100%|██████████| 77/77 [00:00&lt;00:00, 122.08img/s, loss (epoch)=0.985]
+Epoch 17/50: 100%|██████████| 77/77 [00:00&lt;00:00, 120.79img/s, loss (epoch)=0.982]
+Epoch 18/50: 100%|██████████| 77/77 [00:00&lt;00:00, 121.33img/s, loss (epoch)=0.923]
+Epoch 19/50: 100%|██████████| 77/77 [00:00&lt;00:00, 123.99img/s, loss (epoch)=0.996]
+Epoch 20/50: 100%|██████████| 77/77 [00:00&lt;00:00, 121.94img/s, loss (epoch)=0.99]
+Epoch 21/50: 100%|██████████| 77/77 [00:00&lt;00:00, 122.60img/s, loss (epoch)=0.948]
+Epoch 22/50: 100%|██████████| 77/77 [00:00&lt;00:00, 122.08img/s, loss (epoch)=0.985]
+Epoch 23/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.69img/s, loss (epoch)=0.929]
+Epoch 24/50: 100%|██████████| 77/77 [00:00&lt;00:00, 122.52img/s, loss (epoch)=0.909]
+Epoch 25/50: 100%|██████████| 77/77 [00:00&lt;00:00, 118.49img/s, loss (epoch)=0.87]
+Epoch 26/50: 100%|██████████| 77/77 [00:00&lt;00:00, 122.71img/s, loss (epoch)=0.93]
+Epoch 27/50:  21%|██        | 16/77 [00:00&lt;00:00, 118.36img/s, loss (batch)=0.069]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 26
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 27/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.11img/s, loss (epoch)=0.958]
+Epoch 28/50: 100%|██████████| 77/77 [00:00&lt;00:00, 119.11img/s, loss (epoch)=0.98]
+Epoch 29/50: 100%|██████████| 77/77 [00:00&lt;00:00, 122.70img/s, loss (epoch)=0.882]
+Epoch 30/50: 100%|██████████| 77/77 [00:00&lt;00:00, 126.42img/s, loss (epoch)=0.85]
+Epoch 31/50: 100%|██████████| 77/77 [00:00&lt;00:00, 124.75img/s, loss (epoch)=0.884]
+Epoch 32/50: 100%|██████████| 77/77 [00:00&lt;00:00, 126.22img/s, loss (epoch)=0.805]
+Epoch 33/50: 100%|██████████| 77/77 [00:00&lt;00:00, 124.46img/s, loss (epoch)=0.907]
+Epoch 34/50: 100%|██████████| 77/77 [00:00&lt;00:00, 127.03img/s, loss (epoch)=0.895]
+Epoch 35/50: 100%|██████████| 77/77 [00:00&lt;00:00, 126.64img/s, loss (epoch)=0.833]
+Epoch 36/50: 100%|██████████| 77/77 [00:00&lt;00:00, 124.99img/s, loss (epoch)=0.84]
+Epoch 37/50: 100%|██████████| 77/77 [00:00&lt;00:00, 125.78img/s, loss (epoch)=0.783]
+Epoch 38/50: 100%|██████████| 77/77 [00:00&lt;00:00, 128.21img/s, loss (epoch)=0.8]
+Epoch 39/50: 100%|██████████| 77/77 [00:00&lt;00:00, 129.18img/s, loss (epoch)=0.83]
+Epoch 40/50: 100%|██████████| 77/77 [00:00&lt;00:00, 127.77img/s, loss (epoch)=0.84]
+Epoch 41/50: 100%|██████████| 77/77 [00:00&lt;00:00, 127.88img/s, loss (epoch)=0.829]
+Epoch 42/50: 100%|██████████| 77/77 [00:00&lt;00:00, 130.49img/s, loss (epoch)=0.817]
+Epoch 43/50: 100%|██████████| 77/77 [00:00&lt;00:00, 125.93img/s, loss (epoch)=0.845]
+Epoch 44/50: 100%|██████████| 77/77 [00:00&lt;00:00, 129.96img/s, loss (epoch)=0.778]
+Epoch 45/50: 100%|██████████| 77/77 [00:00&lt;00:00, 127.49img/s, loss (epoch)=0.82]
+Epoch 46/50: 100%|██████████| 77/77 [00:00&lt;00:00, 126.11img/s, loss (epoch)=0.847]
+Epoch 47/50: 100%|██████████| 77/77 [00:00&lt;00:00, 127.49img/s, loss (epoch)=0.806]
+Epoch 48/50: 100%|██████████| 77/77 [00:00&lt;00:00, 124.83img/s, loss (epoch)=0.835]
+Epoch 49/50: 100%|██████████| 77/77 [00:00&lt;00:00, 126.15img/s, loss (epoch)=0.874]
+Epoch 50/50: 100%|██████████| 77/77 [00:00&lt;00:00, 126.34img/s, loss (epoch)=0.841]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 50
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="test-performance">
@@ -1627,6 +1707,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_30_0.png" src="../../_images/cellular_segmentation_30_0.png" />
 </div>
 </div>
 </div>
@@ -1849,6 +1932,12 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5039152
+</pre></div>
+</div>
+<img alt="../../_images/cellular_segmentation_34_1.png" src="../../_images/cellular_segmentation_34_1.png" />
+</div>
 </div>
 <p>Once you choose a threshold, you’ll want to use it on your test images.</p>
 <div class="cell docutils container">
@@ -1878,6 +1967,12 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.58384985
+</pre></div>
+</div>
+<img alt="../../_images/cellular_segmentation_36_1.png" src="../../_images/cellular_segmentation_36_1.png" />
+</div>
 </div>
 <p>What kinds of errors is the network making?</p>
 <p>U-nets with this type of prediction (CELL/NOT CELL) typically overmerge cells. You may see some examples below. In the text at the beginning, ways to avoid this problem are discussed and also one instance (distance to boundary) is implemented in the cellpose repository.</p>
@@ -1895,6 +1990,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_38_0.png" src="../../_images/cellular_segmentation_38_0.png" />
 </div>
 </div>
 </div>
@@ -1933,6 +2031,11 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imaging data of shape: (4500, 325, 556)
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="finding-cells">
@@ -1947,6 +2050,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_43_0.png" src="../../_images/cellular_segmentation_43_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1988,6 +2094,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_44_0.png" src="../../_images/cellular_segmentation_44_0.png" />
+</div>
 </div>
 </div>
 <div class="section" id="neural-activity">
@@ -2005,6 +2114,9 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cellular_segmentation_46_0.png" src="../../_images/cellular_segmentation_46_0.png" />
 </div>
 </div>
 </div>
