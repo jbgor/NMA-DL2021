@@ -898,6 +898,7 @@
 <h1>Twitter Sentiment Analysis<a class="headerlink" href="#twitter-sentiment-analysis" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong>  Juan Manuel Rodriguez, Salomey Osei, Gonzalo Uribarri</p>
+<p><strong>Production editors:</strong> Amita Kapoor, Spiros Chavlis</p>
 <p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
 <p align='center'><img src='https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True'/></p></div>
 <hr class="docutils" />
@@ -1233,14 +1234,14 @@
 <p>We will add two extra Tokens to the dictionary, one for words outside the dictionary (<code class="docutils literal notranslate"><span class="pre">'UNK'</span></code>) and one for padding the sequences (<code class="docutils literal notranslate"><span class="pre">'PAD'</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dictionary to go from words to idx </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dictionary to go from words to idx</span>
 <span class="n">word_to_idx</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="c1"># dictionary to go from idx to words (just in case) </span>
+<span class="c1"># dictionary to go from idx to words (just in case)</span>
 <span class="n">idx_to_word</span> <span class="o">=</span> <span class="p">{}</span>
 
 
 <span class="c1"># We include the special tokens first</span>
-<span class="n">PAD_token</span> <span class="o">=</span> <span class="mi">0</span>   
+<span class="n">PAD_token</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">UNK_token</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="n">word_to_idx</span><span class="p">[</span><span class="s1">&#39;PAD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PAD_token</span>
@@ -1315,7 +1316,7 @@
  <span class="k">def</span> <span class="nf">padding</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">):</span>
   <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences</span><span class="p">),</span> <span class="n">seq_len</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
   <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences</span><span class="p">):</span>
-    <span class="n">len_tweet</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span> 
+    <span class="n">len_tweet</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">len_tweet</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
       <span class="k">if</span> <span class="n">len_tweet</span> <span class="o">&lt;=</span> <span class="n">seq_len</span><span class="p">:</span>
         <span class="c1"># If its shorter, we fill with zeros (the padding Token index)</span>
@@ -1413,7 +1414,7 @@
 
     <span class="c1"># LSTM Layers</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">embedding_dim</span><span class="p">,</span><span class="n">hidden_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_dim</span><span class="p">,</span>
-                        <span class="n">num_layers</span><span class="o">=</span><span class="n">no_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">num_layers</span><span class="o">=</span><span class="n">no_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                         <span class="n">dropout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">drop_prob</span><span class="p">)</span>
 
     <span class="c1"># Dropout layer</span>
@@ -1422,7 +1423,7 @@
     <span class="c1"># Linear and Sigmoid layer</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">output_dim</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">sig</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()</span>
-      
+
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">hidden</span><span class="p">):</span>
     <span class="n">batch_size</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
@@ -1552,16 +1553,16 @@
   <span class="n">train_losses</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="n">train_acc</span> <span class="o">=</span> <span class="mf">0.0</span>
   <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-  
+
   <span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
 
-    <span class="c1"># Initialize hidden state </span>
+    <span class="c1"># Initialize hidden state</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
     <span class="c1"># Creating new variables for the hidden state</span>
     <span class="n">h</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">each</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">h</span><span class="p">])</span>
 
     <span class="c1"># Move batch inputs and labels to gpu</span>
-    <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>   
+    <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
     <span class="c1"># Set gradient to zero</span>
     <span class="n">model</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
@@ -1582,14 +1583,14 @@
     <span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">clip_grad_norm_</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">clip</span><span class="p">)</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
-  
-  <span class="c1"># Evaluate on the validation set for this epoch </span>
+
+  <span class="c1"># Evaluate on the validation set for this epoch</span>
   <span class="n">val_losses</span> <span class="o">=</span> <span class="p">[]</span>
   <span class="n">val_acc</span> <span class="o">=</span> <span class="mf">0.0</span>
   <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
   <span class="k">for</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="ow">in</span> <span class="n">valid_loader</span><span class="p">:</span>
 
-    <span class="c1"># Initialize hidden state </span>
+    <span class="c1"># Initialize hidden state</span>
     <span class="n">val_h</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
     <span class="n">val_h</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">each</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">val_h</span><span class="p">])</span>
 
@@ -1606,7 +1607,7 @@
 
     <span class="n">accuracy</span> <span class="o">=</span> <span class="n">acc</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
     <span class="n">val_acc</span> <span class="o">+=</span> <span class="n">accuracy</span>
-          
+
   <span class="n">epoch_train_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">train_losses</span><span class="p">)</span>
   <span class="n">epoch_val_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">val_losses</span><span class="p">)</span>
   <span class="n">epoch_train_acc</span> <span class="o">=</span> <span class="n">train_acc</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
@@ -1615,7 +1616,7 @@
   <span class="n">epoch_vl_loss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_val_loss</span><span class="p">)</span>
   <span class="n">epoch_tr_acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_train_acc</span><span class="p">)</span>
   <span class="n">epoch_vl_acc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_val_acc</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;train_loss : </span><span class="si">{</span><span class="n">epoch_train_loss</span><span class="si">}</span><span class="s1"> val_loss : </span><span class="si">{</span><span class="n">epoch_val_loss</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;train_accuracy : </span><span class="si">{</span><span class="n">epoch_train_acc</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s1"> val_accuracy : </span><span class="si">{</span><span class="n">epoch_val_acc</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">epoch_val_loss</span> <span class="o">&lt;=</span> <span class="n">valid_loss_min</span><span class="p">:</span>
