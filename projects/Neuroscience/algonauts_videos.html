@@ -842,6 +842,11 @@
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enter-the-dropbox-link">
+     Enter the dropbox link
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#enter-the-dropbox-link-and-run-the-cell">
      Enter the dropbox link and run the cell
     </a>
@@ -868,6 +873,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -879,7 +889,7 @@
         
               <div>
                 
-  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/fix_links/projects/Neuroscience/algonauts_videos.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/Neuroscience/algonauts_videos.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <div class="section" id="load-algonauts-videos">
 <h1>Load algonauts videos<a class="headerlink" href="#load-algonauts-videos" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
@@ -911,8 +921,6 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @title Install dependencies
 !pip install nilearn --quiet
 !pip install decord --quiet
-!pip install opencv-python --quiet
-!pip install Pillow --quiet
 </pre></div>
 </div>
 </div>
@@ -921,37 +929,15 @@
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">urllib</span>
-<span class="kn">import</span> <span class="nn">argparse</span>
-
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
 
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">transforms</span> <span class="k">as</span> <span class="n">trn</span>
-
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span><span class="p">,</span> <span class="n">IncrementalPCA</span>
-
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torch.utils.model_zoo</span> <span class="k">as</span> <span class="nn">model_zoo</span>
-<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span> <span class="k">as</span> <span class="n">V</span>
-
-<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">surface</span>
 <span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 <span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
-
-<span class="kn">from</span> <span class="nn">decord</span> <span class="kn">import</span> <span class="n">cpu</span>
-<span class="kn">from</span> <span class="nn">decord</span> <span class="kn">import</span> <span class="n">VideoReader</span>
 
 <span class="n">fsaverage</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">fetch_surf_fsaverage</span><span class="p">()</span>
 </pre></div>
@@ -959,27 +945,53 @@
 </div>
 </div>
 <p>Get the dropbox link to download dataset by filling this <a class="reference external" href="https://forms.gle/qq9uqqu6SwN8ytxQ9">google form</a>.</p>
+<p><strong>Note:</strong> You MUST set <code class="docutils literal notranslate"><span class="pre">dropbox_link</span></code> parameter <code class="docutils literal notranslate"><span class="pre">dl=1</span></code>, e.g., <code class="docutils literal notranslate"><span class="pre">https://www.dropbox.com/myurl/participants_data.zip?dl=1</span></code></p>
+</div>
+<div class="section" id="enter-the-dropbox-link">
+<h2>Enter the dropbox link<a class="headerlink" href="#enter-the-dropbox-link" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Enter the dropbox link</span>
+<span class="n">dropbox_link</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="c1"># @param {type:&quot;string&quot;}</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="enter-the-dropbox-link-and-run-the-cell">
 <h2>Enter the dropbox link and run the cell<a class="headerlink" href="#enter-the-dropbox-link-and-run-the-cell" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @title Enter the dropbox link and run the cell
-dropbox_link = &#39;&#39; # @param {type:&quot;string&quot;}
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Enter the dropbox link and run the cell</span>
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">io</span>
 
-# Use the dropbox link to download the data
-os.environ[&quot;download_link&quot;] = dropbox_link
-!echo $download_link 
-!wget -O participants_data.zip -c $download_link  
-!wget -O example.nii -c https://github.com/Neural-Dynamics-of-Visual-Cognition-FUB/Algonauts2021_devkit/raw/main/example.nii
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>%%capture
-!unzip -o participants_data.zip
+<span class="c1"># Use the dropbox link to download the data</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dropbox link: </span><span class="si">{</span><span class="n">dropbox_link</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">dropbox_link</span><span class="p">:</span>
+  <span class="n">fname1</span> <span class="o">=</span> <span class="s1">&#39;participants_data_v2021&#39;</span>
+  <span class="n">fname2</span> <span class="o">=</span> <span class="s1">&#39;AlgonautsVideos268_All_30fpsmax&#39;</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname1</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data downloading...&#39;</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dropbox_link</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+    <span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data download is completed.&#39;</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data are already downloaded.&#39;</span><span class="p">)</span>
+
+
+  <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/Neural-Dynamics-of-Visual-Cognition-FUB/Algonauts2021_devkit/raw/main/example.nii&#39;</span>
+  <span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;example.nii&#39;</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+      <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2"> file is already downloaded.&quot;</span><span class="p">)</span>
+
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;You need to submit the form and get the dropbox link&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1015,26 +1027,25 @@ The dataset contains 1,000 3-second videos + fMRI human brain data of 10 subject
     <span class="c1"># ret_di = pickle.load(f)</span>
   <span class="k">return</span> <span class="n">ret_di</span>
 
-  
 
 <span class="k">def</span> <span class="nf">visualize_activity</span><span class="p">(</span><span class="n">vid_id</span><span class="p">,</span><span class="n">sub</span><span class="p">):</span>
   <span class="c1"># Setting up the paths for whole brain data</span>
-  <span class="n">fmri_dir</span> <span class="o">=</span> <span class="s1">&#39;./participants_data_v2021&#39;</span> 
+  <span class="n">fmri_dir</span> <span class="o">=</span> <span class="s1">&#39;./participants_data_v2021&#39;</span>
   <span class="n">track</span> <span class="o">=</span> <span class="s2">&quot;full_track&quot;</span>
 
   <span class="c1"># get the right track directory depending on whole brain/ROI choice</span>
-  <span class="n">track_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmri_dir</span><span class="p">,</span> <span class="n">track</span><span class="p">)</span>  
+  <span class="n">track_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmri_dir</span><span class="p">,</span> <span class="n">track</span><span class="p">)</span>
 
-  <span class="c1"># get the selected subject&#39;s directory </span>
+  <span class="c1"># get the selected subject&#39;s directory</span>
   <span class="n">sub_fmri_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">track_dir</span><span class="p">,</span> <span class="n">sub</span><span class="p">)</span>
-  
+
   <span class="c1">#result directory to store nifti file</span>
   <span class="n">results_dir</span> <span class="o">=</span> <span class="s1">&#39;/content/&#39;</span>
 
   <span class="c1"># mapping the data to voxels and storing in a nifti file</span>
-  <span class="n">fmri_train_all</span><span class="p">,</span><span class="n">voxel_mask</span> <span class="o">=</span> <span class="n">get_fmri</span><span class="p">(</span><span class="n">sub_fmri_dir</span><span class="p">,</span><span class="s2">&quot;WB&quot;</span><span class="p">)</span> 
+  <span class="n">fmri_train_all</span><span class="p">,</span><span class="n">voxel_mask</span> <span class="o">=</span> <span class="n">get_fmri</span><span class="p">(</span><span class="n">sub_fmri_dir</span><span class="p">,</span><span class="s2">&quot;WB&quot;</span><span class="p">)</span>
   <span class="n">visual_mask_3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">78</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="mi">71</span><span class="p">))</span>
-  <span class="n">visual_mask_3D</span><span class="p">[</span><span class="n">voxel_mask</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="n">fmri_train_all</span><span class="p">[</span><span class="n">vid_id</span><span class="p">,:]</span> 
+  <span class="n">visual_mask_3D</span><span class="p">[</span><span class="n">voxel_mask</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span> <span class="n">fmri_train_all</span><span class="p">[</span><span class="n">vid_id</span><span class="p">,:]</span>
   <span class="n">brain_mask</span> <span class="o">=</span> <span class="s1">&#39;./example.nii&#39;</span>
   <span class="n">nii_save_path</span> <span class="o">=</span>  <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results_dir</span><span class="p">,</span> <span class="s1">&#39;vid_activity.nii&#39;</span><span class="p">)</span>
   <span class="n">saveasnii</span><span class="p">(</span><span class="n">brain_mask</span><span class="p">,</span><span class="n">nii_save_path</span><span class="p">,</span><span class="n">visual_mask_3D</span><span class="p">)</span>
@@ -1068,7 +1079,7 @@ The dataset contains 1,000 3-second videos + fMRI human brain data of 10 subject
   <span class="n">ROI_data_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ROI_data</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">ROI</span> <span class="o">==</span> <span class="s2">&quot;WB&quot;</span><span class="p">:</span>
     <span class="n">voxel_mask</span> <span class="o">=</span> <span class="n">ROI_data</span><span class="p">[</span><span class="s1">&#39;voxel_mask&#39;</span><span class="p">]</span>
-    
+
     <span class="k">return</span> <span class="n">ROI_data_train</span><span class="p">,</span> <span class="n">voxel_mask</span>
 
   <span class="k">return</span> <span class="n">ROI_data_train</span>
@@ -1088,22 +1099,22 @@ The dataset contains 1,000 3-second videos + fMRI human brain data of 10 subject
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Loading fMRI data and inspecting dimensions</span>
 <span class="c1"># Select Subject</span>
-<span class="n">sub</span> <span class="o">=</span> <span class="s1">&#39;sub05&#39;</span>  <span class="c1"># @param [&quot;sub01&quot;,&quot;sub02&quot;,&quot;sub03&quot;,&quot;sub04&quot;,&quot;sub05&quot;,&quot;sub06&quot;,&quot;sub07&quot;,&quot;sub08&quot;,&quot;sub09&quot;,&quot;sub10&quot;]  </span>
+<span class="n">sub</span> <span class="o">=</span> <span class="s1">&#39;sub05&#39;</span>  <span class="c1"># @param [&quot;sub01&quot;,&quot;sub02&quot;,&quot;sub03&quot;,&quot;sub04&quot;,&quot;sub05&quot;,&quot;sub06&quot;,&quot;sub07&quot;,&quot;sub08&quot;,&quot;sub09&quot;,&quot;sub10&quot;]</span>
 
 <span class="c1"># Select ROI</span>
 <span class="n">ROI</span> <span class="o">=</span> <span class="s1">&#39;V1&#39;</span>  <span class="c1"># @param [&quot;WB&quot;, &quot;V1&quot;, &quot;V2&quot;,&quot;V3&quot;, &quot;V4&quot;, &quot;LOC&quot;, &quot;EBA&quot;, &quot;FFA&quot;,&quot;STS&quot;, &quot;PPA&quot;]</span>
 
 <span class="c1">######## fMRI data loader wrapper code ###################################</span>
-<span class="n">fmri_dir</span> <span class="o">=</span> <span class="s1">&#39;./participants_data_v2021&#39;</span> 
-<span class="k">if</span> <span class="n">ROI</span> <span class="o">==</span> <span class="s2">&quot;WB&quot;</span><span class="p">:</span>  <span class="c1"># Loading whole brain data </span>
+<span class="n">fmri_dir</span> <span class="o">=</span> <span class="s1">&#39;./participants_data_v2021&#39;</span>
+<span class="k">if</span> <span class="n">ROI</span> <span class="o">==</span> <span class="s2">&quot;WB&quot;</span><span class="p">:</span>  <span class="c1"># Loading whole brain data</span>
   <span class="n">track</span> <span class="o">=</span> <span class="s2">&quot;full_track&quot;</span>  <span class="c1"># stored in full_track directory</span>
 <span class="k">else</span><span class="p">:</span>  <span class="c1"># Loading ROI data</span>
   <span class="n">track</span> <span class="o">=</span> <span class="s2">&quot;mini_track&quot;</span> <span class="c1"># stored in mini_track directory</span>
 
 <span class="c1"># get the right track directory depending on whole brain/ROI choice</span>
-<span class="n">track_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmri_dir</span><span class="p">,</span> <span class="n">track</span><span class="p">)</span>  
+<span class="n">track_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fmri_dir</span><span class="p">,</span> <span class="n">track</span><span class="p">)</span>
 
-<span class="c1"># get the selected subject&#39;s directory </span>
+<span class="c1"># get the selected subject&#39;s directory</span>
 <span class="n">sub_fmri_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">track_dir</span><span class="p">,</span> <span class="n">sub</span><span class="p">)</span>
 
 <span class="c1"># Load the fMRI data for the selected subject and ROI</span>
@@ -1166,10 +1177,15 @@ The dataset contains 1,000 3-second videos + fMRI human brain data of 10 subject
 </div>
 </div>
 <p>The values in the fMRI response above correspond to beta values from 5s to 9s after stimulus onset calculated using an Finite Impulse Response (FIR) model. The beta values were averaged across time and z-scored across videos.</p>
-<p>#Reference</p>
-<p><a class="reference external" href="https://arxiv.org/abs/2104.13714v1">The Algonauts Project 2021 Challenge: How the Human Brain Makes Sense of a World in Motion.
-<em>Cichy et al. arxiv 2021</em></a></p>
 </div>
+</div>
+<hr class="docutils" />
+<div class="section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<ol class="simple">
+<li><p>Radoslaw Martin Cichy, Kshitij Dwivedi, Benjamin Lahner, Alex Lascelles, Polina Iamshchinina, Monika Graumann, Alex Andonian, Apurva Ratan Murty, Kendrick Kay, Gemma Roig, Aude Oliva. (2021). The Algonauts Project 2021 Challenge: How the Human Brain Makes Sense of a World in Motion. arXiv, <a class="reference external" href="https://arxiv.org/abs/2104.13714v1">arXiv:2104.13714v1</a>.</p></li>
+<li><p>Radoslaw Martin Cichy, Gemma Roig, Alex Andonian, Kshitij Dwivedi, Benjamin Lahner, Alex Lascelles, Yalda Mohsenzadeh, Kandan Ramakrishnan, and Aude Oliva. (2019). The Algonauts Project: A Platform for Communication between the Sciences of Biological and Artificial Intelligence. arXiv, <a class="reference external" href="https://arxiv.org/abs/1905.05675">arXiv:1905.05675</a>.</p></li>
+</ol>
 </div>
 
     <script type="text/x-thebe-config">
