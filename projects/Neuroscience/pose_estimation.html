@@ -842,8 +842,13 @@
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#helper-function-for-plotting-outputs">
-     Helper function for plotting outputs
+    <a class="reference internal nav-link" href="#helper-function">
+     Helper function
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-the-data">
+     Download the data
     </a>
    </li>
   </ul>
@@ -986,15 +991,15 @@ This Notebook was developed by Kristin Branson. It borrows from:</p>
 </div>
 </div>
 </div>
-<div class="section" id="helper-function-for-plotting-outputs">
-<h2>Helper function for plotting outputs<a class="headerlink" href="#helper-function-for-plotting-outputs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="helper-function">
+<h2>Helper function<a class="headerlink" href="#helper-function" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper function for plotting outputs</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper function</span>
 <span class="k">def</span> <span class="nf">PlotLabelAndPrediction</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">hm_pred</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title_string</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  PlotLabelAndPrediction(batch,pred,idx=None):</span>
-<span class="sd">  Plot the input, labels, and predictions for a batch. </span>
+<span class="sd">  Plot the input, labels, and predictions for a batch.</span>
 <span class="sd">  &quot;&quot;&quot;</span>
   <span class="n">isbatch</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
 
@@ -1061,9 +1066,12 @@ This Notebook was developed by Kristin Branson. It borrows from:</p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+</div>
+<div class="section" id="download-the-data">
+<h2>Download the data<a class="headerlink" href="#download-the-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download the data</span>
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">tarfile</span>
 
 <span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;fly_bubble_20201204.tar.gz&#39;</span>
@@ -1097,9 +1105,9 @@ This Notebook was developed by Kristin Branson. It borrows from:</p>
 <p>Get the pose data set. To do this, you need to make a shortcut to a shared Google Drive directory in your Google Drive.</p>
 <ol class="simple">
 <li><p>Go to the shared Google Drive: https://drive.google.com/drive/folders/1a06ZAmQXvUqZZQGI9XWWjABl4vOF8v6Z?usp=sharing</p></li>
-<li><p>Select “Add shortcut to Drive” and select “My Drive”.
-<img alt="Screenshot Add shortcut to Drive Step 2" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/Screenshot_AddShortcutToPoseData.png" /></p></li>
+<li><p>Select “Add shortcut to Drive” and select “My Drive”.</p></li>
 </ol>
+<img alt="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/Screenshot_AddShortcutToPoseData.png" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/Screenshot_AddShortcutToPoseData.png" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gDrive</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1111,14 +1119,15 @@ This Notebook was developed by Kristin Branson. It borrows from:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @markdown set the `gDrive=True` and run the cell.
+from google.colab import drive
+
 if gDrive:
-  from google.colab import drive
   print(&#39;The first time you run this, it will ask you to verify that Google Colab can access your Google Drive.&#39;)
   print(&#39;Follow the instructions -- go to the linked website, and copy-paste the provided code.&#39;)
   drive.flush_and_unmount()
   drive.mount(&#39;/content/drive&#39;, force_remount=True)
   assert os.path.exists(&#39;/content/drive/My Drive&#39;), &#39;Google drive not mounted&#39;
-  
+
   # Unzip fly pose data
   datadir = &#39;view0&#39;
   if not os.path.exists(datadir):
@@ -1178,9 +1187,9 @@ if gDrive:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show some example images</span>
-<span class="n">nimsshow</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># number of images to plot</span>
+<span class="n">nimsshow</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># number of images to plot</span>
 <span class="n">imsshow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">ntrainims</span><span class="p">,</span><span class="n">nimsshow</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">nimsshow</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># make the figure bigger</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">nimsshow</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># make the figure bigger</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nimsshow</span><span class="p">):</span>
   <span class="n">filestr</span> <span class="o">=</span> <span class="n">trainann</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">][</span><span class="n">imsshow</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span>
   <span class="n">imfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traindir</span><span class="p">,</span> <span class="n">filestr</span><span class="p">)</span>
@@ -1200,22 +1209,22 @@ if gDrive:
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a dataset class to load the data</span>
 
-<span class="k">def</span> <span class="nf">heatmap2image</span><span class="p">(</span><span class="n">hm</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span><span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">heatmap2image</span><span class="p">(</span><span class="n">hm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  heatmap2image(hm,cmap=&#39;jet&#39;,colors=None)</span>
-<span class="sd">  Creates and returns an image visualization from landmark heatmaps. Each </span>
-<span class="sd">  landmark is colored according to the input cmap/colors. </span>
+<span class="sd">  Creates and returns an image visualization from landmark heatmaps. Each</span>
+<span class="sd">  landmark is colored according to the input cmap/colors.</span>
 <span class="sd">  Inputs:</span>
-<span class="sd">    hm: nlandmarks x height x width ndarray, dtype=float in the range 0 to 1. </span>
-<span class="sd">    hm[p,i,j] is a score indicating how likely it is that the pth landmark </span>
+<span class="sd">    hm: nlandmarks x height x width ndarray, dtype=float in the range 0 to 1.</span>
+<span class="sd">    hm[p,i,j] is a score indicating how likely it is that the pth landmark</span>
 <span class="sd">    is at pixel location (i,j).</span>
 <span class="sd">    cmap: string.</span>
 <span class="sd">    Name of colormap for defining colors of landmark points. Used only if colors</span>
-<span class="sd">    is None. </span>
+<span class="sd">    is None.</span>
 <span class="sd">    Default: &#39;jet&#39;</span>
-<span class="sd">    colors: list of length nlandmarks. </span>
-<span class="sd">    colors[p] is an ndarray of size (4,) indicating the color to use for the </span>
-<span class="sd">    pth landmark. colors is the output of matplotlib&#39;s colormap functions. </span>
+<span class="sd">    colors: list of length nlandmarks.</span>
+<span class="sd">    colors[p] is an ndarray of size (4,) indicating the color to use for the</span>
+<span class="sd">    pth landmark. colors is the output of matplotlib&#39;s colormap functions.</span>
 <span class="sd">    Default: None</span>
 <span class="sd">  Output:</span>
 <span class="sd">    im: height x width x 3 ndarray</span>
@@ -1248,24 +1257,24 @@ if gDrive:
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Constructor</span>
 <span class="sd">    This must be defined in every Torch Dataset and can take any inputs you</span>
-<span class="sd">    want it to. </span>
+<span class="sd">    want it to.</span>
 <span class="sd">    Inputs:</span>
 <span class="sd">      annfile: string</span>
 <span class="sd">      Path to json file containing annotations.</span>
 <span class="sd">      datadir: string</span>
-<span class="sd">      Path to directory containing images. If None, images are assumed to be in </span>
-<span class="sd">      the working directory. </span>
+<span class="sd">      Path to directory containing images. If None, images are assumed to be in</span>
+<span class="sd">      the working directory.</span>
 <span class="sd">      Default: None</span>
 <span class="sd">      label_sigma: scalar float</span>
 <span class="sd">      Standard deviation in pixels of Gaussian to be used to make the landmark</span>
-<span class="sd">      heatmap. </span>
+<span class="sd">      heatmap.</span>
 <span class="sd">      Default: 3.</span>
 <span class="sd">      transform: None</span>
 <span class="sd">      Not used currently</span>
 <span class="sd">      landmarks: ndarray (or list, something used for indexing into ndarray)</span>
-<span class="sd">      Indices of landmarks available to use in this dataset. Reducing the </span>
+<span class="sd">      Indices of landmarks available to use in this dataset. Reducing the</span>
 <span class="sd">      landmarks used can make training faster and require less memory, and is</span>
-<span class="sd">      useful for testing code. If None, all landmarks are used. </span>
+<span class="sd">      useful for testing code. If None, all landmarks are used.</span>
 <span class="sd">      Default: None</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -1286,7 +1295,7 @@ if gDrive:
     <span class="c1"># for data augmentation/rescaling</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
 
-    <span class="c1"># output will be heatmap images, one per landmark, with Gaussian values </span>
+    <span class="c1"># output will be heatmap images, one per landmark, with Gaussian values</span>
     <span class="c1"># around the landmark location -- precompute some stuff for that</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label_filter_r</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1296,19 +1305,19 @@ if gDrive:
 
   <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Overloaded len function. </span>
+<span class="sd">    Overloaded len function.</span>
 <span class="sd">    This must be defined in every Torch Dataset and must take only self</span>
-<span class="sd">    as input. </span>
-<span class="sd">    Returns the number of examples in the dataset. </span>
+<span class="sd">    as input.</span>
+<span class="sd">    Returns the number of examples in the dataset.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ann</span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">])</span>
 
   <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Overloaded getitem function. </span>
+<span class="sd">    Overloaded getitem function.</span>
 <span class="sd">    This must be defined in every Torch Dataset and must take only self</span>
-<span class="sd">    and item as input. It returns example number item. </span>
-<span class="sd">    item: scalar integer. </span>
+<span class="sd">    and item as input. It returns example number item.</span>
+<span class="sd">    item: scalar integer.</span>
 <span class="sd">    The output example is a dict with the following fields:</span>
 <span class="sd">    image: torch float32 tensor of size ncolors x height x width</span>
 <span class="sd">    landmarks: nlandmarks x 2 float ndarray</span>
@@ -1377,7 +1386,7 @@ if gDrive:
 
     <span class="c1"># allocate</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">label_filter_d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_filter_d</span><span class="p">])</span>
-    <span class="c1"># set the middle pixel to 1. </span>
+    <span class="c1"># set the middle pixel to 1.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">label_filter_r</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_filter_r</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
     <span class="c1"># blur with a Gaussian</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span><span class="p">,</span>
@@ -1385,7 +1394,7 @@ if gDrive:
                                           <span class="bp">self</span><span class="o">.</span><span class="n">label_filter_d</span><span class="p">),</span>
                                          <span class="bp">self</span><span class="o">.</span><span class="n">label_sigma</span><span class="p">)</span>
     <span class="c1"># normalize</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span><span class="p">)</span> 
+    <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span><span class="p">)</span>
     <span class="c1"># convert to torch tensor</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_filter</span><span class="p">)</span>
 
@@ -1395,7 +1404,7 @@ if gDrive:
 <span class="sd">    Helper function</span>
 <span class="sd">    Creates the heatmap tensor of size imsz corresponding to landmark locations locs</span>
 <span class="sd">    Inputs:</span>
-<span class="sd">      locs: nlandmarks x 2 ndarray </span>
+<span class="sd">      locs: nlandmarks x 2 ndarray</span>
 <span class="sd">      Locations of landmarks</span>
 <span class="sd">      imsz: image shape</span>
 <span class="sd">    Returns:</span>
@@ -1431,12 +1440,12 @@ if gDrive:
 <span class="sd">    static function, used for visualization</span>
 <span class="sd">    COCODataset.get_image(d,i=None)</span>
 <span class="sd">    Returns an image usable with plt.imshow()</span>
-<span class="sd">    Inputs: </span>
-<span class="sd">      d: if i is None, item from a COCODataset. </span>
-<span class="sd">      if i is a scalar, batch of examples from a COCO Dataset returned </span>
-<span class="sd">      by a DataLoader. </span>
+<span class="sd">    Inputs:</span>
+<span class="sd">      d: if i is None, item from a COCODataset.</span>
+<span class="sd">      if i is a scalar, batch of examples from a COCO Dataset returned</span>
+<span class="sd">      by a DataLoader.</span>
 <span class="sd">      i: Index of example into the batch d, or None if d is a single example</span>
-<span class="sd">    Returns the ith image from the patch as an ndarray plottable with </span>
+<span class="sd">    Returns the ith image from the patch as an ndarray plottable with</span>
 <span class="sd">    plt.imshow()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1450,11 +1459,11 @@ if gDrive:
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    static helper function</span>
 <span class="sd">    COCODataset.get_landmarks(d,i=None)</span>
-<span class="sd">    Returns a nlandmarks x 2 ndarray indicating landmark locations. </span>
-<span class="sd">    Inputs: </span>
-<span class="sd">      d: if i is None, item from a COCODataset. </span>
-<span class="sd">      if i is a scalar, batch of examples from a COCO Dataset returned </span>
-<span class="sd">      by a DataLoader. </span>
+<span class="sd">    Returns a nlandmarks x 2 ndarray indicating landmark locations.</span>
+<span class="sd">    Inputs:</span>
+<span class="sd">      d: if i is None, item from a COCODataset.</span>
+<span class="sd">      if i is a scalar, batch of examples from a COCO Dataset returned</span>
+<span class="sd">      by a DataLoader.</span>
 <span class="sd">      i: Index of example into the batch d, or None if d is a single example</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1469,20 +1478,20 @@ if gDrive:
 <span class="sd">    static function, used for visualization</span>
 <span class="sd">    COCODataset.get_heatmap_image(d,i=None)</span>
 <span class="sd">    Returns an image visualization of heatmaps usable with plt.imshow()</span>
-<span class="sd">    Inputs: </span>
-<span class="sd">      d: if i is None, item from a COCODataset. </span>
-<span class="sd">      if i is a scalar, batch of examples from a COCO Dataset returned </span>
-<span class="sd">      by a DataLoader. </span>
+<span class="sd">    Inputs:</span>
+<span class="sd">      d: if i is None, item from a COCODataset.</span>
+<span class="sd">      if i is a scalar, batch of examples from a COCO Dataset returned</span>
+<span class="sd">      by a DataLoader.</span>
 <span class="sd">      i: Index of example into the batch d, or None if d is a single example</span>
-<span class="sd">      Returns the ith heatmap from the patch as an ndarray plottable with </span>
+<span class="sd">      Returns the ith heatmap from the patch as an ndarray plottable with</span>
 <span class="sd">      plt.imshow()</span>
 <span class="sd">      cmap: string.</span>
 <span class="sd">      Name of colormap for defining colors of landmark points. Used only if colors</span>
-<span class="sd">      is None. </span>
+<span class="sd">      is None.</span>
 <span class="sd">      Default: &#39;jet&#39;</span>
-<span class="sd">      colors: list of length nlandmarks. </span>
-<span class="sd">      colors[p] is an ndarray of size (4,) indicating the color to use for the </span>
-<span class="sd">      pth landmark. colors is the output of matplotlib&#39;s colormap functions. </span>
+<span class="sd">      colors: list of length nlandmarks.</span>
+<span class="sd">      colors[p] is an ndarray of size (4,) indicating the color to use for the</span>
+<span class="sd">      pth landmark. colors is the output of matplotlib&#39;s colormap functions.</span>
 <span class="sd">      Default: None</span>
 <span class="sd">    Output:</span>
 <span class="sd">      im: height x width x 3 ndarray</span>
@@ -1558,21 +1567,21 @@ if gDrive:
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define network structure - UNet</span>
 <span class="c1"># Copy-paste &amp; modify from https://github.com/milesial/Pytorch-UNet</span>
 
-<span class="c1"># The UNet is defined modularly. </span>
+<span class="c1"># The UNet is defined modularly.</span>
 <span class="c1"># It is a series of downsampling layers defined by the module Down</span>
-<span class="c1"># followed by upsampling layers defined by the module Up. The output is </span>
+<span class="c1"># followed by upsampling layers defined by the module Up. The output is</span>
 <span class="c1"># a convolutional layer with an output channel for each landmark, defined by</span>
-<span class="c1"># the module OutConv. </span>
+<span class="c1"># the module OutConv.</span>
 <span class="c1"># Each down and up layer is actually two convolutional layers with</span>
 <span class="c1"># a ReLU nonlinearity and batch normalization, defined by the module</span>
 <span class="c1"># DoubleConv.</span>
-<span class="c1"># The Down module consists of a 2x2 max pool layer followed by the DoubleConv </span>
-<span class="c1"># module. </span>
-<span class="c1"># The Up module consists of an upsampling, either defined via bilinear </span>
+<span class="c1"># The Down module consists of a 2x2 max pool layer followed by the DoubleConv</span>
+<span class="c1"># module.</span>
+<span class="c1"># The Up module consists of an upsampling, either defined via bilinear</span>
 <span class="c1"># interpolation (bilinear=True), or a learned convolutional transpose, followed</span>
 <span class="c1"># by a DoubleConv module.</span>
 <span class="c1"># The Output layer is a single 2-D convolutional layer with no nonlinearity.</span>
-<span class="c1"># The nonlinearity is incorporated into the network loss function. </span>
+<span class="c1"># The nonlinearity is incorporated into the network loss function.</span>
 
 <span class="k">class</span> <span class="nc">DoubleConv</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;(convolution =&gt; [BN] =&gt; ReLU) * 2&quot;&quot;&quot;</span>
@@ -1669,7 +1678,7 @@ if gDrive:
     <span class="n">nchannels_up2</span> <span class="o">=</span> <span class="n">nchannels_up1</span><span class="o">//</span><span class="mi">2</span>
     <span class="n">nchannels_up3</span> <span class="o">=</span> <span class="n">nchannels_up2</span><span class="o">//</span><span class="mi">2</span>
 
-    <span class="k">if</span> <span class="n">bilinear</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">bilinear</span><span class="p">:</span>
       <span class="n">factor</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1696,7 +1705,7 @@ if gDrive:
     <span class="n">x4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_down3</span><span class="p">(</span><span class="n">x3</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x4</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_up1</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">x3</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>       
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_up2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;inc: shape = </span><span class="si">{</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_up3</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
@@ -1780,7 +1789,7 @@ if gDrive:
 <span class="c1"># following https://github.com/milesial/Pytorch-UNet/blob/master/train.py</span>
 
 <span class="c1"># parameters related to training the network</span>
-<span class="n">batchsize</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># number of images per batch -- amount of required memory </span>
+<span class="n">batchsize</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># number of images per batch -- amount of required memory</span>
               <span class="c1"># for training will increase linearly in batchsize</span>
 <span class="n">nepochs</span> <span class="o">=</span> <span class="mi">3</span>   <span class="c1"># number of times to cycle through all the data during training</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.001</span> <span class="c1"># initial learning rate</span>
@@ -1860,7 +1869,7 @@ if gDrive:
       <span class="n">epoch_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
       <span class="n">pbar</span><span class="o">.</span><span class="n">set_postfix</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;loss (batch)&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()})</span>
       <span class="c1"># gradient descent</span>
-      <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> 
+      <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
       <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
       <span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">clip_grad_value_</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="mf">0.1</span><span class="p">)</span>
       <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
@@ -1933,7 +1942,7 @@ if gDrive:
 
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
       <span class="n">hm_preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)))</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-    
+
     <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">hm_preds</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">hm_preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                       <span class="n">hm_preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                       <span class="n">hm_preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">hm_preds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">])),</span>
@@ -2057,7 +2066,7 @@ if gDrive:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># final evaluation on the test set. for proper evaluation, and to avoid overfitting</span>
-<span class="c1"># to the test set, we want to change parameters based on the validation set, and </span>
+<span class="c1"># to the test set, we want to change parameters based on the validation set, and</span>
 <span class="c1"># only at the very end evaluate on the test set</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">testannfile</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>

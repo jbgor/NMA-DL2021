@@ -827,6 +827,23 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objective">
+   Objective
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-dependencies">
+     Install dependencies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#intro-to-segmentation-denoising">
    Intro to segmentation + denoising
   </a>
@@ -849,21 +866,16 @@
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#setup">
-     Setup
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#install-dependencies">
-       Install dependencies
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#data-loading">
      Data loading
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-and-normalize-data">
+       Download and normalize data
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#create-transform-function-for-augmentations">
@@ -874,23 +886,21 @@
     <a class="reference internal nav-link" href="#model-architecture-u-net">
      Model architecture (u-net)
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#train-the-network">
-     Train the network
-    </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#define-the-network">
+       Define the network
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-the-network">
+       Train the network
+      </a>
+     </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#test-performance">
        Test performance
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#padding-code-for-test-images">
-         Padding code for test images
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#setting-threshold-for-finding-cells">
@@ -898,8 +908,8 @@
       </a>
       <ul class="nav section-nav flex-column">
        <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#average-precision-function-fill-holes-and-remove-small-masks-function">
-         average_precision function + fill_holes_and_remove_small_masks function
+        <a class="reference internal nav-link" href="#helper-functions">
+         Helper functions
         </a>
        </li>
       </ul>
@@ -913,6 +923,11 @@
    Analysis of neuronal activity in the brain
   </a>
   <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-and-load-the-data">
+     Download and load the data.
+    </a>
+   </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#finding-cells">
      Finding cells
@@ -941,7 +956,8 @@
         
               <div>
                 
-  <div class="section" id="segmentation-and-denoising">
+  <p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/projects/Neuroscience/cellular_segmentation.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<div class="section" id="segmentation-and-denoising">
 <h1>Segmentation and Denoising<a class="headerlink" href="#segmentation-and-denoising" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Carsen Stringer</p>
@@ -949,50 +965,19 @@
 <p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
 <p align='center'><img src='https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True'/></p></div>
 <hr class="docutils" />
-<div class="section" id="intro-to-segmentation-denoising">
-<h1>Intro to segmentation + denoising<a class="headerlink" href="#intro-to-segmentation-denoising" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="objective">
+<h1>Objective<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h1>
 <p>This notebook will give you starting points to perform</p>
 <ul class="simple">
 <li><p>cellular segmentation using cultured neurons (outside the brain)</p></li>
 <li><p>analysis of neuronal activity in calcium imaging experiments such as finding cells, denoising data and predicting activity</p></li>
 </ul>
-<div class="section" id="segmentation">
-<h2>Segmentation<a class="headerlink" href="#segmentation" title="Permalink to this headline">¶</a></h2>
-<p>To answer many biological questions, it is necessary to segment the individual cells in images. Segmentation allows</p>
-<ul class="simple">
-<li><p>computation of number of cells in an image, useful for instance to compare the effects of drugs on cell survival</p></li>
-<li><p>accurate estimation of cell shapes, also useful for the same reasons</p></li>
-<li><p>temporal measurements of cellular dynamics such as cell division, cellular movements or calcium influx</p></li>
-<li><p>quantification of protein or RNA expresssion</p></li>
-</ul>
-<p>The first part of this notebook will set up a basic <a class="reference external" href="https://arxiv.org/abs/1505.04597">U-net</a> convolutional network to do cellular segmentation using a curated version of this <a class="reference external" href="http://www.cellimagelibrary.org/images/CCDB_6843">dataset</a>, which the first cell of the notebook will download for you. These are images with a cytoplasm stain (whole cell stained) and a nuclear stain (channels 1 and 2 of the images). The segmentation masks provided are for the cytoplasm (whole cell segmentation). There is code to train and test the network with a simple cost function.</p>
-<p><img alt="cellimagelibray" src="https://www.cellpose.org/static/images/img02.png" /></p>
-<p>Can you do transfer learning with this network on new images? There are image labels for other <a class="reference external" href="https://bbbc.broadinstitute.org/image_sets">datasets</a> for instance provided by Anne Carpenter’s lab at the Broad. Maybe your cellular segmenter can work on <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC010">worms</a> or a herd of bison! Note that the network is learning the approximate sizes of objects, so you may need to rescale other images accordingly. To label new images you may need to use a tool like <a class="reference external" href="https://www.napari.org">napari</a>.
-<img alt="bison" src="https://static01.nyt.com/images/2007/01/09/science/bison.3.600.jpg?quality=90&amp;auto=webp" /></p>
-<p><strong>Note</strong>: The data provided consists of both a training and a test set. It is important to not overfit to the test set, and only use it for a final evaluation. This code splits the training set into a training and a validation data set. Use this split data for testing out different algorithms. Then, after you finish developing your algorithm you can evaluate it on the test data.</p>
-</div>
-<div class="section" id="analysis-of-neural-activity-data">
-<h2>Analysis of neural activity data<a class="headerlink" href="#analysis-of-neural-activity-data" title="Permalink to this headline">¶</a></h2>
-<p>Often in neuroscience we have temporal data which consists of a movie of neuronal activity recorded using a microscope. Processing these movies can require several steps. We will focus on the neural detection step because that is a problem that we can use convolutional networks to help us with. The second part of this notebook therefore applies the model from the first part to the maximum image of the neural movie. This detects some neurons in the recording. Could we detect more neurons though if we denoise the movie first? Also what happens if we use more information across frames to detect cells? You may also want to explore denoising neural data from other sources (see other curated datasets in the NMA projects folder). None of these approaches are implemented here so this is a more open-ended project.</p>
-<ul class="simple">
-<li><p>imaging data loaded in <a class="reference external" href="https://github.com/mouseland/suite2p">suite2p</a></p></li>
-</ul>
-<p><img alt="calcium imaging" src="http://www.gatsby.ucl.ac.uk/~cstringer/multiselect.gif" /></p>
-<p>Acknowledgments:
-This Notebook was developed by Carsen Stringer. It borrows from:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/mouseland/cellpose">cellpose</a> (written by Carsen Stringer and Marius Pachitariu)</p></li>
-<li><p>Kristin Branson’s PoseEstimation notebook</p></li>
-</ul>
-</div>
 </div>
 <hr class="docutils" />
-<div class="section" id="segmenting-neurons-in-a-dish">
-<h1>Segmenting neurons in a dish<a class="headerlink" href="#segmenting-neurons-in-a-dish" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="install-dependencies">
-<h3>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h3>
+<h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span># @title Install dependencies
@@ -1015,22 +1000,65 @@ This Notebook was developed by Carsen Stringer. It borrows from:</p>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
-
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">find_objects</span><span class="p">,</span> <span class="n">binary_fill_holes</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">generate_binary_structure</span><span class="p">,</span> <span class="n">label</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linear_sum_assignment</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
+<hr class="docutils" />
+<div class="section" id="intro-to-segmentation-denoising">
+<h1>Intro to segmentation + denoising<a class="headerlink" href="#intro-to-segmentation-denoising" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="segmentation">
+<h2>Segmentation<a class="headerlink" href="#segmentation" title="Permalink to this headline">¶</a></h2>
+<p>To answer many biological questions, it is necessary to segment the individual cells in images. Segmentation allows</p>
+<ul class="simple">
+<li><p>computation of number of cells in an image, useful for instance to compare the effects of drugs on cell survival</p></li>
+<li><p>accurate estimation of cell shapes, also useful for the same reasons</p></li>
+<li><p>temporal measurements of cellular dynamics such as cell division, cellular movements or calcium influx</p></li>
+<li><p>quantification of protein or RNA expresssion</p></li>
+</ul>
+<p>The first part of this notebook will set up a basic <a class="reference external" href="https://arxiv.org/abs/1505.04597">U-net</a> convolutional network to do cellular segmentation using a curated version of this <a class="reference external" href="http://www.cellimagelibrary.org/images/CCDB_6843">dataset</a>, which the first cell of the notebook will download for you. These are images with a cytoplasm stain (whole cell stained) and a nuclear stain (channels 1 and 2 of the images). The segmentation masks provided are for the cytoplasm (whole cell segmentation). There is code to train and test the network with a simple cost function.</p>
+<img alt="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/cellular_segmentation_image.png" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/cellular_segmentation_image.png" />
+<p>Can you do transfer learning with this network on new images? There are image labels for other <a class="reference external" href="https://bbbc.broadinstitute.org/image_sets">datasets</a> for instance provided by Anne Carpenter’s lab at the Broad. Maybe your cellular segmenter can work on <a class="reference external" href="https://bbbc.broadinstitute.org/BBBC010">worms</a> or a herd of bison! Note that the network is learning the approximate sizes of objects, so you may need to rescale other images accordingly. To label new images you may need to use a tool like <a class="reference external" href="https://www.napari.org">napari</a>.</p>
+<img alt="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/bison.3.600.jpg" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/bison.3.600.jpg" />
+<p><strong>Note</strong>: The data provided consists of both a training and a test set. It is important to not overfit to the test set, and only use it for a final evaluation. This code splits the training set into a training and a validation data set. Use this split data for testing out different algorithms. Then, after you finish developing your algorithm you can evaluate it on the test data.</p>
+</div>
+<div class="section" id="analysis-of-neural-activity-data">
+<h2>Analysis of neural activity data<a class="headerlink" href="#analysis-of-neural-activity-data" title="Permalink to this headline">¶</a></h2>
+<p>Often in neuroscience we have temporal data which consists of a movie of neuronal activity recorded using a microscope. Processing these movies can require several steps. We will focus on the neural detection step because that is a problem that we can use convolutional networks to help us with. The second part of this notebook therefore applies the model from the first part to the maximum image of the neural movie. This detects some neurons in the recording. Could we detect more neurons though if we denoise the movie first? Also what happens if we use more information across frames to detect cells? You may also want to explore denoising neural data from other sources (see other curated datasets in the NMA projects folder). None of these approaches are implemented here so this is a more open-ended project.</p>
+<ul class="simple">
+<li><p>imaging data loaded in <a class="reference external" href="https://github.com/mouseland/suite2p">suite2p</a></p></li>
+</ul>
+<img alt="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/multiselect_cellular.gif" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/projects/static/multiselect_cellular.gif" />
+<p>Acknowledgments:
+This Notebook was developed by Carsen Stringer. It borrows from:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mouseland/cellpose">cellpose</a> (written by Carsen Stringer and Marius Pachitariu)</p></li>
+<li><p>Kristin Branson’s PoseEstimation notebook</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="segmenting-neurons-in-a-dish">
+<h1>Segmenting neurons in a dish<a class="headerlink" href="#segmenting-neurons-in-a-dish" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="data-loading">
 <h2>Data loading<a class="headerlink" href="#data-loading" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
+<div class="section" id="download-and-normalize-data">
+<h3>Download and normalize data<a class="headerlink" href="#download-and-normalize-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download and normalize data</span>
 <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cells_train.npz&quot;</span><span class="p">,</span>
              <span class="s2">&quot;cells_test.npz&quot;</span><span class="p">]</span>
 <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://osf.io/z3h78/download&quot;</span><span class="p">,</span>
@@ -1100,12 +1128,6 @@ This Notebook was developed by Carsen Stringer. It borrows from:</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>there are 55 cells in this image
-</pre></div>
-</div>
-<img alt="../../_images/cellular_segmentation_13_1.png" src="../../_images/cellular_segmentation_13_1.png" />
-</div>
 </div>
 <p>What labels will we use? We can’t use numbers like masks.
 The standard approach is to create a “not-cell” and a “cell” probability map for the network to learn. Then this map is thresholded (the threshold is found with a validation set) to find cells.</p>
@@ -1129,12 +1151,13 @@ The standard approach is to create a “not-cell” and a “cell” probability
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="create-transform-function-for-augmentations">
 <h2>Create transform function for augmentations<a class="headerlink" href="#create-transform-function-for-augmentations" title="Permalink to this headline">¶</a></h2>
-<p>adapted from <a class="reference external" href="https://github.com/MouseLand/cellpose/blob/master/cellpose/transforms.py">cellpose/transforms.py</a></p>
+<p>adapted from <a class="reference external" href="https://github.com/MouseLand/cellpose/blob/master/cellpose/transforms.py">cellpose/transforms.py</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_rotate_and_resize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_range</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span> 
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_rotate_and_resize</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale_range</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">),</span>
                              <span class="n">do_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  Augmentation by random rotation and resizing</span>
@@ -1147,7 +1170,7 @@ The standard approach is to create a “not-cell” and a “cell” probability
 <span class="sd">    list of IMAGE arrays of size [nchan x Ly x Lx] or [Ly x Lx]</span>
 
 <span class="sd">  Y: ND-array, float or int (optional, default None)</span>
-<span class="sd">    list of MASK arrays of size [nlabels x Ly x Lx] or [Ly x Lx]. </span>
+<span class="sd">    list of MASK arrays of size [nlabels x Ly x Lx] or [Ly x Lx].</span>
 <span class="sd">    ** These labels are nearest neighbor interpolated</span>
 <span class="sd">    ** CHANGE IF USING FLOAT LABELS</span>
 
@@ -1221,25 +1244,25 @@ The standard approach is to create a “not-cell” and a “cell” probability
       <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
       <span class="k">if</span> <span class="n">Y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            
+
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nchan</span><span class="p">):</span>
       <span class="n">I</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">flags</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_LINEAR</span><span class="p">)</span>
       <span class="n">imgi</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
 
     <span class="k">if</span> <span class="n">Y</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
       <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nt</span><span class="p">):</span>
-        <span class="c1"># ** nearest neighbor interpolation ** </span>
+        <span class="c1"># ** nearest neighbor interpolation **</span>
         <span class="c1"># may need to change for float labels</span>
         <span class="n">lbl</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">warpAffine</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">M</span><span class="p">,</span> <span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
                                   <span class="n">flags</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_NEAREST</span><span class="p">)</span>
-              
+
   <span class="k">return</span> <span class="n">imgi</span><span class="p">,</span> <span class="n">lbl</span><span class="p">,</span> <span class="n">scale</span>
 
 
 <span class="n">img_batch</span><span class="p">,</span> <span class="n">lbl_batch</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">random_rotate_and_resize</span><span class="p">(</span><span class="n">imgs_train</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span>
                                                        <span class="n">masks_train</span><span class="p">[:</span><span class="mi">8</span><span class="p">])</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img_batch</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -1260,9 +1283,6 @@ The standard approach is to create a “not-cell” and a “cell” probability
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/cellular_segmentation_17_0.png" src="../../_images/cellular_segmentation_17_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="model-architecture-u-net">
@@ -1274,7 +1294,7 @@ The standard approach is to create a “not-cell” and a “cell” probability
 <li><p>upsampling layers that ultimately return an image at the same size as the input image
 In addition to these downsampling and upsampling blocks, it has skip connections from the downsampling blocks TO the upsampling blocks, which allows it to propagate more precise local information to the later layers.</p></li>
 </ol>
-<p>adapted from <a class="reference external" href="https://github.com/MouseLand/cellpose/blob/master/cellpose/resnet_torch.py">cellpose/resnet_torch.py</a></p>
+<p>adapted from <a class="reference external" href="https://github.com/MouseLand/cellpose/blob/master/cellpose/resnet_torch.py">cellpose/resnet_torch.py</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convbatchrelu</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">sz</span><span class="p">):</span>
@@ -1282,7 +1302,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
       <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">sz</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">sz</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span>
       <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">),</span>
       <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-      <span class="p">)</span> 
+      <span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">convdown</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
@@ -1300,7 +1320,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
                              <span class="n">convbatchrelu</span><span class="p">(</span><span class="n">out_channels</span><span class="p">,</span>
                                            <span class="n">out_channels</span><span class="p">,</span>
                                            <span class="n">kernel_size</span><span class="p">))</span>
-              
+
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
@@ -1317,7 +1337,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
                            <span class="n">convdown</span><span class="p">(</span><span class="n">nbase</span><span class="p">[</span><span class="n">n</span><span class="p">],</span>
                                     <span class="n">nbase</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
                                     <span class="n">kernel_size</span><span class="p">))</span>
-            
+
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">xd</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">down</span><span class="p">)):</span>
@@ -1352,7 +1372,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
     <span class="bp">self</span><span class="o">.</span><span class="n">upsampling</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Upsample</span><span class="p">(</span><span class="n">scale_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nbase</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">up</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;conv_up_</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> 
+      <span class="bp">self</span><span class="o">.</span><span class="n">up</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span><span class="s1">&#39;conv_up_</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
               <span class="n">convup</span><span class="p">(</span><span class="n">nbase</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">nbase</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">kernel_size</span><span class="p">))</span>
 
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xd</span><span class="p">):</span>
@@ -1376,7 +1396,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
     <span class="bp">self</span><span class="o">.</span><span class="n">upsample</span> <span class="o">=</span> <span class="n">upsample</span><span class="p">(</span><span class="n">nbaseup</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">nbase</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">nout</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span>
                             <span class="n">padding</span><span class="o">=</span><span class="n">kernel_size</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
-      
+
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="n">T0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">downsample</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     <span class="n">T0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">upsample</span><span class="p">(</span><span class="n">T0</span><span class="p">)</span>
@@ -1394,14 +1414,15 @@ In addition to these downsampling and upsampling blocks, it has skip connections
                     <span class="bp">self</span><span class="o">.</span><span class="n">nout</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">concatenation</span><span class="p">)</span>
-      
+
       <span class="bp">self</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>
                                       <span class="n">map_location</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Define the network</p>
+<div class="section" id="define-the-network">
+<h3>Define the network<a class="headerlink" href="#define-the-network" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kernel_size</span> <span class="o">=</span> <span class="mi">3</span>
@@ -1418,7 +1439,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </div>
 </div>
 <div class="section" id="train-the-network">
-<h2>Train the network<a class="headerlink" href="#train-the-network" title="Permalink to this headline">¶</a></h2>
+<h3>Train the network<a class="headerlink" href="#train-the-network" title="Permalink to this headline">¶</a></h3>
 <p>Here we’ve implemented code to train the network.</p>
 <p>Note we probably should be evaluating test performance throughout training – implement that yourself.</p>
 <div class="cell docutils container">
@@ -1427,7 +1448,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 
 <span class="c1"># train the network</span>
 <span class="c1"># parameters related to training the network</span>
-<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># number of images per batch -- amount of required memory </span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># number of images per batch -- amount of required memory</span>
               <span class="c1"># for training will increase linearly in batchsize</span>
 <span class="c1">### you will want to increase n_epochs!</span>
 <span class="n">n_epochs</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># number of times to cycle through all the data during training</span>
@@ -1457,7 +1478,7 @@ In addition to these downsampling and upsampling blocks, it has skip connections
                             <span class="n">lr</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span>
                             <span class="n">weight_decay</span><span class="o">=</span><span class="n">weight_decay</span><span class="p">,</span>
                             <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
-<span class="c1"># set learning rate schedule    </span>
+<span class="c1"># set learning rate schedule</span>
 <span class="n">LR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">n_epochs</span> <span class="o">&gt;</span> <span class="mi">250</span><span class="p">:</span>
     <span class="n">LR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">LR</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_epochs</span><span class="o">-</span><span class="mi">100</span><span class="p">))</span>
@@ -1491,16 +1512,16 @@ In addition to these downsampling and upsampling blocks, it has skip connections
                                                <span class="n">train_labels</span><span class="p">[</span><span class="n">inds</span><span class="p">])</span>
 
       <span class="c1"># transfer to torch + GPU</span>
-      <span class="n">imgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">imgs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> 
-      <span class="n">lbls</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">lbls</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> 
+      <span class="n">imgs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">imgs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+      <span class="n">lbls</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">lbls</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 
       <span class="c1"># compute the loss</span>
       <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">imgs</span><span class="p">)</span>
-      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">lbls</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span> 
+      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">lbls</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
       <span class="n">epoch_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
       <span class="n">pbar</span><span class="o">.</span><span class="n">set_postfix</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;loss (batch)&#39;</span><span class="p">:</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()})</span>
       <span class="c1"># gradient descent</span>
-      <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> 
+      <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
       <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
       <span class="c1">#nn.utils.clip_grad_value_(net.parameters(), 0.1)</span>
       <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
@@ -1521,86 +1542,15 @@ In addition to these downsampling and upsampling blocks, it has skip connections
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/50:   0%|          | 0/77 [00:00&lt;?, ?img/s]/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
-  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
-Epoch 1/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.69img/s, loss (epoch)=7.32]
-Epoch 2/50:   0%|          | 0/77 [00:00&lt;?, ?img/s, loss (batch)=0.75]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 1
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 2/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.71img/s, loss (epoch)=4.09]
-Epoch 3/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.17img/s, loss (epoch)=1.49]
-Epoch 4/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.59img/s, loss (epoch)=1.16]
-Epoch 5/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.45img/s, loss (epoch)=1.21]
-Epoch 6/50: 100%|██████████| 77/77 [00:01&lt;00:00, 63.00img/s, loss (epoch)=1.24]
-Epoch 7/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.97img/s, loss (epoch)=1.2]
-Epoch 8/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.75img/s, loss (epoch)=1.16]
-Epoch 9/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.82img/s, loss (epoch)=1.04]
-Epoch 10/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.66img/s, loss (epoch)=1.01]
-Epoch 11/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.24img/s, loss (epoch)=1]
-Epoch 12/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.41img/s, loss (epoch)=1.06]
-Epoch 13/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.42img/s, loss (epoch)=1.02]
-Epoch 14/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.47img/s, loss (epoch)=1.41]
-Epoch 15/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.06img/s, loss (epoch)=1.56]
-Epoch 16/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.08img/s, loss (epoch)=2.61]
-Epoch 17/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.84img/s, loss (epoch)=1.39]
-Epoch 18/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.00img/s, loss (epoch)=1.12]
-Epoch 19/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.66img/s, loss (epoch)=1.14]
-Epoch 20/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.70img/s, loss (epoch)=1.03]
-Epoch 21/50: 100%|██████████| 77/77 [00:01&lt;00:00, 62.00img/s, loss (epoch)=0.989]
-Epoch 22/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.75img/s, loss (epoch)=1.01]
-Epoch 23/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.31img/s, loss (epoch)=0.969]
-Epoch 24/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.48img/s, loss (epoch)=0.944]
-Epoch 25/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.93img/s, loss (epoch)=0.889]
-Epoch 26/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.89img/s, loss (epoch)=0.981]
-Epoch 27/50:   0%|          | 0/77 [00:00&lt;?, ?img/s, loss (batch)=0.118]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 26
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 27/50: 100%|██████████| 77/77 [00:01&lt;00:00, 61.51img/s, loss (epoch)=0.994]
-Epoch 28/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.93img/s, loss (epoch)=0.955]
-Epoch 29/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.99img/s, loss (epoch)=0.926]
-Epoch 30/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.96img/s, loss (epoch)=0.874]
-Epoch 31/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.66img/s, loss (epoch)=0.93]
-Epoch 32/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.45img/s, loss (epoch)=0.852]
-Epoch 33/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.58img/s, loss (epoch)=0.956]
-Epoch 34/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.53img/s, loss (epoch)=0.967]
-Epoch 35/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.27img/s, loss (epoch)=0.926]
-Epoch 36/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.32img/s, loss (epoch)=0.924]
-Epoch 37/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.09img/s, loss (epoch)=0.823]
-Epoch 38/50: 100%|██████████| 77/77 [00:01&lt;00:00, 60.08img/s, loss (epoch)=0.862]
-Epoch 39/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.94img/s, loss (epoch)=0.907]
-Epoch 40/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.51img/s, loss (epoch)=0.888]
-Epoch 41/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.88img/s, loss (epoch)=0.905]
-Epoch 42/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.71img/s, loss (epoch)=0.878]
-Epoch 43/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.91img/s, loss (epoch)=0.891]
-Epoch 44/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.67img/s, loss (epoch)=0.835]
-Epoch 45/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.81img/s, loss (epoch)=0.895]
-Epoch 46/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.47img/s, loss (epoch)=0.853]
-Epoch 47/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.49img/s, loss (epoch)=0.868]
-Epoch 48/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.34img/s, loss (epoch)=0.888]
-Epoch 49/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.43img/s, loss (epoch)=0.931]
-Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23img/s, loss (epoch)=0.94]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving network state at epoch 50
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="test-performance">
 <h3>Test performance<a class="headerlink" href="#test-performance" title="Permalink to this headline">¶</a></h3>
 <p>Let’s see how the network performs on a test image.</p>
-<div class="section" id="padding-code-for-test-images">
-<h4>Padding code for test images<a class="headerlink" href="#padding-code-for-test-images" title="Permalink to this headline">¶</a></h4>
+<p>Padding code for test images</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Padding code for test images</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Padding code for test images</span>
 
 <span class="k">def</span> <span class="nf">pad_image_ND</span><span class="p">(</span><span class="n">img0</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot; pad image for test-time so that its dimensions are a multiple of 16 (2D or 3D)</span>
@@ -1678,29 +1628,24 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/cellular_segmentation_27_0.png" src="../../_images/cellular_segmentation_27_0.png" />
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="setting-threshold-for-finding-cells">
 <h3>Setting threshold for finding cells<a class="headerlink" href="#setting-threshold-for-finding-cells" title="Permalink to this headline">¶</a></h3>
 <p>We have found areas of “not cell” and “cell”. To create an instance segmentation we need to assign each pixel in a cell to a specific cell rather than a general class. To do this, we will need to find a threshold that produces the best segmentations on our validation set. How do we define a good segmentation? We can use a measure called intersection-over-union (IoU) and call a cell a good cell if it overlaps with a ground-truth cell with an IoU greater than some value. We have taken code from [cellpose/metrics.py] to do this. These functions are based on functions from [stardist], another neat algorithm I recommend checking out!</p>
 <p>This code below computes the average precision (which you want to maximize) for a given threshold. You’ll want to try several thresholds and choose one (probably coding up a loop over reasonable thresholds).</p>
-<div class="section" id="average-precision-function-fill-holes-and-remove-small-masks-function">
-<h4>average_precision function + fill_holes_and_remove_small_masks function<a class="headerlink" href="#average-precision-function-fill-holes-and-remove-small-masks-function" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="helper-functions">
+<h4>Helper functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h4>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title average_precision function + fill_holes_and_remove_small_masks function</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linear_sum_assignment</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">find_objects</span><span class="p">,</span> <span class="n">binary_fill_holes</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper functions</span>
 
+<span class="c1"># @markdown `fill_holes_and_remove_small_masks` function</span>
 <span class="k">def</span> <span class="nf">fill_holes_and_remove_small_masks</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot; fill holes in masks (2D/3D) and discard masks smaller than min_size (2D)</span>
-<span class="sd">  </span>
+
 <span class="sd">  fill holes in each mask using scipy.ndimage.morphology.binary_fill_holes</span>
-<span class="sd">  </span>
+
 <span class="sd">  Parameters</span>
 <span class="sd">  ----------------</span>
 <span class="sd">  masks: int, 2D or 3D array</span>
@@ -1712,7 +1657,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 <span class="sd">  Returns</span>
 <span class="sd">  ---------------</span>
 <span class="sd">  masks: int, 2D or 3D array</span>
-<span class="sd">      masks with holes filled and masks smaller than min_size removed, </span>
+<span class="sd">      masks with holes filled and masks smaller than min_size removed,</span>
 <span class="sd">      0=NO masks; 1,2,...=mask labels,</span>
 <span class="sd">      size [Ly x Lx] or [Lz x Ly x Lx]</span>
 <span class="sd">  &quot;&quot;&quot;</span>
@@ -1724,7 +1669,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
       <span class="n">npix</span> <span class="o">=</span> <span class="n">msk</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
       <span class="k">if</span> <span class="n">min_size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">npix</span> <span class="o">&lt;</span> <span class="n">min_size</span><span class="p">:</span>
         <span class="n">masks</span><span class="p">[</span><span class="n">slc</span><span class="p">][</span><span class="n">msk</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-      <span class="k">else</span><span class="p">:</span>    
+      <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">msk</span><span class="o">.</span><span class="n">ndim</span><span class="o">==</span><span class="mi">3</span><span class="p">:</span>
           <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">msk</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="n">msk</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">binary_fill_holes</span><span class="p">(</span><span class="n">msk</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
@@ -1736,6 +1681,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
   <span class="k">return</span> <span class="n">masks</span>
 
 
+<span class="c1"># @markdown `average_precision` function</span>
 <span class="k">def</span> <span class="nf">average_precision</span><span class="p">(</span><span class="n">masks_true</span><span class="p">,</span> <span class="n">masks_pred</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]):</span>
   <span class="sd">&quot;&quot;&quot; average precision estimation: AP = TP / (TP + FP + FN)</span>
 
@@ -1777,14 +1723,14 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
     <span class="n">fp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_pred</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">tp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
     <span class="n">fn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_true</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">tp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
     <span class="n">ap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">tp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="n">tp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">fp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">fn</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
-      
+
   <span class="k">return</span> <span class="n">ap</span><span class="p">,</span> <span class="n">tp</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span>
 
 
 <span class="nd">@jit</span><span class="p">(</span><span class="n">nopython</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">_label_overlap</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot; fast function to get pixel overlaps between masks in x and y </span>
-<span class="sd">  </span>
+  <span class="sd">&quot;&quot;&quot; fast function to get pixel overlaps between masks in x and y</span>
+
 <span class="sd">  Parameters</span>
 <span class="sd">  ------------</span>
 <span class="sd">  x: ND-array, int</span>
@@ -1808,10 +1754,10 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 
 <span class="k">def</span> <span class="nf">_intersection_over_union</span><span class="p">(</span><span class="n">masks_true</span><span class="p">,</span> <span class="n">masks_pred</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot; intersection over union of all mask pairs</span>
-<span class="sd">  </span>
+
 <span class="sd">  Parameters</span>
 <span class="sd">  ------------</span>
-<span class="sd">  masks_true: ND-array, int </span>
+<span class="sd">  masks_true: ND-array, int</span>
 <span class="sd">      ground truth masks, where 0=NO masks; 1,2... are mask labels</span>
 <span class="sd">  masks_pred: ND-array, int</span>
 <span class="sd">      predicted masks, where 0=NO masks; 1,2... are mask labels</span>
@@ -1832,7 +1778,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 
 <span class="k">def</span> <span class="nf">_true_positive</span><span class="p">(</span><span class="n">iou</span><span class="p">,</span> <span class="n">th</span><span class="p">):</span>
   <span class="sd">&quot;&quot;&quot; true positive at threshold th</span>
-<span class="sd">  </span>
+
 <span class="sd">  Parameters</span>
 <span class="sd">  ------------</span>
 <span class="sd">  iou: float, ND-array</span>
@@ -1858,10 +1804,9 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">generate_binary_structure</span><span class="p">,</span> <span class="n">label</span>
-<span class="k">def</span> <span class="nf">get_masks_unet</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">cell_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot; create masks using NOT CELL probability and CELL probability </span>
-<span class="sd">  </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_masks_unet</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">cell_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot; create masks using NOT CELL probability and CELL probability</span>
+
 <span class="sd">  min_size: minimum number of pixels in the masks</span>
 <span class="sd">  &quot;&quot;&quot;</span>
 
@@ -1877,6 +1822,7 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
   <span class="k">return</span> <span class="n">masks</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>
 
 
+<span class="c1"># Run the model</span>
 <span class="n">net</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 <span class="c1"># (depending on GPU capacity you may need to run this in a loop)</span>
 <span class="n">val_padded</span><span class="p">,</span> <span class="n">slices</span> <span class="o">=</span> <span class="n">pad_image_ND</span><span class="p">(</span><span class="n">val_data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
@@ -1902,12 +1848,6 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3360647
-</pre></div>
-</div>
-<img alt="../../_images/cellular_segmentation_31_1.png" src="../../_images/cellular_segmentation_31_1.png" />
 </div>
 </div>
 <p>Once you choose a threshold, you’ll want to use it on your test images.</p>
@@ -1938,12 +1878,6 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.48372927
-</pre></div>
-</div>
-<img alt="../../_images/cellular_segmentation_33_1.png" src="../../_images/cellular_segmentation_33_1.png" />
-</div>
 </div>
 <p>What kinds of errors is the network making?</p>
 <p>U-nets with this type of prediction (CELL/NOT CELL) typically overmerge cells. You may see some examples below. In the text at the beginning, ways to avoid this problem are discussed and also one instance (distance to boundary) is implemented in the cellpose repository.</p>
@@ -1962,9 +1896,6 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/cellular_segmentation_35_0.png" src="../../_images/cellular_segmentation_35_0.png" />
-</div>
 </div>
 </div>
 </div>
@@ -1974,9 +1905,12 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 <h1>Analysis of neuronal activity in the brain<a class="headerlink" href="#analysis-of-neuronal-activity-in-the-brain" title="Permalink to this headline">¶</a></h1>
 <p>This is a calcium imaging recording in mouse visual cortex taken at an imaging rate of 10Hz. There are 4500 frames of size 325 x 556 pixels each.</p>
 <p>Let’s load the data and try to find some cells!</p>
-<div class="cell docutils container">
+<div class="section" id="download-and-load-the-data">
+<h2>Download and load the data.<a class="headerlink" href="#download-and-load-the-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tifffile</span> <span class="kn">import</span> <span class="n">imread</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download and load the data.</span>
+<span class="kn">from</span> <span class="nn">tifffile</span> <span class="kn">import</span> <span class="n">imread</span>
 
 <span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;gt1.tif&quot;</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.suite2p.org/test_data/gt1.tif&quot;</span>
@@ -1999,10 +1933,6 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imaging data of shape: (4500, 325, 556)
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="finding-cells">
@@ -2018,15 +1948,10 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/cellular_segmentation_39_0.png" src="../../_images/cellular_segmentation_39_0.png" />
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
-
-<span class="c1"># normalize intensity across image</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># normalize intensity across image</span>
 <span class="n">max_img_filtered</span> <span class="o">=</span> <span class="n">max_img</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">/</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">max_img</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="c1"># high pass filter</span>
 <span class="n">max_img_filtered</span> <span class="o">=</span> <span class="n">max_img_filtered</span> <span class="o">-</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">max_img</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
@@ -2063,9 +1988,6 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/cellular_segmentation_40_0.png" src="../../_images/cellular_segmentation_40_0.png" />
-</div>
 </div>
 </div>
 <div class="section" id="neural-activity">
@@ -2083,9 +2005,6 @@ Epoch 50/50: 100%|██████████| 77/77 [00:01&lt;00:00, 59.23im
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/cellular_segmentation_42_0.png" src="../../_images/cellular_segmentation_42_0.png" />
 </div>
 </div>
 </div>
