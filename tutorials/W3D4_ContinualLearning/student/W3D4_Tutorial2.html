@@ -564,7 +564,7 @@
 </li>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/screws.html">
-       Setup matplotlib
+       Objective
       </a>
 </li>
 <li class="toctree-l3">
@@ -1577,7 +1577,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2d60b75abbc94bed99604af9e59c19a3"}
+{"version_major": 2, "version_minor": 0, "model_id": "87e4cf420a554d22aad7bf1e13ed2b5d"}
 </script></div>
 </div>
 </div>
@@ -1611,7 +1611,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8cd90197d47347d986dcb57a5c81fcb8"}
+{"version_major": 2, "version_minor": 0, "model_id": "3d39c5e604e94674a112771e81188d29"}
 </script></div>
 </div>
 </div>
@@ -1653,7 +1653,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10312</span><span class="o">/</span><span class="mf">1197104903.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10434</span><span class="o">/</span><span class="mf">1197104903.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span> 
 <span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">zfile</span><span class="p">:</span>
 <span class="ne">---&gt; </span><span class="mi">14</span>   <span class="n">zfile</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="sa">f</span><span class="s2">"./</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -1689,11 +1689,18 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <span class="g g-Whitespace">    </span><span class="mi">932</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_readbuffer</span> <span class="o">=</span> <span class="n">data</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/zipfile.py</span> in <span class="ni">_read1</span><span class="nt">(self, n)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1004</span>         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compress_type</span> <span class="o">==</span> <span class="n">ZIP_DEFLATED</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1005</span>             <span class="n">n</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MIN_READ_SIZE</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1006</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1007</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_decompressor</span><span class="o">.</span><span class="n">eof</span> <span class="ow">or</span>
-<span class="g g-Whitespace">   </span><span class="mi">1008</span>                          <span class="bp">self</span><span class="o">.</span><span class="n">_compress_left</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">and</span>
+<span class="g g-Whitespace">   </span><span class="mi">1018</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_left</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">-&gt; </span><span class="mi">1020</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_update_crc</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1021</span>         <span class="k">return</span> <span class="n">data</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/zipfile.py</span> in <span class="ni">_update_crc</span><span class="nt">(self, newdata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">943</span>             <span class="c1"># No need to compute the CRC if we don't have a reference value</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span>             <span class="k">return</span>
+<span class="ne">--&gt; </span><span class="mi">945</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_running_crc</span> <span class="o">=</span> <span class="n">crc32</span><span class="p">(</span><span class="n">newdata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_crc</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span>         <span class="c1"># Check the CRC if we're at the end of the file</span>
+<span class="g g-Whitespace">    </span><span class="mi">947</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eof</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_running_crc</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_expected_crc</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2162,8 +2169,8 @@ Complete the <code class="docutils literal notranslate"><span class="pre">forwar
 <p>The algorithm does not favour either of the outcomes, so <span class="math notranslate nohighlight">\(P(cancer) = P(no\_cancer) = .5\)</span></p>
 <p>You wish to find the most important feature according to the model and you have the following list of conditional probabilities.</p>
 <p>\</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a7ad4ec0-a4f3-4cf1-bdf4-63501be5736b">
-<span class="eqno">(108)<a class="headerlink" href="#equation-a7ad4ec0-a4f3-4cf1-bdf4-63501be5736b" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6b0442c9-7371-411a-93b8-be164a3714d8">
+<span class="eqno">(108)<a class="headerlink" href="#equation-6b0442c9-7371-411a-93b8-be164a3714d8" title="Permalink to this equation">¶</a></span>\[\begin{align}
 P(family\_history = 1  | no\_cancer) = .1 &amp;, P(family\_history = 1 | cancer) = .9 \\
 P(smoker = 1 | no\_cancer) = .05 &amp;, P(smoker = 1| cancer) = .8 \\
 P(young = 1 | no\_cancer) = .01 &amp;, P(young = 1 | cancer) = .71
@@ -2202,8 +2209,8 @@ P(young = 1 | no\_cancer) = .01 &amp;, P(young = 1 | cancer) = .71
 <p>Let’s assume that we wish to find the K best features. We know that a set of K features would be most important if they can predict the outcome with high confidence and better than any other set of the same size! We could hence try to predict the outcome using only the given set of features and record the accuracy. If this accuracy is higher than that using any other set of the same size, then we can say that the given set has the most important K features!</p>
 <p>In essence, we would want to find the accuracies considering all feature sets of size K and then pick the one with the highest accuracy.</p>
 <p>If we wish to define a loss instead (the lower the better), we could simply extend the above notion as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8d4df3fc-31c6-417b-b468-9b41113b5eb9">
-<span class="eqno">(109)<a class="headerlink" href="#equation-8d4df3fc-31c6-417b-b468-9b41113b5eb9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d098cdb6-b3b3-422f-8eb3-20c86ee13cfd">
+<span class="eqno">(109)<a class="headerlink" href="#equation-d098cdb6-b3b3-422f-8eb3-20c86ee13cfd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 Loss = 1 - Accuracy
 \end{equation}\]</div>
 </div>

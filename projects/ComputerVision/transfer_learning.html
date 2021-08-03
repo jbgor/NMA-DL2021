@@ -586,7 +586,7 @@
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="screws.html">
-       Setup matplotlib
+       Objective
       </a>
      </li>
      <li class="toctree-l3">
@@ -827,8 +827,8 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#project-objective">
-   Project Objective:
+  <a class="reference internal nav-link" href="#objective">
+   Objective
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -903,13 +903,6 @@
         <a class="reference internal nav-link" href="#test-on-random-data">
          Test on random data
         </a>
-        <ul class="nav section-nav flex-column">
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#load-the-model">
-           load the Model
-          </a>
-         </li>
-        </ul>
        </li>
       </ul>
      </li>
@@ -924,49 +917,21 @@
       <a class="reference internal nav-link" href="#set-loss-function-and-optimizer">
        Set loss function and optimizer
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#optimizer-and-criterion">
-         optimizer and criterion
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#train-and-test-loops">
        Train and test loops
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#training-test-functions">
-         Training &amp; Test functions
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#auxiliary-functions">
        Auxiliary functions
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#checkpoint-adjust-learning-rate">
-         checkpoint &amp; adjust_learning_rate
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#train-the-model">
        Train the model
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h4 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#start-training">
-         start training
-        </a>
-       </li>
-      </ul>
      </li>
     </ul>
    </li>
@@ -989,13 +954,6 @@
         <a class="reference internal nav-link" href="#target-dataset">
          Target dataset
         </a>
-        <ul class="nav section-nav flex-column">
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#target-domain-data">
-           Target domain Data
-          </a>
-         </li>
-        </ul>
        </li>
        <li class="toc-h4 nav-item toc-entry">
         <a class="reference internal nav-link" href="#select-a-subset-of-the-data">
@@ -1006,13 +964,6 @@
         <a class="reference internal nav-link" href="#dataloaders">
          Dataloaders
         </a>
-        <ul class="nav section-nav flex-column">
-         <li class="toc-h5 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#id2">
-           Dataloader
-          </a>
-         </li>
-        </ul>
        </li>
       </ul>
      </li>
@@ -1053,13 +1004,6 @@
     <a class="reference internal nav-link" href="#plot-results">
      Plot results
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
-       plot results
-      </a>
-     </li>
-    </ul>
    </li>
   </ul>
  </li>
@@ -1079,12 +1023,12 @@
 <h1>Transfer Learning<a class="headerlink" href="#transfer-learning" title="Permalink to this headline">¶</a></h1>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> <a class="reference external" href="https://engmubarak48.github.io/jmohamud/index.html">Jama Hussein Mohamud</a> &amp; <a class="reference external" href="https://alexhernandezgarcia.github.io/">Alex Hernandez-Garcia</a></p>
-<p><strong>Production editors:</strong></p>
+<p><strong>Production editors:</strong> Saeed Salehi, Spiros Chavlis</p>
 <p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
 <p align='center'><img src='https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True'/></p></div>
 <hr class="docutils" />
-<div class="section" id="project-objective">
-<h1>Project Objective:<a class="headerlink" href="#project-objective" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="objective">
+<h1>Objective<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h1>
 <p>One desired capability for machines is the ability to transfer the knowledge (features) learned on one domain to another This can potentially save compute time, enable training when data is scarce, and even improve performance. Unfortunately, there is no single recipe for transfer learning and instead multiple options are possible and much remains to be well understood. In this project, you will explore how transfer learning works in different scenarios.</p>
 </div>
 <hr class="docutils" />
@@ -1093,29 +1037,25 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># imports</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">gc</span>
 <span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
 <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span>
-<span class="kn">import</span> <span class="nn">torchvision.models</span> <span class="k">as</span> <span class="nn">models</span>
-<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
 <span class="kn">import</span> <span class="nn">torch.backends.cudnn</span> <span class="k">as</span> <span class="nn">cudnn</span>
+<span class="kn">from</span> <span class="nn">torch.autograd</span> <span class="kn">import</span> <span class="n">Variable</span>
+
+<span class="kn">import</span> <span class="nn">torchvision</span>
 <span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
 </pre></div>
 </div>
 </div>
@@ -1229,10 +1169,10 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Download and prepare Data</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;==&gt; Preparing data..&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">percentageSplit</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">,</span> <span class="n">percent</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
-    <span class="n">set1_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">percent</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">))</span>
-    <span class="n">set2_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">)</span> <span class="o">-</span> <span class="n">set1_size</span>
-    <span class="n">final_dataset</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">,</span> <span class="p">[</span><span class="n">set1_size</span><span class="p">,</span> <span class="n">set2_size</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">final_dataset</span>
+  <span class="n">set1_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">percent</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">))</span>
+  <span class="n">set2_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">)</span> <span class="o">-</span> <span class="n">set1_size</span>
+  <span class="n">final_dataset</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">,</span> <span class="p">[</span><span class="n">set1_size</span><span class="p">,</span> <span class="n">set2_size</span><span class="p">])</span>
+  <span class="k">return</span> <span class="n">final_dataset</span>
 
 
 <span class="c1"># CIFAR100 normalizing</span>
@@ -1289,7 +1229,7 @@
 <h3>Dataloader<a class="headerlink" href="#dataloader" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Dataloader </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Dataloader</span>
 <span class="n">num_workers</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;----&gt; number of workers: </span><span class="si">{</span><span class="n">num_workers</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -1423,11 +1363,9 @@
 </div>
 <div class="section" id="test-on-random-data">
 <h4>Test on random data<a class="headerlink" href="#test-on-random-data" title="Permalink to this headline">¶</a></h4>
-<div class="section" id="load-the-model">
-<h5>load the Model<a class="headerlink" href="#load-the-model" title="Permalink to this headline">¶</a></h5>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title load the Model</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the Model</span>
 <span class="n">net</span> <span class="o">=</span> <span class="n">ResNet18</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----&gt; verify if model is run on random data&#39;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">Variable</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">32</span><span class="p">)))</span>
@@ -1440,13 +1378,12 @@
 <span class="n">logname</span> <span class="o">=</span> <span class="n">result_folder</span> <span class="o">+</span> <span class="n">net</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;_pretrain&#39;</span> <span class="o">+</span> <span class="s1">&#39;.csv&#39;</span>
 
 <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span>
-    <span class="n">net</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-    <span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span> <span class="s1">&#39;GPUs.&#39;</span><span class="p">)</span>
-    <span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using CUDA..&#39;</span><span class="p">)</span>
+  <span class="n">net</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+  <span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span> <span class="s1">&#39;GPUs.&#39;</span><span class="p">)</span>
+  <span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">True</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using CUDA..&#39;</span><span class="p">)</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1458,86 +1395,79 @@
 <div class="section" id="set-loss-function-and-optimizer">
 <h3>Set loss function and optimizer<a class="headerlink" href="#set-loss-function-and-optimizer" title="Permalink to this headline">¶</a></h3>
 <p>We use the cross entropy loss, commonly used for classification, and stochastic gradient descent (SGD) as optimizer, with momentum and weight decay.</p>
-<div class="section" id="optimizer-and-criterion">
-<h4>optimizer and criterion<a class="headerlink" href="#optimizer-and-criterion" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title optimizer and criterion </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimizer and criterion</span>
 
-<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>   
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="n">base_learning_rate</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="train-and-test-loops">
 <h3>Train and test loops<a class="headerlink" href="#train-and-test-loops" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="training-test-functions">
-<h4>Training &amp; Test functions<a class="headerlink" href="#training-test-functions" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Training &amp; Test functions</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training &amp; Test functions</span>
 
-<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Epoch: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span>
-    <span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-    <span class="n">train_loss</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trainloader</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span>
-            <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">targets</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
-    
-        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-        <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">Variable</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
-        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Epoch: </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">epoch</span><span class="p">)</span>
+  <span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+  <span class="n">train_loss</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trainloader</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span>
+      <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">targets</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
-        <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">total</span> <span class="o">+=</span> <span class="n">targets</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">correct</span> <span class="o">+=</span> <span class="n">predicted</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">targets</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-        
-        <span class="k">if</span> <span class="n">batch_idx</span> <span class="o">%</span> <span class="mi">500</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trainloader</span><span class="p">),</span> <span class="s1">&#39;Loss: </span><span class="si">%.3f</span><span class="s1"> | Acc: </span><span class="si">%.3f%%</span><span class="s1"> (</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">)&#39;</span>
-                <span class="o">%</span> <span class="p">(</span><span class="n">train_loss</span><span class="o">/</span><span class="p">(</span><span class="n">batch_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">train_loss</span><span class="o">/</span><span class="n">batch_idx</span><span class="p">,</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">Variable</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span> <span class="n">Variable</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">best_acc</span>
-    <span class="n">net</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-    <span class="n">test_loss</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-        <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">testloader</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span>
-                <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">targets</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+    <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="n">targets</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">correct</span> <span class="o">+=</span> <span class="n">predicted</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">targets</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-            <span class="n">outputs</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
-            <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">batch_idx</span> <span class="o">%</span> <span class="mi">500</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">trainloader</span><span class="p">),</span> <span class="s1">&#39;Loss: </span><span class="si">%.3f</span><span class="s1"> | Acc: </span><span class="si">%.3f%%</span><span class="s1"> (</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">)&#39;</span>
+          <span class="o">%</span> <span class="p">(</span><span class="n">train_loss</span><span class="o">/</span><span class="p">(</span><span class="n">batch_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">train_loss</span><span class="o">/</span><span class="n">batch_idx</span><span class="p">,</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">)</span>
 
-            <span class="n">test_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">total</span> <span class="o">+=</span> <span class="n">targets</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-            <span class="n">correct</span> <span class="o">+=</span> <span class="n">predicted</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">targets</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-            <span class="k">if</span> <span class="n">batch_idx</span> <span class="o">%</span> <span class="mi">200</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">testloader</span><span class="p">),</span> <span class="s1">&#39;Loss: </span><span class="si">%.3f</span><span class="s1"> | Acc: </span><span class="si">%.3f%%</span><span class="s1"> (</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">)&#39;</span>
-                    <span class="o">%</span> <span class="p">(</span><span class="n">test_loss</span><span class="o">/</span><span class="p">(</span><span class="n">batch_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+  <span class="k">global</span> <span class="n">best_acc</span>
+  <span class="n">net</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+  <span class="n">test_loss</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+  <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">testloader</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">targets</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
-    <span class="c1"># Save checkpoint.</span>
-    <span class="n">acc</span> <span class="o">=</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span>
-    <span class="k">if</span> <span class="n">acc</span> <span class="o">&gt;</span> <span class="n">best_acc</span><span class="p">:</span>
-        <span class="n">best_acc</span> <span class="o">=</span> <span class="n">acc</span>
-        <span class="n">checkpoint</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">test_loss</span><span class="o">/</span><span class="n">batch_idx</span><span class="p">,</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">)</span>
+      <span class="n">outputs</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
+
+      <span class="n">test_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+      <span class="n">_</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">total</span> <span class="o">+=</span> <span class="n">targets</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+      <span class="n">correct</span> <span class="o">+=</span> <span class="n">predicted</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">targets</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+      <span class="k">if</span> <span class="n">batch_idx</span> <span class="o">%</span> <span class="mi">200</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">batch_idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">testloader</span><span class="p">),</span> <span class="s1">&#39;Loss: </span><span class="si">%.3f</span><span class="s1"> | Acc: </span><span class="si">%.3f%%</span><span class="s1"> (</span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">)&#39;</span>
+            <span class="o">%</span> <span class="p">(</span><span class="n">test_loss</span><span class="o">/</span><span class="p">(</span><span class="n">batch_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">,</span> <span class="n">correct</span><span class="p">,</span> <span class="n">total</span><span class="p">))</span>
+
+  <span class="c1"># Save checkpoint.</span>
+  <span class="n">acc</span> <span class="o">=</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span>
+  <span class="k">if</span> <span class="n">acc</span> <span class="o">&gt;</span> <span class="n">best_acc</span><span class="p">:</span>
+    <span class="n">best_acc</span> <span class="o">=</span> <span class="n">acc</span>
+    <span class="n">checkpoint</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">)</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">test_loss</span><span class="o">/</span><span class="n">batch_idx</span><span class="p">,</span> <span class="mf">100.</span><span class="o">*</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">)</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1548,38 +1478,35 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">checkpoint()</span></code>: Store checkpoints of the model</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">adjust_learning_rate()</span></code>: Decreases the learning rate (learning rate decay) at certain epochs of training.</p></li>
 </ul>
-<div class="section" id="checkpoint-adjust-learning-rate">
-<h4>checkpoint &amp; adjust_learning_rate<a class="headerlink" href="#checkpoint-adjust-learning-rate" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title checkpoint &amp; adjust_learning_rate</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># checkpoint &amp; adjust_learning_rate</span>
 <span class="k">def</span> <span class="nf">checkpoint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">):</span>
-    <span class="c1"># Save checkpoint.</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Saving..&#39;</span><span class="p">)</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;state_dict&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
-        <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="n">acc</span><span class="p">,</span>
-        <span class="s1">&#39;epoch&#39;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
-        <span class="s1">&#39;rng_state&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">get_rng_state</span><span class="p">()</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s1">&#39;checkpoint&#39;</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;checkpoint&#39;</span><span class="p">)</span>
-    <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;./checkpoint/</span><span class="si">{</span><span class="n">outModelName</span><span class="si">}</span><span class="s1">.t7&#39;</span><span class="p">)</span>
+  <span class="c1"># Save checkpoint.</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Saving..&#39;</span><span class="p">)</span>
+  <span class="n">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s1">&#39;state_dict&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+      <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="n">acc</span><span class="p">,</span>
+      <span class="s1">&#39;epoch&#39;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+      <span class="s1">&#39;rng_state&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">get_rng_state</span><span class="p">()</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s1">&#39;checkpoint&#39;</span><span class="p">):</span>
+      <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;checkpoint&#39;</span><span class="p">)</span>
+  <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;./checkpoint/</span><span class="si">{</span><span class="n">outModelName</span><span class="si">}</span><span class="s1">.t7&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">adjust_learning_rate</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;decrease the learning rate at 100 and 150 epoch&quot;&quot;&quot;</span>
-    <span class="n">lr</span> <span class="o">=</span> <span class="n">base_learning_rate</span>
-    <span class="k">if</span> <span class="n">epoch</span> <span class="o">&lt;=</span> <span class="mi">9</span> <span class="ow">and</span> <span class="n">lr</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
-        <span class="c1"># warm-up training for large minibatch</span>
-        <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="p">(</span><span class="n">base_learning_rate</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">*</span> <span class="n">epoch</span> <span class="o">/</span> <span class="mf">10.</span>
-    <span class="k">if</span> <span class="n">epoch</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">:</span>
-        <span class="n">lr</span> <span class="o">/=</span> <span class="mi">10</span>
-    <span class="k">if</span> <span class="n">epoch</span> <span class="o">&gt;=</span> <span class="mi">150</span><span class="p">:</span>
-        <span class="n">lr</span> <span class="o">/=</span> <span class="mi">10</span>
-    <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
-        <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
+  <span class="sd">&quot;&quot;&quot;decrease the learning rate at 100 and 150 epoch&quot;&quot;&quot;</span>
+  <span class="n">lr</span> <span class="o">=</span> <span class="n">base_learning_rate</span>
+  <span class="k">if</span> <span class="n">epoch</span> <span class="o">&lt;=</span> <span class="mi">9</span> <span class="ow">and</span> <span class="n">lr</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
+    <span class="c1"># warm-up training for large minibatch</span>
+    <span class="n">lr</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="p">(</span><span class="n">base_learning_rate</span> <span class="o">-</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">*</span> <span class="n">epoch</span> <span class="o">/</span> <span class="mf">10.</span>
+  <span class="k">if</span> <span class="n">epoch</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">lr</span> <span class="o">/=</span> <span class="mi">10</span>
+  <span class="k">if</span> <span class="n">epoch</span> <span class="o">&gt;=</span> <span class="mi">150</span><span class="p">:</span>
+    <span class="n">lr</span> <span class="o">/=</span> <span class="mi">10</span>
+  <span class="k">for</span> <span class="n">param_group</span> <span class="ow">in</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">:</span>
+    <span class="n">param_group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1587,27 +1514,24 @@
 <div class="section" id="train-the-model">
 <h3>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this headline">¶</a></h3>
 <p>This is the loop where the model is trained for <code class="docutils literal notranslate"><span class="pre">max_epochs</span></code> epochs.</p>
-<div class="section" id="start-training">
-<h4>start training<a class="headerlink" href="#start-training" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title start training</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start training</span>
 <span class="n">outModelName</span> <span class="o">=</span> <span class="s1">&#39;pretrain&#39;</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">logname</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
-        <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;epoch&#39;</span><span class="p">,</span> <span class="s1">&#39;train loss&#39;</span><span class="p">,</span> <span class="s1">&#39;train acc&#39;</span><span class="p">,</span> <span class="s1">&#39;test loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test acc&#39;</span><span class="p">])</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
+      <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+      <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;epoch&#39;</span><span class="p">,</span> <span class="s1">&#39;train loss&#39;</span><span class="p">,</span> <span class="s1">&#39;train acc&#39;</span><span class="p">,</span> <span class="s1">&#39;test loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test acc&#39;</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_epoch</span><span class="p">,</span> <span class="n">max_epochs</span><span class="p">):</span>
-    <span class="n">adjust_learning_rate</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
-    <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
-    <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
-        <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span><span class="o">.</span><span class="n">item</span><span class="p">()])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1"> | train acc: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">}</span><span class="s1"> | test acc: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">adjust_learning_rate</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+  <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="n">use_cuda</span><span class="p">)</span>
+  <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="n">use_cuda</span><span class="p">)</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
+    <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span><span class="o">.</span><span class="n">item</span><span class="p">()])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1"> | train acc: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">}</span><span class="s1"> | test acc: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1625,12 +1549,12 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># delete the backbone network</span>
 <span class="n">delete</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">if</span> <span class="n">delete</span><span class="p">:</span>
-    <span class="k">del</span> <span class="n">net</span>
-    <span class="k">del</span> <span class="n">trainset</span>
-    <span class="k">del</span> <span class="n">testset</span>
-    <span class="k">del</span> <span class="n">trainloader</span>
-    <span class="k">del</span> <span class="n">testloader</span>
-    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+  <span class="k">del</span> <span class="n">net</span>
+  <span class="k">del</span> <span class="n">trainset</span>
+  <span class="k">del</span> <span class="n">testset</span>
+  <span class="k">del</span> <span class="n">trainloader</span>
+  <span class="k">del</span> <span class="n">testloader</span>
+  <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1639,11 +1563,9 @@
 <h4>Target dataset<a class="headerlink" href="#target-dataset" title="Permalink to this headline">¶</a></h4>
 <p>We will now use CIFAR-10 as <em>target</em> data set. Again, with small tweaks we can get any other data we are interested in.</p>
 <p>CIFAR-10 is very similar to CIFAR-100, but it contains only 10 classes instead of 100.</p>
-<div class="section" id="target-domain-data">
-<h5>Target domain Data<a class="headerlink" href="#target-domain-data" title="Permalink to this headline">¶</a></h5>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Target domain Data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Target domain Data</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;==&gt; Preparing target domain data..&#39;</span><span class="p">)</span>
 
 <span class="c1"># CIFAR10 normalizing</span>
@@ -1676,7 +1598,6 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="select-a-subset-of-the-data">
 <h4>Select a subset of the data<a class="headerlink" href="#select-a-subset-of-the-data" title="Permalink to this headline">¶</a></h4>
 <p>To simulate a lower data regime, where transfer learning can be useful.</p>
@@ -1695,11 +1616,9 @@
 <div class="section" id="dataloaders">
 <h4>Dataloaders<a class="headerlink" href="#dataloaders" title="Permalink to this headline">¶</a></h4>
 <p>As before</p>
-<div class="section" id="id2">
-<h5>Dataloader<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title Dataloader </span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dataloader</span>
 <span class="n">num_workers</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;----&gt; number of workers: </span><span class="si">{</span><span class="n">num_workers</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -1709,7 +1628,6 @@
 <span class="n">testloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span>
     <span class="n">testset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -1726,23 +1644,23 @@
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; ===&gt; loading pretrained model from: &#39;</span><span class="p">,</span> <span class="n">checkpointPath</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">checkpointPath</span><span class="p">):</span>
-    <span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpointPath</span><span class="p">)</span>
-    <span class="n">best_acc</span> <span class="o">=</span> <span class="n">state_dict</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best Accuracy:&#39;</span><span class="p">,</span> <span class="n">best_acc</span><span class="p">)</span>
-    <span class="k">if</span> <span class="s2">&quot;state_dict&quot;</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span>
-        <span class="n">state_dict</span> <span class="o">=</span> <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;state_dict&quot;</span><span class="p">]</span>
-    <span class="c1"># remove prefixe &quot;module.&quot;</span>
-    <span class="n">state_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;module.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">state_dict</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key &quot;</span><span class="si">{}</span><span class="s1">&quot; could not be found in provided state dict&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
-        <span class="k">elif</span> <span class="n">state_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key &quot;</span><span class="si">{}</span><span class="s1">&quot; is of different shape in model and provided state dict&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
-            <span class="n">state_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load pretrained model with msg: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+  <span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">checkpointPath</span><span class="p">)</span>
+  <span class="n">best_acc</span> <span class="o">=</span> <span class="n">state_dict</span><span class="p">[</span><span class="s1">&#39;acc&#39;</span><span class="p">]</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best Accuracy:&#39;</span><span class="p">,</span> <span class="n">best_acc</span><span class="p">)</span>
+  <span class="k">if</span> <span class="s2">&quot;state_dict&quot;</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="p">:</span>
+      <span class="n">state_dict</span> <span class="o">=</span> <span class="n">state_dict</span><span class="p">[</span><span class="s2">&quot;state_dict&quot;</span><span class="p">]</span>
+  <span class="c1"># remove prefixe &quot;module.&quot;</span>
+  <span class="n">state_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;module.&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">state_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+  <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">state_dict</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key &quot;</span><span class="si">{}</span><span class="s1">&quot; could not be found in provided state dict&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">state_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key &quot;</span><span class="si">{}</span><span class="s1">&quot; is of different shape in model and provided state dict&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+      <span class="n">state_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+  <span class="n">msg</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Load pretrained model with msg: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;No pretrained weights found&#39;</span><span class="p">)</span>
+  <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;No pretrained weights found&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1756,7 +1674,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Freeze the model parameters, you can also freeze some layers only</span>
 
 <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
-    <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
+  <span class="n">param</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
 </div>
@@ -1768,9 +1686,10 @@
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">num_ftrs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">in_features</span>
 <span class="n">model</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">num_ftrs</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
-<span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
-<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>  
+<span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span>
     <span class="n">model</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span>
     <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span>
@@ -1804,18 +1723,18 @@
 <span class="n">logname</span> <span class="o">=</span> <span class="n">result_folder</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">outModelName</span><span class="si">}</span><span class="s1">.csv&#39;</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">logname</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
-        <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;epoch&#39;</span><span class="p">,</span> <span class="s1">&#39;train loss&#39;</span><span class="p">,</span> <span class="s1">&#39;train acc&#39;</span><span class="p">,</span> <span class="s1">&#39;test loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test acc&#39;</span><span class="p">])</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
+    <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;epoch&#39;</span><span class="p">,</span> <span class="s1">&#39;train loss&#39;</span><span class="p">,</span> <span class="s1">&#39;train acc&#39;</span><span class="p">,</span> <span class="s1">&#39;test loss&#39;</span><span class="p">,</span> <span class="s1">&#39;test acc&#39;</span><span class="p">])</span>
 
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_epoch</span><span class="p">,</span> <span class="n">max_epochs_target</span><span class="p">):</span>
-    <span class="n">adjust_learning_rate</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
-    <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
-    <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
-        <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span><span class="o">.</span><span class="n">item</span><span class="p">()])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1"> | train acc: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">}</span><span class="s1"> | test acc: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="n">adjust_learning_rate</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">)</span>
+  <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="n">use_cuda</span><span class="p">)</span>
+  <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">outModelName</span><span class="p">,</span> <span class="n">use_cuda</span><span class="o">=</span><span class="n">use_cuda</span><span class="p">)</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">logname</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">logfile</span><span class="p">:</span>
+    <span class="n">logwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">logfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="n">logwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">epoch</span><span class="p">,</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span><span class="o">.</span><span class="n">item</span><span class="p">()])</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1"> | train acc: </span><span class="si">{</span><span class="n">train_acc</span><span class="si">}</span><span class="s1"> | test acc: </span><span class="si">{</span><span class="n">test_acc</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1824,11 +1743,9 @@
 </div>
 <div class="section" id="plot-results">
 <h2>Plot results<a class="headerlink" href="#plot-results" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>plot results<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">##@title plot results</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># title plot results</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;/content/results/ResNet_</span><span class="si">{</span><span class="n">outModelName</span><span class="si">}</span><span class="s1">.csv&#39;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
 <span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -1859,7 +1776,6 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
