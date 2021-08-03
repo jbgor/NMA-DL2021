@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# @markdown Download MNIST and CIFAR10 image datasets while the above video plays', '# See https://pytorch.org/docs/stable/torchvision/datasets.html', 'from IPython.display import clear_output', '', '# MNIST contains handwritten digets 0-9, in grayscale images of size (1,28,28)']
+['# PCA requires finding the top K eigenvectors of the data covariance. Start by', '# finding the mean and covariance of the pixels in our dataset', 'g_seed = torch.Generator()', 'g_seed.manual_seed(SEED)', '']
 ...
-['                                  train=False,', '                                  transform=tv.transforms.ToTensor(),', '                                  download=True)', '', 'clear_output()']
+['', 'mu, cov = image_moments((im for im, _ in loader),', '                        n_batches=len(train_set) // 32)', '', 'pca_encode, pca_decode = pca_encoder_decoder(mu, cov, K)']
 -------------------
 

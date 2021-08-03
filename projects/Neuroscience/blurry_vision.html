@@ -1073,6 +1073,12 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 42 has been set.
+GPU is enabled in this notebook.
+</pre></div>
+</div>
+</div>
 </div>
 <p><strong>The Asirra dataset</strong></p>
 <p>The CAPTCHA (Completely Automated Public Turing test to tell Computers and Humans Apart) or HIP (Human Interactive Proof) challenge is the motivation behind the creation of this dataset.</p>
@@ -1238,6 +1244,15 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_18_1.png" src="../../_images/blurry_vision_18_1.png" />
+</div>
 </div>
 </div>
 </div>
@@ -1338,6 +1353,12 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1345,6 +1366,22 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reusing TensorBoard on port 6006 (pid 137), started 0:16:25 ago. (Use &#39;!kill 137&#39; to kill it.)
+</pre></div>
+</div>
+<script type="application/javascript">
+        (async () => {
+            const url = new URL(await google.colab.kernel.proxyPort(6006, {'cache': true}));
+            url.searchParams.set('tensorboardColab', 'true');
+            const iframe = document.createElement('iframe');
+            iframe.src = url;
+            iframe.setAttribute('width', '100%');
+            iframe.setAttribute('height', '800');
+            iframe.setAttribute('frameborder', 0);
+            document.body.appendChild(iframe);
+        })();
+    </script></div>
 </div>
 <div class="section" id="training-loop">
 <h2>Training Loop<a class="headerlink" href="#training-loop" title="Permalink to this headline">¶</a></h2>
@@ -1444,7 +1481,9 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="n">evaluate</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;before training&quot;</span><span class="p">)</span>
 
 <span class="c1"># Define number of epochs</span>
+<span class="n">num_pretraining_epochs</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">num_training_epochs</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="n">num_pretraining_epochs</span> <span class="o">+</span> <span class="n">num_training_epochs</span>
 
 <span class="c1"># Save network weights</span>
 <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s2">&quot;naive_before_training&quot;</span><span class="p">)</span>
@@ -1477,6 +1516,76 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "c950f06da0ef4605b2a8e2ee90aeaa39", "version_major": 2, "version_minor": 0}
+</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 32 bytes but only got 0. Skipping tag 270
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 5 bytes but only got 0. Skipping tag 271
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 8 bytes but only got 0. Skipping tag 272
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 8 bytes but only got 0. Skipping tag 282
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 8 bytes but only got 0. Skipping tag 283
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 20 bytes but only got 0. Skipping tag 306
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 48 bytes but only got 0. Skipping tag 532
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:788: UserWarning: Corrupt EXIF data.  Expecting to read 2 bytes but only got 0. 
+  warnings.warn(str(msg))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "80160d6d18d04bdaabd356e7613632e2", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 clear training samples before training: 50.00
+Accuracy on the 2494 clear testing samples before training: 50.00
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "b4352dc874c04dcc8e17370f4707c78a", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ec81f79a48304d859e9b9cef1e6a06fc", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 blurry training samples before training: 50.00
+Accuracy on the 2494 blurry testing samples before training: 50.00
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "3f87aace9a014cfd8a417c9737af2e45", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ac7a2bcdefd74b4983e4f1cbf35a037a", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "59b64c1d3f29493bba00c2004bdaaa00", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 clear training samples after training: 63.99
+Accuracy on the 2494 clear testing samples after training: 63.47
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "c4678c1af8f14140a6a8ca280c037758", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f21927d88da74cc4962c2c040b3066be", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 blurry training samples after training: 71.78
+Accuracy on the 2494 blurry testing samples after training: 72.53
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_31_19.png" src="../../_images/blurry_vision_31_19.png" />
 </div>
 </div>
 </div>
@@ -1547,6 +1656,103 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "00330b93d09543a98d62416046523892", "version_major": 2, "version_minor": 0}
+</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 32 bytes but only got 0. Skipping tag 270
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 5 bytes but only got 0. Skipping tag 271
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 8 bytes but only got 0. Skipping tag 272
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 8 bytes but only got 0. Skipping tag 282
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 8 bytes but only got 0. Skipping tag 283
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 20 bytes but only got 0. Skipping tag 306
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:770: UserWarning: Possibly corrupt EXIF data.  Expecting to read 48 bytes but only got 0. Skipping tag 532
+  &quot; Skipping tag %s&quot; % (size, len(data), tag)
+/usr/local/lib/python3.7/dist-packages/PIL/TiffImagePlugin.py:788: UserWarning: Corrupt EXIF data.  Expecting to read 2 bytes but only got 0. 
+  warnings.warn(str(msg))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d6f577a422d94b09b865ca2b29b86b21", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 clear training samples before training: 50.00
+Accuracy on the 2494 clear testing samples before training: 50.00
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a9539a6a28774267abba211e308af528", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1ea75386dd7b459594b6aae8559b8852", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 blurry training samples before training: 50.00
+Accuracy on the 2494 blurry testing samples before training: 50.00
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2be4dcd4527948d98f076a87457241c1", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "7223381ae54f45ec92f998de64574a40", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "4549b241a7c64c0283e1bdc8ca896e82", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 clear training samples after pretraining: 75.49
+Accuracy on the 2494 clear testing samples after pretraining: 75.58
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "ff75c509e4de48018c337cfb60279dc7", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5adf2d6163d8489c85e8ec60756f3517", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 blurry training samples after pretraining: 59.91
+Accuracy on the 2494 blurry testing samples after pretraining: 60.34
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "79f459abc6bb4842b029a75cc521f995", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "4255157128cd41f28022b96bec48edf1", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "536e5daa4c3e4e65bc39ed10a957b1bf", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 clear training samples after training: 73.94
+Accuracy on the 2494 clear testing samples after training: 74.86
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "6ce66bdf46064ea095337efba265eb2d", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "06f48f476b204d248f14e7f3467cbf00", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy on the 17953 blurry training samples after training: 77.62
+Accuracy on the 2494 blurry testing samples after training: 77.87
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_33_29.png" src="../../_images/blurry_vision_33_29.png" />
+</div>
 </div>
 <p>Wow thats interesting! The model of the visual system has a hard time to distinguish between blurry cats and dogs even after having seen images of cats and dog before! It takes further training on the blurry images to be able to learn the difference well. Even then, it is only a little better than the naive model. Would it be same for a human being?</p>
 <p>Now, if you want to understand thats happening during training and pretraining, is there a way to visualise the effect of on the network itself? Yes!! You can look at either how:</p>
@@ -1602,6 +1808,10 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/blurry_vision_39_0.png" src="../../_images/blurry_vision_39_0.png" />
+<img alt="../../_images/blurry_vision_39_1.png" src="../../_images/blurry_vision_39_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="expert-experienced-model">
@@ -1624,6 +1834,11 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="n">plot_filter</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s2">&quot;After Training (Expert Model)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/blurry_vision_41_0.png" src="../../_images/blurry_vision_41_0.png" />
+<img alt="../../_images/blurry_vision_41_1.png" src="../../_images/blurry_vision_41_1.png" />
+<img alt="../../_images/blurry_vision_41_2.png" src="../../_images/blurry_vision_41_2.png" />
 </div>
 </div>
 <p>Looks like with the small amount of training, the filters are not very meaningful. Also, there seem to be only very small differences are visible at the first layer.</p>
@@ -1697,6 +1912,32 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Naive Model
+=============
+Before Training
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_48_2.png" src="../../_images/blurry_vision_48_2.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_48_4.png" src="../../_images/blurry_vision_48_4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After Training
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_48_7.png" src="../../_images/blurry_vision_48_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_48_9.png" src="../../_images/blurry_vision_48_9.png" />
+</div>
 </div>
 <p>Over training, the naive model seems to have learnt more complex features as apparent from the intermediate layer outputs.</p>
 </div>
@@ -1727,6 +1968,43 @@ The parameter <code class="docutils literal notranslate"><span class="pre">downs
 <span class="n">plot_intermediate_layers</span><span class="p">(</span><span class="n">noisy_cat_image</span><span class="p">,</span><span class="n">net</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Expert Model
+=============
+Before Training
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_51_2.png" src="../../_images/blurry_vision_51_2.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_51_4.png" src="../../_images/blurry_vision_51_4.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After Pretraining
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_51_7.png" src="../../_images/blurry_vision_51_7.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_51_9.png" src="../../_images/blurry_vision_51_9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>After Training
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_51_12.png" src="../../_images/blurry_vision_51_12.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+</pre></div>
+</div>
+<img alt="../../_images/blurry_vision_51_14.png" src="../../_images/blurry_vision_51_14.png" />
 </div>
 </div>
 <p>Clearly, the network output is only somewhat similar between pretraining and training. The differences seem to suggest that the process of learning over blurred images did change the features the network focused which probably contibuted to improved response to blurry images.</p>
