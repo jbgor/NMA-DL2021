@@ -32,15 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-# Download and load the images from the CIFAR10 dataset
-cifar10_data = datasets.CIFAR10(
-    root="data",            # path where the images will be stored
-    download=True,          # all images should be downloaded
-    transform=ToTensor()    # transform the images to tensors
-    )
-
-# Print the number of samples in the loaded dataset
-print(f"Number of samples: {len(cifar10_data)}")
-print(f"Class names: {cifar10_data.classes}")
+['set_seed(seed=SEED)', '# Print trainig stats every LOG_FREQ minibatches', 'LOG_FREQ = 200', '# Frequency for evaluating the validation metrics', 'VAL_FREQ = 200']
+...
+['      print(f"[TRAIN] Epoch {epoch + 1} - Batch {batch_id + 1} - "', '            f"Loss: {running_loss / LOG_FREQ:.3f} - "', '            f"Acc: {100 * running_acc / LOG_FREQ:.3f}%")', '', '      running_loss, running_acc = 0., 0.']
 -------------------
 
