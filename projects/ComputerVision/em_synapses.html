@@ -864,6 +864,13 @@
     <a class="reference internal nav-link" href="#data-preparation">
      Data Preparation
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-data">
+       Download the data
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#classifier-training">
@@ -936,6 +943,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
 <span class="o">!</span>pip install scikit-image --quiet
+<span class="o">!</span>pip install pillow --quiet
+<span class="o">!</span>pip install scikit-image --quiet
 </pre></div>
 </div>
 </div>
@@ -998,71 +1007,73 @@
 <p>In this section, we will implement and train a VGG classifier to classify images of synapses into one of six classes, corresponding to the neurotransmitter type that is released at the synapse: GABA, acethylcholine, glutamate, octopamine, serotonin, and dopamine.</p>
 <div class="section" id="data-preparation">
 <h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
+<div class="section" id="download-the-data">
+<h3>Download the data<a class="headerlink" href="#download-the-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the resources for this tutorial (one zip file)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download the data</span>
 <span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
 
+<span class="c1"># @markdown Download the resources for this tutorial (one zip file)</span>
 <span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;resources.zip&#39;</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www.dropbox.com/sh/ucpjfd3omjieu80/AAAvZynLtzvhyFx7_jwVhUK2a?dl=1&#39;</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">&#39;data/&#39;</span><span class="p">):</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data downlading...&#39;</span><span class="p">)</span>
   <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
     <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Download is cmpleted.&#39;</span><span class="p">)</span>
+
+  <span class="c1"># @markdown Unzip the file</span>
+  <span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;resources.zip&#39;</span>
+
+  <span class="c1"># specifying the zip file name</span>
+  <span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;data.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;checkpoints.zip&#39;</span><span class="p">]</span>
+
+  <span class="c1"># opening the zip file in READ mode</span>
+  <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zf</span><span class="p">:</span>
+    <span class="c1"># extracting all the files</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extracting all the files now...&#39;</span><span class="p">)</span>
+    <span class="n">zf</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">)</span>
+
+
+  <span class="c1"># @markdown Extract the data</span>
+  <span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;data.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;checkpoints.zip&#39;</span><span class="p">]</span>
+
+  <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
+    <span class="c1"># opening the zip file in READ mode</span>
+    <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zh</span><span class="p">:</span>
+      <span class="c1"># extracting all the files</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Archive: </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Extracting data...&quot;</span><span class="p">)</span>
+      <span class="n">zh</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">)</span>
+
+  <span class="c1"># @markdown Make sure the order of classes matches the pretrained model</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/gaba&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/0_gaba&#39;</span><span class="p">)</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/acetylcholine&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/1_acetylcholine&#39;</span><span class="p">)</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/glutamate&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/2_glutamate&#39;</span><span class="p">)</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/serotonin&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/3_serotonin&#39;</span><span class="p">)</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/octopamine&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/4_octopamine&#39;</span><span class="p">)</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/dopamine&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/5_dopamine&#39;</span><span class="p">)</span>
+
 <span class="k">else</span><span class="p">:</span>
   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Data are downloaded.&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importing required modules</span>
-<span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
-<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;resources.zip&#39;</span>
 
-<span class="c1"># specifying the zip file name</span>
-<span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;data.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;checkpoints.zip&#39;</span><span class="p">]</span>
-
-<span class="c1"># opening the zip file in READ mode</span>
-<span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zf</span><span class="p">:</span>
-  <span class="c1"># extracting all the files</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Extracting all the files now...&#39;</span><span class="p">)</span>
-  <span class="n">zf</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">)</span>
+<span class="c1"># @markdown Remove the archives</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;checkpoints.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;experiments.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;data.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;resources.zip&#39;</span><span class="p">]:</span>
+  <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;data.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;checkpoints.zip&#39;</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">fnames</span><span class="p">:</span>
-  <span class="c1"># opening the zip file in READ mode</span>
-  <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zh</span><span class="p">:</span>
-    <span class="c1"># extracting all the files</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Archive: </span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Extracting data...&quot;</span><span class="p">)</span>
-    <span class="n">zh</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">)</span>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data are downloaded.
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure the order of classes matches the pretrained model</span>
-<span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/gaba&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/0_gaba&#39;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/acetylcholine&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/1_acetylcholine&#39;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/glutamate&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/2_glutamate&#39;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/serotonin&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/3_serotonin&#39;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/octopamine&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/4_octopamine&#39;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/dopamine&#39;</span><span class="p">,</span> <span class="s1">&#39;data/raw/synapses/5_dopamine&#39;</span><span class="p">)</span>
-</pre></div>
 </div>
 </div>
 </div>
@@ -1075,10 +1086,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-  
+
   <span class="n">image</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
-  <span class="c1"># images are grescale, we only need one of the RGB channels </span>
+  <span class="c1"># images are grescale, we only need one of the RGB channels</span>
   <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
   <span class="c1"># img is uint8 in [0, 255], but we want float32 in [-1, 1]</span>
   <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">/</span><span class="mf">255.0</span>
@@ -1121,6 +1132,17 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of images per class:
+	0_gaba:	n=15855	weight=6.30715862503942e-05
+	1_acetylcholine:	n=4911	weight=0.00020362451639177357
+	2_glutamate:	n=3550	weight=0.00028169014084507044
+	3_serotonin:	n=2297	weight=0.00043535045711797995
+	4_octopamine:	n=951	weight=0.0010515247108307045
+	5_dopamine:	n=4649	weight=0.00021510002151000216
+</pre></div>
+</div>
+</div>
 </div>
 <p>The cell below visualizes a single, randomly chosen batch from the training data loader. Feel free to execute this cell multiple times to get a feeling for the dataset. See if you can tell the difference between synapses of different types!</p>
 <div class="cell docutils container">
@@ -1139,6 +1161,9 @@
   <span class="k">break</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/em_synapses_17_0.png" src="../../_images/em_synapses_17_0.png" />
 </div>
 </div>
 </div>
@@ -1218,7 +1243,7 @@
     <span class="p">]</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="o">*</span><span class="n">classifier</span><span class="p">)</span>
-  
+
   <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw</span><span class="p">):</span>
 
     <span class="c1"># add a channel dimension to raw</span>
@@ -1268,6 +1293,11 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Will use device cuda for training
+</pre></div>
+</div>
+</div>
 </div>
 <p>The next cell merely defines some convenience functions for training, validation, and testing:</p>
 <div class="cell docutils container">
@@ -1297,7 +1327,7 @@
 
 
 <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
-    
+
   <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
@@ -1310,7 +1340,7 @@
 
     <span class="n">correct</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
     <span class="n">total</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-  
+
   <span class="n">accuracy</span> <span class="o">=</span> <span class="n">correct</span><span class="o">/</span><span class="n">total</span>
 
   <span class="k">return</span> <span class="n">accuracy</span>
@@ -1339,28 +1369,44 @@
 <p>We are ready to train. After each epoch (roughly going through each training image once), we report the training loss and the validation accuracy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-  <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, training loss=</span><span class="si">{</span><span class="n">epoch_loss</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_from_scratch</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">validation_dataset</span><span class="p">,</span>
+                       <span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span>
+                       <span class="n">num_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">):</span>
 
-  <span class="n">accuracy</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">validation_dataset</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, validation accuracy=</span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, training loss=</span><span class="si">{</span><span class="n">epoch_loss</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">validation_dataset</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;epoch </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">, validation accuracy=</span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Or interrupt the current cell and run the next one, which will load a checkpoint that we already prepared.</p>
+<p><code class="docutils literal notranslate"><span class="pre">yes_I_want_the_pretrained_model</span> <span class="pre">=</span> <span class="pre">True</span></code> will load a checkpoint that we already prepared, whereas setting it to <code class="docutils literal notranslate"><span class="pre">False</span></code> will train the model from scratch.</p>
+<p>Unceck the box below and run the cell to train a model.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown</span>
+<span class="n">yes_I_want_the_pretrained_model</span> <span class="o">=</span>  <span class="kc">True</span> <span class="c1"># @param {type:&quot;boolean&quot;}</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SHORTCUT (OPTIONAL): load a pretrained model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a pretrained model or train the model from scratch</span>
 
-<span class="c1"># change this to True and run this cell if you want a shortcut</span>
-<span class="n">yes_I_want_the_pretrained_model</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="c1"># set this to True and run this cell if you want a shortcut</span>
 
 <span class="k">if</span> <span class="n">yes_I_want_the_pretrained_model</span><span class="p">:</span>
   <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;checkpoints/synapses/classifier/vgg_checkpoint&#39;</span><span class="p">,</span>
                           <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
   <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">checkpoint</span><span class="p">[</span><span class="s1">&#39;model_state_dict&#39;</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">train_from_scratch</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">validation_dataset</span><span class="p">,</span>
+                     <span class="n">optimizer</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span>
+                     <span class="n">num_epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1369,6 +1415,19 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">accuracy</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;final test accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test:   0%|          | 0/216 [00:00&lt;?, ?it/s]/usr/local/lib/python3.7/dist-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
+  return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
+test: 100%|██████████| 216/216 [00:09&lt;00:00, 23.53it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>final test accuracy: 0.8054750869061413
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
@@ -1394,12 +1453,12 @@
 
 <span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">io</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://osf.io/vbcdz/download&#39;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://osf.io/vutn5/download&#39;</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
-<span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s1">&#39;./cycle_gan&#39;</span><span class="p">)</span>
+<span class="n">z</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
 
-<span class="o">!</span>pip install dominate
+<span class="o">!</span>pip install dominate --quiet
 </pre></div>
 </div>
 </div>
@@ -1411,12 +1470,23 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cycle_gan</span>
 
 <span class="n">cycle_gan</span><span class="o">.</span><span class="n">prepare_dataset</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;0_gaba&#39;</span><span class="p">,</span> <span class="s1">&#39;2_glutamate&#39;</span><span class="p">])</span>
-<span class="n">cycle_gan</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="s1">&#39;data/raw/synapses/&#39;</span><span class="p">,</span> <span class="s1">&#39;0_gaba&#39;</span><span class="p">,</span> <span class="s1">&#39;2_glutamate&#39;</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+
+<span class="c1">## Uncomment if you want to enable the training procedure</span>
+<span class="c1"># cycle_gan.train(&#39;data/raw/synapses/&#39;, &#39;0_gaba&#39;, &#39;2_glutamate&#39;, 128)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 22648/22648 [00:03&lt;00:00, 7032.03it/s]
+100%|██████████| 5085/5085 [00:00&lt;00:00, 7355.06it/s]
+0it [00:00, ?it/s]
+0it [00:00, ?it/s]
+0it [00:00, ?it/s]
+0it [00:00, ?it/s]
 </pre></div>
 </div>
 </div>
 </div>
-<p>…this time again.</p>
 <p>Training the CycleGAN takes a lot longer than the VGG we trained above (on the synapse dataset, this will be around 7 days…).</p>
 <p>To continue, interrupt the kernel and continue with the next one, which will just use one of the pretrained CycleGAN models for the synapse dataset.</p>
 <div class="cell docutils container">
@@ -1430,6 +1500,289 @@
     <span class="n">checkpoints_dir</span><span class="o">=</span><span class="s1">&#39;checkpoints/synapses/cycle_gan/gaba_glutamate/&#39;</span><span class="p">,</span>
     <span class="n">vgg_checkpoint</span><span class="o">=</span><span class="s1">&#39;checkpoints/synapses/classifier/vgg_checkpoint&#39;</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------- Options ---------------
+             aspect_ratio: 1.0                           
+           aux_checkpoint: checkpoints/synapses/classifier/vgg_checkpoint	[default: None]
+   aux_downsample_factors: [(2, 2), (2, 2), (2, 2), (2, 2)]
+             aux_input_nc: 1                             
+           aux_input_size: 128                           
+                  aux_net: vgg2d                         
+       aux_output_classes: 6                             
+               batch_size: 1                             
+          checkpoints_dir: checkpoints/synapses/cycle_gan/gaba_glutamate	[default: ./checkpoints]
+                crop_size: 128                           
+                 dataroot: data/raw/synapses/cycle_gan/0_gaba_2_glutamate	[default: None]
+             dataset_mode: single                        
+                direction: AtoB                          
+          display_winsize: 256                           
+                    epoch: latest                        
+                     eval: False                         
+                  gpu_ids: 0                             
+                init_gain: 0.02                          
+                init_type: normal                        
+                 input_nc: 1                             
+                  isTrain: False                         	[default: None]
+                load_iter: 0                             	[default: 0]
+                load_size: 128                           
+         max_dataset_size: inf                           
+                    model: test                          
+             model_suffix: _A                            	[default: ]
+               n_layers_D: 3                             
+                     name:                               	[default: experiment_name]
+                      ndf: 64                            
+                     netD: basic                         
+                     netG: resnet_9blocks                
+                      ngf: 64                            
+               no_dropout: True                          	[default: False]
+                  no_flip: True                          
+                     norm: instance                      
+                    ntest: inf                           
+                 num_test: 500                           	[default: 50]
+              num_threads: 1                             	[default: 4]
+                output_nc: 1                             
+                    phase: test                          
+               preprocess: none                          
+              results_dir: data/raw/synapses/cycle_gan/0_gaba_2_glutamate/results	[default: ./results/]
+           serial_batches: False                         
+                   suffix:                               
+                  verbose: True                          	[default: False]
+----------------- End -------------------
+dataset [SingleDataset] was created
+initialize network with normal
+model [TestModel] was created
+loading the model from checkpoints/synapses/cycle_gan/gaba_glutamate/latest_net_G_A.pth
+---------- Networks initialized -------------
+DataParallel(
+  (module): ResnetGenerator(
+    (model): Sequential(
+      (0): ReflectionPad2d((3, 3, 3, 3))
+      (1): Conv2d(1, 64, kernel_size=(7, 7), stride=(1, 1))
+      (2): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (3): ReLU(inplace=True)
+      (4): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (5): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (6): ReLU(inplace=True)
+      (7): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+      (8): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (9): ReLU(inplace=True)
+      (10): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (11): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (12): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (13): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (14): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (15): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (16): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (17): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (18): ResnetBlock(
+        (conv_block): Sequential(
+          (0): ReflectionPad2d((1, 1, 1, 1))
+          (1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (2): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+          (3): ReLU(inplace=True)
+          (4): ReflectionPad2d((1, 1, 1, 1))
+          (5): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1))
+          (6): InstanceNorm2d(256, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+        )
+      )
+      (19): ConvTranspose2d(256, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+      (20): InstanceNorm2d(128, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (21): ReLU(inplace=True)
+      (22): ConvTranspose2d(128, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+      (23): InstanceNorm2d(64, eps=1e-05, momentum=0.1, affine=False, track_running_stats=False)
+      (24): ReLU(inplace=True)
+      (25): ReflectionPad2d((3, 3, 3, 3))
+      (26): Conv2d(64, 1, kernel_size=(7, 7), stride=(1, 1))
+      (27): Tanh()
+    )
+  )
+)
+[Network G_A] Total number of parameters : 11.366 M
+-----------------------------------------------
+creating web directory data/raw/synapses/cycle_gan/0_gaba_2_glutamate/results/test_latest
+processing (0000)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/0_train.png&#39;]
+processing (0005)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10004_train.png&#39;]
+processing (0010)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10009_train.png&#39;]
+processing (0015)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10013_train.png&#39;]
+processing (0020)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10018_train.png&#39;]
+processing (0025)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10022_train.png&#39;]
+processing (0030)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10027_train.png&#39;]
+processing (0035)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10031_train.png&#39;]
+processing (0040)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10036_train.png&#39;]
+processing (0045)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10040_train.png&#39;]
+processing (0050)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10045_train.png&#39;]
+processing (0055)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1004_train.png&#39;]
+processing (0060)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10054_train.png&#39;]
+processing (0065)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10059_train.png&#39;]
+processing (0070)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10063_train.png&#39;]
+processing (0075)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10068_train.png&#39;]
+processing (0080)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10072_train.png&#39;]
+processing (0085)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10077_train.png&#39;]
+processing (0090)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10081_train.png&#39;]
+processing (0095)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10086_train.png&#39;]
+processing (0100)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10090_train.png&#39;]
+processing (0105)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10095_train.png&#39;]
+processing (0110)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1009_train.png&#39;]
+processing (0115)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10103_train.png&#39;]
+processing (0120)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10108_train.png&#39;]
+processing (0125)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10112_train.png&#39;]
+processing (0130)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10117_train.png&#39;]
+processing (0135)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10121_train.png&#39;]
+processing (0140)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10126_train.png&#39;]
+processing (0145)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10130_train.png&#39;]
+processing (0150)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10135_train.png&#39;]
+processing (0155)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1013_train.png&#39;]
+processing (0160)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10144_train.png&#39;]
+processing (0165)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10149_train.png&#39;]
+processing (0170)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10153_train.png&#39;]
+processing (0175)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10158_train.png&#39;]
+processing (0180)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10162_train.png&#39;]
+processing (0185)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10167_train.png&#39;]
+processing (0190)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10171_train.png&#39;]
+processing (0195)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10176_train.png&#39;]
+processing (0200)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10180_train.png&#39;]
+processing (0205)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10185_train.png&#39;]
+processing (0210)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1018_train.png&#39;]
+processing (0215)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10194_train.png&#39;]
+processing (0220)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10199_train.png&#39;]
+processing (0225)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10202_train.png&#39;]
+processing (0230)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10207_train.png&#39;]
+processing (0235)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10211_train.png&#39;]
+processing (0240)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10216_train.png&#39;]
+processing (0245)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10220_train.png&#39;]
+processing (0250)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10225_train.png&#39;]
+processing (0255)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1022_train.png&#39;]
+processing (0260)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10234_train.png&#39;]
+processing (0265)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10239_train.png&#39;]
+processing (0270)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10243_train.png&#39;]
+processing (0275)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10248_train.png&#39;]
+processing (0280)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10252_train.png&#39;]
+processing (0285)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10257_train.png&#39;]
+processing (0290)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10261_train.png&#39;]
+processing (0295)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10266_train.png&#39;]
+processing (0300)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10270_train.png&#39;]
+processing (0305)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10275_train.png&#39;]
+processing (0310)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1027_train.png&#39;]
+processing (0315)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10284_train.png&#39;]
+processing (0320)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10289_train.png&#39;]
+processing (0325)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10293_train.png&#39;]
+processing (0330)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10298_train.png&#39;]
+processing (0335)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10301_train.png&#39;]
+processing (0340)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10306_train.png&#39;]
+processing (0345)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10310_train.png&#39;]
+processing (0350)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10315_train.png&#39;]
+processing (0355)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1031_train.png&#39;]
+processing (0360)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10324_train.png&#39;]
+processing (0365)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10329_train.png&#39;]
+processing (0370)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10333_train.png&#39;]
+processing (0375)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10338_train.png&#39;]
+processing (0380)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10342_train.png&#39;]
+processing (0385)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10347_train.png&#39;]
+processing (0390)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10351_train.png&#39;]
+processing (0395)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10356_train.png&#39;]
+processing (0400)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10360_train.png&#39;]
+processing (0405)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10365_train.png&#39;]
+processing (0410)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1036_train.png&#39;]
+processing (0415)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10374_train.png&#39;]
+processing (0420)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10379_train.png&#39;]
+processing (0425)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10383_train.png&#39;]
+processing (0430)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10388_train.png&#39;]
+processing (0435)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10392_train.png&#39;]
+processing (0440)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10397_train.png&#39;]
+processing (0445)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10400_train.png&#39;]
+processing (0450)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10405_train.png&#39;]
+processing (0455)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/1040_train.png&#39;]
+processing (0460)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10414_train.png&#39;]
+processing (0465)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10419_train.png&#39;]
+processing (0470)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10423_train.png&#39;]
+processing (0475)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10428_train.png&#39;]
+processing (0480)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10432_train.png&#39;]
+processing (0485)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10437_train.png&#39;]
+processing (0490)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10441_train.png&#39;]
+processing (0495)-th image... [&#39;data/raw/synapses/cycle_gan/0_gaba_2_glutamate/trainA/10446_train.png&#39;]
 </pre></div>
 </div>
 </div>
@@ -1475,6 +1828,18 @@
   <span class="n">show_pair</span><span class="p">(</span><span class="n">real_A</span><span class="p">,</span> <span class="n">fake_B</span><span class="p">,</span> <span class="n">score_A</span><span class="p">,</span> <span class="n">score_B</span><span class="p">,</span> <span class="s1">&#39;gaba&#39;</span><span class="p">,</span> <span class="s1">&#39;glutamate&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/em_synapses_44_0.png" src="../../_images/em_synapses_44_0.png" />
+<img alt="../../_images/em_synapses_44_1.png" src="../../_images/em_synapses_44_1.png" />
+<img alt="../../_images/em_synapses_44_2.png" src="../../_images/em_synapses_44_2.png" />
+<img alt="../../_images/em_synapses_44_3.png" src="../../_images/em_synapses_44_3.png" />
+<img alt="../../_images/em_synapses_44_4.png" src="../../_images/em_synapses_44_4.png" />
+<img alt="../../_images/em_synapses_44_5.png" src="../../_images/em_synapses_44_5.png" />
+<img alt="../../_images/em_synapses_44_6.png" src="../../_images/em_synapses_44_6.png" />
+<img alt="../../_images/em_synapses_44_7.png" src="../../_images/em_synapses_44_7.png" />
+<img alt="../../_images/em_synapses_44_8.png" src="../../_images/em_synapses_44_8.png" />
+<img alt="../../_images/em_synapses_44_9.png" src="../../_images/em_synapses_44_9.png" />
 </div>
 </div>
 </div>
