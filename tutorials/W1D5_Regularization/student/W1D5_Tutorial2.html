@@ -1040,11 +1040,6 @@
      Video 6: Adversarial Attacks
     </a>
 </li>
-<li class="toc-h2 nav-item toc-entry">
-<a class="reference internal nav-link" href="#optional-supplements">
-     Optional Supplements
-    </a>
-</li>
 </ul>
 </li>
 </ul>
@@ -1687,7 +1682,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a504f5b8356743d89ab3e60f9d0e588a"}
+{"version_major": 2, "version_minor": 0, "model_id": "b57867447fde480da6be58d483a12cd7"}
 </script></div>
 </div>
 <p>Some of you might have already come across L1 and L2 regularization before in other courses. L1 and L2 are the most common types of regularization. These update the general cost function by adding another term known as the regularization term.</p>
@@ -1767,7 +1762,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0f570e7fc66c449aa166839da813eb9e"}
+{"version_major": 2, "version_minor": 0, "model_id": "3e2cf13cfe5b4579bfcd0b2f074c4353"}
 </script><img alt="../../../_images/W1D5_Tutorial2_36_2.png" src="../../../_images/W1D5_Tutorial2_36_2.png"/>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>maximum Validation Accuracy reached:50.000000
 </pre></div>
@@ -1779,18 +1774,18 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="section" id="section-1-2-l1-regularization">
 <h2>Section 1.2: L1 Regularization<a class="headerlink" href="#section-1-2-l1-regularization" title="Permalink to this headline">¶</a></h2>
 <p>L1 (or “LASSO”) Regularization uses a penalty which is the sum of the absolute value of all the weights in the DLN, resulting in the following loss function (L  is the usual Cross Entropy loss):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f077f5e-fd93-4549-8455-7bc21aa3b966">
-<span class="eqno">(49)<a class="headerlink" href="#equation-9f077f5e-fd93-4549-8455-7bc21aa3b966" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-44cb240d-6e45-44d5-90b3-9a96757e8749">
+<span class="eqno">(49)<a class="headerlink" href="#equation-44cb240d-6e45-44d5-90b3-9a96757e8749" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 L_R=L + \lambda \sum \left| w^{(r)}_{ij} \right|
 \end{equation}\]</div>
 <p>At a high level, L1 Regularization is similar to L2 Regularization since it leads to smaller weights. (You will see the analogy in the next subsection.) It results in the following weight update equation when using Stochastic Gradient Descent:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c6c1d8e2-9b86-4da6-8d0f-5d3c68db96f6">
-<span class="eqno">(50)<a class="headerlink" href="#equation-c6c1d8e2-9b86-4da6-8d0f-5d3c68db96f6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9e8cb042-12f3-4b6a-996f-f7938500c1d8">
+<span class="eqno">(50)<a class="headerlink" href="#equation-9e8cb042-12f3-4b6a-996f-f7938500c1d8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)−\eta \frac{\partial L}{\partial w_{ij}^{r}} 
 \end{equation}\]</div>
 <p>where  <span class="math notranslate nohighlight">\(\text{sgn}(\cdot)\)</span> is the sign function, such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-36aba6d9-9f3d-42c9-9052-ef293486c8d5">
-<span class="eqno">(51)<a class="headerlink" href="#equation-36aba6d9-9f3d-42c9-9052-ef293486c8d5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dcb0d341-1eea-44a4-8705-5b3fd8874090">
+<span class="eqno">(51)<a class="headerlink" href="#equation-dcb0d341-1eea-44a4-8705-5b3fd8874090" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{sgn(w)} = 
 \left\{
   \begin{array}{ll}
@@ -1890,18 +1885,18 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)�
 <div class="section" id="section-1-3-l2-ridge-regularization">
 <h2>Section 1.3: L2 / Ridge Regularization<a class="headerlink" href="#section-1-3-l2-ridge-regularization" title="Permalink to this headline">¶</a></h2>
 <p>L2 Regularization, sometimes referred to as “Weight Decay”, is widely used. It works by adding a quadratic penalty term to the Cross Entropy Loss Function  L, which results in a new Loss Function  LR  given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-346795df-4c99-4592-aba0-2d650d340b86">
-<span class="eqno">(52)<a class="headerlink" href="#equation-346795df-4c99-4592-aba0-2d650d340b86" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dc75e0be-f6f3-47a4-803b-f699ec428af0">
+<span class="eqno">(52)<a class="headerlink" href="#equation-dc75e0be-f6f3-47a4-803b-f699ec428af0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 L_R = L + \lambda \sum \left( w^{(r)}_{ij} \right)^2
 \end{equation}\]</div>
 <p>In order to get further insight into L2 Regularization, we investigate its effect on the Gradient Descent based update equations for the weight and bias parameters. Taking the derivative on both sides of the above equation, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-286f3885-b58e-497a-9f05-518548858683">
-<span class="eqno">(53)<a class="headerlink" href="#equation-286f3885-b58e-497a-9f05-518548858683" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-85ccc80d-c40e-4ee2-99eb-db9dec5db485">
+<span class="eqno">(53)<a class="headerlink" href="#equation-85ccc80d-c40e-4ee2-99eb-db9dec5db485" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial L_r}{\partial w^{(r)}_{ij}}=\frac{\partial L}{\partial w^{(r)}_{ij}} + \lambda w^{(r)}_{ij}cdot
 \end{equation}\]</div>
 <p>Thus the weight update rule becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-42f708e9-f72a-443a-a9e9-56326c09227f">
-<span class="eqno">(54)<a class="headerlink" href="#equation-42f708e9-f72a-443a-a9e9-56326c09227f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3f240c89-e6f2-4e61-b53a-39aa2341d69e">
+<span class="eqno">(54)<a class="headerlink" href="#equation-3f240c89-e6f2-4e61-b53a-39aa2341d69e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial W^{(r)}_{ij}}−\eta \lambda w^{(r)}_{ij}=(1−\eta \lambda)w^{(r)}_{ij} − \eta \frac{\partial L}{\partial w^{(r)}_{ij}}
 \end{equation}\]</div>
 <p>where, <span class="math notranslate nohighlight">\(\eta\)</span> is learning rate.</p>
@@ -1995,12 +1990,171 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial W^{(r)}_{ij}}−\eta 
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8acf265c07ee4caabc4f35196a8ce0ba"}
-</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exception ignored in: &lt;function _releaseLock at 0x7f87bb6eda70&gt;
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/logging/__init__.py", line 225, in _releaseLock
-    if _lock:
-KeyboardInterrupt
+{"version_major": 2, "version_minor": 0, "model_id": "96402ce25c4f4f1b970c7f7a4f276b73"}
+</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6941</span><span class="o">/</span><span class="mf">2587539550.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>                                                                <span class="n">val_loader</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>                                                                <span class="n">img_test_dataset</span><span class="p">,</span>
+<span class="ne">---&gt; </span><span class="mi">21</span>                                                                <span class="n">reg_function2</span><span class="o">=</span><span class="n">l2_reg</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> 
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="c1">## Train and Test accuracy plot</span>
+
+<span class="nn">/tmp/ipykernel_6941/2580397162.py</span> in <span class="ni">main</span><span class="nt">(args, model, train_loader, val_loader, test_data, reg_function1, reg_function2, criterion)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span> 
+<span class="g g-Whitespace">    </span><span class="mi">122</span>   <span class="n">val_acc_list</span><span class="p">,</span> <span class="n">train_acc_list</span><span class="p">,</span><span class="n">param_norm_list</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">123</span>   <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="s1">'epochs'</span><span class="p">])):</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="n">trained_model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span>                           <span class="n">reg_function1</span><span class="o">=</span><span class="n">reg_function1</span><span class="p">,</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/notebook.py</span> in <span class="ni">__iter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">254</span>             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="nb">super</span><span class="p">(</span><span class="n">tqdm_notebook</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>                 <span class="c1"># return super(tqdm...) will not catch exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>                 <span class="k">yield</span> <span class="n">obj</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/std.py</span> in <span class="ni">__iter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1193</span>                     <span class="n">dt</span> <span class="o">=</span> <span class="n">cur_t</span> <span class="o">-</span> <span class="n">last_print_t</span>
+<span class="g g-Whitespace">   </span><span class="mi">1194</span>                     <span class="k">if</span> <span class="n">dt</span> <span class="o">&gt;=</span> <span class="n">mininterval</span> <span class="ow">and</span> <span class="n">cur_t</span> <span class="o">&gt;=</span> <span class="n">min_start_t</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1195</span>                         <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">last_print_n</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1196</span>                         <span class="n">last_print_n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_print_n</span>
+<span class="g g-Whitespace">   </span><span class="mi">1197</span>                         <span class="n">last_print_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_print_t</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/notebook.py</span> in <span class="ni">update</span><span class="nt">(self, n)</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span>     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">266</span>             <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">tqdm_notebook</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span>         <span class="c1"># NB: except ... [ as ...] breaks IPython async KeyboardInterrupt</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span>         <span class="k">except</span><span class="p">:</span>  <span class="c1"># NOQA</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/std.py</span> in <span class="ni">update</span><span class="nt">(self, n)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1244</span>                     <span class="bp">self</span><span class="o">.</span><span class="n">_ema_dn</span><span class="p">(</span><span class="n">dn</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1245</span>                     <span class="bp">self</span><span class="o">.</span><span class="n">_ema_dt</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1246</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">lock_args</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lock_args</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1247</span>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamic_miniters</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1248</span>                     <span class="c1"># If no `miniters` was specified, adjust automatically to the</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/std.py</span> in <span class="ni">refresh</span><span class="nt">(self, nolock, lock_args)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1349</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1350</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1351</span>         <span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1352</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">nolock</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1353</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/notebook.py</span> in <span class="ni">display</span><span class="nt">(self, msg, pos, close, bar_style, check_delay)</span>
+<span class="g g-Whitespace">    </span><span class="mi">162</span> 
+<span class="g g-Whitespace">    </span><span class="mi">163</span>         <span class="n">ltext</span><span class="p">,</span> <span class="n">pbar</span><span class="p">,</span> <span class="n">rtext</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">container</span><span class="o">.</span><span class="n">children</span>
+<span class="ne">--&gt; </span><span class="mi">164</span>         <span class="n">pbar</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span> 
+<span class="g g-Whitespace">    </span><span class="mi">166</span>         <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/traitlets/traitlets.py</span> in <span class="ni">__set__</span><span class="nt">(self, obj, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">602</span>             <span class="k">raise</span> <span class="n">TraitError</span><span class="p">(</span><span class="s1">'The "</span><span class="si">%s</span><span class="s1">" trait is read-only.'</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">604</span>             <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">605</span> 
+<span class="g g-Whitespace">    </span><span class="mi">606</span>     <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/traitlets/traitlets.py</span> in <span class="ni">set</span><span class="nt">(self, obj, value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">591</span>             <span class="c1"># we explicitly compare silent to True just in case the equality</span>
+<span class="g g-Whitespace">    </span><span class="mi">592</span>             <span class="c1"># comparison above returns something other than True/False</span>
+<span class="ne">--&gt; </span><span class="mi">593</span>             <span class="n">obj</span><span class="o">.</span><span class="n">_notify_trait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">old_value</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">594</span> 
+<span class="g g-Whitespace">    </span><span class="mi">595</span>     <span class="k">def</span> <span class="fm">__set__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/traitlets/traitlets.py</span> in <span class="ni">_notify_trait</span><span class="nt">(self, name, old_value, new_value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1220</span>             <span class="n">new</span><span class="o">=</span><span class="n">new_value</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1221</span>             <span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1222</span>             <span class="nb">type</span><span class="o">=</span><span class="s1">'change'</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1223</span>         <span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1224</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/ipywidgets/widgets/widget.py</span> in <span class="ni">notify_change</span><span class="nt">(self, change)</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span>             <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_send_property</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">604</span>                 <span class="c1"># Send new state to front-end</span>
+<span class="ne">--&gt; </span><span class="mi">605</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">send_state</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">606</span>         <span class="nb">super</span><span class="p">(</span><span class="n">Widget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">notify_change</span><span class="p">(</span><span class="n">change</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/ipywidgets/widgets/widget.py</span> in <span class="ni">send_state</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">487</span>             <span class="n">state</span><span class="p">,</span> <span class="n">buffer_paths</span><span class="p">,</span> <span class="n">buffers</span> <span class="o">=</span> <span class="n">_remove_buffers</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">488</span>             <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'method'</span><span class="p">:</span> <span class="s1">'update'</span><span class="p">,</span> <span class="s1">'state'</span><span class="p">:</span> <span class="n">state</span><span class="p">,</span> <span class="s1">'buffer_paths'</span><span class="p">:</span> <span class="n">buffer_paths</span><span class="p">}</span>
+<span class="ne">--&gt; </span><span class="mi">489</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">buffers</span><span class="o">=</span><span class="n">buffers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span> 
+<span class="g g-Whitespace">    </span><span class="mi">491</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/ipywidgets/widgets/widget.py</span> in <span class="ni">_send</span><span class="nt">(self, msg, buffers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">735</span>         <span class="sd">"""Sends a message to the model in the front-end."""</span>
+<span class="g g-Whitespace">    </span><span class="mi">736</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comm</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">kernel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">737</span>             <span class="bp">self</span><span class="o">.</span><span class="n">comm</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">buffers</span><span class="o">=</span><span class="n">buffers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">738</span> 
+<span class="g g-Whitespace">    </span><span class="mi">739</span>     <span class="k">def</span> <span class="nf">_repr_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/ipykernel/comm/comm.py</span> in <span class="ni">send</span><span class="nt">(self, data, metadata, buffers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>         <span class="sd">"""Send a message to the frontend-side version of this comm"""</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_publish_msg</span><span class="p">(</span><span class="s1">'comm_msg'</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">123</span>             <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">buffers</span><span class="o">=</span><span class="n">buffers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/ipykernel/comm/comm.py</span> in <span class="ni">_publish_msg</span><span class="nt">(self, msg_type, data, metadata, buffers, **keys)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span>             <span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">"shell"</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span>             <span class="n">ident</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span>
+<span class="ne">---&gt; </span><span class="mi">71</span>             <span class="n">buffers</span><span class="o">=</span><span class="n">buffers</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span>         <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/jupyter_client/session.py</span> in <span class="ni">send</span><span class="nt">(self, stream, msg_or_type, content, parent, ident, buffers, track, header, metadata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapt_version</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">741</span>             <span class="n">msg</span> <span class="o">=</span> <span class="n">adapt</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapt_version</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">742</span>         <span class="n">to_send</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">ident</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span>         <span class="n">to_send</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">buffers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">744</span>         <span class="n">longest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">to_send</span> <span class="p">])</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/jupyter_client/session.py</span> in <span class="ni">serialize</span><span class="nt">(self, msg, ident)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span>             <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">none</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>             <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">631</span>         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">632</span>             <span class="c1"># content is already packed, as in a relayed message</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/jupyter_client/session.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(obj)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span> <span class="c1"># disallow nan, because it's not actually valid JSON</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span> <span class="n">json_packer</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">obj</span><span class="p">:</span> <span class="n">jsonapi</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">date_default</span><span class="p">,</span>
+<span class="ne">---&gt; </span><span class="mi">83</span>     <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">85</span> <span class="n">json_unpacker</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">jsonapi</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/zmq/utils/jsonapi.py</span> in <span class="ni">dumps</span><span class="nt">(o, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>         <span class="n">kwargs</span><span class="p">[</span><span class="s1">'separators'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="s1">':'</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> 
+<span class="ne">---&gt; </span><span class="mi">41</span>     <span class="n">s</span> <span class="o">=</span> <span class="n">jsonmod</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span> 
+<span class="g g-Whitespace">     </span><span class="mi">43</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">unicode</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/json/__init__.py</span> in <span class="ni">dumps</span><span class="nt">(obj, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys, **kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">236</span>         <span class="n">check_circular</span><span class="o">=</span><span class="n">check_circular</span><span class="p">,</span> <span class="n">allow_nan</span><span class="o">=</span><span class="n">allow_nan</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">237</span>         <span class="n">separators</span><span class="o">=</span><span class="n">separators</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="n">sort_keys</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">238</span>         <span class="o">**</span><span class="n">kw</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span> 
+<span class="g g-Whitespace">    </span><span class="mi">240</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/json/encoder.py</span> in <span class="ni">encode</span><span class="nt">(self, o)</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span>         <span class="c1"># exceptions aren't as detailed.  The list call should be roughly</span>
+<span class="g g-Whitespace">    </span><span class="mi">198</span>         <span class="c1"># equivalent to the PySequence_Fast that ''.join() would do.</span>
+<span class="ne">--&gt; </span><span class="mi">199</span>         <span class="n">chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterencode</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">_one_shot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span>             <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/json/encoder.py</span> in <span class="ni">iterencode</span><span class="nt">(self, o, _one_shot)</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span>             <span class="n">_encoder</span> <span class="o">=</span> <span class="n">encode_basestring_ascii</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">221</span>             <span class="n">_encoder</span> <span class="o">=</span> <span class="n">encode_basestring</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span> 
+<span class="g g-Whitespace">    </span><span class="mi">223</span>         <span class="k">def</span> <span class="nf">floatstr</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">allow_nan</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_nan</span><span class="p">,</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -2333,7 +2487,7 @@ KeyboardInterrupt
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the argumrnts</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the arguments</span>
 <span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'test_batch_size'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
     <span class="s1">'epochs'</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
@@ -2549,7 +2703,7 @@ Each group has a 10 min discussion.</p>
 
 
 <span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
-   <span class="n">value</span><span class="o">=</span><span class="s1">'Type answer here and Push submit'</span><span class="p">,</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
    <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
    <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
@@ -2752,7 +2906,7 @@ Each group has a 10 min discussion.</p>
 
 
 <span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
-   <span class="n">value</span><span class="o">=</span><span class="s1">'Type answer here and Push submit'</span><span class="p">,</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
    <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
    <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
@@ -2817,12 +2971,6 @@ Each group has a 10 min discussion.</p>
 <li><p><a class="reference external" href="https://arxiv.org/abs/1706.06083">SGD</a> You can also pick weight to minimize what the adversary is trying to maximize via SGD.</p></li>
 </ul>
 <p>Read more about adversarial attacks <a class="reference external" href="https://openai.com/blog/adversarial-example-research/">here</a></p>
-</div>
-<div class="section" id="optional-supplements">
-<h2>Optional Supplements<a class="headerlink" href="#optional-supplements" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p><a class="reference external" href="https://docs.google.com/document/d/1XOaTXYBleQlDNFM1-t512RHfJXRwA4-LIejuBA6pbLY/edit">Understanding Generalization</a></p></li>
-</ol>
 </div>
 </div>
 <script type="text/x-thebe-config">
