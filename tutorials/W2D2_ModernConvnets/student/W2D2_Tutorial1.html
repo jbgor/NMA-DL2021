@@ -1397,20 +1397,20 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "78347f9c36f94e409c0b279f86e53533"}
+{"version_major": 2, "version_minor": 0, "model_id": "e5c36c41447543bdb86fbc15ce374039"}
 </script></div>
 </div>
 <p>Images are high dimensional. That is to say that <code class="docutils literal notranslate"><span class="pre">image_length</span></code> * <code class="docutils literal notranslate"><span class="pre">image_width</span></code> * <code class="docutils literal notranslate"><span class="pre">image_channels</span></code> is a big number, and multiplying that big number by a normal sized fully-connected layer leads to a ton of parameters to learn. Yesterday, we learned about convolutional neural networks, one way of working around high dimensionality in images and other domains.</p>
 <p>The widget below (i.e., <em>Interactive Demo 1</em>) calculates the parameters required for a single convolutional or fully connected layer that operates on an image of a certain height and width.</p>
 <p>Recall that, the number of parameters of a convolutional layer <span class="math notranslate nohighlight">\(l\)</span> are calculated as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-16421b06-0ffd-4ddd-8c43-fabdb9a296ec">
-<span class="eqno">(57)<a class="headerlink" href="#equation-16421b06-0ffd-4ddd-8c43-fabdb9a296ec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3570927b-7aaa-4b35-8197-8bffff9af8bc">
+<span class="eqno">(57)<a class="headerlink" href="#equation-3570927b-7aaa-4b35-8197-8bffff9af8bc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{num_of_params}_l = \left[ \left( H \times W \times K_{l-1} \right) + 1 \right] \times K_l
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(H\)</span> denotes the shape of the height of the filter, <span class="math notranslate nohighlight">\(W\)</span> the shape of the width of the filter, and <span class="math notranslate nohighlight">\(K_l\)</span> denotes the number of the filters in the <span class="math notranslate nohighlight">\(l\)</span>-th layer. The added <span class="math notranslate nohighlight">\(1\)</span> is because of the bias term for each filter.</p>
 <p>While a fully connected layer contains:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f95a5f72-9919-4ce1-8dab-95c7da0f5575">
-<span class="eqno">(58)<a class="headerlink" href="#equation-f95a5f72-9919-4ce1-8dab-95c7da0f5575" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed71a0c3-1c42-4861-aff5-1cae958ee3d7">
+<span class="eqno">(58)<a class="headerlink" href="#equation-ed71a0c3-1c42-4861-aff5-1cae958ee3d7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{num_of_params}_l = \left[ \left( N_{l-1} \times N_l \right) + 1 \times N_l \right]
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_l\)</span> denotes the number of nodes in the <span class="math notranslate nohighlight">\(l\)</span>-th layer.</p>
@@ -1551,7 +1551,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f32b9596b9e34d6786bc2b00c5475e80"}
+{"version_major": 2, "version_minor": 0, "model_id": "ad3533125f9f4c0aba41162001889030"}
 </script></div>
 </div>
 </div>
@@ -1568,7 +1568,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c80e699504fd4e88bb96727c96d4e296"}
+{"version_major": 2, "version_minor": 0, "model_id": "abebaef3653743ed84cd01965c5be723"}
 </script></div>
 </div>
 </div>
@@ -1589,7 +1589,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e301f5ac24f441f2858d12dd7c572db7"}
+{"version_major": 2, "version_minor": 0, "model_id": "2a4b691ce3284a0fb500d60e0f7143c1"}
 </script></div>
 </div>
 </div>
@@ -1639,7 +1639,7 @@ In this section you’ll have the opportunity to play with AlexNet and see the w
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6a54ad131b75428eb9591e7b86e1189c"}
+{"version_major": 2, "version_minor": 0, "model_id": "49ff608407974d558d75d628ac8d31c1"}
 </script></div>
 </div>
 </div>
@@ -1721,7 +1721,7 @@ What do these filters remind you of?</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1262df62585a43dab128a2f89f47aac1"}
+{"version_major": 2, "version_minor": 0, "model_id": "704fb09c347047f09230dde0fb59f4be"}
 </script><img alt="../../../_images/W2D2_Tutorial1_54_1.png" src="../../../_images/W2D2_Tutorial1_54_1.png"/>
 </div>
 </div>
@@ -1747,7 +1747,7 @@ What do these filters remind you of?</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "490d6375f3ba4f9e862d384efb7e672f"}
+{"version_major": 2, "version_minor": 0, "model_id": "df4d07f9e4e740849cbae3bafb22ec62"}
 </script></div>
 </div>
 <p>In this section we’ll be working with a state of the art CNN model called <a class="reference external" href="https://arxiv.org/abs/1512.03385">ResNet</a>. ResNet has two particularly interesting features. First, it uses skip connections to avoid the vanishing gradient problem. Second, each block (collection of layers) in a ResNet can be treated as learning a residual function.</p>
@@ -1768,9 +1768,9 @@ What do these filters remind you of?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-08-04 08:22:50--  https://s3.amazonaws.com/fast-ai-imageclas/imagenette2-320.tgz
-Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.216.16.203
-Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.216.16.203|:443... 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-08-04 10:42:01--  https://s3.amazonaws.com/fast-ai-imageclas/imagenette2-320.tgz
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.217.131.232
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.217.131.232|:443... 
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connected.
@@ -1787,126 +1787,127 @@ Saving to: ‘imagenette2-320.tgz’
 imagenette2-320.tgz   0%[                    ]       0  --.-KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   0%[                    ] 553.64K  2.60MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   0%[                    ] 108.64K   482KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   3%[                    ]  13.00M  31.3MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   0%[                    ] 890.64K  1.93MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   8%[&gt;                   ]  26.19M  42.0MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   1%[                    ]   6.36M  9.39MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   9%[&gt;                   ]  32.00M  35.4MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   4%[                    ]  14.66M  16.2MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  12%[=&gt;                  ]  40.00M  33.9MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   7%[&gt;                   ]  23.47M  20.8MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  14%[=&gt;                  ]  47.21M  34.2MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   9%[&gt;                   ]  32.19M  23.7MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  17%[==&gt;                 ]  56.00M  34.3MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  12%[=&gt;                  ]  40.60M  25.7MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  20%[===&gt;                ]  68.24M  36.2MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  15%[==&gt;                 ]  49.30M  27.2MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  22%[===&gt;                ]  74.59M  34.1MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  17%[==&gt;                 ]  57.56M  28.3MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  25%[====&gt;               ]  82.10M  33.3MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  20%[===&gt;                ]  66.30M  29.3MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  28%[====&gt;               ]  91.79M  34.5MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  23%[===&gt;                ]  75.03M  30.2MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  31%[=====&gt;              ] 101.72M  35.5MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  25%[====&gt;               ]  83.83M  30.9MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  34%[=====&gt;              ] 112.00M  35.7MB/s    eta 6s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  28%[====&gt;               ]  92.63M  31.5MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  37%[======&gt;             ] 122.88M  36.7MB/s    eta 6s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  31%[=====&gt;              ] 101.35M  33.6MB/s    eta 7s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  39%[======&gt;             ] 128.01M  37.7MB/s    eta 6s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  33%[=====&gt;              ] 110.08M  35.5MB/s    eta 7s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  41%[=======&gt;            ] 136.01M  37.7MB/s    eta 6s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  36%[======&gt;             ] 118.92M  38.3MB/s    eta 7s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  44%[=======&gt;            ] 144.00M  34.2MB/s    eta 6s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  39%[======&gt;             ] 127.80M  38.4MB/s    eta 7s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  46%[========&gt;           ] 152.28M  35.5MB/s    eta 5s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  41%[=======&gt;            ] 136.65M  38.5MB/s    eta 7s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  50%[=========&gt;          ] 165.78M  36.8MB/s    eta 5s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  44%[=======&gt;            ] 145.30M  38.4MB/s    eta 5s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  52%[=========&gt;          ] 170.09M  36.2MB/s    eta 5s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  47%[========&gt;           ] 154.13M  38.6MB/s    eta 5s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  53%[=========&gt;          ] 175.15M  36.6MB/s    eta 5s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  50%[=========&gt;          ] 162.95M  38.6MB/s    eta 5s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  56%[==========&gt;         ] 184.00M  34.9MB/s    eta 5s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  52%[=========&gt;          ] 171.79M  38.7MB/s    eta 5s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  59%[==========&gt;         ] 194.47M  35.3MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  54%[=========&gt;          ] 178.34M  38.4MB/s    eta 5s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  62%[===========&gt;        ] 204.45M  36.2MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  56%[==========&gt;         ] 184.63M  37.8MB/s    eta 4s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  64%[===========&gt;        ] 209.99M  37.1MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  59%[==========&gt;         ] 193.37M  37.8MB/s    eta 4s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  68%[============&gt;       ] 221.88M  38.2MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  62%[===========&gt;        ] 202.19M  37.8MB/s    eta 4s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  68%[============&gt;       ] 224.00M  36.7MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  64%[===========&gt;        ] 211.05M  37.8MB/s    eta 4s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  70%[=============&gt;      ] 228.87M  35.4MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  67%[============&gt;       ] 219.69M  37.8MB/s    eta 4s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  73%[=============&gt;      ] 238.33M  35.3MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  70%[=============&gt;      ] 228.46M  37.8MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  76%[==============&gt;     ] 248.01M  34.3MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  72%[=============&gt;      ] 237.18M  37.9MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  78%[==============&gt;     ] 254.17M  33.9MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  75%[==============&gt;     ] 245.94M  37.9MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  78%[==============&gt;     ] 256.13M  31.9MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  78%[==============&gt;     ] 254.66M  37.9MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  81%[===============&gt;    ] 266.87M  33.0MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  80%[===============&gt;    ] 263.39M  37.9MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  85%[================&gt;   ] 277.85M  35.4MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  83%[===============&gt;    ] 272.19M  37.9MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  87%[================&gt;   ] 286.33M  34.3MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  86%[================&gt;   ] 281.05M  37.9MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  90%[=================&gt;  ] 293.76M  34.0MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  88%[================&gt;   ] 289.82M  37.9MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  92%[=================&gt;  ] 301.91M  35.0MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  91%[=================&gt;  ] 298.46M  38.8MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  95%[==================&gt; ] 310.33M  35.8MB/s    eta 0s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  94%[=================&gt;  ] 307.24M  38.9MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  97%[==================&gt; ] 318.71M  35.9MB/s    eta 0s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  96%[==================&gt; ] 315.96M  38.8MB/s    eta 0s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz 100%[===================&gt;] 325.83M  35.0MB/s    in 9.2s    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  99%[==================&gt; ] 324.77M  38.9MB/s    eta 0s     
+imagenette2-320.tgz 100%[===================&gt;] 325.83M  38.9MB/s    in 9.0s    
 
-2021-08-04 08:22:59 (35.5 MB/s) - ‘imagenette2-320.tgz’ saved [341663724/341663724]
+2021-08-04 10:42:11 (36.1 MB/s) - ‘imagenette2-320.tgz’ saved [341663724/341663724]
 </pre></div>
 </div>
 </div>
@@ -3129,23 +3130,23 @@ imagenette2-320.tgz   0%[                    ]       0  --.-KB/s
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "fe950ef1a5b640ff8bab0c7bc53a97c0"}
+{"version_major": 2, "version_minor": 0, "model_id": "371dcaa61ad84fdb83e0518a938a46a6"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8c4a22638fee4a3e8eecdc28d25bf330"}
+{"version_major": 2, "version_minor": 0, "model_id": "5dd8c68bf9f345b0b1e4125eb0972634"}
 </script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
   return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10898</span><span class="o">/</span><span class="mf">2677518106.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7733</span><span class="o">/</span><span class="mf">2677518106.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span>                       <span class="n">resnet_opt</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>                       <span class="n">imagenette_train_loader</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">14</span>                       <span class="n">loss_fn</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">top_1_acc</span><span class="p">,</span> <span class="n">top_5_acc</span> <span class="o">=</span> <span class="n">eval_imagenette</span><span class="p">(</span><span class="n">resnet</span><span class="p">,</span>
 
-<span class="nn">/tmp/ipykernel_10898/4145309842.py</span> in <span class="ni">imagenette_train_loop</span><span class="nt">(model, optimizer, train_loader, loss_fn)</span>
+<span class="nn">/tmp/ipykernel_7733/4145309842.py</span> in <span class="ni">imagenette_train_loop</span><span class="nt">(model, optimizer, train_loader, loss_fn)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span>       <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>       <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">20</span>       <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
