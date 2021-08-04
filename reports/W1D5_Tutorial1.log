@@ -32,8 +32,14 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# Here we have 100 true train data.', '', '# Set the arguments', 'args = {', "    'epochs': 200,"]
-...
-["plt.title('Memorization')", "plt.ylabel('Accuracy (%)')", "plt.xlabel('Epoch')", 'plt.legend()', 'plt.show()']
+# @title Install dependencies
+!sudo apt-get install -y ffmpeg --quiet
+!pip install imageio-ffmpeg --quiet
+
+!pip install git+https://github.com/NeuromatchAcademy/evaltools --quiet
+from evaltools.airtable import AirtableForm
+
+# generate airtable form
+atform = AirtableForm('appn7VdPRseSoMXEG','W1D5_T1','https://portal.neuromatchacademy.org/api/redirect/to/a76f99c1-9005-4566-8bcd-bed4e53d21f1')
 -------------------
 

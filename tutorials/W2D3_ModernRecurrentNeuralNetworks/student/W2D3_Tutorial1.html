@@ -564,7 +564,7 @@
 </li>
 <li class="toctree-l3">
 <a class="reference internal" href="../../../projects/ComputerVision/screws.html">
-       Objective
+       Something Screwy - image recognition, detection, and classification of screws
       </a>
 </li>
 <li class="toctree-l3">
@@ -1097,26 +1097,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.1; however, version 21.2.2 is available.</span>
-<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.1; however, version 21.2.2 is available.</span>
-<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.1; however, version 21.2.2 is available.</span>
-<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.1; however, version 21.2.2 is available.</span>
-<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
 <span class="-Color -Color-Red">ERROR: Operation cancelled by user</span>
-<span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.1; however, version 21.2.2 is available.</span>
-<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
 </div>
@@ -1512,18 +1494,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd75f619-949a-4fd9-bbd2-a92f2b6789aa">
-<span class="eqno">(60)<a class="headerlink" href="#equation-cd75f619-949a-4fd9-bbd2-a92f2b6789aa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3df9b193-1f27-498c-985f-2ca3b27f4681">
+<span class="eqno">(60)<a class="headerlink" href="#equation-3df9b193-1f27-498c-985f-2ca3b27f4681" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22c5f377-de13-41bc-a493-35d22288736b">
-<span class="eqno">(61)<a class="headerlink" href="#equation-22c5f377-de13-41bc-a493-35d22288736b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-06dbb4ca-4bcf-41d2-b3eb-836848627f6b">
+<span class="eqno">(61)<a class="headerlink" href="#equation-06dbb4ca-4bcf-41d2-b3eb-836848627f6b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a49b7c55-b102-4928-99f6-2d17de0e1683">
-<span class="eqno">(62)<a class="headerlink" href="#equation-a49b7c55-b102-4928-99f6-2d17de0e1683" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a3495291-e90f-4f3e-9ccc-2ccf03240401">
+<span class="eqno">(62)<a class="headerlink" href="#equation-a3495291-e90f-4f3e-9ccc-2ccf03240401" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1535,8 +1517,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d82b885f-dee2-4bae-aa29-6527292768f6">
-<span class="eqno">(63)<a class="headerlink" href="#equation-d82b885f-dee2-4bae-aa29-6527292768f6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eb625f48-4404-4ad3-a111-1ae87bd43a10">
+<span class="eqno">(63)<a class="headerlink" href="#equation-eb625f48-4404-4ad3-a111-1ae87bd43a10" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
