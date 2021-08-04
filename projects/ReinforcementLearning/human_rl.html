@@ -950,8 +950,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># @title Install dependencies
 !pip install dm-env --quiet
+!pip install dm-acme --quiet
+!pip install dm-acme[reverb] --quiet
 !pip install dm-sonnet --quiet
-!pip install dm-acme==0.2.0 dm-acme[tf]==0.2.0 dm-acme[reverb]==0.2.0 --quiet
+!pip install trfl --quiet
+!pip install dm-reverb --quiet
+!pip install dm-acme[launchpad] --quiet
 </pre></div>
 </div>
 </div>
@@ -973,16 +977,10 @@
 <span class="kn">import</span> <span class="nn">acme</span>
 <span class="kn">from</span> <span class="nn">acme</span> <span class="kn">import</span> <span class="n">specs</span>
 <span class="kn">from</span> <span class="nn">acme</span> <span class="kn">import</span> <span class="n">wrappers</span>
+<span class="kn">from</span> <span class="nn">acme</span> <span class="kn">import</span> <span class="n">EnvironmentLoop</span>
 <span class="kn">from</span> <span class="nn">acme.tf</span> <span class="kn">import</span> <span class="n">networks</span>
 <span class="kn">from</span> <span class="nn">acme.testing</span> <span class="kn">import</span> <span class="n">fakes</span>
-<span class="kn">from</span> <span class="nn">acme</span> <span class="kn">import</span> <span class="n">EnvironmentLoop</span>
-<span class="kn">from</span> <span class="nn">acme.agents.tf.dqn</span> <span class="kn">import</span> <span class="n">DQN</span>
-<span class="kn">from</span> <span class="nn">acme.agents.tf.d4pg</span> <span class="kn">import</span> <span class="n">D4PG</span>
-<span class="kn">from</span> <span class="nn">acme.agents.tf.ddpg</span> <span class="kn">import</span> <span class="n">DDPG</span>
-<span class="kn">from</span> <span class="nn">acme.agents.tf.r2d2</span> <span class="kn">import</span> <span class="n">R2D2</span>
-<span class="kn">from</span> <span class="nn">acme.tf</span> <span class="kn">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">tf2_utils</span>
-<span class="kn">from</span> <span class="nn">acme.utils.loggers</span> <span class="kn">import</span> <span class="n">TerminalLogger</span>
-<span class="kn">from</span> <span class="nn">acme.agents.tf.dmpo</span> <span class="kn">import</span> <span class="n">DistributionalMPO</span>
+<span class="kn">from</span> <span class="nn">acme.agents.tf</span> <span class="kn">import</span> <span class="n">dqn</span>
 </pre></div>
 </div>
 </div>
@@ -993,7 +991,7 @@
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Figure settings</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span><span class="p">,</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1123,7 +1121,7 @@ The HCP dataset from NMA-CN contains behavioral and imaging data for 7 cognitive
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Accuracy distribution of the mock N-back dataset&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.06</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">mock_nback_data</span>
+<span class="n">mock_nback_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1300,7 +1298,7 @@ The HCP dataset from NMA-CN contains behavioral and imaging data for 7 cognitive
                <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
-<span class="sd">      N</span>
+<span class="sd">      N: Number of steps to look back for the matched stimuli. Defaults to 2 (as in 2-back).</span>
 <span class="sd">      episode_steps</span>
 <span class="sd">      stimuli_choices</span>
 <span class="sd">      human_data</span>
@@ -1350,22 +1348,22 @@ The HCP dataset from NMA-CN contains behavioral and imaging data for 7 cognitive
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imitate_human</span><span class="p">:</span>
       <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">human_subject_data</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_action_history</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="mi">0</span>
+      <span class="k">return</span> <span class="mf">0.0</span>
 
   <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reset_next_step</span><span class="p">:</span>
       <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
+    <span class="n">agent_action</span> <span class="o">=</span> <span class="n">NBack</span><span class="o">.</span><span class="n">ACTIONS</span><span class="p">[</span><span class="n">action</span><span class="p">]</span>
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_imitate_human</span><span class="p">:</span>
       <span class="c1"># if it was the same action as the human subject, then reward the agent</span>
       <span class="n">human_action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">human_subject_data</span><span class="p">[</span><span class="s1">&#39;response&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_step</span><span class="p">]</span>
-      <span class="n">agent_action</span> <span class="o">=</span> <span class="n">NBack</span><span class="o">.</span><span class="n">ACTIONS</span><span class="p">[</span><span class="n">action</span><span class="p">]</span>
       <span class="n">step_reward</span> <span class="o">=</span> <span class="p">(</span><span class="n">agent_action</span> <span class="o">==</span> <span class="n">human_action</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
       <span class="c1"># assume the agent is rationale and doesn&#39;t want to reproduce human, reward once the response it correct</span>
       <span class="n">expected_action</span> <span class="o">=</span> <span class="s1">&#39;match&#39;</span> <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_step</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_step</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">])</span> <span class="k">else</span> <span class="s1">&#39;non-match&#39;</span>
-      <span class="n">agent_action</span> <span class="o">=</span> <span class="n">NBack</span><span class="o">.</span><span class="n">ACTIONS</span><span class="p">[</span><span class="n">action</span><span class="p">]</span>
-      <span class="n">step_reward</span> <span class="o">=</span> <span class="mf">1.</span> <span class="k">if</span> <span class="p">(</span><span class="n">agent_action</span> <span class="o">==</span> <span class="n">expected_action</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.</span>
+      <span class="n">step_reward</span> <span class="o">=</span> <span class="mf">0.</span> <span class="k">if</span> <span class="p">(</span><span class="n">agent_action</span> <span class="o">==</span> <span class="n">expected_action</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">_action_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">agent_action</span><span class="p">)</span>
 
@@ -1385,22 +1383,22 @@ The HCP dataset from NMA-CN contains behavioral and imaging data for 7 cognitive
     <span class="k">return</span> <span class="n">dm_env</span><span class="o">.</span><span class="n">specs</span><span class="o">.</span><span class="n">BoundedArray</span><span class="p">(</span>
         <span class="n">shape</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
         <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;nback_stimuli&#39;</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;nback_stimuli&#39;</span><span class="p">,</span> <span class="n">minimum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 
   <span class="k">def</span> <span class="nf">action_spec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">dm_env</span><span class="o">.</span><span class="n">specs</span><span class="o">.</span><span class="n">DiscreteArray</span><span class="p">(</span>
-        <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
         <span class="n">num_values</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">NBack</span><span class="o">.</span><span class="n">ACTIONS</span><span class="p">),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
         <span class="n">name</span><span class="o">=</span><span class="s1">&#39;action&#39;</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">_observation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-    <span class="c1"># agents observe only the current stimulus</span>
-    <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># agent observes only the current trial</span>
+    <span class="c1"># obs = self.stimuli[self._current_step - 1]</span>
 
-    <span class="c1"># TODO uncomment to observe all the previrous stimuli instead of only the current stimulus</span>
-    <span class="c1"># obs = self.stimuli[:self.current_step]</span>
-    <span class="c1"># obs = &#39;&#39;.join(obs)</span>
+    <span class="c1"># agents observe stimuli up to the current trial</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_step</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">obs</span><span class="p">,(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs</span><span class="p">)))</span>
 
     <span class="k">return</span> <span class="n">obs</span>
 
@@ -1409,7 +1407,6 @@ The HCP dataset from NMA-CN contains behavioral and imaging data for 7 cognitive
 
 <span class="sd">     Note: `M` mean `match`, and `.` is a `non-match`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
     <span class="n">stimuli</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stimuli</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;M&#39;</span> <span class="k">if</span> <span class="n">a</span><span class="o">==</span><span class="s1">&#39;match&#39;</span> <span class="k">else</span> <span class="s1">&#39;.&#39;</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_action_history</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">_current_step</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span>
     <span class="k">return</span> <span class="n">HTML</span><span class="p">(</span>
@@ -1470,16 +1467,12 @@ The HCP dataset from NMA-CN contains behavioral and imaging data for 7 cognitive
 <h3>Initialize the environment and the agent<a class="headerlink" href="#initialize-the-environment-and-the-agent" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">environment</span><span class="p">,</span> <span class="n">environment_spec</span> <span class="o">=</span> <span class="n">NBack</span><span class="o">.</span><span class="n">create_environment</span><span class="p">()</span>
-<span class="n">agent</span> <span class="o">=</span> <span class="n">RandomAgent</span><span class="p">(</span><span class="n">environment_spec</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="p">,</span> <span class="n">env_spec</span> <span class="o">=</span> <span class="n">NBack</span><span class="o">.</span><span class="n">create_environment</span><span class="p">()</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">RandomAgent</span><span class="p">(</span><span class="n">env_spec</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;actions:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">environment_spec</span><span class="o">.</span><span class="n">actions</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;observations:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">environment_spec</span><span class="o">.</span><span class="n">observations</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rewards:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">environment_spec</span><span class="o">.</span><span class="n">rewards</span><span class="p">)</span>
-
-<span class="c1"># DEBUG</span>
-<span class="c1"># timestep = environment.step(NBack.ACTIONS[0])  # pytype: dm_env.TimeStep</span>
-<span class="c1"># timestep</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;actions:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">env_spec</span><span class="o">.</span><span class="n">actions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;observations:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">env_spec</span><span class="o">.</span><span class="n">observations</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rewards:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">env_spec</span><span class="o">.</span><span class="n">rewards</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1516,7 +1509,7 @@ rewards:
 
   <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
-  <span class="n">timestep</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+  <span class="n">timestep</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
   <span class="c1"># Make the first observation.</span>
   <span class="n">agent</span><span class="o">.</span><span class="n">observe_first</span><span class="p">(</span><span class="n">timestep</span><span class="p">)</span>
@@ -1529,7 +1522,7 @@ rewards:
 
     <span class="c1"># Generate an action from the agent&#39;s policy and step the environment.</span>
     <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">select_action</span><span class="p">(</span><span class="n">timestep</span><span class="o">.</span><span class="n">observation</span><span class="p">)</span>
-    <span class="n">timestep</span> <span class="o">=</span> <span class="n">environment</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">timestep</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
 
     <span class="c1"># Have the agent observe the timestep and let the agent update itself.</span>
     <span class="n">agent</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">next_timestep</span><span class="o">=</span><span class="n">timestep</span><span class="p">)</span>
@@ -1558,8 +1551,7 @@ rewards:
 
   <span class="n">all_returns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">episode_return</span><span class="p">)</span>
 
-  <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-  <span class="n">display</span><span class="p">(</span><span class="n">environment</span><span class="o">.</span><span class="n">plot_state</span><span class="p">())</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">plot_state</span><span class="p">())</span>
   <span class="c1"># Log the given results.</span>
   <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
@@ -1580,53 +1572,7 @@ rewards:
 <p><strong>Note:</strong> You can simplify the environment loop using <a class="reference external" href="https://github.com/deepmind/acme">DeepMind Acme</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_networks_d4pg</span><span class="p">(</span><span class="n">action_spec</span><span class="p">,</span>
-                       <span class="n">policy_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
-                       <span class="n">critic_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
-                       <span class="n">vmin</span><span class="o">=-</span><span class="mf">150.</span><span class="p">,</span>
-                       <span class="n">vmax</span><span class="o">=</span><span class="mf">150.</span><span class="p">,</span>
-                       <span class="n">num_atoms</span><span class="o">=</span><span class="mi">51</span><span class="p">,</span>
-                      <span class="p">):</span>
-  <span class="sd">&quot;&quot;&quot;Networks for D4PG agent.&quot;&quot;&quot;</span>
-  <span class="n">action_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">action_spec</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-
-  <span class="n">policy_network</span> <span class="o">=</span> <span class="n">snt</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
-      <span class="n">tf2_utils</span><span class="o">.</span><span class="n">batch_concat</span><span class="p">,</span>
-      <span class="n">networks</span><span class="o">.</span><span class="n">LayerNormMLP</span><span class="p">(</span><span class="n">layer_sizes</span><span class="o">=</span><span class="n">policy_layer_sizes</span> <span class="o">+</span> <span class="p">(</span><span class="n">action_size</span><span class="p">,)),</span>
-      <span class="n">networks</span><span class="o">.</span><span class="n">TanhToSpec</span><span class="p">(</span><span class="n">spec</span><span class="o">=</span><span class="n">action_spec</span><span class="p">)</span>
-      <span class="p">])</span>
-  <span class="n">critic_network</span> <span class="o">=</span> <span class="n">snt</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
-      <span class="n">networks</span><span class="o">.</span><span class="n">CriticMultiplexer</span><span class="p">(</span>
-          <span class="n">action_network</span><span class="o">=</span><span class="n">networks</span><span class="o">.</span><span class="n">ClipToSpec</span><span class="p">(</span><span class="n">action_spec</span><span class="p">),</span>
-          <span class="n">critic_network</span><span class="o">=</span><span class="n">networks</span><span class="o">.</span><span class="n">LayerNormMLP</span><span class="p">(</span>
-              <span class="n">layer_sizes</span><span class="o">=</span><span class="n">critic_layer_sizes</span><span class="p">,</span>
-              <span class="n">activate_final</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-      <span class="p">),</span>
-      <span class="n">networks</span><span class="o">.</span><span class="n">DiscreteValuedHead</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
-                                  <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
-                                  <span class="n">num_atoms</span><span class="o">=</span><span class="n">num_atoms</span><span class="p">)</span>
-      <span class="p">])</span>
-
-  <span class="k">return</span> <span class="n">policy_network</span><span class="p">,</span> <span class="n">critic_network</span>
-
-
-<span class="k">def</span> <span class="nf">make_networks_dqn</span><span class="p">(</span><span class="n">action_spec</span><span class="p">):</span>
-  <span class="n">network</span> <span class="o">=</span> <span class="n">snt</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
-      <span class="n">snt</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
-      <span class="n">snt</span><span class="o">.</span><span class="n">nets</span><span class="o">.</span><span class="n">MLP</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">action_spec</span><span class="o">.</span><span class="n">num_values</span><span class="p">]),</span>
-  <span class="p">])</span>
-  <span class="k">return</span> <span class="n">network</span>
-
-
-<span class="n">policy_optimizer</span> <span class="o">=</span> <span class="n">snt</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span>
-<span class="n">critic_optimizer</span> <span class="o">=</span> <span class="n">snt</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># init the N-back environment</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># init a new N-back environment</span>
 <span class="n">env</span><span class="p">,</span> <span class="n">env_spec</span> <span class="o">=</span> <span class="n">NBack</span><span class="o">.</span><span class="n">create_environment</span><span class="p">()</span>
 
 <span class="c1"># DEBUG fake testing environment.</span>
@@ -1643,28 +1589,25 @@ rewards:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># DQN agent</span>
-<span class="c1"># agent = DQN(</span>
-<span class="c1">#     environment_spec=env_spec,</span>
-<span class="c1">#     network=make_networks_dqn(env_spec.actions))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dqn_make_network</span><span class="p">(</span><span class="n">action_spec</span><span class="p">:</span> <span class="n">specs</span><span class="o">.</span><span class="n">DiscreteArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">snt</span><span class="o">.</span><span class="n">Module</span><span class="p">:</span>
+  <span class="k">return</span> <span class="n">snt</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+      <span class="n">snt</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+      <span class="n">snt</span><span class="o">.</span><span class="n">nets</span><span class="o">.</span><span class="n">MLP</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">action_spec</span><span class="o">.</span><span class="n">num_values</span><span class="p">]),</span>
+  <span class="p">])</span>
 
-<span class="c1"># D4PG agent</span>
-<span class="c1"># policy_network, critic_network = make_networks_d4pg(env_spec.actions)</span>
-<span class="c1"># agent = D4PG(environment_spec=env_spec,</span>
-<span class="c1">#              policy_network=policy_network,</span>
-<span class="c1">#              critic_network=critic_network,</span>
-<span class="c1">#              observation_network=tf2_utils.batch_concat, # Identity Op.</span>
-<span class="c1">#              policy_optimizer=policy_optimizer,</span>
-<span class="c1">#              critic_optimizer=critic_optimizer,</span>
-<span class="c1">#              logger=InMemoryLogger())</span>
-
-<span class="c1"># random agent</span>
-<span class="n">agent</span> <span class="o">=</span> <span class="n">RandomAgent</span><span class="p">(</span><span class="n">env_spec</span><span class="p">)</span>
+<span class="c1"># construct a DQN agent</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">dqn</span><span class="o">.</span><span class="n">DQN</span><span class="p">(</span>
+    <span class="n">environment_spec</span><span class="o">=</span><span class="n">env_spec</span><span class="p">,</span>
+    <span class="n">network</span><span class="o">=</span><span class="n">dqn_make_network</span><span class="p">(</span><span class="n">env_spec</span><span class="o">.</span><span class="n">actions</span><span class="p">),</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span>
+    <span class="n">logger</span><span class="o">=</span><span class="n">InMemoryLogger</span><span class="p">(),</span>
+    <span class="n">checkpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now, we run the environment loop with the initiated agent and print the training log.</p>
+<p>Now, we run the environment loop with the DQN agent and print the training log.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># training loop</span>
