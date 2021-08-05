@@ -275,12 +275,7 @@
 </li>
 <li class="toctree-l2">
 <a class="reference internal" href="../../W2D1_ConvnetsAndRecurrentNeuralNetworks/student/W2D1_Tutorial2.html">
-     Tutorial 2: Training loop of CNNs
-    </a>
-</li>
-<li class="toctree-l2">
-<a class="reference internal" href="../../W2D1_ConvnetsAndRecurrentNeuralNetworks/student/W2D1_Tutorial3.html">
-     Tutorial 3: Introduction to RNNs
+     Tutorial 2: Introduction to RNNs
     </a>
 </li>
 </ul>
@@ -1494,18 +1489,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-976f3fc1-9467-4b77-a6a6-cb314843363a">
-<span class="eqno">(60)<a class="headerlink" href="#equation-976f3fc1-9467-4b77-a6a6-cb314843363a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd5c2094-1bfc-454f-8df4-bdf4872ba9d8">
+<span class="eqno">(60)<a class="headerlink" href="#equation-bd5c2094-1bfc-454f-8df4-bdf4872ba9d8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bcf1664e-a9b3-45fc-855f-c6468967d799">
-<span class="eqno">(61)<a class="headerlink" href="#equation-bcf1664e-a9b3-45fc-855f-c6468967d799" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-95900390-3565-4cf2-ac37-3fc4865f0a1b">
+<span class="eqno">(61)<a class="headerlink" href="#equation-95900390-3565-4cf2-ac37-3fc4865f0a1b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aae02887-99cd-4b25-bdc6-2bafc7564984">
-<span class="eqno">(62)<a class="headerlink" href="#equation-aae02887-99cd-4b25-bdc6-2bafc7564984" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-71f7996c-fbca-435c-b5d0-da66362ea060">
+<span class="eqno">(62)<a class="headerlink" href="#equation-71f7996c-fbca-435c-b5d0-da66362ea060" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1517,8 +1512,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03bec0fb-50e9-4254-ad6e-8900d65f01cf">
-<span class="eqno">(63)<a class="headerlink" href="#equation-03bec0fb-50e9-4254-ad6e-8900d65f01cf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ba7d7381-606b-43d2-8c78-41190a86642d">
+<span class="eqno">(63)<a class="headerlink" href="#equation-ba7d7381-606b-43d2-8c78-41190a86642d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\

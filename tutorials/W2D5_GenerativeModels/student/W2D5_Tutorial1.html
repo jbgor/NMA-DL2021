@@ -275,12 +275,7 @@
 </li>
 <li class="toctree-l2">
 <a class="reference internal" href="../../W2D1_ConvnetsAndRecurrentNeuralNetworks/student/W2D1_Tutorial2.html">
-     Tutorial 2: Training loop of CNNs
-    </a>
-</li>
-<li class="toctree-l2">
-<a class="reference internal" href="../../W2D1_ConvnetsAndRecurrentNeuralNetworks/student/W2D1_Tutorial3.html">
-     Tutorial 3: Introduction to RNNs
+     Tutorial 2: Introduction to RNNs
     </a>
 </li>
 </ul>
@@ -1386,7 +1381,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "dda83008b33e4052bd90fc405f348b16"}
+{"version_major": 2, "version_minor": 0, "model_id": "de8f7d5b52134a1589c48cac27d65725"}
 </script></div>
 </div>
 <p>Download BigGAN (a generative model) and a few standard image datasets while the above video plays</p>
@@ -1402,136 +1397,175 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/234411737 [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 4521984/234411737 [00:00&lt;00:05, 45208888.90B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|▏         | 3345408/234411737 [00:00&lt;00:06, 33450044.59B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▍         | 9042944/234411737 [00:00&lt;00:07, 29548319.88B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 7497728/234411737 [00:00&lt;00:05, 38160641.52B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▋         | 14682112/234411737 [00:00&lt;00:05, 39063568.55B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▍         | 11561984/234411737 [00:00&lt;00:05, 39291728.13B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▊         | 20494336/234411737 [00:00&lt;00:04, 45468039.46B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 15649792/234411737 [00:00&lt;00:05, 39915307.57B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|█         | 26223616/234411737 [00:00&lt;00:04, 49303003.58B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 19857408/234411737 [00:00&lt;00:05, 40692087.83B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 31543296/234411737 [00:00&lt;00:04, 50536045.90B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 24007680/234411737 [00:00&lt;00:05, 40964801.47B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|█▌        | 36794368/234411737 [00:00&lt;00:05, 36280375.21B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█▏        | 28172288/234411737 [00:00&lt;00:05, 41185571.54B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|█▊        | 41930752/234411737 [00:01&lt;00:04, 39701184.23B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 14%|█▍        | 32380928/234411737 [00:00&lt;00:04, 41469517.27B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██        | 47295488/234411737 [00:01&lt;00:04, 43247289.81B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|█▌        | 36528128/234411737 [00:00&lt;00:04, 41001410.87B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 22%|██▏       | 52077568/234411737 [00:01&lt;00:04, 43902486.02B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 17%|█▋        | 40757248/234411737 [00:01&lt;00:04, 41393327.71B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▍       | 57726976/234411737 [00:01&lt;00:03, 47340700.54B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 19%|█▉        | 45003776/234411737 [00:01&lt;00:04, 41715585.13B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 63516672/234411737 [00:01&lt;00:03, 50301908.27B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|██        | 49273856/234411737 [00:01&lt;00:04, 42012484.91B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|██▉       | 69201920/234411737 [00:01&lt;00:03, 52175985.84B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 23%|██▎       | 53573632/234411737 [00:01&lt;00:04, 42308097.36B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|███▏      | 74996736/234411737 [00:01&lt;00:02, 53849934.50B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▍       | 57805824/234411737 [00:01&lt;00:04, 42250966.77B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 34%|███▍      | 80498688/234411737 [00:01&lt;00:03, 51104886.51B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 26%|██▋       | 62045184/234411737 [00:01&lt;00:04, 42292020.35B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 37%|███▋      | 85716992/234411737 [00:02&lt;00:05, 26822747.53B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|██▊       | 66308096/234411737 [00:01&lt;00:03, 42392202.68B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 39%|███▉      | 91228160/234411737 [00:02&lt;00:04, 31750304.64B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 70571008/234411737 [00:01&lt;00:03, 42461575.49B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|████▏     | 96840704/234411737 [00:02&lt;00:03, 36606732.18B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|███▏      | 74817536/234411737 [00:01&lt;00:03, 41634948.45B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|████▎     | 102286336/234411737 [00:02&lt;00:03, 40560641.09B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 34%|███▍      | 79142912/234411737 [00:01&lt;00:03, 42112140.62B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 46%|████▌     | 108032000/234411737 [00:02&lt;00:02, 44622296.37B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 36%|███▌      | 83479552/234411737 [00:02&lt;00:03, 42482728.66B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 49%|████▊     | 113835008/234411737 [00:02&lt;00:02, 48050102.73B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 37%|███▋      | 87731200/234411737 [00:02&lt;00:03, 42184274.93B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 51%|█████     | 119492608/234411737 [00:02&lt;00:02, 50330885.85B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 39%|███▉      | 91952128/234411737 [00:02&lt;00:03, 41693968.57B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 125290496/234411737 [00:02&lt;00:02, 52444983.90B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|████      | 96123904/234411737 [00:02&lt;00:03, 41602972.65B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 56%|█████▌    | 131116032/234411737 [00:02&lt;00:01, 54088885.87B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 43%|████▎     | 100292608/234411737 [00:02&lt;00:03, 41624602.58B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 58%|█████▊    | 136764416/234411737 [00:03&lt;00:02, 48079643.87B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████▍     | 104477696/234411737 [00:02&lt;00:03, 41688393.21B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 61%|██████    | 142479360/234411737 [00:03&lt;00:01, 50484740.00B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 46%|████▋     | 108647424/234411737 [00:02&lt;00:03, 41587169.41B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 63%|██████▎   | 147761152/234411737 [00:03&lt;00:01, 46094006.74B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 48%|████▊     | 112868352/234411737 [00:02&lt;00:02, 41770906.07B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 152592384/234411737 [00:03&lt;00:02, 38613088.25B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|████▉     | 117046272/234411737 [00:02&lt;00:02, 41318449.67B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 157949952/234411737 [00:03&lt;00:01, 42143308.47B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 52%|█████▏    | 121186304/234411737 [00:02&lt;00:02, 41339485.09B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|██████▉   | 163391488/234411737 [00:03&lt;00:01, 45237568.60B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 125326336/234411737 [00:03&lt;00:02, 41355408.35B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 72%|███████▏  | 168870912/234411737 [00:03&lt;00:01, 47768292.86B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 129463296/234411737 [00:03&lt;00:02, 41228919.33B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 74%|███████▍  | 174299136/234411737 [00:03&lt;00:01, 49556125.26B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|█████▋    | 133586944/234411737 [00:03&lt;00:02, 41041596.18B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 77%|███████▋  | 179775488/234411737 [00:04&lt;00:01, 51016437.58B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 59%|█████▊    | 137692160/234411737 [00:03&lt;00:02, 40899245.81B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 79%|███████▉  | 185214976/234411737 [00:04&lt;00:00, 51981724.09B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 141783040/234411737 [00:03&lt;00:02, 40817186.65B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 81%|████████▏ | 190684160/234411737 [00:04&lt;00:00, 52769008.94B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|██████▏   | 145872896/234411737 [00:03&lt;00:02, 40839877.20B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 84%|████████▎ | 196250624/234411737 [00:04&lt;00:00, 53618145.48B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 64%|██████▍   | 149957632/234411737 [00:03&lt;00:02, 40511881.19B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 86%|████████▌ | 201850880/234411737 [00:04&lt;00:00, 54321321.91B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 66%|██████▌   | 154009600/234411737 [00:03&lt;00:02, 39872952.34B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 88%|████████▊ | 207321088/234411737 [00:04&lt;00:00, 54431202.58B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 158084096/234411737 [00:03&lt;00:01, 40128398.17B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|█████████ | 212860928/234411737 [00:04&lt;00:00, 54717400.79B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 69%|██████▉   | 162211840/234411737 [00:03&lt;00:01, 40466597.15B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 93%|█████████▎| 218351616/234411737 [00:04&lt;00:00, 48917773.74B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|███████   | 166352896/234411737 [00:04&lt;00:01, 40744653.57B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 95%|█████████▌| 223785984/234411737 [00:04&lt;00:00, 50413480.25B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 73%|███████▎  | 170463232/234411737 [00:04&lt;00:01, 40840642.66B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 98%|█████████▊| 228929536/234411737 [00:05&lt;00:00, 32785718.13B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 74%|███████▍  | 174570496/234411737 [00:04&lt;00:01, 40908804.97B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|█████████▉| 233126912/234411737 [00:05&lt;00:00, 28927620.81B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|███████▌  | 178676736/234411737 [00:04&lt;00:01, 40954252.85B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 234411737/234411737 [00:05&lt;00:00, 42903057.10B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 78%|███████▊  | 182892544/234411737 [00:04&lt;00:01, 41311748.70B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 80%|███████▉  | 187024384/234411737 [00:04&lt;00:01, 39553770.99B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 82%|████████▏ | 191207424/234411737 [00:04&lt;00:01, 40213350.84B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 83%|████████▎ | 195467264/234411737 [00:04&lt;00:00, 40912390.76B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|████████▌ | 199618560/234411737 [00:04&lt;00:00, 41087963.93B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 203896832/234411737 [00:04&lt;00:00, 41587622.13B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 89%|████████▉ | 208063488/234411737 [00:05&lt;00:00, 41610717.32B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|█████████ | 212252672/234411737 [00:05&lt;00:00, 41692735.83B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 92%|█████████▏| 216502272/234411737 [00:05&lt;00:00, 41932734.76B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████▍| 220722176/234411737 [00:05&lt;00:00, 42011912.14B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|█████████▌| 225003520/234411737 [00:05&lt;00:00, 42248756.68B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 98%|█████████▊| 229269504/234411737 [00:05&lt;00:00, 42367383.26B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|█████████▉| 233597952/234411737 [00:05&lt;00:00, 42640164.53B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 234411737/234411737 [00:05&lt;00:00, 41300741.15B/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1540,7 +1574,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/715 [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 715/715 [00:00&lt;00:00, 235672.09B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 715/715 [00:00&lt;00:00, 543382.38B/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1620,9 +1654,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c5724b47ee254e10a0b1c236ff80c1d1"}
+{"version_major": 2, "version_minor": 0, "model_id": "0f7acfdcdda24e76bcf13055a44662bf"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7e124e5ae0cb47668498eb76d8a51478"}
+{"version_major": 2, "version_minor": 0, "model_id": "2670f1dd2a4849a2a238911cc336f667"}
 </script><img alt="../../../_images/W2D5_Tutorial1_32_2.png" src="../../../_images/W2D5_Tutorial1_32_2.png"/>
 </div>
 </div>
@@ -1730,9 +1764,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3d562ff61a514defaf970691bc145dd7"}
+{"version_major": 2, "version_minor": 0, "model_id": "d4d9055ae2b64bddbd8878ac6e48edd8"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0cff45990cf14a428c1641ff1b21b785"}
+{"version_major": 2, "version_minor": 0, "model_id": "dc419aa977634dedbf6c369ac34b97c6"}
 </script></div>
 </div>
 </div>
@@ -1746,7 +1780,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ed1841993344404aa4fa75c9a0fbad75"}
+{"version_major": 2, "version_minor": 0, "model_id": "1e62469c757d46e886f85be277f3da5e"}
 </script></div>
 </div>
 <p>In the video the concept of a latent variable model was introduced. We saw how PCA (principal component analysis) can be extended into a generative model with latent variables called pPCA. For pPCA the latent variables (z in the video) are the projections onto the principal component axes.</p>
@@ -1834,8 +1868,8 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <p><strong>Step 2</strong>: “Generate” from the pPCA model of the thermometer data.</p>
 <p>Complete the code so it properly generates from the pPCA model. At present we aren’t accounting for the “sensor noise” the sensor noise is the variance that the PC axes isn’t accounting for. Thus, you’ll note that the current output sits on the PC axes and doesn’t look like the original data distribution!!</p>
 <p>Here is the equation for sampling from the pPCA model:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8bf8e28c-55f9-407e-9d70-35f38303b64b">
-<span class="eqno">(83)<a class="headerlink" href="#equation-8bf8e28c-55f9-407e-9d70-35f38303b64b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-454200ce-3853-4517-9308-0a4f84d4493a">
+<span class="eqno">(83)<a class="headerlink" href="#equation-454200ce-3853-4517-9308-0a4f84d4493a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \mathbf{I})
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -1896,7 +1930,7 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8bdeddf9cca64016b5f3df4ca88c0f14"}
+{"version_major": 2, "version_minor": 0, "model_id": "56e13c7340ef4e88aa615ef276993b25"}
 </script></div>
 </div>
 <p>Download MNIST and CIFAR10 image datasets while the above video plays</p>
@@ -1964,13 +1998,13 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <div class="section" id="section-3-1-conceptual-introduction-to-autoencoders">
 <h2>Section 3.1: Conceptual introduction to AutoEncoders<a class="headerlink" href="#section-3-1-conceptual-introduction-to-autoencoders" title="Permalink to this headline">¶</a></h2>
 <p>Now we’ll create our first autoencoder. It will reduce images down to <span class="math notranslate nohighlight">\(K\)</span> dimensions. The architecture will be quite simple: the input will be linearly mapped to a single hidden (or latent) layer <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> with <span class="math notranslate nohighlight">\(K\)</span> units, which will then be linearly mapped back to an output that is the same size as the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-624f11ba-2841-4dd1-927f-40ea739a310c">
-<span class="eqno">(84)<a class="headerlink" href="#equation-624f11ba-2841-4dd1-927f-40ea739a310c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-aa23fd1d-4b17-4946-b3f3-b02eb60188e1">
+<span class="eqno">(84)<a class="headerlink" href="#equation-aa23fd1d-4b17-4946-b3f3-b02eb60188e1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \longrightarrow \mathbf{h} \longrightarrow \mathbf{x'}
 \end{equation}\]</div>
 <p>The loss function we’ll use will simply be mean squared error (MSE) quantifying how well the reconstruction (<span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>) matches the original image (<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c1734060-f165-4edb-8c0b-6eb6caf34c5a">
-<span class="eqno">(85)<a class="headerlink" href="#equation-c1734060-f165-4edb-8c0b-6eb6caf34c5a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d0e8d19-514f-41c4-8a81-22ded66252ad">
+<span class="eqno">(85)<a class="headerlink" href="#equation-0d0e8d19-514f-41c4-8a81-22ded66252ad" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{MSE Loss} = \sum_{i=1}^{N} ||\mathbf{x}_i - \mathbf{x'}_i||^2_2
 \end{equation}\]</div>
 <p>If all goes well, then the AutoEncoder will learn, <strong>end to end</strong>, a good “encoding” or “compression” of inputs to a latent representation (<span class="math notranslate nohighlight">\(\mathbf{x \longrightarrow h}\)</span>) as well as a good “decoding” of that latent representation to a reconstruction of the original input (<span class="math notranslate nohighlight">\(\mathbf{h \longrightarrow x'}\)</span>).</p>
@@ -2116,22 +2150,99 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e74faf2e53e749c896f24f9bc564cfe1"}
+{"version_major": 2, "version_minor": 0, "model_id": "03f7c041adda4347946c851e5812c76d"}
 </script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8436</span><span class="o">/</span><span class="mf">2806122885.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7609</span><span class="o">/</span><span class="mf">2806122885.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span> 
 <span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">image_moments</span><span class="p">((</span><span class="n">im</span> <span class="k">for</span> <span class="n">im</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">),</span>
 <span class="ne">---&gt; </span><span class="mi">13</span>                         <span class="n">n_batches</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span> <span class="o">//</span> <span class="mi">32</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span> 
 <span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">pca_encode</span><span class="p">,</span> <span class="n">pca_decode</span> <span class="o">=</span> <span class="n">pca_encoder_decoder</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_8436/1260270458.py</span> in <span class="ni">image_moments</span><span class="nt">(image_batches, n_batches)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">m1</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">+</span> <span class="n">im</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">m2</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">+</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">n</span> <span class="o">+=</span> <span class="n">b</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>   <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">/</span><span class="n">n</span><span class="p">,</span> <span class="n">m2</span><span class="o">/</span><span class="n">n</span>
+<span class="nn">/tmp/ipykernel_7609/1260270458.py</span> in <span class="ni">image_moments</span><span class="nt">(image_batches, n_batches)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>   <span class="k">for</span> <span class="n">im</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">image_batches</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">n_batches</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="ne">---&gt; </span><span class="mi">12</span>                  <span class="n">desc</span><span class="o">=</span><span class="s1">'Computing pixel mean and covariance...'</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">b</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/notebook.py</span> in <span class="ni">__iter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">254</span>             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="nb">super</span><span class="p">(</span><span class="n">tqdm_notebook</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>                 <span class="c1"># return super(tqdm...) will not catch exception</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>                 <span class="k">yield</span> <span class="n">obj</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/tqdm/std.py</span> in <span class="ni">__iter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1183</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1184</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1185</span>             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1186</span>                 <span class="k">yield</span> <span class="n">obj</span>
+<span class="g g-Whitespace">   </span><span class="mi">1187</span>                 <span class="c1"># Update and possibly print the progressbar.</span>
+
+<span class="nn">/tmp/ipykernel_7609/2806122885.py</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>                     <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> 
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">image_moments</span><span class="p">((</span><span class="n">im</span> <span class="k">for</span> <span class="n">im</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">),</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>                         <span class="n">n_batches</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span> <span class="o">//</span> <span class="mi">32</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">__next__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">519</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">520</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">521</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_next_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>     <span class="k">def</span> <span class="nf">_next_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">560</span>         <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_index</span><span class="p">()</span>  <span class="c1"># may raise StopIteration</span>
+<span class="ne">--&gt; </span><span class="mi">561</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_fetcher</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># may raise StopIteration</span>
+<span class="g g-Whitespace">    </span><span class="mi">562</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pin_memory</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">563</span>             <span class="n">data</span> <span class="o">=</span> <span class="n">_utils</span><span class="o">.</span><span class="n">pin_memory</span><span class="o">.</span><span class="n">pin_memory</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py</span> in <span class="ni">fetch</span><span class="nt">(self, possibly_batched_index)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">possibly_batched_index</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_collation</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">44</span>             <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">possibly_batched_index</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_collation</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">44</span>             <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
+<span class="g g-Whitespace">     </span><span class="mi">45</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/mnist.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, index)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span> 
+<span class="g g-Whitespace">    </span><span class="mi">133</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">134</span>             <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span> 
+<span class="g g-Whitespace">    </span><span class="mi">136</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/transforms/transforms.py</span> in <span class="ni">__call__</span><span class="nt">(self, pic)</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>             <span class="n">Tensor</span><span class="p">:</span> <span class="n">Converted</span> <span class="n">image</span><span class="o">.</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span>         <span class="sd">"""</span>
+<span class="ne">---&gt; </span><span class="mi">97</span><span class="sd">         return F.to_tensor(pic)</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span><span class="sd">     def __repr__(self):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/transforms/functional.py</span> in <span class="ni">to_tensor</span><span class="nt">(pic)</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span><span class="sd">         Tensor: Converted image.</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">101</span>     <span class="k">if</span> <span class="ow">not</span><span class="p">(</span><span class="n">F_pil</span><span class="o">.</span><span class="n">_is_pil_image</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span> <span class="ow">or</span> <span class="n">_is_numpy</span><span class="p">(</span><span class="n">pic</span><span class="p">)):</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">'pic should be PIL Image or ndarray. Got </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">pic</span><span class="p">)))</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/transforms/functional_pil.py</span> in <span class="ni">_is_pil_image</span><span class="nt">(img)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">accimage</span><span class="o">.</span><span class="n">Image</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">19</span>         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> 
+<span class="g g-Whitespace">     </span><span class="mi">21</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2526,25 +2637,25 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <p><em>Recognition models and density networks</em></p>
 <p>Variational AutoEncoders (VAEs) are a lot like the classic AutoEncoders (AEs), but where we explicitly think about probability distributions. In the language of VAEs, the <strong>encoder</strong> is replaced with a <strong>recognition model</strong>, and the <strong>decoder</strong> is replaced with a <strong>density network</strong>.</p>
 <p>Where in a classic autoencoder the encoder maps from images to a single hidden vector,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e93a3572-f63c-4572-b719-23ced7986762">
-<span class="eqno">(86)<a class="headerlink" href="#equation-e93a3572-f63c-4572-b719-23ced7986762" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f40e5663-cd16-41f9-8828-735092d71c96">
+<span class="eqno">(86)<a class="headerlink" href="#equation-f40e5663-cd16-41f9-8828-735092d71c96" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{AE}}{\longrightarrow} \mathbf{h} \, ,
 \end{equation}\]</div>
 <p>in a VAE we would say that a recognition model maps from inputs to entire <strong>distributions</strong> over hidden vectors,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d28ac5a-1cb0-4f2f-b77e-7d4856eb2eed">
-<span class="eqno">(87)<a class="headerlink" href="#equation-9d28ac5a-1cb0-4f2f-b77e-7d4856eb2eed" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-231bd133-fa97-4b8d-9904-213937693769">
+<span class="eqno">(87)<a class="headerlink" href="#equation-231bd133-fa97-4b8d-9904-213937693769" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{VAE}}{\longrightarrow} q_{\mathbf{w_e}}(\mathbf{z}) \, ,
 \end{equation}\]</div>
 <p>which we will then sample from. Here <span class="math notranslate nohighlight">\(\mathbf{w_e}\)</span> refers to the weights of the recognition model, which parametarize our distribution generating network. We’ll say more in a moment about what kind of distribution <span class="math notranslate nohighlight">\(q_{\mathbf{w_e}}(\mathbf{z})\)</span> is.
 Part of what makes VAEs work is that the loss function will require good reconstructions of the input not just for a single <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>, but <em>on average</em> from samples of <span class="math notranslate nohighlight">\(\mathbf{z} \sim q_{\mathbf{w_e}}(\mathbf{z})\)</span>.</p>
 <p>In the classic autoencoder, we had a decoder which maps from hidden vectors to reconstructions of the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e47fdaa6-3783-4197-ad85-e7a4a67e1149">
-<span class="eqno">(88)<a class="headerlink" href="#equation-e47fdaa6-3783-4197-ad85-e7a4a67e1149" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ef36b9a2-c3aa-4466-9913-d600d30982e8">
+<span class="eqno">(88)<a class="headerlink" href="#equation-ef36b9a2-c3aa-4466-9913-d600d30982e8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h} \overset{\text{AE}}{\longrightarrow} \mathbf{x'} \, .
 \end{equation}\]</div>
 <p>In a density network, reconstructions are expressed in terms of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-61415d3e-5248-4792-9a49-2e483aad931b">
-<span class="eqno">(89)<a class="headerlink" href="#equation-61415d3e-5248-4792-9a49-2e483aad931b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-610c2506-7a32-4833-ae48-d2eff16a9e93">
+<span class="eqno">(89)<a class="headerlink" href="#equation-610c2506-7a32-4833-ae48-d2eff16a9e93" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \overset{\text{VAE}}{\longrightarrow} p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})
 \end{equation}\]</div>
 <p>where, as above, <span class="math notranslate nohighlight">\(p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})\)</span> is defined by mapping <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> through a density network then treating the resulting <span class="math notranslate nohighlight">\(f(\mathbf{z};\mathbf{w_d})\)</span> as the mean of a (Gaussian) distribution over <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Similarly, our reconstruction distribution is parametarized by the weights of the density network.</p>
@@ -2552,13 +2663,13 @@ Part of what makes VAEs work is that the loss function will require good reconst
 <div class="section" id="section-4-2-generating-novel-images-from-the-decoder">
 <h2>Section 4.2: Generating novel images from the decoder<a class="headerlink" href="#section-4-2-generating-novel-images-from-the-decoder" title="Permalink to this headline">¶</a></h2>
 <p>If we isolate the decoder part of the AutoEncoder, what we have is a neural network that takes as input a vector of size <span class="math notranslate nohighlight">\(K\)</span> and produces as output an image that looks something like our training data. Recall that in our earlier notation, we had an input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that was mapped to a low-dimensional hidden representation <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> which was then decoded into a reconstruction of the input, <span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b3f7f57-c36e-4f83-bc18-bc82f8b01fbe">
-<span class="eqno">(90)<a class="headerlink" href="#equation-3b3f7f57-c36e-4f83-bc18-bc82f8b01fbe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c69d061-4e43-447d-add0-2d5881a3edfd">
+<span class="eqno">(90)<a class="headerlink" href="#equation-0c69d061-4e43-447d-add0-2d5881a3edfd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{encode}}{\longrightarrow} \mathbf{h} \overset{\text{decode}}{\longrightarrow} \mathbf{x'}\, .
 \end{equation}\]</div>
 <p>Partly as a matter of convention, and partly to distinguish where we are going next from the previous section, we’re going to introduce a new variable, <span class="math notranslate nohighlight">\(\mathbf{z} \in \mathbb{R}^K\)</span>, which will take the place of <span class="math notranslate nohighlight">\(\mathbf{h}\)</span>. The key difference is that while <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> is produced by the encoder for a particular <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> will be drawn out of thin air from a prior of our choosing:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f9a891e-c5a2-4b4c-b4ed-8114d448f9d3">
-<span class="eqno">(91)<a class="headerlink" href="#equation-9f9a891e-c5a2-4b4c-b4ed-8114d448f9d3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-91284da9-9328-4b1c-8f32-f94ad2b67fa1">
+<span class="eqno">(91)<a class="headerlink" href="#equation-91284da9-9328-4b1c-8f32-f94ad2b67fa1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \sim p(\mathbf{z})\\ \mathbf{z} \overset{\text{decode}}{\longrightarrow} \mathbf{x}\, .
 \end{equation}\]</div>
 <p>(Note that it is also common convention to drop the “prime” on <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> when it is no longer being thought of as a “reconstruction”).</p>

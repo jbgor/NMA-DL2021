@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# call this before any dataset/network initializing or training,', '# to ensure reproducibility', 'set_seed(SEED)', '', 'print("Training a classifier on the pre-trained SimCLR encoder representations...")']
+['# call this before any dataset/network initializing or training,', '# to ensure reproducibility', 'set_seed(SEED)', '', 'num_epochs = 25  # DEMO: Try different numbers of training epochs']
 ...
-['fig, ax = plt.subplots()', 'ax.plot(simclr_loss_array)', 'ax.set_title("Loss of classifier trained on a SimCLR encoder.")', 'ax.set_xlabel("Epoch number")', '_ = ax.set_ylabel("Training loss")']
+['  test_sampler=test_sampler,', '  freeze_features=True, # there is no feature encoder to train here, anyway', '  num_epochs=num_epochs,', '  verbose=True # print results', '  )']
 -------------------
 

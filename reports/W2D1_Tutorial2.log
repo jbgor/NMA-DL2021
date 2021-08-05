@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# Training', '# Instantiate model', '# Puts the Model on the GPU (Select runtime-type as GPU', "#                            from the 'Runtime->Change Runtime type' option).", 'model = emnist_net().to(DEVICE)']
+['n_epochs = 1000   # initial was set to 2000', '', 'print_every = 25  # frequency of printing the outputs', '', 'start = time.time()']
 ...
-['', '    predictions = torch.argmax(y, dim=1)', '    correct += torch.sum((predictions == labs).float())', '', "print('Test accuracy: {}'.format(correct/total))"]
+['  loss_avg += loss', '', '  if epoch % print_every == 0:', '    print(f"[{time_since(start)} {epoch/n_epochs * 100}%) {loss:.4f}]")', '    print(f"{generate(decoder, prime_str=\'Wh\', predict_len=100, device=DEVICE)}\\n")']
 -------------------
 
