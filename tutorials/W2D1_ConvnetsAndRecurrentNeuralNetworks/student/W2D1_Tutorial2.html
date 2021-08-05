@@ -870,6 +870,13 @@
 <a class="reference internal nav-link" href="#think-1-overfitting">
      Think! 1: Overfitting
     </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#student-response">
+       Student Response
+      </a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -887,6 +894,13 @@
 <a class="reference internal nav-link" href="#think-2-1-regularization">
      Think! 2.1: Regularization
     </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
+       Student Response
+      </a>
+</li>
+</ul>
 </li>
 <li class="toc-h2 nav-item toc-entry">
 <a class="reference internal nav-link" href="#interactive-demo-2-dropout-exploration">
@@ -901,6 +915,25 @@
 <li class="toc-h2 nav-item toc-entry">
 <a class="reference internal nav-link" href="#think-3-1-data-augmentation">
      Think! 3.1: Data Augmentation
+    </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
+       Student Response
+      </a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry">
+<a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#airtable-submission-link">
+     Airtable Submission Link
     </a>
 </li>
 </ul>
@@ -919,7 +952,7 @@
 <p><strong>Week 2, Day 1: Convnets And Recurrent Neural Networks</strong></p>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Dawn McKnight, Richard Gerum, Cassidy Pirlot, Rohan Saha, Liam Peet-Pare, Saeed Najafi, Alona Fyshe</p>
-<p><strong>Content reviewers:</strong> Saeed Salehi, Lily Cheng, Yu-Fang Yang, Polina Turishcheva, Bettina Hein</p>
+<p><strong>Content reviewers:</strong> Saeed Salehi, Lily Cheng, Yu-Fang Yang, Polina Turishcheva, Bettina Hein, Kelson Shilling-Scrivo</p>
 <p><strong>Content editors:</strong> Nina Kudryashova, Anmol Gupta, Spiros Chavlis</p>
 <p><strong>Production editors:</strong> Alex Tran-Van-Minh, Spiros Chavlis</p>
 <p><em>Based on material from:</em> Konrad Kording, Hmrishav Bandyopadhyay, Rahul Shekhar, Tejas Srivastava</p>
@@ -928,10 +961,10 @@
 <hr class="docutils"/>
 <div class="section" id="tutorial-objectives">
 <h1>Tutorial Objectives<a class="headerlink" href="#tutorial-objectives" title="Permalink to this headline">¶</a></h1>
-<p>At the end of this tutorial, we will be able to:</p>
+<p>At the end of this tutorial, you will be able to:</p>
 <ul class="simple">
-<li><p>Understand pooling</p></li>
-<li><p>Code a simple Convolutional Neural Nework (CNN) in pytorch</p></li>
+<li><p>train a CNN by writing your own train loop</p></li>
+<li><p>recognize the symptoms of overfitting and how to cure them</p></li>
 </ul>
 <div class="section" id="tutorial-slides">
 <h2>Tutorial slides<a class="headerlink" href="#tutorial-slides" title="Permalink to this headline">¶</a></h2>
@@ -953,6 +986,12 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
 <span class="o">!</span>pip install livelossplot --quiet
+
+<span class="o">!</span>pip install git+https://github.com/NeuromatchAcademy/evaltools --quiet
+<span class="kn">from</span> <span class="nn">evaltools.airtable</span> <span class="kn">import</span> <span class="n">AirtableForm</span>
+
+<span class="c1"># generate airtable form</span>
+<span class="n">atform</span> <span class="o">=</span> <span class="n">AirtableForm</span><span class="p">(</span><span class="s1">'appn7VdPRseSoMXEG'</span><span class="p">,</span><span class="s1">'W2D1_T2'</span><span class="p">,</span><span class="s1">'https://portal.neuromatchacademy.org/api/redirect/to/351ca652-13d8-4e31-be28-30153d03e639'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -966,12 +1005,13 @@
 
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+
 <span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
 <span class="kn">import</span> <span class="nn">torchvision.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 
 <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span><span class="p">,</span> <span class="n">trange</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 </pre></div>
 </div>
 </div>
@@ -1152,7 +1192,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9e31c1e2d5d842f8a65a5d3214c5aac6"}
+{"version_major": 2, "version_minor": 0, "model_id": "64c668c3aeea4c91a94a094b1cdf116f"}
 </script></div>
 </div>
 </div>
@@ -1206,7 +1246,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3157c02ba2ba4aa99686497c37c9bfd9"}
+{"version_major": 2, "version_minor": 0, "model_id": "235685e9416c4dabbe205bdd6fa5241c"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/train-images-idx3-ubyte.gz to ./data/FashionMNIST/raw
 </pre></div>
 </div>
@@ -1217,7 +1257,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4a9b74c9359246528aa15f0fde0bd596"}
+{"version_major": 2, "version_minor": 0, "model_id": "11e037d6e3a644aeba6cd44db06ddbdd"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/train-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw
 
 Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz
@@ -1227,7 +1267,7 @@ Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-imag
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ca8509e912ef4d55a8ca83d47924ee0d"}
+{"version_major": 2, "version_minor": 0, "model_id": "97e23245998c4801b1071d329bae72c9"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz to ./data/FashionMNIST/raw
 
 Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz
@@ -1237,7 +1277,7 @@ Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labe
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6b7fd23f423b4df0a45961c3187b9310"}
+{"version_major": 2, "version_minor": 0, "model_id": "33e6c7a81a5147dc8280327d5705027f"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw
 
 Random seed 2021 has been set.
@@ -1324,7 +1364,7 @@ Random seed 2021 has been set.
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b6b031975ecd4e3f9bfb554b18434186"}
+{"version_major": 2, "version_minor": 0, "model_id": "9a1b0a00ce4a4db7ae2c6889a57247ab"}
 </script></div>
 </div>
 </div>
@@ -1336,12 +1376,9 @@ Random seed 2021 has been set.
 <p>To improve performance, we need to change the weight matrices so that the predicted outputs are similar to the true outputs (labels). We first calculate how far away the predicted outputs are to the true outputs using a loss function. Based on the loss function, we change the values of our weight matrices using the gradients of the error with respect to the weight matrices.</p>
 <p>Since we are using PyTorch throughout the course, we will use the built-in functions to update the weights. We call the <code class="docutils literal notranslate"><span class="pre">backward()</span></code> method on our ‘loss’ variable to calculate the gradients/derivatives with respect to all the weight matrices and biases. And then we call the <code class="docutils literal notranslate"><span class="pre">step()</span></code> method on the optimizer variable to apply the gradient updates to our weight matrices.</p>
 <p>Here’s an animation of backpropagation works.</p>
-<figure>
-<center><img src="https://machinelearningknowledge.ai/wp-content/uploads/2019/10/Backpropagation.gif"/>
-<figcaption> Stride Two </figcaption>
-</center>
-</figure>
-<p><a class="reference external" href="https://machinelearningknowledge.ai/animated-explanation-of-feed-forward-neural-network-architecture/">This</a> article has more animations.</p>
+<img alt="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/Backpropagation.gif" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/Backpropagation.gif"/>
+<br/>
+<p>In <a class="reference external" href="https://machinelearningknowledge.ai/animated-explanation-of-feed-forward-neural-network-architecture/">this article</a> you can find more animations!</p>
 <p>Let’s first see a sample training loop. First, we create the network and load a dataset. Then we look at the training loop.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1418,7 +1455,7 @@ Random seed 2021 has been set.
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0d6d2e9e1306472db8d807071ef679cb"}
+{"version_major": 2, "version_minor": 0, "model_id": "22ba88494dc54d1e9a4bdae45e20695f"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./datasets/EMNIST/raw/gzip.zip to ./datasets/EMNIST/raw
 </pre></div>
 </div>
@@ -1479,35 +1516,56 @@ Random seed 2021 has been set.
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "03630ffcba8a40ffa76c5ca05362aad9"}
+{"version_major": 2, "version_minor": 0, "model_id": "99289b786b164877b8474aa3645a74a1"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "761853540e784561bed09b8766ef8d92"}
+{"version_major": 2, "version_minor": 0, "model_id": "97fd8f85eae94d30ad1a1fa6aca606c4"}
 </script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
   return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9764</span><span class="o">/</span><span class="mf">701509453.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> 
-<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="c1"># Backpropagation and gradient update.</span>
-<span class="ne">---&gt; </span><span class="mi">28</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1"># Calculate gradients.</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span> <span class="c1"># Apply gradient udpate.</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> 
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7756</span><span class="o">/</span><span class="mf">701509453.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="c1"># Move the data to GPU for faster execution.</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">x</span><span class="p">,</span> <span class="n">labs</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">),</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">22</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> 
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="c1"># Calculate loss.</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span> 
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span> 
-<span class="g g-Whitespace">    </span><span class="mi">151</span> 
+<span class="nn">/tmp/ipykernel_7756/395564816.py</span> in <span class="ni">forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> 
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="c1"># Conv layer 2.</span>
+<span class="ne">---&gt; </span><span class="mi">18</span>     <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/conv.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span> 
+<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">443</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span> 
+<span class="g g-Whitespace">    </span><span class="mi">445</span> <span class="k">class</span> <span class="nc">Conv3d</span><span class="p">(</span><span class="n">_ConvNd</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/conv.py</span> in <span class="ni">_conv_forward</span><span class="nt">(self, input, weight, bias)</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span>                             <span class="n">_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span>         <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">440</span>                         <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span> 
+<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1690,6 +1748,9 @@ Random seed 2021 has been set.
   <span class="k">return</span> <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_acc</span><span class="p">,</span> <span class="n">validation_loss</span><span class="p">,</span> <span class="n">validation_acc</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 1: Code the training loop'</span><span class="p">)</span>
+
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## Uncomment to test your training loop</span>
 <span class="c1"># net = FMNIST_Net1().to(DEVICE)</span>
@@ -1699,9 +1760,9 @@ Random seed 2021 has been set.
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_8b552183.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_d06a1cd6.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_8b552183_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_8b552183_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_d06a1cd6_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_d06a1cd6_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
 <p>The next cell contains the code for the CNN we will be using in this section.</p>
 <p>Run the next cell to get the accuracy on the data!</p>
 <div class="cell docutils container">
@@ -1717,7 +1778,37 @@ Random seed 2021 has been set.
 <p>Do you think this network is overfitting?
 If yes, what can you do to combat this?</p>
 <p><strong>Hint</strong>: overfitting occurs when the training accuracy greatly exceeds the validation accuracy</p>
+<div class="section" id="student-response">
+<h3>Student Response<a class="headerlink" href="#student-response" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
+   <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
+   <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
+   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit!"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">button</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+   <span class="n">atform</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="s1">'q1'</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Submission successful!"</span><span class="p">)</span>
+
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_a367e834.py"><em>Click for solution</em></a></p>
+</div>
 </div>
 </div>
 <hr class="docutils"/>
@@ -1765,6 +1856,9 @@ If yes, what can you do to combat this?</p>
     <span class="k">return</span> <span class="n">x</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 2.1: Adding Regularization'</span><span class="p">)</span>
+
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## Uncomment below to check your code</span>
 <span class="c1"># net2 = FMNIST_Net2().to(DEVICE)</span>
@@ -1774,9 +1868,9 @@ If yes, what can you do to combat this?</p>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_36a8481f.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_8cebc659.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_36a8481f_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_36a8481f_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_8cebc659_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_8cebc659_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
 <p>Run the next cell to get the accuracy on the data!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1792,7 +1886,37 @@ If yes, what can you do to combat this?</p>
 <li><p>Is the training accuracy slightly reduced from before adding regularization? What accuracy were you able to reduce it to?</p></li>
 <li><p>Why does the validation accuracy start higher than training accuracy?</p></li>
 </ol>
+<div class="section" id="id1">
+<h3>Student Response<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
+   <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
+   <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
+   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit!"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">button</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+   <span class="n">atform</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="s1">'q2'</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Submission successful!"</span><span class="p">)</span>
+
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_6e9ea2ef.py"><em>Click for solution</em></a></p>
+</div>
 </div>
 <div class="section" id="interactive-demo-2-dropout-exploration">
 <h2>Interactive Demo 2: Dropout exploration<a class="headerlink" href="#interactive-demo-2-dropout-exploration" title="Permalink to this headline">¶</a></h2>
@@ -1880,6 +2004,10 @@ If yes, what can you do to combat this?</p>
   <span class="k">return</span> <span class="n">augmentation_transforms</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 2.2: How much does augmentation help?'</span><span class="p">)</span>
+
+<span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 <span class="n">net3</span> <span class="o">=</span> <span class="n">FMNIST_Net2</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>  <span class="c1"># get the network</span>
 
@@ -1891,9 +2019,9 @@ If yes, what can you do to combat this?</p>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_8d4116f3.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_42618336.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_8d4116f3_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_8d4116f3_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_42618336_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial2_Solution_42618336_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
 <p>Run the next cell to get the accuracy on the data!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1906,9 +2034,62 @@ If yes, what can you do to combat this?</p>
 <div class="section" id="think-3-1-data-augmentation">
 <h2>Think! 3.1: Data Augmentation<a class="headerlink" href="#think-3-1-data-augmentation" title="Permalink to this headline">¶</a></h2>
 <p>Did the training accuracy reduce further compared to with dropout alone? Is the model still overfitting?</p>
+<div class="section" id="id2">
+<h3>Student Response<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
+   <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
+   <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
+   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit!"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">button</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+   <span class="n">atform</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="s1">'q3'</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Submission successful!"</span><span class="p">)</span>
+
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial2_Solution_ae125a93.py"><em>Click for solution</em></a></p>
 <p>Great! In this section you trained what may have been your very first CNN. You added regularization and data augmentation in order to get a model that generalizes well. All the pieces are beginning to fit together!</p>
 <p>Next we will talk about RNNs, which parameter share over time.</p>
+</div>
+</div>
+</div>
+<hr class="docutils"/>
+<div class="section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial, we have learned how to write a custom train loop and we trained our CNN on Fashion-MNIST dataset. Then, we learned about overfitting in CNNs and how to deal with it.</p>
+<div class="section" id="airtable-submission-link">
+<h2>Airtable Submission Link<a class="headerlink" href="#airtable-submission-link" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Airtable Submission Link</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span> <span class="k">as</span> <span class="n">IPyDisplay</span>
+<span class="n">IPyDisplay</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2">  &lt;div&gt;</span>
+<span class="s2">    &lt;a href= "</span><span class="si">{</span><span class="n">atform</span><span class="o">.</span><span class="n">url</span><span class="p">()</span><span class="si">}</span><span class="s2">" target="_blank"&gt;</span>
+<span class="s2">    &lt;img src="https://github.com/NeuromatchAcademy/course-content-dl/blob/main/tutorials/static/AirtableSubmissionButton.png?raw=1"</span>
+<span class="s2">  alt="button link to Airtable" style="width:410px"&gt;&lt;/a&gt;</span>
+<span class="s2">    &lt;/div&gt;"""</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <script type="text/x-thebe-config">
