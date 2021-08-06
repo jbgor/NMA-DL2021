@@ -865,11 +865,6 @@
       </a>
 <ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry">
-<a class="reference internal nav-link" href="#visualize-all-of-them-together-run-me">
-         Visualize all of them together (Run Me!)
-        </a>
-</li>
-<li class="toc-h4 nav-item toc-entry">
 <a class="reference internal nav-link" href="#visualize-norm-of-the-models-train-me">
          Visualize Norm of the Models (Train Me!)
         </a>
@@ -893,26 +888,6 @@
 <li class="toc-h3 nav-item toc-entry">
 <a class="reference internal nav-link" href="#run-to-train-the-default-network">
        Run to train the default network
-      </a>
-</li>
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#animation-run-me">
-       Animation! (Run Me!)
-      </a>
-</li>
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#plot-the-train-and-test-losses">
-       Plot the train and test losses
-      </a>
-</li>
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#id1">
-       Plot the train and test losses
-      </a>
-</li>
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#plot-model-weights-with-epoch">
-       Plot model weights with epoch
       </a>
 </li>
 </ul>
@@ -975,16 +950,6 @@
        Generating Data Loaders
       </a>
 </li>
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#plot-train-and-validation-accuracy-run-me">
-       Plot Train and Validation accuracy (Run me)
-      </a>
-</li>
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#plot-parametric-norms-run-me">
-       Plot parametric norms (Run me)
-      </a>
-</li>
 </ul>
 </li>
 </ul>
@@ -1005,7 +970,7 @@
     </a>
 <ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#id2">
+<a class="reference internal nav-link" href="#id1">
        Student Response
       </a>
 </li>
@@ -1104,6 +1069,14 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
+<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
+<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
 </div>
@@ -1356,12 +1329,12 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
     <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="c1"># L2 regularization</span>
-    <span class="k">if</span> <span class="n">reg_function1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">reg_function2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s1">'lambda'</span><span class="p">]</span><span class="o">*</span><span class="n">reg_function2</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
     <span class="c1"># L1 regularization</span>
-    <span class="k">elif</span> <span class="n">reg_function2</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">reg_function1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s1">'lambda'</span><span class="p">]</span><span class="o">*</span><span class="n">reg_function1</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reg_function2</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">reg_function1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s1">'lambda1'</span><span class="p">]</span><span class="o">*</span><span class="n">reg_function1</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+    <span class="c1"># L2 regularization</span>
+    <span class="k">elif</span> <span class="n">reg_function1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">reg_function2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s1">'lambda2'</span><span class="p">]</span><span class="o">*</span><span class="n">reg_function2</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
     <span class="c1"># No regularization</span>
     <span class="k">elif</span> <span class="n">reg_function1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">reg_function2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
       <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
@@ -1664,7 +1637,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2073fd23bc694fbcbdd52058a5cb7fd6"}
+{"version_major": 2, "version_minor": 0, "model_id": "4d22d0b4ef154a91bd936ed3ece7202b"}
 </script></div>
 </div>
 <p>Some of you might have already come across L1 and L2 regularization before in other courses. L1 and L2 are the most common types of regularization. These update the general cost function by adding another term known as the regularization term.</p>
@@ -1726,7 +1699,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
                                                            <span class="n">img_test_dataset</span><span class="p">)</span>
 
 <span class="c1"># Train and Test accuracy plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_unreg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Val Accuracy'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_unreg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Train Accuracy'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_unreg</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
@@ -1735,7 +1708,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Epoch'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'maximum Validation Accuracy reached:</span><span class="si">%f</span><span class="s1">'</span> <span class="o">%</span> <span class="nb">max</span><span class="p">(</span><span class="n">val_acc_unreg</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maximum Validation Accuracy reached: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_unreg</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1744,9 +1717,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "83bbef6a15594f93a6db69f5d35baa24"}
+{"version_major": 2, "version_minor": 0, "model_id": "9398a497af7d41d5996d456a16888e6f"}
 </script><img alt="../../../_images/W1D5_Tutorial2_36_2.png" src="../../../_images/W1D5_Tutorial2_36_2.png"/>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>maximum Validation Accuracy reached:50.000000
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>maximum Validation Accuracy reached: 50.0
 </pre></div>
 </div>
 </div>
@@ -1755,20 +1728,21 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="section" id="section-1-2-l1-regularization">
 <h2>Section 1.2: L1 Regularization<a class="headerlink" href="#section-1-2-l1-regularization" title="Permalink to this headline">¶</a></h2>
-<p>L1 (or “LASSO”) Regularization uses a penalty which is the sum of the absolute value of all the weights in the DLN, resulting in the following loss function (L  is the usual Cross Entropy loss):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ec6daad-9aa9-42d9-8e30-e14405d1bbc0">
-<span class="eqno">(49)<a class="headerlink" href="#equation-7ec6daad-9aa9-42d9-8e30-e14405d1bbc0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>L1 (or “LASSO”) Regularization uses a penalty which is the sum of the absolute value of all the weights in the DLN, resulting in the following loss function (<span class="math notranslate nohighlight">\(L\)</span> is the usual Cross Entropy loss):</p>
+<div class="amsmath math notranslate nohighlight" id="equation-efb8202d-0c54-4998-ae78-08fd968d7497">
+<span class="eqno">(49)<a class="headerlink" href="#equation-efb8202d-0c54-4998-ae78-08fd968d7497" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 L_R=L + \lambda \sum \left| w^{(r)}_{ij} \right|
 \end{equation}\]</div>
-<p>At a high level, L1 Regularization is similar to L2 Regularization since it leads to smaller weights. (You will see the analogy in the next subsection.) It results in the following weight update equation when using Stochastic Gradient Descent:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-68adde77-eb69-4d35-83bf-2d452ca8d428">
-<span class="eqno">(50)<a class="headerlink" href="#equation-68adde77-eb69-4d35-83bf-2d452ca8d428" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)−\eta \frac{\partial L}{\partial w_{ij}^{r}} 
+<p>where <span class="math notranslate nohighlight">\(r\)</span> denotes the layer, and <span class="math notranslate nohighlight">\(ij\)</span> the specific weight in that layer.</p>
+<p>At a high level, L1 Regularization is similar to L2 Regularization since it leads to smaller weights (you will see the analogy in the next subsection). It results in the following weight update equation when using Stochastic Gradient Descent:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-88085369-1c4c-4c4f-985f-34c8b63cb322">
+<span class="eqno">(50)<a class="headerlink" href="#equation-88085369-1c4c-4c4f-985f-34c8b63cb322" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)−\eta \frac{\partial L}{\partial w_{ij}^{(r)}} 
 \end{equation}\]</div>
 <p>where  <span class="math notranslate nohighlight">\(\text{sgn}(\cdot)\)</span> is the sign function, such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06e78519-235c-44f9-88fb-1eebd23f0c1d">
-<span class="eqno">(51)<a class="headerlink" href="#equation-06e78519-235c-44f9-88fb-1eebd23f0c1d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-\text{sgn(w)} = 
+<div class="amsmath math notranslate nohighlight" id="equation-de562667-f47b-4684-8f1f-a922ad36ccd3">
+<span class="eqno">(51)<a class="headerlink" href="#equation-de562667-f47b-4684-8f1f-a922ad36ccd3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+\text{sgn}(w) = 
 \left\{
   \begin{array}{ll}
   +1 &amp; \mbox{if  } w &gt; 0 \\
@@ -1804,7 +1778,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)�
 <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## uncomment to test</span>
 <span class="c1"># net = nn.Linear(20, 20)</span>
-<span class="c1"># print(f'L1 norm of the model: {l1_reg(net)}')</span>
+<span class="c1"># print(f"L1 norm of the model: {l1_reg(net)}")</span>
 </pre></div>
 </div>
 </div>
@@ -1814,21 +1788,22 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)�
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D5_Regularization/solutions/W1D5_Tutorial2_Solution_98c16d72.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D5_Regularization/solutions/W1D5_Tutorial2_Solution_f9f318de.py"><em>Click for solution</em></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span> <span class="n">seed</span> <span class="mi">2021</span> <span class="n">has</span> <span class="n">been</span> <span class="nb">set</span><span class="o">.</span>
 <span class="n">L1</span> <span class="n">norm</span> <span class="n">of</span> <span class="n">the</span> <span class="n">model</span><span class="p">:</span> <span class="mf">48.445133209228516</span>
 </pre></div>
 </div>
-<p>Now, let’s train a classifier which uses L1 regularization. Tune the hyperparameter <code class="docutils literal notranslate"><span class="pre">lambda</span></code> such that the validation accuracy is higher than that of the unregularized model.</p>
+<p>Now, let’s train a classifier which uses L1 regularization. Tune the hyperparameter <code class="docutils literal notranslate"><span class="pre">lambda1</span></code> such that the validation accuracy is higher than that of the unregularized model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the arguments</span>
-<span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">args1</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'test_batch_size'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
     <span class="s1">'epochs'</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
     <span class="s1">'lr'</span><span class="p">:</span> <span class="mf">5e-3</span><span class="p">,</span>
     <span class="s1">'momentum'</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span>
     <span class="s1">'device'</span><span class="p">:</span> <span class="n">DEVICE</span><span class="p">,</span>
-    <span class="s1">'lambda'</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Tune the hyperparameter lambda</span>
+    <span class="s1">'lambda1'</span><span class="p">:</span> <span class="mf">0.001</span>  <span class="c1"># &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Tune the hyperparameter lambda</span>
 <span class="p">}</span>
 
 <span class="c1"># intialize the model</span>
@@ -1836,7 +1811,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)�
 <span class="n">model</span> <span class="o">=</span> <span class="n">AnimalNet</span><span class="p">()</span>
 
 <span class="c1"># Train the model</span>
-<span class="n">val_acc_l1reg</span><span class="p">,</span> <span class="n">train_acc_l1reg</span><span class="p">,</span> <span class="n">param_norm_l1reg</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="p">,</span>
+<span class="n">val_acc_l1reg</span><span class="p">,</span> <span class="n">train_acc_l1reg</span><span class="p">,</span> <span class="n">param_norm_l1reg</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args1</span><span class="p">,</span>
                                                            <span class="n">model</span><span class="p">,</span>
                                                            <span class="n">reg_train_loader</span><span class="p">,</span>
                                                            <span class="n">reg_val_loader</span><span class="p">,</span>
@@ -1844,7 +1819,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)�
                                                            <span class="n">reg_function1</span><span class="o">=</span><span class="n">l1_reg</span><span class="p">)</span>
 
 <span class="c1"># Train and Test accuracy plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_l1reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Val Accuracy L1 Regularized'</span><span class="p">,</span>
          <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l1reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Train Accuracy L1 regularized'</span><span class="p">,</span>
@@ -1855,30 +1830,31 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−\eta \lambda \text{sgn}\left(w^{(r)}_{ij}\right)�
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Epoch'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'maximum Validation Accuracy reached:</span><span class="si">%f</span><span class="s1">'</span><span class="o">%</span><span class="k">max</span>(val_acc_l1reg))
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maximum Validation Accuracy reached: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_l1reg</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 
 </div>
-<p>What value of <span class="math notranslate nohighlight">\(\lambda\)</span>, i.e., <code class="docutils literal notranslate"><span class="pre">lambda</span></code>, worked for L1 Regularization?</p>
+<p>What value of <code class="docutils literal notranslate"><span class="pre">lambda1</span></code> hyperparameter, worked for L1 Regularization? (Note that the <span class="math notranslate nohighlight">\(\lambda\)</span> in the equations is the <code class="docutils literal notranslate"><span class="pre">lambda1</span></code> in the code for clarity)</p>
 </div>
 </div>
 <div class="section" id="section-1-3-l2-ridge-regularization">
 <h2>Section 1.3: L2 / Ridge Regularization<a class="headerlink" href="#section-1-3-l2-ridge-regularization" title="Permalink to this headline">¶</a></h2>
-<p>L2 Regularization, sometimes referred to as “Weight Decay”, is widely used. It works by adding a quadratic penalty term to the Cross Entropy Loss Function  L, which results in a new Loss Function <span class="math notranslate nohighlight">\(L_R\)</span>  given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88359f20-c150-4568-8f33-c41b8773e154">
-<span class="eqno">(52)<a class="headerlink" href="#equation-88359f20-c150-4568-8f33-c41b8773e154" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>L2 Regularization, sometimes referred to as “Weight Decay”, is widely used. It works by adding a quadratic penalty term to the Cross Entropy Loss Function <span class="math notranslate nohighlight">\(L\)</span>, which results in a new Loss Function <span class="math notranslate nohighlight">\(L_R\)</span>  given by:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ccbfdb1d-c401-4369-82a7-35a47fb0dfe0">
+<span class="eqno">(52)<a class="headerlink" href="#equation-ccbfdb1d-c401-4369-82a7-35a47fb0dfe0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 L_R = L + \lambda \sum \left( w^{(r)}_{ij} \right)^2
 \end{equation}\]</div>
+<p>where, again, <span class="math notranslate nohighlight">\(r\)</span> denotes the layer, and <span class="math notranslate nohighlight">\(ij\)</span> the specific weight in that layer.</p>
 <p>In order to get further insight into L2 Regularization, we investigate its effect on the Gradient Descent based update equations for the weight and bias parameters. Taking the derivative on both sides of the above equation, we obtain</p>
-<div class="amsmath math notranslate nohighlight" id="equation-495a9137-d56e-4df5-942d-62041d58baaf">
-<span class="eqno">(53)<a class="headerlink" href="#equation-495a9137-d56e-4df5-942d-62041d58baaf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-889e0c18-2d31-44dc-b824-8e82c877eabe">
+<span class="eqno">(53)<a class="headerlink" href="#equation-889e0c18-2d31-44dc-b824-8e82c877eabe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \frac{\partial L_R}{\partial w^{(r)}_{ij}}=\frac{\partial L}{\partial w^{(r)}_{ij}} + 2\lambda w^{(r)}_{ij}
 \end{equation}\]</div>
 <p>Thus the weight update rule becomes:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c3c284be-0496-4fee-8f6c-a8ae41382fc4">
-<span class="eqno">(54)<a class="headerlink" href="#equation-c3c284be-0496-4fee-8f6c-a8ae41382fc4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fa79a36b-62fe-4854-a1a6-d6bc8908120e">
+<span class="eqno">(54)<a class="headerlink" href="#equation-fa79a36b-62fe-4854-a1a6-d6bc8908120e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \eta \lambda w^{(r)}_{ij}=(1−2 \eta \lambda)w^{(r)}_{ij} − \eta \frac{\partial L}{\partial w^{(r)}_{ij}}
 \end{equation}\]</div>
 <p>where, <span class="math notranslate nohighlight">\(\eta\)</span> is learning rate.</p>
@@ -1911,7 +1887,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## uncomment to test</span>
 <span class="c1"># net = nn.Linear(20, 20)</span>
-<span class="c1"># print(f'L2 norm of the model: {l2_reg(net)}')</span>
+<span class="c1"># print(f"L2 norm of the model: {l2_reg(net)}")</span>
 </pre></div>
 </div>
 </div>
@@ -1921,7 +1897,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D5_Regularization/solutions/W1D5_Tutorial2_Solution_726ea359.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D5_Regularization/solutions/W1D5_Tutorial2_Solution_8505e24d.py"><em>Click for solution</em></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span> <span class="n">seed</span> <span class="mi">2021</span> <span class="n">has</span> <span class="n">been</span> <span class="nb">set</span><span class="o">.</span>
 <span class="n">L2</span> <span class="n">norm</span> <span class="n">of</span> <span class="n">the</span> <span class="n">model</span><span class="p">:</span> <span class="mf">7.328375816345215</span>
 </pre></div>
@@ -1930,13 +1906,13 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the arguments</span>
-<span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+<span class="n">args2</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'test_batch_size'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
     <span class="s1">'epochs'</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
     <span class="s1">'lr'</span><span class="p">:</span> <span class="mf">5e-3</span><span class="p">,</span>
     <span class="s1">'momentum'</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span>
     <span class="s1">'device'</span><span class="p">:</span> <span class="n">DEVICE</span><span class="p">,</span>
-    <span class="s1">'lambda'</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Tune the hyperparameter lambda</span>
+    <span class="s1">'lambda2'</span><span class="p">:</span> <span class="mf">0.001</span>  <span class="c1"># &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; Tune the hyperparameter lambda</span>
 <span class="p">}</span>
 
 <span class="c1"># intialize the model</span>
@@ -1944,7 +1920,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <span class="n">model</span> <span class="o">=</span> <span class="n">AnimalNet</span><span class="p">()</span>
 
 <span class="c1"># Train the model</span>
-<span class="n">val_acc_l2reg</span><span class="p">,</span> <span class="n">train_acc_l2reg</span><span class="p">,</span> <span class="n">param_norm_l2reg</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="p">,</span>
+<span class="n">val_acc_l2reg</span><span class="p">,</span> <span class="n">train_acc_l2reg</span><span class="p">,</span> <span class="n">param_norm_l2reg</span><span class="p">,</span> <span class="n">model</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args2</span><span class="p">,</span>
                                                                <span class="n">model</span><span class="p">,</span>
                                                                <span class="n">train_loader</span><span class="p">,</span>
                                                                <span class="n">val_loader</span><span class="p">,</span>
@@ -1952,7 +1928,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
                                                                <span class="n">reg_function2</span><span class="o">=</span><span class="n">l2_reg</span><span class="p">)</span>
 
 <span class="c1">## Train and Test accuracy plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_l2reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Val Accuracy L2 regularized'</span><span class="p">,</span>
          <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l2reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Train Accuracy L2 regularized'</span><span class="p">,</span>
@@ -1963,31 +1939,34 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Epoch'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">'maximum Validation Accuracy reached:</span><span class="si">%f</span><span class="s1">'</span><span class="o">%</span><span class="k">max</span>(val_acc_l2reg))
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"maximum Validation Accuracy reached: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_l2reg</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 
 </div>
-<p>What value of Lambda worked for L2 Regularization?</p>
-<div class="section" id="visualize-all-of-them-together-run-me">
-<h4>Visualize all of them together (Run Me!)<a class="headerlink" href="#visualize-all-of-them-together-run-me" title="Permalink to this headline">¶</a></h4>
+<p>What value <code class="docutils literal notranslate"><span class="pre">lambda2</span></code> worked for L2 Regularization? (Note that the <span class="math notranslate nohighlight">\(\lambda\)</span> in the equations is the <code class="docutils literal notranslate"><span class="pre">lambda2</span></code> in the code for clarity)</p>
+<p>Now, let’s run a model with both L1 and L2 regularization terms.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Visualize all of them together (Run Me!)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'test_batch_size'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-        <span class="s1">'epochs'</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
-        <span class="s1">'lr'</span><span class="p">:</span> <span class="mf">5e-3</span><span class="p">,</span>
-        <span class="s1">'momentum'</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span>
-        <span class="s1">'device'</span><span class="p">:</span> <span class="n">DEVICE</span><span class="p">,</span>
-        <span class="s1">'lambda1'</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
-        <span class="s1">'lambda2'</span><span class="p">:</span> <span class="mf">0.001</span>
-        <span class="p">}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Visualize all of them together (Run Me!)</span>
+
+<span class="c1"># @markdown `lambda1=0.001` and `lambda2=0.001`</span>
+
+<span class="n">args3</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'test_batch_size'</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s1">'epochs'</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+    <span class="s1">'lr'</span><span class="p">:</span> <span class="mf">5e-3</span><span class="p">,</span>
+    <span class="s1">'momentum'</span><span class="p">:</span> <span class="mf">0.99</span><span class="p">,</span>
+    <span class="s1">'device'</span><span class="p">:</span> <span class="n">DEVICE</span><span class="p">,</span>
+    <span class="s1">'lambda1'</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+    <span class="s1">'lambda2'</span><span class="p">:</span> <span class="mf">0.001</span>
+<span class="p">}</span>
 
 <span class="c1"># Intialize the model</span>
 <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AnimalNet</span><span class="p">()</span>
-<span class="n">val_acc_l1l2reg</span><span class="p">,</span> <span class="n">train_acc_l1l2reg</span><span class="p">,</span> <span class="n">param_norm_l1l2reg</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="p">,</span>
+<span class="n">val_acc_l1l2reg</span><span class="p">,</span> <span class="n">train_acc_l1l2reg</span><span class="p">,</span> <span class="n">param_norm_l1l2reg</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args3</span><span class="p">,</span>
                                                                  <span class="n">model</span><span class="p">,</span>
                                                                  <span class="n">train_loader</span><span class="p">,</span>
                                                                  <span class="n">val_loader</span><span class="p">,</span>
@@ -1995,23 +1974,33 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
                                                                  <span class="n">reg_function1</span><span class="o">=</span><span class="n">l1_reg</span><span class="p">,</span>
                                                                  <span class="n">reg_function2</span><span class="o">=</span><span class="n">l2_reg</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_l2reg</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l2reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'L2 regularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l2reg</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"L2 regularized, $\lambda_2$=</span><span class="si">{</span><span class="n">args2</span><span class="p">[</span><span class="s1">'lambda2'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+         <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_l2reg</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_l1reg</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">ls</span> <span class="o">=</span> <span class="s1">'dashed'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l1reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'L1 regularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l1reg</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"L1 regularized, $\lambda_1$=</span><span class="si">{</span><span class="n">args1</span><span class="p">[</span><span class="s1">'lambda1'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+         <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_l1reg</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_unreg</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span> <span class="o">=</span> <span class="s1">'dashed'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_unreg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Unregularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_unreg</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="s1">'Unregularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_unreg</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_l1l2reg</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l1l2reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'L1+L2 regularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_l1l2reg</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"L1+L2 regularized, $\lambda_1$=</span><span class="si">{</span><span class="n">args3</span><span class="p">[</span><span class="s1">'lambda1'</span><span class="p">]</span><span class="si">}</span><span class="s2">, $\lambda_2$=</span><span class="si">{</span><span class="n">args3</span><span class="p">[</span><span class="s1">'lambda2'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+         <span class="n">c</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">val_acc_l1l2reg</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">,</span> <span class="n">ls</span> <span class="o">=</span> <span class="s1">'dashed'</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Unregularized Vs L1-Regularized vs L2-regularized Vs L1+L2 regularized'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'epoch'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Accuracy(%)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Accuracy (%)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -2020,18 +2009,16 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 
 </div>
 <p>Now, let’s visualize what these different regularization does to the parameters of the model. We observe the effect by computing the size (technically, the Frobenius norm) of the model parameters</p>
-</div>
 <div class="section" id="visualize-norm-of-the-models-train-me">
 <h4>Visualize Norm of the Models (Train Me!)<a class="headerlink" href="#visualize-norm-of-the-models-train-me" title="Permalink to this headline">¶</a></h4>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Visualize Norm of the Models (Train Me!)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">param_norm_unreg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Unregularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">param_norm_l1reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'L1 Regularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">param_norm_l2reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'L2 Regularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">param_norm_l1l2reg</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'L1+L2 Regularized'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Parameter Norm as a function of training Epoch'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'epoch'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Parameter Norms'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -2055,7 +2042,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "337dc82697af4070882409969f8e418a"}
+{"version_major": 2, "version_minor": 0, "model_id": "84ad39d0bcb444cb955cc1493a10b282"}
 </script></div>
 </div>
 <p>In dropout, we literally drop out (zero out) some neurons during training. Throughout training, on each iteration, standard dropout zeros out some fraction (usually 1/2) of the nodes in each layer before calculating the subsequent layer. Randomly selecting different subsets to dropout introduces noise into the process and reduces overfitting.</p>
@@ -2143,7 +2130,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "fb7671dd8a2a47d581165de07dd1eb7b"}
+{"version_major": 2, "version_minor": 0, "model_id": "6bf32d2653d544eba0b2577f47af28f9"}
 </script></div>
 </div>
 <div class="cell docutils container">
@@ -2192,16 +2179,14 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "fbf35b42a1c34387a2f3a26f7b3e620e"}
+{"version_major": 2, "version_minor": 0, "model_id": "eb04c10243d24ac08fa5f14ff6d11778"}
 </script></div>
 </div>
 <p>Now that we have finished training, let’s see how the model has evolved over the training process.</p>
-</div>
-<div class="section" id="animation-run-me">
-<h3>Animation! (Run Me!)<a class="headerlink" href="#animation-run-me" title="Permalink to this headline">¶</a></h3>
+<p>Animation! (Run Me!)</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Animation! (Run Me!)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Animation! (Run Me!)</span>
 <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
@@ -2233,7 +2218,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6125</span><span class="o">/</span><span class="mf">1005931383.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5999</span><span class="o">/</span><span class="mf">167584313.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>                                <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">20</span>                                <span class="n">repeat_delay</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">21</span> <span class="n">html_anim</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">());</span>
@@ -2260,15 +2245,13 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <img alt="../../../_images/W1D5_Tutorial2_72_2.png" src="../../../_images/W1D5_Tutorial2_72_2.png"/>
 </div>
 </div>
-</div>
-<div class="section" id="plot-the-train-and-test-losses">
-<h3>Plot the train and test losses<a class="headerlink" href="#plot-the-train-and-test-losses" title="Permalink to this headline">¶</a></h3>
+<p>Plot the train and test losses</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Plot the train and test losses</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_loss_dp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'test_loss dropout'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'test_loss'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plot the train and test losses</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_loss_dp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'test loss dropout'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">test_loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'test loss'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'loss'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'epochs'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'dropout vs without dropout'</span><span class="p">)</span>
@@ -2281,15 +2264,13 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <img alt="../../../_images/W1D5_Tutorial2_74_0.png" src="../../../_images/W1D5_Tutorial2_74_0.png"/>
 </div>
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Plot the train and test losses<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Plot the train and test losses</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Plot the train and test losses</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_loss_dp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'train_loss dropout'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'train_loss'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plot the train and test losses</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_loss_dp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'train loss dropout'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_loss</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'train loss'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'loss'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'epochs'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'dropout vs without dropout'</span><span class="p">)</span>
@@ -2302,13 +2283,11 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <img alt="../../../_images/W1D5_Tutorial2_76_0.png" src="../../../_images/W1D5_Tutorial2_76_0.png"/>
 </div>
 </div>
-</div>
-<div class="section" id="plot-model-weights-with-epoch">
-<h3>Plot model weights with epoch<a class="headerlink" href="#plot-model-weights-with-epoch" title="Permalink to this headline">¶</a></h3>
+<p>Plot model weights with epoch</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Plot model weights with epoch</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plot model weights with epoch</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model_norm_dp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'dropout'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model_norm</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'no dropout'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'norm of the model'</span><span class="p">)</span>
@@ -2393,6 +2372,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 
 
 <span class="c1"># Train and Test accuracy plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_big</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Val - Big'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_big</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Train - Big'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'solid'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_dropout</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Val - DP'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'magenta'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
@@ -2410,114 +2390,92 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "30390d3c740944c197421e8f60b87d5a"}
+{"version_major": 2, "version_minor": 0, "model_id": "1e2dc1e910da4370adddbf22bfea22be"}
 </script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_6125</span><span class="o">/</span><span class="mf">2064533698.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_5999</span><span class="o">/</span><span class="mf">4117703710.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>                                                        <span class="n">train_loader</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">20</span>                                                        <span class="n">val_loader</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">21</span>                                                        <span class="n">img_test_dataset</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">22</span> 
 <span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="c1"># intialize the BigAnimalNet model</span>
 
-<span class="nn">/tmp/ipykernel_6125/4182245437.py</span> in <span class="ni">main</span><span class="nt">(args, model, train_loader, val_loader, test_data, reg_function1, reg_function2, criterion)</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span>     <span class="n">trained_model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span>
+<span class="nn">/tmp/ipykernel_5999/2821558419.py</span> in <span class="ni">main</span><span class="nt">(args, model, train_loader, val_loader, test_data, reg_function1, reg_function2, criterion)</span>
 <span class="g g-Whitespace">    </span><span class="mi">131</span>                           <span class="n">reg_function1</span><span class="o">=</span><span class="n">reg_function1</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">132</span>                           <span class="n">reg_function2</span><span class="o">=</span><span class="n">reg_function2</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="n">train_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="s1">'Train'</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span>                           <span class="n">reg_function2</span><span class="o">=</span><span class="n">reg_function2</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">133</span>     <span class="n">train_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="s1">'Train'</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">134</span>     <span class="n">val_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">,</span> <span class="n">loader</span><span class="o">=</span><span class="s1">'Val'</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="n">param_norm</span> <span class="o">=</span> <span class="n">calculate_frobenius_norm</span><span class="p">(</span><span class="n">trained_model</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_6125/4182245437.py</span> in <span class="ni">train</span><span class="nt">(args, model, train_loader, optimizer, epoch, reg_function1, reg_function2, criterion)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>   <span class="n">device</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="s1">'device'</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">61</span>   <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">62</span>   <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="nn">/tmp/ipykernel_5999/2821558419.py</span> in <span class="ni">test</span><span class="nt">(model, test_loader, loader, criterion, device)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span>   <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span>   <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<span class="ne">---&gt; </span><span class="mi">93</span>     <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>       <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>       <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">__iter__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">357</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iterator</span>
-<span class="g g-Whitespace">    </span><span class="mi">358</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">359</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_iterator</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span> 
-<span class="g g-Whitespace">    </span><span class="mi">361</span>     <span class="nd">@property</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">__next__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">519</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">520</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">521</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">    </span><span class="mi">523</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_get_iterator</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span>             <span class="bp">self</span><span class="o">.</span><span class="n">check_worker_number_rationality</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">305</span>             <span class="k">return</span> <span class="n">_MultiProcessingDataLoaderIter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span> 
-<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="nd">@property</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_next_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1184</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1185</span>             <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks_outstanding</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="ne">-&gt; </span><span class="mi">1186</span>             <span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1187</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_tasks_outstanding</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">   </span><span class="mi">1188</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span><span class="p">:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">__init__</span><span class="nt">(self, loader)</span>
-<span class="g g-Whitespace">    </span><span class="mi">916</span>             <span class="c1">#     before it starts, and __del__ tries to join but will get:</span>
-<span class="g g-Whitespace">    </span><span class="mi">917</span>             <span class="c1">#     AssertionError: can only join a started process.</span>
-<span class="ne">--&gt; </span><span class="mi">918</span>             <span class="n">w</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">919</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_index_queues</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index_queue</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">920</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_get_data</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1150</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1151</span>             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1152</span>                 <span class="n">success</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_try_get_data</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1153</span>                 <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1154</span>                     <span class="k">return</span> <span class="n">data</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/process.py</span> in <span class="ni">start</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>                <span class="s1">'daemonic processes are not allowed to have children'</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>         <span class="n">_cleanup</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">112</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_Popen</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_sentinel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span><span class="o">.</span><span class="n">sentinel</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>         <span class="c1"># Avoid a refcycle if the target function holds an indirect</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_try_get_data</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">988</span>         <span class="c1">#   (bool: whether successfully get data, any: data if successful else None)</span>
+<span class="g g-Whitespace">    </span><span class="mi">989</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">990</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">991</span>             <span class="k">return</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">992</span>         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/context.py</span> in <span class="ni">_Popen</span><span class="nt">(process_obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>     <span class="nd">@staticmethod</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span>     <span class="k">def</span> <span class="nf">_Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">223</span>         <span class="k">return</span> <span class="n">_default_context</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span><span class="o">.</span><span class="n">Process</span><span class="o">.</span><span class="n">_Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span> 
-<span class="g g-Whitespace">    </span><span class="mi">225</span> <span class="k">class</span> <span class="nc">DefaultContext</span><span class="p">(</span><span class="n">BaseContext</span><span class="p">):</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/queues.py</span> in <span class="ni">get</span><span class="nt">(self, block, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span>                 <span class="k">if</span> <span class="n">block</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span>                     <span class="n">timeout</span> <span class="o">=</span> <span class="n">deadline</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">104</span>                     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>                         <span class="k">raise</span> <span class="n">Empty</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span>                 <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">():</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/context.py</span> in <span class="ni">_Popen</span><span class="nt">(process_obj)</span>
-<span class="g g-Whitespace">    </span><span class="mi">275</span>         <span class="k">def</span> <span class="nf">_Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">276</span>             <span class="kn">from</span> <span class="nn">.popen_fork</span> <span class="kn">import</span> <span class="n">Popen</span>
-<span class="ne">--&gt; </span><span class="mi">277</span>             <span class="k">return</span> <span class="n">Popen</span><span class="p">(</span><span class="n">process_obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span> 
-<span class="g g-Whitespace">    </span><span class="mi">279</span>     <span class="k">class</span> <span class="nc">SpawnProcess</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">BaseProcess</span><span class="p">):</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">poll</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_check_closed</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readable</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">257</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> 
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/popen_fork.py</span> in <span class="ni">__init__</span><span class="nt">(self, process_obj)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> 
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_obj</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>         <span class="n">util</span><span class="o">.</span><span class="n">_flush_std_streams</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="bp">self</span><span class="o">.</span><span class="n">returncode</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>         <span class="bp">self</span><span class="o">.</span><span class="n">finalizer</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">_poll</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span> 
+<span class="g g-Whitespace">    </span><span class="mi">413</span>     <span class="k">def</span> <span class="nf">_poll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">414</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">wait</span><span class="p">([</span><span class="bp">self</span><span class="p">],</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span>         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/util.py</span> in <span class="ni">_flush_std_streams</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">433</span> <span class="k">def</span> <span class="nf">_flush_std_streams</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">434</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">435</span>         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">436</span>     <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">437</span>         <span class="k">pass</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">wait</span><span class="nt">(object_list, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span> 
+<span class="g g-Whitespace">    </span><span class="mi">920</span>             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">921</span>                 <span class="n">ready</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">922</span>                 <span class="k">if</span> <span class="n">ready</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">923</span>                     <span class="k">return</span> <span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">fileobj</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ready</span><span class="p">]</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/ipykernel/iostream.py</span> in <span class="ni">flush</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">446</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pub_thread</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">pub_thread</span><span class="o">.</span><span class="n">thread</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">pub_thread</span><span class="o">.</span><span class="n">thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">447</span>             <span class="c1"># request flush on the background thread</span>
-<span class="ne">--&gt; </span><span class="mi">448</span>             <span class="bp">self</span><span class="o">.</span><span class="n">pub_thread</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_flush</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">449</span>             <span class="c1"># wait for flush to actually get through, if we can.</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span>             <span class="c1"># waiting across threads during import can cause deadlocks</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/ipykernel/iostream.py</span> in <span class="ni">schedule</span><span class="nt">(self, f)</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span>             <span class="c1"># wake event thread (message content is ignored)</span>
-<span class="ne">--&gt; </span><span class="mi">214</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_event_pipe</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">''</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span>             <span class="n">f</span><span class="p">()</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/zmq/sugar/socket.py</span> in <span class="ni">send</span><span class="nt">(self, data, flags, copy, track, routing_id, group)</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span>                 <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span>             <span class="n">data</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">group</span>
-<span class="ne">--&gt; </span><span class="mi">541</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">Socket</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">flags</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">track</span><span class="o">=</span><span class="n">track</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">542</span> 
-<span class="g g-Whitespace">    </span><span class="mi">543</span>     <span class="k">def</span> <span class="nf">send_multipart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg_parts</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">track</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
-<span class="nn">zmq/backend/cython/socket.pyx</span> in <span class="ni">zmq.backend.cython.socket.Socket.send</span><span class="nt">()</span>
-
-<span class="nn">zmq/backend/cython/socket.pyx</span> in <span class="ni">zmq.backend.cython.socket.Socket.send</span><span class="nt">()</span>
-
-<span class="nn">zmq/backend/cython/socket.pyx</span> in <span class="ni">zmq.backend.cython.socket._send_copy</span><span class="nt">()</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/zmq/backend/cython/checkrc.pxd</span> in <span class="ni">zmq.backend.cython.checkrc._check_rc</span><span class="nt">()</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/selectors.py</span> in <span class="ni">select</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span>         <span class="n">ready</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">415</span>             <span class="n">fd_event_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selector</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span>         <span class="k">except</span> <span class="ne">InterruptedError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>             <span class="k">return</span> <span class="n">ready</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2642,7 +2600,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 
 
 <span class="c1"># Train and Test accuracy plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">val_acc_pure</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Val Accuracy Pure'</span><span class="p">,</span>
          <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_acc_pure</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Train Accuracy Pure'</span><span class="p">,</span>
@@ -2665,7 +2623,7 @@ w^{(r)}_{ij}←w^{(r)}_{ij}−η\frac{\partial L}{\partial w^{(r)}_{ij}}−2 \et
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot together: without and with augmenetation</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">param_norm_pure</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Without Augmentation'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">param_norm_datadug</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'With Augmentation'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Norm of parameters as a function of training epoch'</span><span class="p">)</span>
@@ -2792,67 +2750,56 @@ Each group has a 10 min discussion.</p>
 <span class="n">acc_dict</span> <span class="o">=</span> <span class="p">{}</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">learning_rates</span><span class="p">):</span>
-    <span class="c1"># Initialize the model</span>
-    <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">AnimalNet</span><span class="p">()</span>
-    <span class="c1"># Learning rate</span>
-    <span class="n">args</span><span class="p">[</span><span class="s1">'lr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
-    <span class="c1"># Train the model</span>
-    <span class="n">val_acc</span><span class="p">,</span> <span class="n">train_acc</span><span class="p">,</span> <span class="n">param_norm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="p">,</span>
-                                             <span class="n">model</span><span class="p">,</span>
-                                             <span class="n">train_loader</span><span class="p">,</span>
-                                             <span class="n">val_loader</span><span class="p">,</span>
-                                             <span class="n">img_test_dataset</span><span class="p">)</span>
-    <span class="c1"># store the outputs</span>
-    <span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'val_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">val_acc</span>
-    <span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'train_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_acc</span>
-    <span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'param_norm_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_norm</span>
+  <span class="c1"># Initialize the model</span>
+  <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">AnimalNet</span><span class="p">()</span>
+  <span class="c1"># Learning rate</span>
+  <span class="n">args</span><span class="p">[</span><span class="s1">'lr'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lr</span>
+  <span class="c1"># Train the model</span>
+  <span class="n">val_acc</span><span class="p">,</span> <span class="n">train_acc</span><span class="p">,</span> <span class="n">param_norm</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="p">,</span>
+                                           <span class="n">model</span><span class="p">,</span>
+                                           <span class="n">train_loader</span><span class="p">,</span>
+                                           <span class="n">val_loader</span><span class="p">,</span>
+                                           <span class="n">img_test_dataset</span><span class="p">)</span>
+  <span class="c1"># store the outputs</span>
+  <span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'val_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">val_acc</span>
+  <span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'train_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_acc</span>
+  <span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'param_norm_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">param_norm</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="plot-train-and-validation-accuracy-run-me">
-<h3>Plot Train and Validation accuracy (Run me)<a class="headerlink" href="#plot-train-and-validation-accuracy-run-me" title="Permalink to this headline">¶</a></h3>
+<p>Plot Train and Validation accuracy (Run me)</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Plot Train and Validation accuracy (Run me)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'val_0'</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">'lr = 5e-4 - validation'</span><span class="p">,</span>
-         <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'train_0'</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">'5e-4 - train'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'val_1'</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">'lr = 1e-3 - validation'</span><span class="p">,</span>
-         <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'train_1'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'1e-3 - train'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'green'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'val_2'</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span>
-         <span class="n">label</span><span class="o">=</span><span class="s1">'lr = 5e-3 - validation'</span><span class="p">,</span>
-         <span class="n">c</span><span class="o">=</span><span class="s1">'purple'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'train_2'</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s1">'5e-3 - train'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'purple'</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plot Train and Validation accuracy (Run me)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">learning_rates</span><span class="p">):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'val_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'dashed'</span><span class="p">,</span>
+          <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'lr=</span><span class="si">{</span><span class="n">lr</span><span class="si">:</span><span class="s1">0.1e</span><span class="si">}</span><span class="s1"> - validation'</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'train_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">lr</span><span class="si">:</span><span class="s1">0.1e</span><span class="si">}</span><span class="s1"> - train'</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Maximum Test Accuracy obtained with lr=</span><span class="si">{</span><span class="n">lr</span><span class="si">:</span><span class="s2">0.1e</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'val_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Optimal Learning Rate'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Accuracy (%)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Epoch'</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Maximum Test Accuracy obtained with lr = 5e-4: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'val_0'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Maximum Test Accuracy obtained with lr = 1e-3: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'val_1'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Maximum Test Accuracy obtained with lr = 5e-3: </span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'val_2'</span><span class="p">])</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="plot-parametric-norms-run-me">
-<h3>Plot parametric norms (Run me)<a class="headerlink" href="#plot-parametric-norms-run-me" title="Permalink to this headline">¶</a></h3>
+<p>Plot parametric norms (Run me)</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Plot parametric norms (Run me)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'param_norm_0'</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">'lr = 5e-4'</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'param_norm_1'</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s1">'lr = 1e-3'</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">'orange'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="s1">'param_norm_2'</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span><span class="s1">'lr = 5e-3'</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'magenta'</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Plot parametric norms (Run me)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">learning_rates</span><span class="p">):</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">acc_dict</span><span class="p">[</span><span class="sa">f</span><span class="s1">'param_norm_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">'</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">'lr=</span><span class="si">{</span><span class="n">lr</span><span class="si">:</span><span class="s1">0.2e</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'epoch'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'parameter norms'</span><span class="p">)</span>
@@ -2886,8 +2833,8 @@ Each group has a 10 min discussion.</p>
 <div class="section" id="think-5-overview-of-regularization-techniques">
 <h2>Think! 5: Overview of regularization techniques<a class="headerlink" href="#think-5-overview-of-regularization-techniques" title="Permalink to this headline">¶</a></h2>
 <p>Which regularization technique today do you think had the biggest effect on the network? Why might do you think so? Can you apply all of the regularization methods on the same network?</p>
-<div class="section" id="id2">
-<h3>Student Response<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Student Response<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
