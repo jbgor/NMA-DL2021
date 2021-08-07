@@ -12,7 +12,7 @@
 <link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2" rel="preload" type="font/woff2"/>
 <link as="font" crossorigin="" href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2" rel="preload" type="font/woff2"/>
 <link href="../../../_static/pygments.css" rel="stylesheet" type="text/css">
-<link href="../../../_static/sphinx-book-theme.e8e5499552300ddf5d7adccae7cc3b70.css" rel="stylesheet" type="text/css">
+<link href="../../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" rel="stylesheet" type="text/css">
 <link href="../../../_static/togglebutton.css" rel="stylesheet" type="text/css">
 <link href="../../../_static/copybutton.css" rel="stylesheet" type="text/css"/>
 <link href="../../../_static/mystnb.css" rel="stylesheet" type="text/css"/>
@@ -250,6 +250,11 @@
     </a>
 </li>
 </ul>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../../Module_WrapUps/TheBasics.html">
+   The Basics
+  </a>
 </li>
 </ul>
 <p class="caption">
@@ -1507,18 +1512,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea6c299a-3080-4aba-96f9-8f44563c683e">
-<span class="eqno">(60)<a class="headerlink" href="#equation-ea6c299a-3080-4aba-96f9-8f44563c683e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8f43360f-ce75-4baa-8e26-904283751f86">
+<span class="eqno">(60)<a class="headerlink" href="#equation-8f43360f-ce75-4baa-8e26-904283751f86" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db5543be-3a5b-4584-83c2-2c2acc42ec21">
-<span class="eqno">(61)<a class="headerlink" href="#equation-db5543be-3a5b-4584-83c2-2c2acc42ec21" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a61dcf69-2e64-4164-a12b-b3c4a5ec28fa">
+<span class="eqno">(61)<a class="headerlink" href="#equation-a61dcf69-2e64-4164-a12b-b3c4a5ec28fa" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2fee3c37-5b70-4eda-a209-2a17166b00ec">
-<span class="eqno">(62)<a class="headerlink" href="#equation-2fee3c37-5b70-4eda-a209-2a17166b00ec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-978b679d-9c79-498c-9a68-8ab5def01bfe">
+<span class="eqno">(62)<a class="headerlink" href="#equation-978b679d-9c79-498c-9a68-8ab5def01bfe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1530,8 +1535,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e44bf807-d750-44d3-8214-e23c4510b2a9">
-<span class="eqno">(63)<a class="headerlink" href="#equation-e44bf807-d750-44d3-8214-e23c4510b2a9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8f546cc6-f49c-44ce-b59e-6bd06f3b87bd">
+<span class="eqno">(63)<a class="headerlink" href="#equation-8f546cc6-f49c-44ce-b59e-6bd06f3b87bd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
