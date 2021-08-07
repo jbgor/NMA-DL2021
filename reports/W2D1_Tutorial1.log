@@ -32,12 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-emnist_train, emnist_test = get_Xvs0_dataset(normalize=False)
-train_loader, test_loader = get_data_loaders(emnist_train, emnist_test,
-                                             seed=SEED)
-
-# index of an image in the dataset that corresponds to an X and O
-x_img_idx = 4
-o_img_idx = 15
+['# @markdown ### Load a sample dataset', '# Load the data', 'mnist_train = datasets.EMNIST(root="./datasets", train=True,', '                              transform=transforms.ToTensor(),', "                              download=True, split='letters')"]
+...
+['                                           generator=g_seed)', 'test_loader = torch.utils.data.DataLoader(mnist_test, batch_size=100,', '                                          shuffle=False,', '                                          worker_init_fn=seed_worker,', '                                          generator=g_seed)']
 -------------------
 
