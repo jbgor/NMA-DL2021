@@ -1397,20 +1397,20 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7169622c1756442baf89583875f10d65"}
+{"version_major": 2, "version_minor": 0, "model_id": "cef95631c61a48e89243464cd662a42b"}
 </script></div>
 </div>
 <p>Images are high dimensional. That is to say that <code class="docutils literal notranslate"><span class="pre">image_length</span></code> * <code class="docutils literal notranslate"><span class="pre">image_width</span></code> * <code class="docutils literal notranslate"><span class="pre">image_channels</span></code> is a big number, and multiplying that big number by a normal sized fully-connected layer leads to a ton of parameters to learn. Yesterday, we learned about convolutional neural networks, one way of working around high dimensionality in images and other domains.</p>
 <p>The widget below (i.e., <em>Interactive Demo 1</em>) calculates the parameters required for a single convolutional or fully connected layer that operates on an image of a certain height and width.</p>
 <p>Recall that, the number of parameters of a convolutional layer <span class="math notranslate nohighlight">\(l\)</span> are calculated as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2d3169db-b779-41ae-bbd6-79ecbc198e61">
-<span class="eqno">(57)<a class="headerlink" href="#equation-2d3169db-b779-41ae-bbd6-79ecbc198e61" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f41f55cc-cf75-4dfb-b45c-f33b87f6bee9">
+<span class="eqno">(57)<a class="headerlink" href="#equation-f41f55cc-cf75-4dfb-b45c-f33b87f6bee9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{num_of_params}_l = \left[ \left( H \times W \times K_{l-1} \right) + 1 \right] \times K_l
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(H\)</span> denotes the shape of the height of the filter, <span class="math notranslate nohighlight">\(W\)</span> the shape of the width of the filter, and <span class="math notranslate nohighlight">\(K_l\)</span> denotes the number of the filters in the <span class="math notranslate nohighlight">\(l\)</span>-th layer. The added <span class="math notranslate nohighlight">\(1\)</span> is because of the bias term for each filter.</p>
 <p>While a fully connected layer contains:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15658bf7-7906-42d4-ac4c-e1524a98a9c6">
-<span class="eqno">(58)<a class="headerlink" href="#equation-15658bf7-7906-42d4-ac4c-e1524a98a9c6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1880af5b-4842-40e2-a814-10585ab8c7e5">
+<span class="eqno">(58)<a class="headerlink" href="#equation-1880af5b-4842-40e2-a814-10585ab8c7e5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{num_of_params}_l = \left[ \left( N_{l-1} \times N_l \right) + 1 \times N_l \right]
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_l\)</span> denotes the number of nodes in the <span class="math notranslate nohighlight">\(l\)</span>-th layer.</p>
@@ -1551,7 +1551,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "40122bae58544f96a6845ed7ca15d35b"}
+{"version_major": 2, "version_minor": 0, "model_id": "9a3a6af65e554cbc8b6756cf05bd8de0"}
 </script></div>
 </div>
 </div>
@@ -1568,7 +1568,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "de5a5e7888814d3baa998074e76ae351"}
+{"version_major": 2, "version_minor": 0, "model_id": "7dea58f953af4c3eaa3d5afbafd87b6b"}
 </script></div>
 </div>
 </div>
@@ -1589,7 +1589,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "cd0e90f9190b4c3db481cc930c7b5115"}
+{"version_major": 2, "version_minor": 0, "model_id": "4ea46409041c4682a7287345b74c0802"}
 </script></div>
 </div>
 </div>
@@ -1639,7 +1639,7 @@ In this section you’ll have the opportunity to play with AlexNet and see the w
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "22571bbb0493496f88ef3828fada3f40"}
+{"version_major": 2, "version_minor": 0, "model_id": "7e981166b1204cc5a618dd97135ec471"}
 </script></div>
 </div>
 </div>
@@ -1721,7 +1721,7 @@ What do these filters remind you of?</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3d6b263d6b06497886f13b1907a762fd"}
+{"version_major": 2, "version_minor": 0, "model_id": "b6017e43e4684b6aa4e82f36e437f9a0"}
 </script><img alt="../../../_images/W2D2_Tutorial1_54_1.png" src="../../../_images/W2D2_Tutorial1_54_1.png"/>
 </div>
 </div>
@@ -1747,7 +1747,7 @@ What do these filters remind you of?</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "70e77ce22b1e4693a9c7dc275286cf9a"}
+{"version_major": 2, "version_minor": 0, "model_id": "31dfde18326f4d7593fc6b194ff635d1"}
 </script></div>
 </div>
 <p>In this section we’ll be working with a state of the art CNN model called <a class="reference external" href="https://arxiv.org/abs/1512.03385">ResNet</a>. ResNet has two particularly interesting features. First, it uses skip connections to avoid the vanishing gradient problem. Second, each block (collection of layers) in a ResNet can be treated as learning a residual function.</p>
@@ -1768,9 +1768,9 @@ What do these filters remind you of?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-08-07 17:21:50--  https://s3.amazonaws.com/fast-ai-imageclas/imagenette2-320.tgz
-Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.217.64.118
-Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.217.64.118|:443... connected.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-08-07 22:16:39--  https://s3.amazonaws.com/fast-ai-imageclas/imagenette2-320.tgz
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 52.216.130.181
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|52.216.130.181|:443... connected.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HTTP request sent, awaiting response... 
@@ -1784,93 +1784,93 @@ Saving to: ‘imagenette2-320.tgz’
 imagenette2-320.tgz   0%[                    ]       0  --.-KB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   4%[                    ]  16.00M  54.6MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   3%[                    ]  12.98M  64.9MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   9%[&gt;                   ]  32.00M  51.9MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz   6%[&gt;                   ]  22.28M  55.6MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  14%[=&gt;                  ]  48.00M  52.9MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  10%[=&gt;                  ]  34.21M  57.0MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  17%[==&gt;                 ]  58.09M  52.2MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  14%[=&gt;                  ]  48.00M  55.1MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  20%[===&gt;                ]  66.28M  50.5MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  17%[==&gt;                 ]  55.99M  48.6MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  22%[===&gt;                ]  74.09M  48.8MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  19%[==&gt;                 ]  63.99M  45.2MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  25%[====&gt;               ]  84.24M  47.8MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  24%[===&gt;                ]  78.42M  48.5MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  28%[====&gt;               ]  92.82M  46.6MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  27%[====&gt;               ]  87.99M  46.5MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  29%[====&gt;               ]  96.02M  43.8MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  31%[=====&gt;              ] 102.69M  49.0MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  34%[=====&gt;              ] 112.00M  46.3MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  34%[=====&gt;              ] 112.00M  48.6MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  36%[======&gt;             ] 120.00M  45.5MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  39%[======&gt;             ] 129.29M  51.6MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  39%[======&gt;             ] 128.00M  44.3MB/s               
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  44%[=======&gt;            ] 144.00M  52.4MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  43%[=======&gt;            ] 142.33M  45.5MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  46%[========&gt;           ] 152.12M  51.3MB/s               
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  44%[=======&gt;            ] 144.00M  43.1MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  49%[========&gt;           ] 160.34M  50.7MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  48%[========&gt;           ] 157.47M  44.5MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  53%[=========&gt;          ] 174.33M  51.1MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  51%[=========&gt;          ] 168.00M  44.7MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  56%[==========&gt;         ] 183.99M  49.9MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  54%[=========&gt;          ] 176.13M  42.5MB/s    eta 4s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  61%[===========&gt;        ] 199.94M  51.9MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  58%[==========&gt;         ] 191.99M  43.0MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  64%[===========&gt;        ] 209.74M  51.5MB/s    eta 3s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  64%[===========&gt;        ] 210.19M  43.7MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  68%[============&gt;       ] 222.33M  49.1MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  67%[============&gt;       ] 220.24M  44.4MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  70%[=============&gt;      ] 230.33M  48.9MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  68%[============&gt;       ] 224.00M  42.9MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  73%[=============&gt;      ] 240.00M  50.6MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  71%[=============&gt;      ] 232.00M  42.3MB/s    eta 3s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  76%[==============&gt;     ] 248.13M  50.6MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  75%[==============&gt;     ] 246.70M  42.8MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  80%[===============&gt;    ] 263.60M  52.5MB/s    eta 2s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  79%[==============&gt;     ] 257.58M  43.0MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  83%[===============&gt;    ] 272.00M  51.1MB/s    eta 1s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  83%[===============&gt;    ] 272.00M  45.3MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  87%[================&gt;   ] 286.33M  50.8MB/s    eta 1s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  88%[================&gt;   ] 288.00M  47.6MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  90%[=================&gt;  ] 295.99M  50.4MB/s    eta 1s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  92%[=================&gt;  ] 300.03M  46.7MB/s    eta 2s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  94%[=================&gt;  ] 307.05M  49.1MB/s    eta 1s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  95%[==================&gt; ] 310.33M  48.0MB/s    eta 0s     
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz  95%[==================&gt; ] 311.99M  46.2MB/s    eta 1s     
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz 100%[===================&gt;] 325.83M  49.7MB/s    in 6.8s    
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>imagenette2-320.tgz 100%[===================&gt;] 325.83M  48.1MB/s    in 6.5s    
 
-2021-08-07 17:21:57 (47.7 MB/s) - ‘imagenette2-320.tgz’ saved [341663724/341663724]
+2021-08-07 22:16:46 (50.1 MB/s) - ‘imagenette2-320.tgz’ saved [341663724/341663724]
 </pre></div>
 </div>
 </div>
@@ -3093,98 +3093,42 @@ imagenette2-320.tgz   0%[                    ]       0  --.-KB/s
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a88880337eb04ebca5ed1c7bb0a6b357"}
+{"version_major": 2, "version_minor": 0, "model_id": "ab1b24b681e244539aa793992a39c2a1"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c5fd6e32513049f4bf2f9c2890d15d9a"}
+{"version_major": 2, "version_minor": 0, "model_id": "27c004ec75a14344b151e048a4f5cce8"}
 </script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
   return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9118</span><span class="o">/</span><span class="mf">2677518106.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8914</span><span class="o">/</span><span class="mf">2677518106.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span>                       <span class="n">resnet_opt</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>                       <span class="n">imagenette_train_loader</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">14</span>                       <span class="n">loss_fn</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
 <span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">top_1_acc</span><span class="p">,</span> <span class="n">top_5_acc</span> <span class="o">=</span> <span class="n">eval_imagenette</span><span class="p">(</span><span class="n">resnet</span><span class="p">,</span>
 
-<span class="nn">/tmp/ipykernel_9118/4145309842.py</span> in <span class="ni">imagenette_train_loop</span><span class="nt">(model, optimizer, train_loader, loss_fn)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>       <span class="n">images</span> <span class="o">=</span> <span class="n">images</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>       <span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>       <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+<span class="nn">/tmp/ipykernel_8914/4145309842.py</span> in <span class="ni">imagenette_train_loop</span><span class="nt">(model, optimizer, train_loader, loss_fn)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span>       <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>       <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">20</span>       <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>       <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span> 
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/models/resnet.py</span> in <span class="ni">forward</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">247</span> 
-<span class="g g-Whitespace">    </span><span class="mi">248</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">249</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">250</span> 
-<span class="g g-Whitespace">    </span><span class="mi">251</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/models/resnet.py</span> in <span class="ni">_forward_impl</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">235</span>         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">236</span> 
-<span class="ne">--&gt; </span><span class="mi">237</span>         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">238</span>         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">239</span>         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/container.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">139</span>             <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>         <span class="k">return</span> <span class="nb">input</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/models/resnet.py</span> in <span class="ni">forward</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span>         <span class="n">identity</span> <span class="o">=</span> <span class="n">x</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span> 
-<span class="ne">---&gt; </span><span class="mi">70</span>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/conv.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span> 
-<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">443</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conv_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span> 
-<span class="g g-Whitespace">    </span><span class="mi">445</span> <span class="k">class</span> <span class="nc">Conv3d</span><span class="p">(</span><span class="n">_ConvNd</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/conv.py</span> in <span class="ni">_conv_forward</span><span class="nt">(self, input, weight, bias)</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span>                             <span class="n">_pair</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span>         <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">440</span>                         <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">groups</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span> 
-<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> 
+<span class="g g-Whitespace">    </span><span class="mi">151</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
