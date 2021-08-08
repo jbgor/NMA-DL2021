@@ -917,9 +917,16 @@
 </ul>
 </li>
 <li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#think-1-2-how-does-changing-parameters-the-sentences-generated">
-       Think! 1.2: How does changing parameters the sentences generated?
+<a class="reference internal nav-link" href="#think-1-2-how-does-changing-parameters-affect-the-generated-sentences">
+       Think! 1.2: How does changing parameters affect the generated sentences?
       </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#student-response">
+         Student Response
+        </a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -1051,6 +1058,13 @@
 <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#airtable-submission-link">
+     Airtable Submission Link
+    </a>
+</li>
+</ul>
 </li>
 </ul>
 </nav>
@@ -1066,7 +1080,7 @@
 <p><strong>Week 2, Day 3: Modern RNNs</strong></p>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Bhargav Srinivasa Desikan, Anis Zahedifard, James Evans</p>
-<p><strong>Content reviewers:</strong> Lily Cheng, Melvin Selim Atay, Ezekiel Williams</p>
+<p><strong>Content reviewers:</strong> Lily Cheng, Melvin Selim Atay, Ezekiel Williams, Kelson Shilling-Scrivo</p>
 <p><strong>Content editors:</strong> Nina Kudryashova, Spiros Chavlis</p>
 <p><strong>Production editors:</strong> Roberto Guidotti, Spiros Chavlis</p>
 <p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
@@ -1077,7 +1091,6 @@
 <p>Before we begin with exploring how RNNs excel at modelling sequences, we will explore some of the other ways we can model sequences, encode text, and make meaningful measurements using such encodings and embeddings.</p>
 <div class="section" id="tutorial-slides">
 <h2>Tutorial slides<a class="headerlink" href="#tutorial-slides" title="Permalink to this headline">¶</a></h2>
-<p>These are the slides for the videos in this tutorial</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
@@ -1090,10 +1103,12 @@
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="install-dependencies">
 <h3>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>There may be <code class="docutils literal notranslate"><span class="pre">Errors</span></code>/<code class="docutils literal notranslate"><span class="pre">Warnings</span></code> reported during the installation. However, they are to be ignored.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+
+<span class="c1"># @markdown There may be `Errors`/`Warnings` reported during the installation. However, they are to be ignored.</span>
 <span class="o">!</span>pip install <span class="nv">torchtext</span><span class="o">==</span><span class="m">0</span>.4.0 --quiet
 <span class="o">!</span>pip install --upgrade gensim --quiet
 <span class="o">!</span>pip install unidecode --quiet
@@ -1102,7 +1117,12 @@
 <span class="o">!</span>pip install nltk --quiet
 <span class="o">!</span>pip install pandas --quiet
 <span class="o">!</span>pip install python-Levenshtein --quiet
-<span class="n">clear_output</span><span class="p">()</span>
+
+<span class="o">!</span>pip install git+https://github.com/NeuromatchAcademy/evaltools --quiet
+<span class="kn">from</span> <span class="nn">evaltools.airtable</span> <span class="kn">import</span> <span class="n">AirtableForm</span>
+
+<span class="c1"># generate airtable form</span>
+<span class="n">atform</span> <span class="o">=</span> <span class="n">AirtableForm</span><span class="p">(</span><span class="s1">'appn7VdPRseSoMXEG'</span><span class="p">,</span><span class="s1">'W2D3_T1'</span><span class="p">,</span><span class="s1">'https://portal.neuromatchacademy.org/api/redirect/to/9c55f6cb-cdf9-4429-ac1c-ec44fe64c303'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1134,38 +1154,34 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">nltk</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">import</span> <span class="nn">fasttext</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">urllib.request</span>
-
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">from</span> <span class="nn">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
-
 <span class="kn">from</span> <span class="nn">hmmlearn</span> <span class="kn">import</span> <span class="n">hmm</span>
-<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">dok_matrix</span>
 
 <span class="kn">from</span> <span class="nn">torchtext</span> <span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">datasets</span>
 <span class="kn">from</span> <span class="nn">torchtext.vocab</span> <span class="kn">import</span> <span class="n">FastText</span>
 
+<span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">FreqDist</span>
 <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">brown</span>
 <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
 
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+
 <span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">TSNE</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm_notebook</span> <span class="k">as</span> <span class="n">tqdm</span>
 </pre></div>
 </div>
 </div>
@@ -1207,6 +1223,9 @@
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper functions</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+
 <span class="k">def</span> <span class="nf">cosine_similarity</span><span class="p">(</span><span class="n">vec_a</span><span class="p">,</span> <span class="n">vec_b</span><span class="p">):</span>
     <span class="sd">"""Compute cosine similarity between vec_a and vec_b"""</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vec_a</span><span class="p">,</span> <span class="n">vec_b</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec_a</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">vec_b</span><span class="p">))</span>
@@ -1374,6 +1393,7 @@
 <hr class="docutils"/>
 <div class="section" id="section-1-sequences-markov-chains-hmms">
 <h1>Section 1: Sequences, Markov Chains &amp; HMMs<a class="headerlink" href="#section-1-sequences-markov-chains-hmms" title="Permalink to this headline">¶</a></h1>
+<p><em>Time estimate: ~45mins</em></p>
 <div class="section" id="video-1-sequences-markov-processes">
 <h2>Video 1: Sequences &amp; Markov Processes<a class="headerlink" href="#video-1-sequences-markov-processes" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
@@ -1522,18 +1542,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1cebd5c2-400c-494a-88b0-7b2c2f51c5b8">
-<span class="eqno">(60)<a class="headerlink" href="#equation-1cebd5c2-400c-494a-88b0-7b2c2f51c5b8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2d14a023-9a03-4758-a0b5-9176545f70f2">
+<span class="eqno">(60)<a class="headerlink" href="#equation-2d14a023-9a03-4758-a0b5-9176545f70f2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea59858d-51f8-4983-b251-59b02aa8513a">
-<span class="eqno">(61)<a class="headerlink" href="#equation-ea59858d-51f8-4983-b251-59b02aa8513a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7b75a216-39fe-4487-9a3f-51088774e5e3">
+<span class="eqno">(61)<a class="headerlink" href="#equation-7b75a216-39fe-4487-9a3f-51088774e5e3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-812a6dcb-f768-4685-8a6a-1487715a6d34">
-<span class="eqno">(62)<a class="headerlink" href="#equation-812a6dcb-f768-4685-8a6a-1487715a6d34" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dbc04d92-8eed-470a-884d-914a677c7bd1">
+<span class="eqno">(62)<a class="headerlink" href="#equation-dbc04d92-8eed-470a-884d-914a677c7bd1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1545,8 +1565,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bba3486c-3f4b-42fa-a70f-908bd96c0bd5">
-<span class="eqno">(63)<a class="headerlink" href="#equation-bba3486c-3f4b-42fa-a70f-908bd96c0bd5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c50beed8-082a-4ade-9919-70acfe171e07">
+<span class="eqno">(63)<a class="headerlink" href="#equation-c50beed8-082a-4ade-9919-70acfe171e07" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
@@ -1796,13 +1816,43 @@ P_{transition} =
 <p>Great! This sentence was created using two of the techniques we recently saw - creating sets of words, and using a weighted average stochastic chain. Both of these methods contributed in making it a more meaningful sequence of words. Some of these notions are also captured by Recurrent Neural Networks!</p>
 </div>
 </div>
-<div class="section" id="think-1-2-how-does-changing-parameters-the-sentences-generated">
-<h3>Think! 1.2: How does changing parameters the sentences generated?<a class="headerlink" href="#think-1-2-how-does-changing-parameters-the-sentences-generated" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="think-1-2-how-does-changing-parameters-affect-the-generated-sentences">
+<h3>Think! 1.2: How does changing parameters affect the generated sentences?<a class="headerlink" href="#think-1-2-how-does-changing-parameters-affect-the-generated-sentences" title="Permalink to this headline">¶</a></h3>
 <p>Try and use a set of words but using a naive chain, and try a stochastic chain with a low value of k (i.e., 2), and a higher value (i.e., 5). How do these different configurations change the quality of the sequences produced? Below you have sample code to try these out.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stochastic_chain_sequence</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">chain_length</span><span class="o">=...</span><span class="p">,</span> <span class="n">k</span><span class="o">=...</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You should be able to use these matrices and the previous functions to be able to create the necessary configurations.</p>
+<div class="section" id="student-response">
+<h4>Student Response<a class="headerlink" href="#student-response" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
+   <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
+   <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
+   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit!"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">button</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+   <span class="n">atform</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="s1">'q1'</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Submission successful!"</span><span class="p">)</span>
+
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="section-1-3-what-is-a-hidden-markov-model">
@@ -1902,9 +1952,14 @@ P_{transition} =
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Execute this cell to download the saved model.</span>
-<span class="c1">## code to load the saved model</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+
 <span class="n">url</span> <span class="o">=</span> <span class="s2">"https://osf.io/5k6cs/download"</span>
-<span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s1">'model_w2d3_t1.pkl'</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'model_w2d3_t1.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+  <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="c1"># Load the pickle file</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"model_w2d3_t1.pkl"</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
   <span class="n">model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 </pre></div>
@@ -1967,6 +2022,7 @@ P_{transition} =
 <hr class="docutils"/>
 <div class="section" id="section-2-word-embeddings">
 <h1>Section 2: Word Embeddings<a class="headerlink" href="#section-2-word-embeddings" title="Permalink to this headline">¶</a></h1>
+<p><em>Time estimate: ~60mins</em></p>
 <div class="section" id="video-2-textual-dimension-reduction">
 <h2>Video 2: Textual Dimension Reduction<a class="headerlink" href="#video-2-textual-dimension-reduction" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
@@ -2153,25 +2209,15 @@ What should be arrangement of the key clusters with respect to each other?</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download FastText English Embeddings of dimension 100</span>
-
-<span class="n">fname</span> <span class="o">=</span> <span class="s1">'cc.en.100.bin.zip'</span>
-<span class="n">download_str</span> <span class="o">=</span> <span class="s2">"Downloading"</span>
-<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-  <span class="n">download_str</span> <span class="o">=</span> <span class="s2">"Redownloading"</span>
-  <span class="o">!</span>rm -rf <span class="nv">$fname</span>
-
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">io</span><span class="o">,</span> <span class="nn">zipfile</span>
 <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
-<span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
 
 <span class="n">zipurl</span> <span class="o">=</span> <span class="s1">'https://osf.io/w9sr7/download'</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">download_str</span><span class="si">}</span><span class="s2"> and unzipping the file... Please wait."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Downloading and unzipping the file... Please wait."</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">zipurl</span><span class="p">)</span> <span class="k">as</span> <span class="n">zipresp</span><span class="p">:</span>
-  <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">zipresp</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span> <span class="k">as</span> <span class="n">zfile</span><span class="p">:</span>
+  <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">zipresp</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span> <span class="k">as</span> <span class="n">zfile</span><span class="p">:</span>
     <span class="n">zfile</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Download completed!"</span><span class="p">)</span>
-
-<span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2308,6 +2354,7 @@ Let’s try it:</p>
 <hr class="docutils"/>
 <div class="section" id="section-3-neural-net-with-word-embeddings">
 <h1>Section 3: Neural Net with word embeddings<a class="headerlink" href="#section-3-neural-net-with-word-embeddings" title="Permalink to this headline">¶</a></h1>
+<p><em>Time estimate: ~16mins</em></p>
 <p>Let’s use the pretrained FastText embeddings to train a neural network on the IMDB dataset.</p>
 <p>To recap, the data consists of reviews and sentiments attached to it. It is a binary classification task. As a simple preview of the upcoming neural networks, we are going to introduce neural net with word embeddings. We’ll see detailed networks in the next tutorial.</p>
 <div class="section" id="coding-exercise-3-1-simple-feed-forward-net">
@@ -2379,6 +2426,9 @@ The neural net will have one hidden layer of size 128.</p>
     <span class="k">return</span> <span class="n">output</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 3.1: Simple Feed Forward Net'</span><span class="p">)</span>
+
 <span class="c1"># Uncomment to check your code</span>
 <span class="c1"># nn_model = NeuralNet(2, 128, 100, 300, TEXT.vocab.vectors)</span>
 <span class="c1"># print(nn_model)</span>
@@ -2386,7 +2436,7 @@ The neural net will have one hidden layer of size 128.</p>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D3_ModernRecurrentNeuralNetworks/solutions/W2D3_Tutorial1_Solution_e80c284c.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D3_ModernRecurrentNeuralNetworks/solutions/W2D3_Tutorial1_Solution_6b55212b.py"><em>Click for solution</em></a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NeuralNet</span><span class="p">(</span>
   <span class="p">(</span><span class="n">word_embeddings</span><span class="p">):</span> <span class="n">Embedding</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
   <span class="p">(</span><span class="n">fc1</span><span class="p">):</span> <span class="n">Linear</span><span class="p">(</span><span class="n">in_features</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">out_features</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2564,6 +2614,24 @@ The neural net will have one hidden layer of size 128.</p>
 <p>In this tutorial, we explored two different concepts linked to sequences, and text in particular, that will be the conceptual foundation for Recurrent Neural Networks.</p>
 <p>The first concept was that of sequences and probabilities. We saw how we can model language as sequences of text, and use this analogy to generate text. Such a setup is also used to classify text or identify parts of speech. We can either build chains manually using simple python and numerical computation, or use a package such as <code class="docutils literal notranslate"><span class="pre">hmmlearn</span></code> that allows us to train models a lot easier. These notions of sequences and probabilities (i.e, creating language models!) are key to the internals of a recurrent neural network as well.</p>
 <p>The second concept is that of word embeddings, now a mainstay of natural language processing. By using a neural network to predict context of words, these neural networks learn internal representions of words that are a decent approximation of semantic meaning (i.e embeddings!). We saw how these embeddings can be visualised, as well as how they capture meaning. We finally saw how they can be integrated into neural networks to better classify text documents.</p>
+<div class="section" id="airtable-submission-link">
+<h2>Airtable Submission Link<a class="headerlink" href="#airtable-submission-link" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Airtable Submission Link</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span> <span class="k">as</span> <span class="n">IPydisplay</span>
+<span class="n">IPydisplay</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
+   <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2"> &lt;div&gt;</span>
+<span class="s2">   &lt;a href= "</span><span class="si">{</span><span class="n">atform</span><span class="o">.</span><span class="n">url</span><span class="p">()</span><span class="si">}</span><span class="s2">" target="_blank"&gt;</span>
+<span class="s2">   &lt;img src="https://github.com/NeuromatchAcademy/course-content-dl/blob/main/tutorials/static/AirtableSubmissionButton.png?raw=1"</span>
+<span class="s2"> alt="button link to Airtable" style="width:410px"&gt;&lt;/a&gt;</span>
+<span class="s2">   &lt;/div&gt;"""</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <script type="text/x-thebe-config">
     {
