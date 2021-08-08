@@ -1418,7 +1418,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "017c19a2c81141868ddf4a363c11ec1f"}
+{"version_major": 2, "version_minor": 0, "model_id": "a799aa9e4f484dc1b2595f411e73d4dd"}
 </script></div>
 </div>
 <p>A key idea of neural nets, is that they use models that are “too complex” - complex enough to fit all the noise in the data. One then needs to “regularize” them to make the models fit complex enough, but not too complex. The more complex the model, the better it fits the training data, but if it is too complex, it generalizes less well; it memorizes the training data but is less accurate on future test data.</p>
@@ -1428,7 +1428,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3069456619724d25991a35d51e2f3149"}
+{"version_major": 2, "version_minor": 0, "model_id": "4415ffd6f0b8485ebbe5ad5a6b007215"}
 </script></div>
 </div>
 <p>One way to think about Regularization is to think in terms of the magnitude of the overall weights of the model. A model with big weights can fit more data perfectly, whereas a model with smaller weights tends to underperform on the train set but can surprisingly do very well on the test set. Having the weights too small can also be an issue as it can then underfit the model.</p>
@@ -1438,8 +1438,8 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <h2>Coding Exercise 1: Frobenius Norm<a class="headerlink" href="#coding-exercise-1-frobenius-norm" title="Permalink to this headline">¶</a></h2>
 <p>Before we start, let’s define the Frobenius norm, sometimes also called the Euclidean norm of an <span class="math notranslate nohighlight">\(m×n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>  as the square root of the sum of the absolute squares of its elements.</p>
 <br/>
-<div class="amsmath math notranslate nohighlight" id="equation-297ddd29-e808-490c-9287-19442be7234f">
-<span class="eqno">(48)<a class="headerlink" href="#equation-297ddd29-e808-490c-9287-19442be7234f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bd45aef3-3c9c-4bdb-b126-f6423aad6f14">
+<span class="eqno">(48)<a class="headerlink" href="#equation-bd45aef3-3c9c-4bdb-b126-f6423aad6f14" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 ||A||_F= \sqrt{\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^2}
 \end{equation}\]</div>
 <p>This is just a measure of how big the matrix is, analogous to how big a vector is.</p>
@@ -1562,7 +1562,7 @@ Frobenius Norm of Models weights: 7.3810
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0e205ddda1d844f4b148d6d1f430ca2f"}
+{"version_major": 2, "version_minor": 0, "model_id": "8c3936c3efbe4c04bc951b8adee8c4d4"}
 </script></div>
 </div>
 </div>
@@ -1694,7 +1694,7 @@ Frobenius Norm of Models weights: 7.3810
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "cacb724f399f4eb697c9c30edd14238d"}
+{"version_major": 2, "version_minor": 0, "model_id": "d604b42b0d7546f7b530c02bb18b2858"}
 </script></div>
 </div>
 <p>Now that we have finished training, let’s see how the model has evolved over the training process.</p>
@@ -1754,7 +1754,7 @@ Frobenius Norm of Models weights: 7.3810
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3247</span><span class="o">/</span><span class="mf">2511244387.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3185</span><span class="o">/</span><span class="mf">2511244387.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">37</span>                                <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">38</span>                                <span class="n">repeat_delay</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">39</span> <span class="n">html_anim</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
@@ -1840,9 +1840,9 @@ Frobenius Norm of Models weights: 7.3810
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3a418eea233f48b78d2a123cc82f64d5"}
+{"version_major": 2, "version_minor": 0, "model_id": "68bba4fb52274a3abff811d4a522b9d1"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a6708df01e904456aa16c44806dd6939"}
+{"version_major": 2, "version_minor": 0, "model_id": "07466bb8a3424c0ab158f0aceaf12d80"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D5_Regularization/solutions/W1D5_Tutorial1_Solution_c705db1a.py"><em>Click for solution</em></a></p>
@@ -2098,78 +2098,55 @@ Frobenius Norm of Models weights: 7.3810
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6f3929d1ce2341d5abd8bf8179baef0f"}
-</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+{"version_major": 2, "version_minor": 0, "model_id": "f2098804aa3641698cbe3311b5027e87"}
+</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
+    send_bytes(obj)
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 404, in _send_bytes
+    self._send(header + buf)
+  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 368, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3247</span><span class="o">/</span><span class="mf">2311793667.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3185</span><span class="o">/</span><span class="mf">2311793667.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>                                               <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">20</span>                                               <span class="n">train_loader</span><span class="o">=</span><span class="n">train_loader</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">21</span>                                               <span class="n">val_loader</span><span class="o">=</span><span class="n">val_loader</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">23</span> 
 
-<span class="nn">/tmp/ipykernel_3247/3720794291.py</span> in <span class="ni">main</span><span class="nt">(args, model, train_loader, val_loader, reg_function1, reg_function2)</span>
+<span class="nn">/tmp/ipykernel_3185/3720794291.py</span> in <span class="ni">main</span><span class="nt">(args, model, train_loader, val_loader, reg_function1, reg_function2)</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">trained_model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">59</span>                           <span class="n">reg_function1</span><span class="o">=</span><span class="n">reg_function1</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span>                           <span class="n">reg_function2</span><span class="o">=</span><span class="n">reg_function2</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">61</span>     <span class="n">train_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">60</span>                           <span class="n">reg_function2</span><span class="o">=</span><span class="n">reg_function2</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="n">train_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="n">val_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="n">param_norm</span> <span class="o">=</span> <span class="n">calculate_frobenius_norm</span><span class="p">(</span><span class="n">trained_model</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_3247/3720794291.py</span> in <span class="ni">test</span><span class="nt">(model, test_loader, criterion, device)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>   <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>   <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-<span class="ne">---&gt; </span><span class="mi">33</span>     <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>       <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>       <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nn">/tmp/ipykernel_3185/3720794291.py</span> in <span class="ni">train</span><span class="nt">(args, model, train_loader, optimizer, reg_function1, reg_function2, criterion)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>       <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s1">'lambda1'</span><span class="p">]</span><span class="o">*</span><span class="n">reg_function1</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">+</span> <span class="n">args</span><span class="p">[</span><span class="s1">'lambda2'</span><span class="p">]</span><span class="o">*</span><span class="n">reg_function2</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">19</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">__next__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">521</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span> 
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_next_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1173</span>                 <span class="c1"># no valid `self._rcvd_idx` is found (i.e., didn't break)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1174</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_persistent_workers</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1175</span>                     <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown_workers</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1176</span>                 <span class="k">raise</span> <span class="ne">StopIteration</span>
-<span class="g g-Whitespace">   </span><span class="mi">1177</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_shutdown_workers</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1299</span>                     <span class="c1"># wrong, we set a timeout and if the workers fail to join,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1300</span>                     <span class="c1"># they are killed in the `finally` block.</span>
-<span class="ne">-&gt; </span><span class="mi">1301</span>                     <span class="n">w</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">_utils</span><span class="o">.</span><span class="n">MP_STATUS_CHECK_INTERVAL</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1302</span>                 <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_queues</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1303</span>                     <span class="n">q</span><span class="o">.</span><span class="n">cancel_join_thread</span><span class="p">()</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/process.py</span> in <span class="ni">join</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_pid</span> <span class="o">==</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">(),</span> <span class="s1">'can only join a child process'</span>
-<span class="g g-Whitespace">    </span><span class="mi">139</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">'can only join a started process'</span>
-<span class="ne">--&gt; </span><span class="mi">140</span>         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_popen</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>         <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span>             <span class="n">_children</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/popen_fork.py</span> in <span class="ni">wait</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span>             <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span>                 <span class="kn">from</span> <span class="nn">multiprocessing.connection</span> <span class="kn">import</span> <span class="n">wait</span>
-<span class="ne">---&gt; </span><span class="mi">45</span>                 <span class="k">if</span> <span class="ow">not</span> <span class="n">wait</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">sentinel</span><span class="p">],</span> <span class="n">timeout</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span>                     <span class="k">return</span> <span class="kc">None</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span>             <span class="c1"># This shouldn't block if wait() returned successfully.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">wait</span><span class="nt">(object_list, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">919</span> 
-<span class="g g-Whitespace">    </span><span class="mi">920</span>             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">921</span>                 <span class="n">ready</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">922</span>                 <span class="k">if</span> <span class="n">ready</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">923</span>                     <span class="k">return</span> <span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">fileobj</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ready</span><span class="p">]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/selectors.py</span> in <span class="ni">select</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">413</span>         <span class="n">ready</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">415</span>             <span class="n">fd_event_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selector</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">416</span>         <span class="k">except</span> <span class="ne">InterruptedError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span>             <span class="k">return</span> <span class="n">ready</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> 
+<span class="g g-Whitespace">    </span><span class="mi">151</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

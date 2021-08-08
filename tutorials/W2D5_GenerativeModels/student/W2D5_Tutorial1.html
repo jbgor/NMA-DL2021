@@ -830,6 +830,17 @@
 </code>
 </a>
 </li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#download-wordnet-dataset">
+     Download
+     <code class="docutils literal notranslate">
+<span class="pre">
+       wordnet
+      </span>
+</code>
+     dataset
+    </a>
+</li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry">
@@ -851,6 +862,13 @@
 <a class="reference internal nav-link" href="#think-1-1-generated-images">
        Think! 1.1: Generated images
       </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#student-response">
+         Student Response
+        </a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -863,6 +881,13 @@
 <a class="reference internal nav-link" href="#think-1-2-interpolating-samples-from-the-same-category">
        Think! 1.2: Interpolating samples from the same category
       </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id1">
+         Student Response
+        </a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -894,6 +919,11 @@
 <a class="reference internal nav-link" href="#video-3-autoenconders">
      Video 3: Autoenconders
     </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#download-mnist-and-cifar10-datasets">
+     Download MNIST and CIFAR10 datasets
+    </a>
 <ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry">
 <a class="reference internal nav-link" href="#select-a-dataset">
@@ -921,6 +951,13 @@
 <a class="reference internal nav-link" href="#think-3-1-pca-vs-linear-autoenconder">
        Think! 3.1: PCA vs. Linear autoenconder
       </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#id2">
+         Student Response
+        </a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -989,6 +1026,13 @@
 <a class="reference internal nav-link" href="#summary">
    Summary
   </a>
+<ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#airtable-submission-link">
+     Airtable Submission Link
+    </a>
+</li>
+</ul>
 </li>
 </ul>
 </nav>
@@ -1004,8 +1048,8 @@
 <p><strong>Week 2, Day 5: Generative Models</strong></p>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Saeed Salehi, Spiros Chavlis, Vikash Gilja</p>
-<p><strong>Content reviewers:</strong> Diptodip Deb</p>
-<p><strong>Content editor:</strong> Charles J Edelson</p>
+<p><strong>Content reviewers:</strong> Diptodip Deb, Kelson Shilling-Scrivo</p>
+<p><strong>Content editor:</strong> Charles J Edelson, Spiros Chavlis</p>
 <p><strong>Production editors:</strong> Saeed Salehi, Spiros Chavlis</p>
 <p><em>Inspired from UPenn course</em>:
 <strong>Instructor:</strong> Konrad Kording, <strong>Original Content creators:</strong> Richard Lange, Arash Ash</p>
@@ -1023,7 +1067,6 @@
 </ul>
 <div class="section" id="tutorial-slides">
 <h2>Tutorial slides<a class="headerlink" href="#tutorial-slides" title="Permalink to this headline">¶</a></h2>
-<p>These are the slides for the videos in this tutorial</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html">
@@ -1037,76 +1080,39 @@
 <h1>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="install-dependencies">
 <h2>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h2>
-<p>Install <em>Huggingface BigGAN</em> library</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
 <span class="o">!</span>pip install --upgrade torchvision --quiet
 
 <span class="c1"># @markdown Install *Huggingface BigGAN* library</span>
+
+<span class="c1"># @markdown Please ignore `Errors`/`Warnings` during installation.</span>
 <span class="o">!</span>pip install pytorch-pretrained-biggan --quiet
 <span class="o">!</span>pip install Pillow libsixel-python --quiet
+
+<span class="o">!</span>pip install git+https://github.com/NeuromatchAcademy/evaltools --quiet
+<span class="kn">from</span> <span class="nn">evaltools.airtable</span> <span class="kn">import</span> <span class="n">AirtableForm</span>
+
+<span class="c1"># generate airtable form</span>
+<span class="n">atform</span> <span class="o">=</span> <span class="n">AirtableForm</span><span class="p">(</span><span class="s1">'appn7VdPRseSoMXEG'</span><span class="p">,</span><span class="s1">'W2D5_T1'</span><span class="p">,</span><span class="s1">'https://portal.neuromatchacademy.org/api/redirect/to/9c55f6cb-cdf9-4429-ac1c-ec44fe64c303'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
 <span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
 <span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
+<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: Ignoring invalid distribution -rllib3 (/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages)</span>
-<span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
 <span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
@@ -1120,31 +1126,21 @@
 <span class="kn">import</span> <span class="nn">nltk</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-<span class="kn">import</span> <span class="nn">torchvision</span> <span class="k">as</span> <span class="nn">tv</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
 
-<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span><span class="p">,</span> <span class="n">trange</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+
+<span class="kn">import</span> <span class="nn">torchvision</span>
+<span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
 
 <span class="kn">from</span> <span class="nn">pytorch_pretrained_biggan</span> <span class="kn">import</span> <span class="n">BigGAN</span>
 <span class="kn">from</span> <span class="nn">pytorch_pretrained_biggan</span> <span class="kn">import</span> <span class="n">one_hot_from_names</span>
 <span class="kn">from</span> <span class="nn">pytorch_pretrained_biggan</span> <span class="kn">import</span> <span class="n">truncated_noise_sample</span>
 
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'wordnet'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package wordnet to /home/runner/nltk_data...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/wordnet.zip.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span><span class="p">,</span> <span class="n">trange</span>
 </pre></div>
 </div>
 </div>
@@ -1455,17 +1451,40 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 </div>
+<div class="section" id="download-wordnet-dataset">
+<h2>Download <code class="docutils literal notranslate"><span class="pre">wordnet</span></code> dataset<a class="headerlink" href="#download-wordnet-dataset" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download `wordnet` dataset</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'wordnet'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package wordnet to /home/runner/nltk_data...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Unzipping corpora/wordnet.zip.
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <hr class="docutils"/>
 <div class="section" id="section-1-generative-models">
 <h1>Section 1: Generative models<a class="headerlink" href="#section-1-generative-models" title="Permalink to this headline">¶</a></h1>
+<p><em>Time estimate: ~15mins</em></p>
 <p><strong>Please</strong> run the cell after the video to download BigGAN (a generative model) and a few standard image datasets while the video plays.</p>
 <div class="section" id="video-1-generative-modeling">
 <h2>Video 1: Generative Modeling<a class="headerlink" href="#video-1-generative-modeling" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "aac91ad04c434e5793cf6d71889b8b01"}
+{"version_major": 2, "version_minor": 0, "model_id": "37ee10bca20b41a8a68fd73161e136ce"}
 </script></div>
 </div>
 <p>Download BigGAN (a generative model) and a few standard image datasets while the above video plays</p>
@@ -1481,124 +1500,211 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/234411737 [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 88064/234411737 [00:00&lt;04:27, 877046.34B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 43008/234411737 [00:00&lt;13:30, 289171.46B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 679936/234411737 [00:00&lt;01:02, 3758792.76B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 182272/234411737 [00:00&lt;05:52, 664156.08B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 4472832/234411737 [00:00&lt;00:11, 19171205.36B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 773120/234411737 [00:00&lt;01:48, 2155385.22B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▍         | 10670080/234411737 [00:00&lt;00:06, 35942385.05B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|          | 2606080/234411737 [00:00&lt;00:32, 7050586.66B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 16980992/234411737 [00:00&lt;00:04, 45692082.61B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 5137408/234411737 [00:00&lt;00:18, 12562971.39B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 10%|█         | 23502848/234411737 [00:00&lt;00:04, 52308681.62B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  3%|▎         | 7065600/234411737 [00:00&lt;00:15, 14501565.59B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 29976576/234411737 [00:00&lt;00:03, 56359588.75B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  4%|▍         | 10383360/234411737 [00:00&lt;00:11, 20097445.63B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|█▌        | 36397056/234411737 [00:00&lt;00:03, 58850887.58B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|▌         | 13209600/234411737 [00:00&lt;00:10, 20878437.90B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|█▊        | 42870784/234411737 [00:00&lt;00:03, 60686816.73B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|▋         | 16137216/234411737 [00:01&lt;00:09, 23262814.49B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|██        | 49328128/234411737 [00:01&lt;00:02, 61885390.94B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 19140608/234411737 [00:01&lt;00:09, 23419940.45B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 24%|██▍       | 55792640/234411737 [00:01&lt;00:02, 62729120.60B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  9%|▉         | 22266880/234411737 [00:01&lt;00:08, 25590837.60B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 62310400/234411737 [00:01&lt;00:02, 63470307.01B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|█         | 25169920/234411737 [00:01&lt;00:08, 24617263.41B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 29%|██▉       | 68819968/234411737 [00:01&lt;00:02, 63960944.18B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█▏        | 28311552/234411737 [00:01&lt;00:07, 26472061.75B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|███▏      | 75332608/234411737 [00:01&lt;00:02, 64311147.73B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 31150080/234411737 [00:01&lt;00:08, 25222205.57B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▍      | 81856512/234411737 [00:01&lt;00:02, 64589884.09B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|█▍        | 34221056/234411737 [00:01&lt;00:07, 26714247.52B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|███▊      | 88414208/234411737 [00:01&lt;00:02, 64885297.07B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|█▌        | 37130240/234411737 [00:01&lt;00:07, 25572002.63B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|████      | 94994432/234411737 [00:01&lt;00:02, 65158907.45B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 17%|█▋        | 40088576/234411737 [00:01&lt;00:07, 26663059.58B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 43%|████▎     | 101511168/234411737 [00:01&lt;00:02, 65140513.88B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|█▊        | 43241472/234411737 [00:02&lt;00:07, 26108523.30B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 46%|████▌     | 108025856/234411737 [00:01&lt;00:01, 64963957.17B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|█▉        | 46374912/234411737 [00:02&lt;00:06, 27526444.75B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 49%|████▉     | 114523136/234411737 [00:02&lt;00:01, 64901165.73B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|██        | 49369088/234411737 [00:02&lt;00:07, 26287307.89B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 52%|█████▏    | 121014272/234411737 [00:02&lt;00:01, 64551607.47B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 22%|██▏       | 52471808/234411737 [00:02&lt;00:06, 27570845.78B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 54%|█████▍    | 127470592/234411737 [00:02&lt;00:01, 63345043.39B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 24%|██▎       | 55488512/234411737 [00:02&lt;00:06, 28294937.59B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|█████▋    | 133810176/234411737 [00:02&lt;00:01, 62781318.40B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▌       | 59133952/234411737 [00:02&lt;00:05, 30568610.32B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|█████▉    | 140092416/234411737 [00:02&lt;00:01, 62408990.75B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|██▋       | 63000576/234411737 [00:02&lt;00:05, 30864327.37B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|██████▏   | 146335744/234411737 [00:02&lt;00:01, 48625510.41B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|██▊       | 66654208/234411737 [00:02&lt;00:05, 32240138.55B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 152428544/234411737 [00:02&lt;00:01, 51664274.54B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 70392832/234411737 [00:02&lt;00:04, 33699602.95B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 68%|██████▊   | 158480384/234411737 [00:02&lt;00:01, 53971664.54B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 31%|███▏      | 73787392/234411737 [00:03&lt;00:04, 32638040.76B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 164538368/234411737 [00:02&lt;00:01, 55763615.40B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|███▎      | 77419520/234411737 [00:03&lt;00:04, 33687074.92B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 73%|███████▎  | 170638336/234411737 [00:03&lt;00:01, 57214755.45B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 35%|███▍      | 80875520/234411737 [00:03&lt;00:04, 32735901.84B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 176736256/234411737 [00:03&lt;00:00, 58287143.26B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 36%|███▌      | 84622336/234411737 [00:03&lt;00:04, 34083086.97B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 78%|███████▊  | 182862848/234411737 [00:03&lt;00:00, 59148316.57B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|███▊      | 88112128/234411737 [00:03&lt;00:04, 34317953.47B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 81%|████████  | 188973056/234411737 [00:03&lt;00:00, 59717866.78B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 39%|███▉      | 91836416/234411737 [00:03&lt;00:04, 35172549.90B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 83%|████████▎ | 195132416/234411737 [00:03&lt;00:00, 60268547.45B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|████      | 95539200/234411737 [00:03&lt;00:03, 35412560.52B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 86%|████████▌ | 201292800/234411737 [00:03&lt;00:00, 60663584.36B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 42%|████▏     | 99340288/234411737 [00:03&lt;00:03, 35439937.86B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 88%|████████▊ | 207400960/234411737 [00:03&lt;00:00, 60786973.86B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|████▍     | 103084032/234411737 [00:03&lt;00:03, 36021365.19B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|█████████ | 213534720/234411737 [00:03&lt;00:00, 60949701.78B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 46%|████▌     | 106692608/234411737 [00:03&lt;00:03, 35934931.20B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████▎| 219713536/234411737 [00:03&lt;00:00, 61198349.73B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 110290944/234411737 [00:04&lt;00:03, 35810843.60B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|█████████▋| 225845248/234411737 [00:03&lt;00:00, 61219528.04B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 49%|████▊     | 114207744/234411737 [00:04&lt;00:03, 36802060.20B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|█████████▉| 231975936/234411737 [00:04&lt;00:00, 61212885.39B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 117892096/234411737 [00:04&lt;00:03, 36581999.45B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 234411737/234411737 [00:04&lt;00:00, 57786799.64B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 52%|█████▏    | 121552896/234411737 [00:04&lt;00:03, 36348531.80B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 54%|█████▎    | 125597696/234411737 [00:04&lt;00:02, 37561182.03B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 55%|█████▌    | 129356800/234411737 [00:04&lt;00:02, 37320192.86B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|█████▋    | 133091328/234411737 [00:04&lt;00:02, 36887777.78B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 58%|█████▊    | 137064448/234411737 [00:04&lt;00:02, 37727067.29B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 60%|██████    | 140980224/234411737 [00:04&lt;00:02, 38151314.55B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|██████▏   | 144798720/234411737 [00:05&lt;00:02, 36921761.30B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 63%|██████▎   | 148836352/234411737 [00:05&lt;00:02, 37927012.98B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▌   | 152639488/234411737 [00:05&lt;00:02, 36912243.48B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 156861440/234411737 [00:05&lt;00:02, 38450999.24B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 69%|██████▊   | 160794624/234411737 [00:05&lt;00:01, 38707558.41B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 164675584/234411737 [00:05&lt;00:01, 37605145.02B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 72%|███████▏  | 168849408/234411737 [00:05&lt;00:01, 38803118.68B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 74%|███████▍  | 172916736/234411737 [00:05&lt;00:01, 39350216.94B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|███████▌  | 176862208/234411737 [00:05&lt;00:01, 38125603.34B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 77%|███████▋  | 180875264/234411737 [00:05&lt;00:01, 38702436.84B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 79%|███████▉  | 184929280/234411737 [00:06&lt;00:01, 39237154.40B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 81%|████████  | 188863488/234411737 [00:06&lt;00:01, 38088991.93B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 82%|████████▏ | 192815104/234411737 [00:06&lt;00:01, 38502025.28B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 84%|████████▍ | 196675584/234411737 [00:06&lt;00:01, 37540258.29B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 86%|████████▌ | 200653824/234411737 [00:06&lt;00:00, 38188883.10B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 204601344/234411737 [00:06&lt;00:00, 38562560.35B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 89%|████████▉ | 208465920/234411737 [00:06&lt;00:00, 37812623.81B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 91%|█████████ | 212528128/234411737 [00:06&lt;00:00, 38633287.91B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 92%|█████████▏| 216605696/234411737 [00:06&lt;00:00, 39262801.73B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████▍| 220538880/234411737 [00:06&lt;00:00, 38124533.37B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|█████████▌| 224558080/234411737 [00:07&lt;00:00, 38726043.68B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 98%|█████████▊| 228606976/234411737 [00:07&lt;00:00, 39242478.71B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|█████████▉| 232539136/234411737 [00:07&lt;00:00, 38668072.06B/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 234411737/234411737 [00:07&lt;00:00, 31924661.70B/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1607,7 +1713,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/715 [00:00&lt;?, ?B/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 715/715 [00:00&lt;00:00, 673613.51B/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 715/715 [00:00&lt;00:00, 470641.46B/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1624,6 +1730,41 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="section" id="think-1-1-generated-images">
 <h3>Think! 1.1: Generated images<a class="headerlink" href="#think-1-1-generated-images" title="Permalink to this headline">¶</a></h3>
 <p>As you alter the magnitude of the vector, what do you note about the relationship between the different generated images? What do you note about the relationship between the image and the category label as you increase the magnitude of the vector?</p>
+<div class="section" id="student-response">
+<h4>Student Response<a class="headerlink" href="#student-response" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
+   <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
+   <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
+   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit!"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">button</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+   <span class="n">atform</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="s1">'q1'</span> <span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Submission successful!"</span><span class="p">)</span>
+
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "3a68d56cb88a472a9ecd20535376a364"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "8a6a6c069d764572a12234db47425561"}
+</script></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> --no-display
@@ -1687,10 +1828,11 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f70ecadb225d466aadc1a92ab91fb944"}
+{"version_major": 2, "version_minor": 0, "model_id": "2f9cb6ab672f4cb09670a799744ac399"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "fc80432df26741c58525bde8141675b2"}
-</script><img alt="../../../_images/W2D5_Tutorial1_32_2.png" src="../../../_images/W2D5_Tutorial1_32_2.png"/>
+{"version_major": 2, "version_minor": 0, "model_id": "03898242a74e43f29613e65b1a52ad1d"}
+</script><img alt="../../../_images/W2D5_Tutorial1_34_2.png" src="../../../_images/W2D5_Tutorial1_34_2.png"/>
+</div>
 </div>
 </div>
 </div>
@@ -1701,6 +1843,41 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="section" id="think-1-2-interpolating-samples-from-the-same-category">
 <h3>Think! 1.2: Interpolating samples from the same category<a class="headerlink" href="#think-1-2-interpolating-samples-from-the-same-category" title="Permalink to this headline">¶</a></h3>
 <p>Try interpolating between samples from the same category, samples from similar categories, and samples from very different categories. Do you notice any trends? What does this suggest about the representations of images in the latent space?</p>
+<div class="section" id="id1">
+<h4>Student Response<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
+   <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
+   <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
+   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit!"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">button</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+   <span class="n">atform</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="s1">'q2'</span> <span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Submission successful!"</span><span class="p">)</span>
+
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "6ad02783b25e4bf7aff34739689ba9fa"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "4097927caa8643e288f7c61808e36db5"}
+</script></div>
+</div>
 <p>BigGAN Interpolation Widget (the updates may take a few seconds)</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -1754,9 +1931,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
   <span class="n">output</span> <span class="o">=</span> <span class="n">output</span>
 
   <span class="c1"># Make grid and show generated samples</span>
-  <span class="n">output_grid</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">output</span><span class="p">,</span>
-                                  <span class="n">nrow</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
-                                  <span class="n">padding</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+  <span class="n">output_grid</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">make_grid</span><span class="p">(</span><span class="n">output</span><span class="p">,</span>
+                                            <span class="n">nrow</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                            <span class="n">padding</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">);</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">output_grid</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1797,10 +1974,11 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b39ef68f3dda4320abf108d0f8b9bd87"}
+{"version_major": 2, "version_minor": 0, "model_id": "18921a597d004611950bc122a2f8e556"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "662d40f69b2e42aaa9d747fadb2d9c7e"}
+{"version_major": 2, "version_minor": 0, "model_id": "48a8ecfccc154c4b8cfa94d4087832cb"}
 </script></div>
+</div>
 </div>
 </div>
 </div>
@@ -1808,12 +1986,13 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <hr class="docutils"/>
 <div class="section" id="section-2-latent-variable-models">
 <h1>Section 2: Latent Variable Models<a class="headerlink" href="#section-2-latent-variable-models" title="Permalink to this headline">¶</a></h1>
+<p><em>Time estimate: ~20mins</em></p>
 <div class="section" id="video-2-latent-variable-models">
 <h2>Video 2: Latent Variable Models<a class="headerlink" href="#video-2-latent-variable-models" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "142c3224c45a4005b3a70faa86b127c9"}
+{"version_major": 2, "version_minor": 0, "model_id": "1149b4c40b3442d5b46c60579321fd98"}
 </script></div>
 </div>
 <p>In the video the concept of a latent variable model was introduced. We saw how PCA (principal component analysis) can be extended into a generative model with latent variables called pPCA. For pPCA the latent variables (z in the video) are the projections onto the principal component axes.</p>
@@ -1823,14 +2002,36 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Generate example datapoints from the two thermometers</span>
-<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">1000</span>
 
-<span class="n">mean_of_temps</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
-<span class="n">cov_of_temps</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]</span>
-<span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
-<span class="n">therm1</span><span class="p">,</span> <span class="n">therm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean_of_temps</span><span class="p">,</span>
-                                               <span class="n">cov_of_temps</span><span class="p">,</span>
-                                               <span class="n">n_samples</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="k">def</span> <span class="nf">generate_data</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">mean_of_temps</span><span class="p">,</span> <span class="n">cov_of_temps</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+  <span class="sd">"""</span>
+<span class="sd">  Generate random data, normally distributed</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    n_samples : int</span>
+<span class="sd">      The number of samples to be generated</span>
+<span class="sd">    mean_of_temps : numpy.ndarray</span>
+<span class="sd">      1D array with the mean of temparatures, Kx1</span>
+<span class="sd">    cov_of_temps : numpy.ndarray</span>
+<span class="sd">      2D array with the covariance, , KxK</span>
+<span class="sd">    seed : int</span>
+<span class="sd">      Set random seed for the psudo random generator</span>
+<span class="sd">  Returns:</span>
+<span class="sd">    therm1 : numpy.ndarray</span>
+<span class="sd">    therm2 : numpy.ndarray</span>
+<span class="sd">  """</span>
+
+  <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+  <span class="n">therm1</span><span class="p">,</span> <span class="n">therm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean_of_temps</span><span class="p">,</span>
+                                                <span class="n">cov_of_temps</span><span class="p">,</span>
+                                                <span class="n">n_samples</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+  <span class="k">return</span> <span class="n">therm1</span><span class="p">,</span> <span class="n">therm2</span>
+
+
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">mean_of_temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">])</span>
+<span class="n">cov_of_temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
+<span class="n">therm1</span><span class="p">,</span> <span class="n">therm2</span> <span class="o">=</span> <span class="n">generate_data</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">mean_of_temps</span><span class="p">,</span> <span class="n">cov_of_temps</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">therm1</span><span class="p">,</span> <span class="n">therm2</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
@@ -1841,10 +2042,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
-</pre></div>
-</div>
-<img alt="../../../_images/W2D5_Tutorial1_42_1.png" src="../../../_images/W2D5_Tutorial1_42_1.png"/>
+<img alt="../../../_images/W2D5_Tutorial1_46_0.png" src="../../../_images/W2D5_Tutorial1_46_0.png"/>
 </div>
 </div>
 <p>Let’s model these data with a single principal component. Given that the thermometers are measuring the same actual temperature, the principal component axes will be the identity line. The direction of this axes can be indicated by the unit vector [1 1]/sqrt(2).  We could estimate this axes by applying PCA. We can plot this axes, it tells us something about the data, but we can’t generate from it:</p>
@@ -1864,7 +2062,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W2D5_Tutorial1_45_0.png" src="../../../_images/W2D5_Tutorial1_45_0.png"/>
+<img alt="../../../_images/W2D5_Tutorial1_49_0.png" src="../../../_images/W2D5_Tutorial1_49_0.png"/>
 </div>
 </div>
 </div>
@@ -1901,9 +2099,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <p><strong>Step 2</strong>: “Generate” from the pPCA model of the thermometer data.</p>
 <p>Complete the code so it properly generates from the pPCA model. At present we aren’t accounting for the “sensor noise” the sensor noise is the variance that the PC axes isn’t accounting for. Thus, you’ll note that the current output sits on the PC axes and doesn’t look like the original data distribution!!</p>
 <p>Here is the equation for sampling from the pPCA model:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-98f84ff2-bd2c-4d3b-a61d-382f9a83a097">
-<span class="eqno">(83)<a class="headerlink" href="#equation-98f84ff2-bd2c-4d3b-a61d-382f9a83a097" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \mathbf{I})
+<div class="amsmath math notranslate nohighlight" id="equation-1426a3e2-3b15-4375-b2db-ac9016f3dcb9">
+<span class="eqno">(83)<a class="headerlink" href="#equation-1426a3e2-3b15-4375-b2db-ac9016f3dcb9" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \mathbf{I})
 \end{equation}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1942,6 +2140,9 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
   <span class="k">return</span> <span class="n">therm_data_sim</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 2: pPCA'</span><span class="p">)</span>
+
 <span class="c1">## Uncomment to test your code</span>
 <span class="c1"># therm_data_sim = gen_from_pPCA(sensor_noise_var, therm_data_mean, pc_axes, pc_axes_variance)</span>
 <span class="c1"># plot_gen_samples_ppca(therm1, therm2, therm_data_sim)</span>
@@ -1949,139 +2150,111 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_747de28e.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_2fa496ef.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_747de28e_0.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_747de28e_0.png" style="width: 1120.0px; height: 832.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_2fa496ef_0.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_2fa496ef_0.png" style="width: 1120.0px; height: 832.0px;"/></a>
 </div>
 </div>
 <hr class="docutils"/>
 <div class="section" id="section-3-autoencoders">
 <h1>Section 3: Autoencoders<a class="headerlink" href="#section-3-autoencoders" title="Permalink to this headline">¶</a></h1>
+<p><em>Time estimate: ~25mins</em></p>
 <p><strong>Please</strong> run the cell after the video to download MNIST and CIFAR10 image datasets while the video plays.</p>
 <div class="section" id="video-3-autoenconders">
 <h2>Video 3: Autoenconders<a class="headerlink" href="#video-3-autoenconders" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "fea3ae4d603c4c33adda34f022cff988"}
+{"version_major": 2, "version_minor": 0, "model_id": "2afa728d8d774b0d9df4a2686020ffbf"}
 </script></div>
 </div>
-<p>Download MNIST and CIFAR10 image datasets while the above video plays</p>
+</div>
+<div class="section" id="download-mnist-and-cifar10-datasets">
+<h2>Download MNIST and CIFAR10 datasets<a class="headerlink" href="#download-mnist-and-cifar10-datasets" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Download MNIST and CIFAR10 image datasets while the above video plays</span>
-<span class="c1"># See https://pytorch.org/docs/stable/torchvision/datasets.html</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download MNIST and CIFAR10 datasets</span>
+<span class="kn">import</span> <span class="nn">tarfile</span><span class="o">,</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">os</span>
 
-<span class="c1"># MNIST contains handwritten digets 0-9, in grayscale images of size (1,28,28)</span>
-<span class="n">mnist</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">'./mnist/'</span><span class="p">,</span>
-                          <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                          <span class="n">transform</span><span class="o">=</span><span class="n">tv</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                          <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">mnist_val</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">'./mnist/'</span><span class="p">,</span>
-                              <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                              <span class="n">transform</span><span class="o">=</span><span class="n">tv</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                              <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">'MNIST.tar.gz'</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">'mnist'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">'https://osf.io/y2fj6/download'</span>
 
-<span class="n">cifar10</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR10</span><span class="p">(</span><span class="s1">'./cifar10/'</span><span class="p">,</span>
-                              <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                              <span class="n">transform</span><span class="o">=</span><span class="n">tv</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                              <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Downloading MNIST dataset...'</span><span class="p">)</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Downloading MNIST completed..</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
-<span class="n">cifar10_val</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR10</span><span class="p">(</span><span class="s1">'./cifar10/'</span><span class="p">,</span>
-                                  <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                                  <span class="n">transform</span><span class="o">=</span><span class="n">tv</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                                  <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+  <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+    <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'MNIST dataset has been dowloaded.</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 
-<span class="n">clear_output</span><span class="p">()</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">'cifar-10-python.tar.gz'</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">'cifar10'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">'https://osf.io/jbpme/download'</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Downloading CIFAR10 dataset...'</span><span class="p">)</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Downloading CIFAR10 completed.'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+  <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+    <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'CIFAR10 dataset has been dowloaded.'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading MNIST dataset...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz to ./mnist/MNIST/raw/train-images-idx3-ubyte.gz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading MNIST completed..
 </pre></div>
 </div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "73429d2cac13411b9007b055b02e7f02"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading CIFAR10 dataset...
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10407</span><span class="o">/</span><span class="mf">599051573.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                           <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>                           <span class="n">transform</span><span class="o">=</span><span class="n">tv</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>                           <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">mnist_val</span> <span class="o">=</span> <span class="n">tv</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">'./mnist/'</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>                               <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading CIFAR10 completed.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load MNIST and CIFAR10 image datasets</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Load MNIST and CIFAR10 image datasets</span>
+<span class="c1"># See https://pytorch.org/docs/stable/torchvision/datasets.html</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/mnist.py</span> in <span class="ni">__init__</span><span class="nt">(self, root, train, transform, target_transform, download)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span> 
-<span class="g g-Whitespace">     </span><span class="mi">86</span>         <span class="k">if</span> <span class="n">download</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">87</span>             <span class="bp">self</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span> 
-<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_exists</span><span class="p">():</span>
+<span class="c1"># MNIST</span>
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">'./mnist/'</span><span class="p">,</span>
+                       <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                       <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                       <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">mnist_val</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s1">'./mnist/'</span><span class="p">,</span>
+                           <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                           <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                           <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/mnist.py</span> in <span class="ni">download</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">177</span>                         <span class="n">url</span><span class="p">,</span> <span class="n">download_root</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_folder</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">178</span>                         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">179</span>                         <span class="n">md5</span><span class="o">=</span><span class="n">md5</span>
-<span class="g g-Whitespace">    </span><span class="mi">180</span>                     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">181</span>                 <span class="k">except</span> <span class="n">URLError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/utils.py</span> in <span class="ni">download_and_extract_archive</span><span class="nt">(url, download_root, extract_root, filename, md5, remove_finished)</span>
-<span class="g g-Whitespace">    </span><span class="mi">411</span>         <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">412</span> 
-<span class="ne">--&gt; </span><span class="mi">413</span>     <span class="n">download_url</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">download_root</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">md5</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span> 
-<span class="g g-Whitespace">    </span><span class="mi">415</span>     <span class="n">archive</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/utils.py</span> in <span class="ni">download_url</span><span class="nt">(url, root, filename, md5, max_redirect_hops)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>             <span class="nb">print</span><span class="p">(</span><span class="s1">'Downloading '</span> <span class="o">+</span> <span class="n">url</span> <span class="o">+</span> <span class="s1">' to '</span> <span class="o">+</span> <span class="n">fpath</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">139</span>             <span class="n">_urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fpath</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>         <span class="k">except</span> <span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">URLError</span><span class="p">,</span> <span class="ne">IOError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  <span class="c1"># type: ignore[attr-defined]</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span>             <span class="k">if</span> <span class="n">url</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'https'</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/utils.py</span> in <span class="ni">_urlretrieve</span><span class="nt">(url, filename, chunk_size)</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>         <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"User-Agent"</span><span class="p">:</span> <span class="n">USER_AGENT</span><span class="p">}))</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>             <span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">33</span>                 <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">),</span> <span class="s2">""</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>                     <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>                         <span class="k">break</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/utils.py</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>         <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"User-Agent"</span><span class="p">:</span> <span class="n">USER_AGENT</span><span class="p">}))</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>             <span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">length</span><span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">33</span>                 <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="nb">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">chunk_size</span><span class="p">),</span> <span class="s2">""</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>                     <span class="k">if</span> <span class="ow">not</span> <span class="n">chunk</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>                         <span class="k">break</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/http/client.py</span> in <span class="ni">read</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span>             <span class="c1"># Amount is given, implement using readinto</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span>             <span class="n">b</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">465</span>             <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">466</span>             <span class="k">return</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">b</span><span class="p">)[:</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">467</span>         <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/http/client.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">507</span>         <span class="c1"># connection, and the user is reading more bytes than will be provided</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span>         <span class="c1"># (for example, reading in 1k chunks)</span>
-<span class="ne">--&gt; </span><span class="mi">509</span>         <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">510</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">b</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span>             <span class="c1"># Ideally, we would raise IncompleteRead if the content-length</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">589</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">590</span>             <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<span class="c1"># CIFAR 10</span>
+<span class="n">cifar10</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR10</span><span class="p">(</span><span class="s1">'./cifar10/'</span><span class="p">,</span>
+                           <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                           <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">cifar10_val</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR10</span><span class="p">(</span><span class="s1">'./cifar10/'</span><span class="p">,</span>
+                               <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                               <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                               <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2119,13 +2292,13 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <div class="section" id="section-3-1-conceptual-introduction-to-autoencoders">
 <h2>Section 3.1: Conceptual introduction to AutoEncoders<a class="headerlink" href="#section-3-1-conceptual-introduction-to-autoencoders" title="Permalink to this headline">¶</a></h2>
 <p>Now we’ll create our first autoencoder. It will reduce images down to <span class="math notranslate nohighlight">\(K\)</span> dimensions. The architecture will be quite simple: the input will be linearly mapped to a single hidden (or latent) layer <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> with <span class="math notranslate nohighlight">\(K\)</span> units, which will then be linearly mapped back to an output that is the same size as the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-16d40289-300b-4748-b9d1-be4999c7175d">
-<span class="eqno">(84)<a class="headerlink" href="#equation-16d40289-300b-4748-b9d1-be4999c7175d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-836fcb96-9f4f-4ef9-bcaa-23dce6f841c6">
+<span class="eqno">(84)<a class="headerlink" href="#equation-836fcb96-9f4f-4ef9-bcaa-23dce6f841c6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \longrightarrow \mathbf{h} \longrightarrow \mathbf{x'}
 \end{equation}\]</div>
 <p>The loss function we’ll use will simply be mean squared error (MSE) quantifying how well the reconstruction (<span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>) matches the original image (<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-36be918b-95e9-4c16-8fd8-3c164eac5ddc">
-<span class="eqno">(85)<a class="headerlink" href="#equation-36be918b-95e9-4c16-8fd8-3c164eac5ddc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1595c734-0d20-4705-b194-19ab7bd56e77">
+<span class="eqno">(85)<a class="headerlink" href="#equation-1595c734-0d20-4705-b194-19ab7bd56e77" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{MSE Loss} = \sum_{i=1}^{N} ||\mathbf{x}_i - \mathbf{x'}_i||^2_2
 \end{equation}\]</div>
 <p>If all goes well, then the AutoEncoder will learn, <strong>end to end</strong>, a good “encoding” or “compression” of inputs to a latent representation (<span class="math notranslate nohighlight">\(\mathbf{x \longrightarrow h}\)</span>) as well as a good “decoding” of that latent representation to a reconstruction of the original input (<span class="math notranslate nohighlight">\(\mathbf{h \longrightarrow x'}\)</span>).</p>
@@ -2144,7 +2317,7 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 
 <span class="k">def</span> <span class="nf">train_autoencoder</span><span class="p">(</span><span class="n">autoencoder</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
                       <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-  <span class="n">autoencoder</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+  <span class="n">autoencoder</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
   <span class="n">optim</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">autoencoder</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span>
                            <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>
                            <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
@@ -2225,6 +2398,9 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 3.1: Linear AutoEncoder Architecture'</span><span class="p">)</span>
+
 <span class="c1"># Pick your own K</span>
 <span class="n">K</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
@@ -2235,10 +2411,15 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
+</pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_cebd6833.py"><em>Click for solution</em></a></p>
+</div>
+</div>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_c78a3327.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_cebd6833_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_cebd6833_3.png" style="width: 1119.0px; height: 832.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_c78a3327_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_c78a3327_3.png" style="width: 1119.0px; height: 832.0px;"/></a>
 </div>
 <div class="section" id="comparison-to-pca">
 <h3>Comparison to PCA<a class="headerlink" href="#comparison-to-pca" title="Permalink to this headline">¶</a></h3>
@@ -2254,6 +2435,7 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <span class="n">loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span>
                     <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
                     <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                     <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
                     <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
 
@@ -2261,6 +2443,29 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
                         <span class="n">n_batches</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span> <span class="o">//</span> <span class="mi">32</span><span class="p">)</span>
 
 <span class="n">pca_encode</span><span class="p">,</span> <span class="n">pca_decode</span> <span class="o">=</span> <span class="n">pca_encoder_decoder</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "749da2d932d8452088fc819e0326e3dc"}
+</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9659</span><span class="o">/</span><span class="mf">2353154234.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> 
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">image_moments</span><span class="p">((</span><span class="n">im</span> <span class="k">for</span> <span class="n">im</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">),</span>
+<span class="ne">---&gt; </span><span class="mi">14</span>                         <span class="n">n_batches</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span> <span class="o">//</span> <span class="mi">32</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">pca_encode</span><span class="p">,</span> <span class="n">pca_decode</span> <span class="o">=</span> <span class="n">pca_encoder_decoder</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+
+<span class="nn">/tmp/ipykernel_9659/1260270458.py</span> in <span class="ni">image_moments</span><span class="nt">(image_batches, n_batches)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">m1</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">+</span> <span class="n">im</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">m2</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">+</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">n</span> <span class="o">+=</span> <span class="n">b</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>   <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">/</span><span class="n">n</span><span class="p">,</span> <span class="n">m2</span><span class="o">/</span><span class="n">n</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -2307,6 +2512,36 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <div class="section" id="think-3-1-pca-vs-linear-autoenconder">
 <h3>Think! 3.1: PCA vs. Linear autoenconder<a class="headerlink" href="#think-3-1-pca-vs-linear-autoenconder" title="Permalink to this headline">¶</a></h3>
 <p>Compare the PCA-based reconstructions to those from the linear autoencoder. Is one better than the other? Are they equally good? Equally bad? How does the choice of <span class="math notranslate nohighlight">\(K\)</span> impact reconstruction quality?</p>
+<div class="section" id="id2">
+<h4>Student Response<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Student Response</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">widgets</span>
+
+
+<span class="n">text</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+   <span class="n">value</span><span class="o">=</span><span class="s1">'Type your answer here and click on `Submit!`'</span><span class="p">,</span>
+   <span class="n">placeholder</span><span class="o">=</span><span class="s1">'Type something'</span><span class="p">,</span>
+   <span class="n">description</span><span class="o">=</span><span class="s1">''</span><span class="p">,</span>
+   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">"Submit!"</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="n">button</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+   <span class="n">atform</span><span class="o">.</span><span class="n">add_answer</span><span class="p">(</span><span class="s1">'q3'</span> <span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">"Submission successful!"</span><span class="p">)</span>
+
+
+<span class="n">button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="section-3-2-building-a-nonlinear-convolutional-autoencoder">
@@ -2335,7 +2570,7 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <li><p>The <strong>decoder</strong> inverts this process, taking in vectors of length <span class="math notranslate nohighlight">\(K\)</span> and outputting images. Roughly speaking, its architecture is a “mirror image” of the encoder: the first decoder layer is linear, followed by two <strong>deconvolution</strong> layers (<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html"><code class="docutils literal notranslate"><span class="pre">ConvTranspose2d</span></code></a>). The <code class="docutils literal notranslate"><span class="pre">ConvTranspose2d</span></code>layers will have <code class="docutils literal notranslate"><span class="pre">ReLU</span></code> nonlinearities on their <em>inputs</em>. This “mirror image” between the encoder and decoder is a useful and near-ubiquitous convention. The idea is that the decoder can then learn to approximately invert the encoder, but it is not a strict requirement (and it does not guarantee the decoder will be an exact inverse of the encoder!).</p></li>
 </ol>
 <p>Below is a schematic of the architecture for MNIST. Notice that the width and height dimensions of the image planes reduce after each <code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code> and increase after each <code class="docutils literal notranslate"><span class="pre">nn.ConvTranspose2d</span></code>. With CIFAR10, the architecture is the same but the exact sizes will differ a bit.</p>
-<img alt="https://raw.githubusercontent.com/CIS-522/course-content/main/tutorials/W08_AutoEncoders_GANs/static/conv_sizes.png" src="https://raw.githubusercontent.com/CIS-522/course-content/main/tutorials/W08_AutoEncoders_GANs/static/conv_sizes.png"/>
+<img alt="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/conv_sizes.png" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/conv_sizes.png"/>
 <p><a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html"><code class="docutils literal notranslate"><span class="pre">torch.nn.ConvTranspose2d</span></code></a> module can be seen as the gradient of <code class="docutils literal notranslate"><span class="pre">Conv2d</span></code> with respect to its input. It is also known as a fractionally-strided convolution or a deconvolution (although it is not an actual deconvolution operation). The following code demonstrates this change in sizes:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -2441,6 +2676,9 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 3.2: Fill in code for the ConvAutoEncoder module'</span><span class="p">)</span>
+
 <span class="n">K</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## Uncomment to test your solution</span>
@@ -2452,9 +2690,9 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_b45e8b94.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_1624cb07.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_b45e8b94_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_b45e8b94_3.png" style="width: 1119.0px; height: 832.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1624cb07_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1624cb07_3.png" style="width: 1119.0px; height: 832.0px;"/></a>
 <p>You should see that the <code class="docutils literal notranslate"><span class="pre">ConvAutoEncoder</span></code> achieved lower MSE loss than the linear one. If not, you may need to retrain it (or run another few training epochs from where it left off). We make fewer guarantees on this working with CIFAR10, but it should definitely work with MNIST.</p>
 <p>Now let’s visually compare the reconstructed images from the linear and nonlinear autoencoders. Keep in mind that both have the same dimensionality for <span class="math notranslate nohighlight">\(\mathbf{h}\)</span>!</p>
 <p>Visualize the linear and nonlinear AE outputs</p>
@@ -2498,6 +2736,7 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <hr class="docutils"/>
 <div class="section" id="section-4-variational-auto-encoders-vaes">
 <h1>Section 4: Variational Auto-Encoders (VAEs)<a class="headerlink" href="#section-4-variational-auto-encoders-vaes" title="Permalink to this headline">¶</a></h1>
+<p><em>Time estimate: ~25mins</em></p>
 <p><strong>Please</strong> run the cell after the video to train a VAE for MNIST while watching it.</p>
 <div class="section" id="video-4-variational-autoencoders">
 <h2>Video 4: Variational Autoencoders<a class="headerlink" href="#video-4-variational-autoencoders" title="Permalink to this headline">¶</a></h2>
@@ -2653,25 +2892,25 @@ x = \mu + W z + \epsilon, ~~~~ where~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \ma
 <p><em>Recognition models and density networks</em></p>
 <p>Variational AutoEncoders (VAEs) are a lot like the classic AutoEncoders (AEs), but where we explicitly think about probability distributions. In the language of VAEs, the <strong>encoder</strong> is replaced with a <strong>recognition model</strong>, and the <strong>decoder</strong> is replaced with a <strong>density network</strong>.</p>
 <p>Where in a classic autoencoder the encoder maps from images to a single hidden vector,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bbb970c2-6a45-4296-b4d5-2b0aae035200">
-<span class="eqno">(86)<a class="headerlink" href="#equation-bbb970c2-6a45-4296-b4d5-2b0aae035200" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cd85461a-0eee-4ad8-a9d4-0da94e3277d8">
+<span class="eqno">(86)<a class="headerlink" href="#equation-cd85461a-0eee-4ad8-a9d4-0da94e3277d8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{AE}}{\longrightarrow} \mathbf{h} \, ,
 \end{equation}\]</div>
 <p>in a VAE we would say that a recognition model maps from inputs to entire <strong>distributions</strong> over hidden vectors,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3fffb7c-64be-49a8-862d-3037986ba129">
-<span class="eqno">(87)<a class="headerlink" href="#equation-f3fffb7c-64be-49a8-862d-3037986ba129" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-436c2b63-5f64-4ad7-b7a4-cd0fe6ed4e9f">
+<span class="eqno">(87)<a class="headerlink" href="#equation-436c2b63-5f64-4ad7-b7a4-cd0fe6ed4e9f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{VAE}}{\longrightarrow} q_{\mathbf{w_e}}(\mathbf{z}) \, ,
 \end{equation}\]</div>
 <p>which we will then sample from. Here <span class="math notranslate nohighlight">\(\mathbf{w_e}\)</span> refers to the weights of the recognition model, which parametarize our distribution generating network. We’ll say more in a moment about what kind of distribution <span class="math notranslate nohighlight">\(q_{\mathbf{w_e}}(\mathbf{z})\)</span> is.
 Part of what makes VAEs work is that the loss function will require good reconstructions of the input not just for a single <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>, but <em>on average</em> from samples of <span class="math notranslate nohighlight">\(\mathbf{z} \sim q_{\mathbf{w_e}}(\mathbf{z})\)</span>.</p>
 <p>In the classic autoencoder, we had a decoder which maps from hidden vectors to reconstructions of the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1556e97d-4915-4fb3-ba0d-5043722fafa3">
-<span class="eqno">(88)<a class="headerlink" href="#equation-1556e97d-4915-4fb3-ba0d-5043722fafa3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0d98d12a-9b19-4c55-8f88-67ffe9b305f0">
+<span class="eqno">(88)<a class="headerlink" href="#equation-0d98d12a-9b19-4c55-8f88-67ffe9b305f0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h} \overset{\text{AE}}{\longrightarrow} \mathbf{x'} \, .
 \end{equation}\]</div>
 <p>In a density network, reconstructions are expressed in terms of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa6998cd-019a-4601-bd45-2226f1052dcf">
-<span class="eqno">(89)<a class="headerlink" href="#equation-aa6998cd-019a-4601-bd45-2226f1052dcf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a8280ff0-99e8-448e-883a-e0b1ccc793a6">
+<span class="eqno">(89)<a class="headerlink" href="#equation-a8280ff0-99e8-448e-883a-e0b1ccc793a6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \overset{\text{VAE}}{\longrightarrow} p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})
 \end{equation}\]</div>
 <p>where, as above, <span class="math notranslate nohighlight">\(p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})\)</span> is defined by mapping <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> through a density network then treating the resulting <span class="math notranslate nohighlight">\(f(\mathbf{z};\mathbf{w_d})\)</span> as the mean of a (Gaussian) distribution over <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Similarly, our reconstruction distribution is parametarized by the weights of the density network.</p>
@@ -2679,13 +2918,13 @@ Part of what makes VAEs work is that the loss function will require good reconst
 <div class="section" id="section-4-2-generating-novel-images-from-the-decoder">
 <h2>Section 4.2: Generating novel images from the decoder<a class="headerlink" href="#section-4-2-generating-novel-images-from-the-decoder" title="Permalink to this headline">¶</a></h2>
 <p>If we isolate the decoder part of the AutoEncoder, what we have is a neural network that takes as input a vector of size <span class="math notranslate nohighlight">\(K\)</span> and produces as output an image that looks something like our training data. Recall that in our earlier notation, we had an input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that was mapped to a low-dimensional hidden representation <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> which was then decoded into a reconstruction of the input, <span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c8d89492-958d-4a7e-8b65-64f64864578c">
-<span class="eqno">(90)<a class="headerlink" href="#equation-c8d89492-958d-4a7e-8b65-64f64864578c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ff76657c-85aa-4fec-b409-9fa2b49f4551">
+<span class="eqno">(90)<a class="headerlink" href="#equation-ff76657c-85aa-4fec-b409-9fa2b49f4551" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{encode}}{\longrightarrow} \mathbf{h} \overset{\text{decode}}{\longrightarrow} \mathbf{x'}\, .
 \end{equation}\]</div>
 <p>Partly as a matter of convention, and partly to distinguish where we are going next from the previous section, we’re going to introduce a new variable, <span class="math notranslate nohighlight">\(\mathbf{z} \in \mathbb{R}^K\)</span>, which will take the place of <span class="math notranslate nohighlight">\(\mathbf{h}\)</span>. The key difference is that while <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> is produced by the encoder for a particular <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> will be drawn out of thin air from a prior of our choosing:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-769b7e0b-d23a-43c5-91a1-5e9b7a5eb122">
-<span class="eqno">(91)<a class="headerlink" href="#equation-769b7e0b-d23a-43c5-91a1-5e9b7a5eb122" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a676178-db28-4b09-b582-f8cfd7e52eae">
+<span class="eqno">(91)<a class="headerlink" href="#equation-9a676178-db28-4b09-b582-f8cfd7e52eae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \sim p(\mathbf{z})\\ \mathbf{z} \overset{\text{decode}}{\longrightarrow} \mathbf{x}\, .
 \end{equation}\]</div>
 <p>(Note that it is also common convention to drop the “prime” on <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> when it is no longer being thought of as a “reconstruction”).</p>
@@ -2714,6 +2953,9 @@ Part of what makes VAEs work is that the loss function will require good reconst
     <span class="k">return</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)</span>
 
 
+<span class="c1"># add event to airtable</span>
+<span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 4.2: Generating images'</span><span class="p">)</span>
+
 <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## Uncomment to test your solution</span>
 <span class="c1"># images = generate_images(trained_conv_AE, K, n_images=9)</span>
@@ -2724,10 +2966,10 @@ Part of what makes VAEs work is that the loss function will require good reconst
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_ed134be2.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_1f5f1241.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_ed134be2_1.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_ed134be2_1.png" style="width: 826.0px; height: 886.0px;"/></a>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_ed134be2_2.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_ed134be2_2.png" style="width: 855.0px; height: 886.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_1.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_1.png" style="width: 826.0px; height: 886.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_2.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_2.png" style="width: 855.0px; height: 886.0px;"/></a>
 </div>
 </div>
 </div>
@@ -2752,6 +2994,24 @@ Part of what makes VAEs work is that the loss function will require good reconst
 <li><p>An introduction to the broad applications of VAEs.</p></li>
 </ul>
 <p>In the next two tutorials we will cover GANs and how to train them.</p>
+<div class="section" id="airtable-submission-link">
+<h2>Airtable Submission Link<a class="headerlink" href="#airtable-submission-link" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Airtable Submission Link</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span> <span class="k">as</span> <span class="n">IPydisplay</span>
+<span class="n">IPydisplay</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
+   <span class="sa">f</span><span class="s2">"""</span>
+<span class="s2"> &lt;div&gt;</span>
+<span class="s2">   &lt;a href= "</span><span class="si">{</span><span class="n">atform</span><span class="o">.</span><span class="n">url</span><span class="p">()</span><span class="si">}</span><span class="s2">" target="_blank"&gt;</span>
+<span class="s2">   &lt;img src="https://github.com/NeuromatchAcademy/course-content-dl/blob/main/tutorials/static/AirtableSubmissionButton.png?raw=1"</span>
+<span class="s2"> alt="button link to Airtable" style="width:410px"&gt;&lt;/a&gt;</span>
+<span class="s2">   &lt;/div&gt;"""</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <script type="text/x-thebe-config">
     {
