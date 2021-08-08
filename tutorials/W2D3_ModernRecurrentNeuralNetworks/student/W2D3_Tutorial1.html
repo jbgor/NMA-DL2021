@@ -259,7 +259,7 @@
 </ul>
 <p class="caption">
 <span class="caption-text">
-  Doing more with fewer parameters
+  Doing More With Fewer Parameters
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -302,7 +302,7 @@
 </li>
 <li class="toctree-l2">
 <a class="reference internal" href="../../W2D2_ModernConvnets/student/W2D2_Tutorial2.html">
-     Tutorial 2: Facial recognition using modern convnets
+     (Bonus) Tutorial 2: Facial recognition using modern convnets
     </a>
 </li>
 </ul>
@@ -373,10 +373,15 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1">
+<a class="reference internal" href="../../Module_WrapUps/DoingMoreWithFewerParameters.html">
+   Deep Learning: Doing more with fewer parameters Wrap-up (Coming soon!)
+  </a>
+</li>
 </ul>
 <p class="caption">
 <span class="caption-text">
-  Advanced topics
+  Advanced Topics
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -452,6 +457,11 @@
     </a>
 </li>
 </ul>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="../../Module_WrapUps/AdvancedTopics.html">
+   Deep Learning: Advanced Topics Wrap-up
+  </a>
 </li>
 </ul>
 <p class="caption">
@@ -1512,18 +1522,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9306eb0-04ec-4055-986d-0e82aed352ec">
-<span class="eqno">(60)<a class="headerlink" href="#equation-d9306eb0-04ec-4055-986d-0e82aed352ec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-87a48045-f543-4d72-8e91-5fdeda0d8db5">
+<span class="eqno">(60)<a class="headerlink" href="#equation-87a48045-f543-4d72-8e91-5fdeda0d8db5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86987ef8-4262-49e1-b235-4de10ad79db6">
-<span class="eqno">(61)<a class="headerlink" href="#equation-86987ef8-4262-49e1-b235-4de10ad79db6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e54b8fde-2995-47ca-9254-c260c91e9a39">
+<span class="eqno">(61)<a class="headerlink" href="#equation-e54b8fde-2995-47ca-9254-c260c91e9a39" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-38d4cc83-0761-42cb-b348-df95805563d1">
-<span class="eqno">(62)<a class="headerlink" href="#equation-38d4cc83-0761-42cb-b348-df95805563d1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c101ad0c-4232-4d15-b433-034059f71b2a">
+<span class="eqno">(62)<a class="headerlink" href="#equation-c101ad0c-4232-4d15-b433-034059f71b2a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1535,8 +1545,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-19c639ef-f99e-4c51-a55d-4a8b5178b224">
-<span class="eqno">(63)<a class="headerlink" href="#equation-19c639ef-f99e-4c51-a55d-4a8b5178b224" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b2580d5e-5e88-44f8-b6a9-04c58c1e81f1">
+<span class="eqno">(63)<a class="headerlink" href="#equation-b2580d5e-5e88-44f8-b6a9-04c58c1e81f1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
