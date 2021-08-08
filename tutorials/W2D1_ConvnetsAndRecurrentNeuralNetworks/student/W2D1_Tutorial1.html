@@ -983,13 +983,16 @@
 <a class="reference internal nav-link" href="#video-4-pooling">
      Video 4: Pooling
     </a>
-<ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#dataset-dataloader-functions-run-me">
-       Dataset/DataLoader Functions (run me)
-      </a>
 </li>
-</ul>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#download-emnist-dataset">
+     Download EMNIST dataset
+    </a>
+</li>
+<li class="toc-h2 nav-item toc-entry">
+<a class="reference internal nav-link" href="#dataset-dataloader-functions-run-me">
+     Dataset/DataLoader Functions (run me)
+    </a>
 </li>
 <li class="toc-h2 nav-item toc-entry">
 <a class="reference internal nav-link" href="#section-3-1-multiple-filters">
@@ -1073,6 +1076,13 @@
 <a class="reference internal nav-link" href="#coding-exercise-4-implement-your-own-cnn">
      Coding Exercise 4: Implement your own CNN
     </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#train-test-functions-run-me">
+       Train/Test Functions (Run Me)
+      </a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -1104,6 +1114,16 @@
     </a>
 <ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#download-fashion-mnist-dataset">
+       Download Fashion MNIST dataset
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#loading-fashion-mnist-data">
+       Loading Fashion-MNIST Data
+      </a>
+</li>
+<li class="toc-h3 nav-item toc-entry">
 <a class="reference internal nav-link" href="#video-8-the-training-loop">
        Video 8: The Training Loop
       </a>
@@ -1116,8 +1136,8 @@
     </a>
 <ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#load-a-sample-dataset">
-       Load a sample dataset
+<a class="reference internal nav-link" href="#load-a-sample-dataset-emnist">
+       Load a sample dataset (EMNIST)
       </a>
 </li>
 </ul>
@@ -1126,13 +1146,6 @@
 <a class="reference internal nav-link" href="#bonus-1-3-fashion-mnist-dataset">
      Bonus 1.3: Fashion-MNIST dataset
     </a>
-<ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#getting-the-dataloaders-run-me">
-       Getting the DataLoaders (Run Me)
-      </a>
-</li>
-</ul>
 </li>
 <li class="toc-h2 nav-item toc-entry">
 <a class="reference internal nav-link" href="#coding-exercise-bonus-1-code-the-training-loop">
@@ -1175,6 +1188,13 @@
 <a class="reference internal nav-link" href="#coding-exercise-bonus-2-2-how-much-does-augmentation-help">
        Coding Exercise Bonus 2.2: How much does augmentation help?
       </a>
+<ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry">
+<a class="reference internal nav-link" href="#download-fashion-mnist-if-it-has-not-been-downloaded">
+         Download Fashion-MNIST, if it has not been downloaded.
+        </a>
+</li>
+</ul>
 </li>
 <li class="toc-h3 nav-item toc-entry">
 <a class="reference internal nav-link" href="#think-bonus-2-2-data-augmentation">
@@ -1238,7 +1258,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
 <span class="o">!</span>pip install livelossplot --quiet
 <span class="o">!</span>pip install Pillow --quiet
-<span class="o">!</span>pip install opencv-python --quiet
 <span class="o">!</span>pip install imageio-ffmpeg --quiet
 
 <span class="o">!</span>pip install git+https://github.com/NeuromatchAcademy/evaltools --quiet
@@ -1266,18 +1285,11 @@
 <span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.2; however, version 21.2.3 is available.</span>
-<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">cv2</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
@@ -1288,17 +1300,14 @@
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+
 <span class="kn">import</span> <span class="nn">torchvision.transforms</span> <span class="k">as</span> <span class="nn">transforms</span>
 <span class="kn">import</span> <span class="nn">torchvision.datasets</span> <span class="k">as</span> <span class="nn">datasets</span>
 <span class="kn">from</span> <span class="nn">torchvision.utils</span> <span class="kn">import</span> <span class="n">make_grid</span>
 <span class="kn">from</span> <span class="nn">torchvision.datasets</span> <span class="kn">import</span> <span class="n">ImageFolder</span>
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">TensorDataset</span>
 
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
-
-<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span><span class="p">,</span> <span class="n">trange</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 </pre></div>
 </div>
@@ -1337,6 +1346,56 @@ The mpl_toolkits.legacy_colorbar rcparam was deprecated in Matplotlib 3.4 and wi
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Helper functions</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve2d</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">correlate2d</span>
+<span class="kn">import</span> <span class="nn">zipfile</span><span class="o">,</span> <span class="nn">gzip</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">tarfile</span>
+
+
+<span class="k">def</span> <span class="nf">download_data</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">tar</span><span class="p">):</span>
+  <span class="sd">"""</span>
+<span class="sd">  Data downloading for OSF.</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    fname : str</span>
+<span class="sd">      The name of the archive</span>
+<span class="sd">    folder : str</span>
+<span class="sd">      The name of the destination folder</span>
+<span class="sd">    url : str</span>
+<span class="sd">      The download url</span>
+<span class="sd">    tar : boolean</span>
+<span class="sd">      `tar=True` the archive is `fname`.tar.gz, `tar=False` is `fname`.zip</span>
+<span class="sd">  Returns:</span>
+<span class="sd">    Nothing.</span>
+<span class="sd">  """</span>
+
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Downloading </span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1"> dataset...'</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+      <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Downloading </span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1"> completed.'</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">Extracting the files...</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tar</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fz</span><span class="p">:</span>
+        <span class="n">fz</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">ft</span><span class="p">:</span>
+        <span class="n">ft</span><span class="o">.</span><span class="n">extractall</span><span class="p">()</span>
+    <span class="c1"># remove the archive</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+    <span class="c1"># extract all .gz files</span>
+    <span class="n">foldername</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">+</span> <span class="s1">'/raw/'</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">foldername</span><span class="p">):</span>
+      <span class="c1"># remove the extension</span>
+      <span class="n">fname</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'.gz'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span>
+      <span class="c1"># gunzip all files</span>
+      <span class="k">with</span> <span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">foldername</span> <span class="o">+</span> <span class="n">filename</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_in</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">foldername</span> <span class="o">+</span> <span class="n">fname</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f_out</span><span class="p">:</span>
+          <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">f_in</span><span class="p">,</span> <span class="n">f_out</span><span class="p">)</span>
+          <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">foldername</span><span class="o">+</span><span class="n">filename</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s1"> dataset has already been dowloaded.</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+
 
 <span class="k">def</span> <span class="nf">check_shape_function</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">image_shape</span><span class="p">,</span> <span class="n">kernel_shape</span><span class="p">):</span>
   <span class="n">correct_shape</span> <span class="o">=</span> <span class="n">correlate2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">image_shape</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="n">kernel_shape</span><span class="p">),</span> <span class="s2">"valid"</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
@@ -1569,7 +1628,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "d7904d180e4c4f0da7cffb029ac6cdb1"}
+{"version_major": 2, "version_minor": 0, "model_id": "db59129c7af8460d9ab3b3f056ff7dd0"}
 </script></div>
 </div>
 </div>
@@ -1610,9 +1669,9 @@ What do you notice?</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0c9a09227edd4dcd9de91f0887127a92"}
+{"version_major": 2, "version_minor": 0, "model_id": "69118f0df4c44bbe928ab8463d7be9f6"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "902c1119be1b4934b84afdc0414428e7"}
+{"version_major": 2, "version_minor": 0, "model_id": "2dfaedf2e3424eee924e14ccd4f71034"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_211bbfd0.py"><em>Click for solution</em></a></p>
@@ -1630,7 +1689,7 @@ What do you notice?</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "49f4df66a17a4305b355b567b17a9c17"}
+{"version_major": 2, "version_minor": 0, "model_id": "264794292fc2408ba12efcd18071a53b"}
 </script></div>
 </div>
 </div>
@@ -1669,9 +1728,9 @@ What do you notice?</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1ea3e1b6bbc64d098dfae3c2319d5a4d"}
+{"version_major": 2, "version_minor": 0, "model_id": "204da091ff824173ac4cacf8de06fa3f"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "fba11fe968b94d6da1db9afd6171eb1d"}
+{"version_major": 2, "version_minor": 0, "model_id": "4a7f69e8d31a4adb8e098b8278412782"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_82e644f4.py"><em>Click for solution</em></a></p>
@@ -1688,7 +1747,7 @@ What do you notice?</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a3a67c246a234b59bd41db68c858f016"}
+{"version_major": 2, "version_minor": 0, "model_id": "8638c9a60d9e403a923a023704b9af8d"}
 </script></div>
 </div>
 <p>Before jumping into coding exercises, take a moment to look at this animation that steps through the process of convolution.</p>
@@ -2461,7 +2520,7 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> "/tmp/ipykernel_8920/1723788140.py"</span><span class="gt">, line </span><span class="mi">3</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> "/tmp/ipykernel_9232/1723788140.py"</span><span class="gt">, line </span><span class="mi">3</span>
     <span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
     <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
@@ -2480,8 +2539,8 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 <div class="section" id="coding-exercise-2-1-convolution-of-a-simple-kernel">
 <h2>Coding Exercise 2.1: Convolution of a Simple Kernel<a class="headerlink" href="#coding-exercise-2-1-convolution-of-a-simple-kernel" title="Permalink to this headline">¶</a></h2>
 <p>At its core, convolution is just repeatedly multiplying a matrix, known as a <em>kernel</em> or <em>filter</em>, with some other, larger matrix (in our case the pixels of an image). Consider the below image and kernel:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a710f4a9-0470-4a7f-ba77-96b3ffaf8e69">
-<span class="eqno">(55)<a class="headerlink" href="#equation-a710f4a9-0470-4a7f-ba77-96b3ffaf8e69" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-02fcfe8d-0b16-4ad0-b91f-f72bc8ef0dbb">
+<span class="eqno">(55)<a class="headerlink" href="#equation-02fcfe8d-0b16-4ad0-b91f-f72bc8ef0dbb" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \textbf{Image} &amp;= 
 \begin{bmatrix}0 &amp; 200 &amp; 200 \\0 &amp; 0 &amp; 200 \\ 0 &amp; 0 &amp; 0  
 \end{bmatrix} \\ \\
@@ -2571,13 +2630,6 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 </div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_a728d667.py"><em>Click for solution</em></a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>✅ Output for image_shape: (3, 3) and kernel_shape: (2, 2), output_shape: (2, 2), is correct.
-✅ Output for image_shape: (3, 4) and kernel_shape: (2, 3), output_shape: (2, 2), is correct.
-✅ Output for image_shape: (5, 5) and kernel_shape: (5, 5), output_shape: (1, 1), is correct.
-✅ Output for image_shape: (10, 20) and kernel_shape: (3, 2), output_shape: (8, 19), is correct.
-✅ Output for image_shape: (100, 200) and kernel_shape: (40, 30), output_shape: (61, 171), is correct.
-</pre></div>
-</div>
 </div>
 <div class="section" id="coding-exercise-2-3-coding-a-convolution">
 <h2>Coding Exercise 2.3: Coding a Convolution<a class="headerlink" href="#coding-exercise-2-3-coding-a-convolution" title="Permalink to this headline">¶</a></h2>
@@ -2638,10 +2690,6 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 </div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_79e1f5fb.py"><em>Click for solution</em></a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>✅ The function calculated the convolution correctly.
-✅ The function calculated the convolution correctly.
-</pre></div>
-</div>
 <div class="section" id="convolution-on-the-chicago-skyline">
 <h3>Convolution on the Chicago Skyline<a class="headerlink" href="#convolution-on-the-chicago-skyline" title="Permalink to this headline">¶</a></h3>
 <p>After you have finished programming the above convolution function, run the below coding cell, which applies two different kernels to a greyscale picture of Chicago and takes the geometric average of the results.</p>
@@ -2653,7 +2701,7 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Load images (run me)</span>
 
-<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s1">'images/'</span><span class="p">):</span>
   <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">'images/'</span><span class="p">)</span>
@@ -3543,7 +3591,7 @@ tensor([[[[ 0.,  3.,  8.,  4.],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> "/tmp/ipykernel_8920/1963347081.py"</span><span class="gt">, line </span><span class="mi">5</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> "/tmp/ipykernel_9232/1963347081.py"</span><span class="gt">, line </span><span class="mi">5</span>
     <span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
     <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
@@ -3555,8 +3603,8 @@ tensor([[[[ 0.,  3.,  8.,  4.],
 <div class="section" id="think-2-2-1-edge-detection">
 <h3>Think! 2.2.1: Edge Detection<a class="headerlink" href="#think-2-2-1-edge-detection" title="Permalink to this headline">¶</a></h3>
 <p>One of the simpler tasks performed by a convolutional layer is edge detection; that is, finding a place in the image where there is a large and abrupt change in color. Edge-detecting filters are usually learned by the first layers in a CNN. Observe the following simple kernel and discuss whether this will detect vertical edges (where the trace of the edge is vertical; i.e. there is a boundary between left and right), or whether it will detect horizontal edges (where the trace of the edge is horizontal; i.e., there is a boundary between top and bottom).</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e2faedea-4a11-4bde-802f-d3033e682f7b">
-<span class="eqno">(56)<a class="headerlink" href="#equation-e2faedea-4a11-4bde-802f-d3033e682f7b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a6d778ce-a31b-4f6f-b746-4a2e0bf5bbcb">
+<span class="eqno">(56)<a class="headerlink" href="#equation-a6d778ce-a31b-4f6f-b746-4a2e0bf5bbcb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \textbf{Kernel} = 
 \begin{bmatrix} 1 &amp; -1 \\ 1 &amp; -1
 \end{bmatrix} 
@@ -3591,9 +3639,9 @@ tensor([[[[ 0.,  3.,  8.,  4.],
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "edf743bf61734516b13443c55259529f"}
+{"version_major": 2, "version_minor": 0, "model_id": "a6e33333a42346639479bb1ba13d4c28"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a49a0bf810ce4b38bfd3c73fcbb77649"}
+{"version_major": 2, "version_minor": 0, "model_id": "bae86fc746714becbd0d6391b5906c3b"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_309474b2.py"><em>Click for solution</em></a></p>
@@ -3618,7 +3666,7 @@ tensor([[[[ 0.,  3.,  8.,  4.],
  [1. 1. 0. 0. 0. 0. 1. 1.]]
 </pre></div>
 </div>
-<img alt="../../../_images/W2D1_Tutorial1_80_1.png" src="../../../_images/W2D1_Tutorial1_80_1.png"/>
+<img alt="../../../_images/W2D1_Tutorial1_78_1.png" src="../../../_images/W2D1_Tutorial1_78_1.png"/>
 </div>
 </div>
 <div class="cell docutils container">
@@ -3649,7 +3697,7 @@ tensor([[[[ 0.,  3.,  8.,  4.],
  [ 0.  2.  0.  0.  0. -2.  0.]]
 </pre></div>
 </div>
-<img alt="../../../_images/W2D1_Tutorial1_81_1.png" src="../../../_images/W2D1_Tutorial1_81_1.png"/>
+<img alt="../../../_images/W2D1_Tutorial1_79_1.png" src="../../../_images/W2D1_Tutorial1_79_1.png"/>
 </div>
 </div>
 <p>As you can see, this kernel detects vertical edges (the black stripe corresponds to a highly positive result, while the white stripe corresponds to a highly negative result. However, to display the image, all the pixels are normalized between 0=black and 1=white).</p>
@@ -3688,9 +3736,9 @@ tensor([[[[ 0.,  3.,  8.,  4.],
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a2e0f14bb44e4c128b0e57d31f6ec01a"}
+{"version_major": 2, "version_minor": 0, "model_id": "387be313211f4da4954f2bd58515d44a"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a7c6a83187d04903a88a252dd6cf8f4a"}
+{"version_major": 2, "version_minor": 0, "model_id": "c6ed1319f81946e6904af03c8a56221f"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_7cc3340b.py"><em>Click for solution</em></a></p>
@@ -3707,19 +3755,46 @@ tensor([[[[ 0.,  3.,  8.,  4.],
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "272747b0d5e24e9c87721f56b992f1b1"}
+{"version_major": 2, "version_minor": 0, "model_id": "e6b7a6e123f045b3ac52b287645ad59b"}
 </script></div>
 </div>
-<p>To visualize the various components of a CNN, we will build a simple CNN step by step. Recall that the MNIST dataset consists of binarized images of handwritten digits. This time we will be using the EMNIST letters dataset, which consists of binarized images of handwritten characters <span class="math notranslate nohighlight">\((A, ..., Z)\)</span>.</p>
+<p>To visualize the various components of a CNN, we will build a simple CNN step by step. Recall that the MNIST dataset consists of binarized images of handwritten digits. This time, we will use the EMNIST letters dataset, which consists of binarized images of handwritten characters <span class="math notranslate nohighlight">\((A, ..., Z)\)</span>.</p>
 <p>We will simplify the problem further by only keeping the images that correspond to <span class="math notranslate nohighlight">\(X\)</span> (labeled as <code class="docutils literal notranslate"><span class="pre">24</span></code> in the dataset) and <span class="math notranslate nohighlight">\(O\)</span> (labeled as <code class="docutils literal notranslate"><span class="pre">15</span></code> in the dataset). Then, we will train a CNN to classify an image either an <span class="math notranslate nohighlight">\(X\)</span> or an <span class="math notranslate nohighlight">\(O\)</span>.</p>
-<div class="section" id="dataset-dataloader-functions-run-me">
-<h3>Dataset/DataLoader Functions (run me)<a class="headerlink" href="#dataset-dataloader-functions-run-me" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="download-emnist-dataset">
+<h2>Download EMNIST dataset<a class="headerlink" href="#download-emnist-dataset" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Dataset/DataLoader Functions (run me)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download EMNIST dataset</span>
+
+<span class="c1"># webpage: https://www.itl.nist.gov/iaui/vip/cs_links/EMNIST/gzip.zip</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">'EMNIST.zip'</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">'EMNIST'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://osf.io/xwfaj/download"</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">tar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading EMNIST dataset...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading EMNIST completed.
+
+Extracting the files...
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-dataloader-functions-run-me">
+<h2>Dataset/DataLoader Functions (run me)<a class="headerlink" href="#dataset-dataloader-functions-run-me" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Dataset/DataLoader Functions (run me)</span>
 
 <span class="c1"># loading the dataset</span>
-<span class="k">def</span> <span class="nf">get_Xvs0_dataset</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_Xvs0_dataset</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
   <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
     <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
         <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
@@ -3730,14 +3805,14 @@ tensor([[[[ 0.,  3.,  8.,  4.],
         <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
         <span class="p">])</span>
 
-  <span class="n">emnist_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>
+  <span class="n">emnist_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span>
                                  <span class="n">split</span><span class="o">=</span><span class="s1">'letters'</span><span class="p">,</span>
-                                 <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                 <span class="n">download</span><span class="o">=</span><span class="n">download</span><span class="p">,</span>
                                  <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                  <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-  <span class="n">emnist_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>
+  <span class="n">emnist_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span>
                                 <span class="n">split</span><span class="o">=</span><span class="s1">'letters'</span><span class="p">,</span>
-                                <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">download</span><span class="o">=</span><span class="n">download</span><span class="p">,</span>
                                 <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                 <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
 
@@ -3765,14 +3840,18 @@ tensor([[[[ 0.,  3.,  8.,  4.],
   <span class="n">g_seed</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">()</span>
   <span class="n">g_seed</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
 
-  <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
-                        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-                        <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
-                        <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
-  <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
-                        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
-                        <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
-                        <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
+  <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span>
+                            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                            <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                            <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
+                            <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
+  <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span>
+                           <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                           <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                           <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
+                           <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
 
   <span class="k">return</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">test_loader</span>
 </pre></div>
@@ -3781,7 +3860,7 @@ tensor([[[[ 0.,  3.,  8.,  4.],
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emnist_train</span><span class="p">,</span> <span class="n">emnist_test</span> <span class="o">=</span> <span class="n">get_Xvs0_dataset</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">emnist_train</span><span class="p">,</span> <span class="n">emnist_test</span> <span class="o">=</span> <span class="n">get_Xvs0_dataset</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">train_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">get_data_loaders</span><span class="p">(</span><span class="n">emnist_train</span><span class="p">,</span> <span class="n">emnist_test</span><span class="p">,</span>
                                              <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 
@@ -3792,18 +3871,8 @@ tensor([[[[ 0.,  3.,  8.,  4.],
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading https://www.itl.nist.gov/iaui/vip/cs_links/EMNIST/gzip.zip to ./data/EMNIST/raw/gzip.zip
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2550510d5c834e86b9a8c42dd498e98e"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/EMNIST/raw/gzip.zip to ./data/EMNIST/raw
-</pre></div>
-</div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torchvision/datasets/mnist.py:498: UserWarning: The given NumPy array is not writeable, and PyTorch does not support non-writeable tensors. This means you can write to the underlying (supposedly non-writeable) NumPy array using the tensor. You may want to copy the array to protect its data or make it writeable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at  /pytorch/torch/csrc/utils/tensor_numpy.cpp:180.)
   return torch.from_numpy(parsed.astype(m[2], copy=False)).view(*s)
-/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py:481: UserWarning: This DataLoader will create 3 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
-  cpuset_checked))
 </pre></div>
 </div>
 </div>
@@ -4597,7 +4666,6 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="section-3-1-multiple-filters">
 <h2>Section 3.1: Multiple Filters<a class="headerlink" href="#section-3-1-multiple-filters" title="Permalink to this headline">¶</a></h2>
 <p>The following network sets up 3 filters and runs them on an image of the dataset from the <span class="math notranslate nohighlight">\(X\)</span> class.  Note that we are using the filters from the videos!</p>
@@ -4652,7 +4720,7 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f151e9804d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f00ead0acd0&gt;
 </pre></div>
 </div>
 <img alt="../../../_images/W2D1_Tutorial1_100_1.png" src="../../../_images/W2D1_Tutorial1_100_1.png"/>
@@ -4690,9 +4758,9 @@ dom_target.querySelector(".play_fast").onchange = ()=&gt;{init()}
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c3ecfe476dcf4358afcf5674a2da46ae"}
+{"version_major": 2, "version_minor": 0, "model_id": "4ca10073d5684a8cb42bd55c4ad2e622"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0117ee96c91a4a69a25fdadd23f2e8d1"}
+{"version_major": 2, "version_minor": 0, "model_id": "1f2228532c46466cb02ab56f5ef11bd2"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_256458ee.py"><em>Click for solution</em></a></p>
@@ -5750,7 +5818,7 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">IndexError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8920</span><span class="o">/</span><span class="mf">432012943.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9232</span><span class="o">/</span><span class="mf">432012943.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">ax22</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">output_x_pool</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">ax23</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"output filter 2"</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">19</span> <span class="n">ax23</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">output_x_pool</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -5777,7 +5845,7 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8399e089c0394ed3b7af1154b9f52140"}
+{"version_major": 2, "version_minor": 0, "model_id": "65391669f73545a1a7e6b8ff4b290046"}
 </script></div>
 </div>
 </div>
@@ -6047,11 +6115,11 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9622a77d8b7243679c09057d6e09342c"}
+{"version_major": 2, "version_minor": 0, "model_id": "8a0d8afe7dc24f0dad0a898d19ffba50"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a7266809080847109bb8d0687bd485eb"}
+{"version_major": 2, "version_minor": 0, "model_id": "e494ed8ad897441e9b46fb7763dfedc3"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "36319a04f36d4debab37985b240e0e28"}
+{"version_major": 2, "version_minor": 0, "model_id": "9e7cc3972d1445dd91a4975abd932645"}
 </script></div>
 </div>
 <p>The difference in parameters is huge, and it continues to increase as the input image size increases. Larger images require that the linear layer use a matrix that can be directly multiplied with the input pixels.</p>
@@ -6065,7 +6133,7 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "edcc18dd404c499b8535b8a3592863a9"}
+{"version_major": 2, "version_minor": 0, "model_id": "22bd7eb36fad4b63bb021afeb68aace5"}
 </script></div>
 </div>
 </div>
@@ -6085,11 +6153,14 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 <p>Hint: You could use <code class="docutils literal notranslate"><span class="pre">torch.flatten(x,</span> <span class="pre">1)</span></code> in order to flatten the input at this stage. The 1 means it flattens dimensions starting with dimensions 1 in order to exclude the batch dimension from the flattening.</p>
 <p>We should also stop to think about how we get the output of the pooling layer to be 12x12. It is because first, the two <code class="docutils literal notranslate"><span class="pre">Conv2d</span></code> with a <code class="docutils literal notranslate"><span class="pre">kernel_size=3</span></code> operations cause the image to be reduced to 26x26 and the second <code class="docutils literal notranslate"><span class="pre">Conv2d</span></code> reduces it to 24x24. Finally, the <code class="docutils literal notranslate"><span class="pre">MaxPool2d</span></code> operation reduces the output size by half to 12x12.</p>
 <p>Also, don’t forget the ReLUs (use e.g. <code class="docutils literal notranslate"><span class="pre">F.ReLU</span></code>)! No need to add a ReLU after the final fully connected layer.</p>
+<div class="section" id="train-test-functions-run-me">
+<h3>Train/Test Functions (Run Me)<a class="headerlink" href="#train-test-functions-run-me" title="Permalink to this headline">¶</a></h3>
+<p>Double-click to see the contents!</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Train/Test Functions (Run Me)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Train/Test Functions (Run Me)</span>
 
-<span class="c1"># @markdown  Double-click to see the contents!</span>
+<span class="c1"># @markdown Double-click to see the contents!</span>
 
 <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">epochs</span><span class="p">):</span>
   <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
@@ -6108,7 +6179,7 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
         <span class="n">tepoch</span><span class="o">.</span><span class="n">set_postfix</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
-        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">):</span>
   <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
@@ -6249,6 +6320,7 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 </div>
 </div>
 </div>
+</div>
 <hr class="docutils"/>
 <div class="section" id="summary">
 <h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
@@ -6273,7 +6345,7 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 <div class="cell_output docutils container">
 <div class="output text_html">
 <div>
-<a href="https://portal.neuromatchacademy.org/api/redirect/to/9c55f6cb-cdf9-4429-ac1c-ec44fe64c303?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzJEMV9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyODQzODQ1Ny40NzM4NDY3fSwgeyJldmVudCI6ICJWaWRlbyAxOiBJbnRyb2R1Y3Rpb24gdG8gQ05OcyBhbmQgUk5OcyIsICJ0cyI6IDE2Mjg0Mzg0NTguNzQ4MjkyN30sIHsiZXZlbnQiOiAiVmlkZW8gMjogUmVwcmVzZW50YXRpb25zICYgVmlzdWFsIHByb2Nlc3NpbmcgaW4gdGhlIGJyYWluIiwgInRzIjogMTYyODQzODQ1OC44NTE2ODE1fSwgeyJldmVudCI6ICJWaWRlbyAzOiBEZXRhaWxzIGFib3V0IENvbnZvbHV0aW9uIiwgInRzIjogMTYyODQzODQ1OC45NTU5NjA4fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgMi4xOiBDb252b2x1dGlvbiBvZiBhIFNpbXBsZSBLZXJuZWwiLCAidHMiOiAxNjI4NDM4NDU5Ljk1MzM0MDh9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSAyLjI6IENvbnZvbHV0aW9uIE91dHB1dCBTaXplIiwgInRzIjogMTYyODQzODQ1OS45NjE2MjEzfSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgMi4zOiBDb2RpbmcgYSBDb252b2x1dGlvbiIsICJ0cyI6IDE2Mjg0Mzg0NTkuOTcyMzM4N30sIHsiZXZlbnQiOiAiVmlkZW8gNDogUG9vbGluZyIsICJ0cyI6IDE2Mjg0Mzg0NjIuMTk4ODYyNn0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDMuMzogSW1wbGVtZW50IE1heFBvb2xpbmciLCAidHMiOiAxNjI4NDM4NDk1LjQwMjU4NjJ9LCB7ImV2ZW50IjogIlZpZGVvIDU6IFB1dHRpbmcgaXQgYWxsIHRvZ2V0aGVyIiwgInRzIjogMTYyODQzODQ5Ni41NzA3NDQ1fSwgeyJldmVudCI6ICJWaWRlbyA2OiBJbXBsZW1lbnQgeW91ciBvd24gQ05OIiwgInRzIjogMTYyODQzODQ5Ny4wMDQ2OTM1fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgNDogSW1wbGVtZW50IHlvdXIgb3duIENOTiIsICJ0cyI6IDE2Mjg0Mzg0OTcuMDk5Nzg3fSwgeyJldmVudCI6ICJ1cmwgZ2VuZXJhdGVkIiwgInRzIjogMTYyODQzODQ5Ny42MDY5NzA4fV19" target="_blank">
+<a href="https://portal.neuromatchacademy.org/api/redirect/to/9c55f6cb-cdf9-4429-ac1c-ec44fe64c303?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzJEMV9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyODQ0OTMzNi40NTc3Mzk2fSwgeyJldmVudCI6ICJWaWRlbyAxOiBJbnRyb2R1Y3Rpb24gdG8gQ05OcyBhbmQgUk5OcyIsICJ0cyI6IDE2Mjg0NDkzMzcuNzkzMjg4NX0sIHsiZXZlbnQiOiAiVmlkZW8gMjogUmVwcmVzZW50YXRpb25zICYgVmlzdWFsIHByb2Nlc3NpbmcgaW4gdGhlIGJyYWluIiwgInRzIjogMTYyODQ0OTMzNy45NDUyNzR9LCB7ImV2ZW50IjogIlZpZGVvIDM6IERldGFpbHMgYWJvdXQgQ29udm9sdXRpb24iLCAidHMiOiAxNjI4NDQ5MzM4LjA5Mjc3NH0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDIuMTogQ29udm9sdXRpb24gb2YgYSBTaW1wbGUgS2VybmVsIiwgInRzIjogMTYyODQ0OTMzOS4xNDE5MDg2fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgMi4yOiBDb252b2x1dGlvbiBPdXRwdXQgU2l6ZSIsICJ0cyI6IDE2Mjg0NDkzMzkuMTQ5NjQ0NH0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDIuMzogQ29kaW5nIGEgQ29udm9sdXRpb24iLCAidHMiOiAxNjI4NDQ5MzM5LjE2MDE4NTN9LCB7ImV2ZW50IjogIlZpZGVvIDQ6IFBvb2xpbmciLCAidHMiOiAxNjI4NDQ5MzQxLjI2MDA3Njh9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSAzLjM6IEltcGxlbWVudCBNYXhQb29saW5nIiwgInRzIjogMTYyODQ0OTM2Ny4yODc2NjE4fSwgeyJldmVudCI6ICJWaWRlbyA1OiBQdXR0aW5nIGl0IGFsbCB0b2dldGhlciIsICJ0cyI6IDE2Mjg0NDkzNjguMjU2MzAyfSwgeyJldmVudCI6ICJWaWRlbyA2OiBJbXBsZW1lbnQgeW91ciBvd24gQ05OIiwgInRzIjogMTYyODQ0OTM2OC43ODk2Mzd9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA0OiBJbXBsZW1lbnQgeW91ciBvd24gQ05OIiwgInRzIjogMTYyODQ0OTM2OC44OTM0MTI0fSwgeyJldmVudCI6ICJ1cmwgZ2VuZXJhdGVkIiwgInRzIjogMTYyODQ0OTM2OS4zNTcwNzg4fV19" target="_blank">
 <img alt="button link to Airtable" src="https://github.com/NeuromatchAcademy/course-content-dl/blob/main/tutorials/static/AirtableSubmissionButton.png?raw=1" style="width:410px"/></a>
 </div></div></div>
 </div>
@@ -6290,7 +6362,7 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "41e74174967c4136b808d07277a8e9f3"}
+{"version_major": 2, "version_minor": 0, "model_id": "d8f0fafb46b341c092616edcb3255b57"}
 </script></div>
 </div>
 </div>
@@ -6308,87 +6380,41 @@ dom_target.querySelector(".select_avgpool").onclick = ()=&gt;{group_func="avg"; 
 8 Bag <br/>
 9 Ankle boot <br/></p>
 <p><strong>NOTE:</strong> we will reduce the dataset to just the two categories T-shirt/top and Shirt to reduce the training time from about 10min to 2min. We later provide pretrained results to give you an idea how the results would look on the whole dataset.</p>
-<p>Getting Fashion-Mnist Data</p>
+<div class="section" id="download-fashion-mnist-dataset">
+<h3>Download Fashion MNIST dataset<a class="headerlink" href="#download-fashion-mnist-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Getting Fashion-Mnist Data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download Fashion MNIST dataset</span>
 
-<span class="k">def</span> <span class="nf">get_fashion_mnist_dataset</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
-  <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
-      <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-      <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.1307</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.3081</span><span class="p">,))</span>
-      <span class="p">])</span>
-
-  <span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                      <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-
-  <span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>  <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-  <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
-  <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span>
-                                                              <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">)),</span>
-                                                              <span class="nb">int</span><span class="p">(</span><span class="mf">0.2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">))])</span>
-
-  <span class="k">return</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span>
-
-<span class="n">num_classes</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">train_data</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">get_fashion_mnist_dataset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+<span class="c1"># webpage: https://github.com/zalandoresearch/fashion-mnist</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">'FashionMNIST.tar.gz'</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">'FashionMNIST'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://osf.io/dfhu5/download"</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">tar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading FashionMNIST dataset...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz to ./data/FashionMNIST/raw/train-images-idx3-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0b2c5c8641314ac5b14031e385532940"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/train-images-idx3-ubyte.gz to ./data/FashionMNIST/raw
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw/train-labels-idx1-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7c3b53037984469891415b03af5d4e22"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/train-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading FashionMNIST completed.
 
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz to ./data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a0be2c6bf33d4210810afc589372ef2f"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/t10k-images-idx3-ubyte.gz to ./data/FashionMNIST/raw
-
-Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "952ac8fe2fe34dc6b99a250f8bbc472e"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./data/FashionMNIST/raw/t10k-labels-idx1-ubyte.gz to ./data/FashionMNIST/raw
-
-Random seed 2021 has been set.
+Extracting the files...
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="loading-fashion-mnist-data">
+<h3>Loading Fashion-MNIST Data<a class="headerlink" href="#loading-fashion-mnist-data" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">reduce_classes(data)</span></code> to reduce Fashion-MNIST Data to two-categories</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Reducing Fashion-Mnist Data (to two categories)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Loading Fashion-MNIST Data</span>
 
-<span class="c1"># @markdown *NOTE: if you want to train on the whole dataset, just run the cell above</span>
-<span class="c1"># @markdown and do not execute this cell.*</span>
+<span class="c1"># @markdown `reduce_classes(data)` to reduce Fashion-MNIST Data to two-categories</span>
+
 <span class="c1"># need to split into train, validation, test</span>
 <span class="k">def</span> <span class="nf">reduce_classes</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
   <span class="c1"># only want T-Shirts (0) and Shirts (6) labels</span>
@@ -6402,19 +6428,26 @@ Random seed 2021 has been set.
   <span class="k">return</span> <span class="n">data</span>
 
 
-<span class="k">def</span> <span class="nf">get_fashion_mnist_dataset</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_fashion_mnist_dataset</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
   <span class="n">transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
-      <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-      <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.1307</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.3081</span><span class="p">,))</span>
-      <span class="p">])</span>
+                                  <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+                                  <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.1307</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.3081</span><span class="p">,))</span>
+                                  <span class="p">])</span>
 
-  <span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                     <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-  <span class="n">train_data</span> <span class="o">=</span> <span class="n">reduce_classes</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+  <span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span>
+                                     <span class="n">download</span><span class="o">=</span><span class="n">download</span><span class="p">,</span>
+                                     <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                     <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
 
-  <span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span>  <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
-  <span class="n">test_data</span> <span class="o">=</span> <span class="n">reduce_classes</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+
+  <span class="n">test_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span>
+                                    <span class="n">download</span><span class="o">=</span><span class="n">download</span><span class="p">,</span>
+                                    <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">binary</span><span class="p">:</span>
+    <span class="n">train_data</span> <span class="o">=</span> <span class="n">reduce_classes</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+    <span class="n">test_data</span> <span class="o">=</span> <span class="n">reduce_classes</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
 
   <span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
   <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span>
@@ -6422,10 +6455,28 @@ Random seed 2021 has been set.
                                                               <span class="nb">int</span><span class="p">(</span><span class="mf">0.2</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">))])</span>
 
   <span class="k">return</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span>
-
-
-<span class="n">num_classes</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_classes</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">train_data</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">get_fashion_mnist_dataset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to continue with the 10 class dataset, skip the next cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_classes</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">train_data</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">get_fashion_mnist_dataset</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -6449,16 +6500,17 @@ Random seed 2021 has been set.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W2D1_Tutorial1_170_0.png" src="../../../_images/W2D1_Tutorial1_170_0.png">
+<img alt="../../../_images/W2D1_Tutorial1_177_0.png" src="../../../_images/W2D1_Tutorial1_177_0.png">
 </img></div>
 </div>
 <p>Take a minute with your pod and talk about which classes you think would be most confusable.  How hard will it be to differentiate t-shirt/tops from shirts?</p>
+</div>
 <div class="section" id="video-8-the-training-loop">
 <h3>Video 8: The Training Loop<a class="headerlink" href="#video-8-the-training-loop" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3f4019b943f8417eb98029c23adbbdee"}
+{"version_major": 2, "version_minor": 0, "model_id": "65456c1e2ded4103a2e97d2706f2dc57"}
 </script></div>
 </div>
 </div>
@@ -6512,18 +6564,27 @@ Random seed 2021 has been set.
 </div>
 </div>
 </div>
-<div class="section" id="load-a-sample-dataset">
-<h3>Load a sample dataset<a class="headerlink" href="#load-a-sample-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="load-a-sample-dataset-emnist">
+<h3>Load a sample dataset (EMNIST)<a class="headerlink" href="#load-a-sample-dataset-emnist" title="Permalink to this headline">¶</a></h3>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown ### Load a sample dataset</span>
-<span class="c1"># Load the data</span>
-<span class="n">mnist_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">"./datasets"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Load a sample dataset (EMNIST)</span>
+<span class="c1"># Download the data if there are not downloaded</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">'EMNIST.zip'</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">'EMNIST'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://osf.io/xwfaj/download"</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">tar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">mnist_train</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">"."</span><span class="p">,</span>
+                              <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                               <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                              <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">'letters'</span><span class="p">)</span>
-<span class="n">mnist_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">"./datasets"</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                              <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                              <span class="n">split</span><span class="o">=</span><span class="s1">'letters'</span><span class="p">)</span>
+<span class="n">mnist_test</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">EMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s2">"."</span><span class="p">,</span>
+                             <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                              <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
-                             <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">'letters'</span><span class="p">)</span>
+                             <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                             <span class="n">split</span><span class="o">=</span><span class="s1">'letters'</span><span class="p">)</span>
 
 <span class="c1"># labels should start from 0</span>
 <span class="n">mnist_train</span><span class="o">.</span><span class="n">targets</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -6535,22 +6596,19 @@ Random seed 2021 has been set.
 
 <span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                                            <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                           <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                            <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
                                            <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
 <span class="n">test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">mnist_test</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                                           <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                          <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                           <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
                                           <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading https://www.itl.nist.gov/iaui/vip/cs_links/EMNIST/gzip.zip to ./datasets/EMNIST/raw/gzip.zip
-</pre></div>
-</div>
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c8a4ef72afce44dcbee9fc06ed46b7aa"}
-</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Extracting ./datasets/EMNIST/raw/gzip.zip to ./datasets/EMNIST/raw
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>EMNIST dataset has already been dowloaded.
 </pre></div>
 </div>
 </div>
@@ -6561,6 +6619,7 @@ Random seed 2021 has been set.
 <span class="c1"># Instantiate model</span>
 <span class="c1"># Puts the Model on the GPU (Select runtime-type as GPU</span>
 <span class="c1">#                            from the 'Runtime-&gt;Change Runtime type' option).</span>
+
 <span class="n">model</span> <span class="o">=</span> <span class="n">emnist_net</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
 
 <span class="c1"># Loss and Optimizer</span>
@@ -6604,41 +6663,34 @@ Random seed 2021 has been set.
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">correct</span> <span class="o">+=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">predictions</span> <span class="o">==</span> <span class="n">labs</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">'Test accuracy: </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Test accuracy: </span><span class="si">{</span><span class="n">correct</span><span class="o">/</span><span class="n">total</span> <span class="o">*</span> <span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2e9df66b6eae459c9059b0bab45f573e"}
+{"version_major": 2, "version_minor": 0, "model_id": "400aca050258470490c8acaf7f6907a6"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c1a792c75d3e42c89877b2a6aea6675d"}
+{"version_major": 2, "version_minor": 0, "model_id": "ccb3da18dc7f401980238c0af9a2f730"}
 </script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
   return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8920</span><span class="o">/</span><span class="mf">701509453.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> 
-<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="c1"># Backpropagation and gradient update.</span>
-<span class="ne">---&gt; </span><span class="mi">28</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span> <span class="c1"># Calculate gradients.</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span> <span class="c1"># Apply gradient udpate.</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> 
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9232</span><span class="o">/</span><span class="mf">2815420104.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># Zero out the gradients</span>
+<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span> <span class="c1"># Fill this out.</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> 
+<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="c1"># Forward pass</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span> 
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span> 
-<span class="g g-Whitespace">    </span><span class="mi">151</span> 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/optim/optimizer.py</span> in <span class="ni">zero_grad</span><span class="nt">(self, set_to_none)</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>                             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>                                 <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">216</span>                             <span class="n">p</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">zero_</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> 
+<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">closure</span><span class="p">):</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -6656,11 +6708,10 @@ Random seed 2021 has been set.
 <div class="section" id="bonus-1-3-fashion-mnist-dataset">
 <h2>Bonus 1.3: Fashion-MNIST dataset<a class="headerlink" href="#bonus-1-3-fashion-mnist-dataset" title="Permalink to this headline">¶</a></h2>
 <p>Now Let us train on the actual Fashion-MNIST dataset.</p>
-<div class="section" id="getting-the-dataloaders-run-me">
-<h3>Getting the DataLoaders (Run Me)<a class="headerlink" href="#getting-the-dataloaders-run-me" title="Permalink to this headline">¶</a></h3>
+<p>Getting the DataLoaders (Run Me)</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Getting the DataLoaders (Run Me)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Getting the DataLoaders (Run Me)</span>
 <span class="k">def</span> <span class="nf">get_data_loaders</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">validation_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span>
                      <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">):</span>
 
@@ -6670,19 +6721,19 @@ Random seed 2021 has been set.
   <span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span>
                             <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
                             <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                            <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                            <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                             <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
                             <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
   <span class="n">validation_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">validation_dataset</span><span class="p">,</span>
                                  <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
                                  <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                 <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                 <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                                  <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
                                  <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
   <span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span>
                            <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
                            <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                           <span class="n">num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                           <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                            <span class="n">worker_init_fn</span><span class="o">=</span><span class="n">seed_worker</span><span class="p">,</span>
                            <span class="n">generator</span><span class="o">=</span><span class="n">g_seed</span><span class="p">)</span>
 
@@ -6700,7 +6751,7 @@ Random seed 2021 has been set.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This cell contains the code for the CNN we will be using in this section.</span>
 <span class="k">class</span> <span class="nc">FMNIST_Net1</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">FMNIST_Net1</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -6720,7 +6771,6 @@ Random seed 2021 has been set.
 
     <span class="k">return</span> <span class="n">x</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -6823,16 +6873,16 @@ Random seed 2021 has been set.
 
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## Uncomment to test your training loop</span>
-<span class="c1"># net = FMNIST_Net1().to(DEVICE)</span>
+<span class="c1"># net = FMNIST_Net1(num_classes=2).to(DEVICE)</span>
 <span class="c1"># train_loss, train_acc, validation_loss, validation_acc = train(net, DEVICE, train_loader, validation_loader, 20)</span>
 <span class="c1"># plot_loss_accuracy(train_loss, train_acc, validation_loss, validation_acc)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_8b552183.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_63a2685b.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_8b552183_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_8b552183_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_63a2685b_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_63a2685b_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
 <p>The next cell contains the code for the CNN we will be using in this section.</p>
 <p>Run the next cell to get the accuracy on the data!</p>
 <div class="cell docutils container">
@@ -6848,7 +6898,7 @@ Random seed 2021 has been set.
 <p>Do you think this network is overfitting?
 If yes, what can you do to combat this?</p>
 <p><strong>Hint</strong>: overfitting occurs when the training accuracy greatly exceeds the validation accuracy</p>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_a367e834.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_3ef24bd7.py"><em>Click for solution</em></a></p>
 </div>
 </div>
 <hr class="docutils"/>
@@ -6864,7 +6914,7 @@ If yes, what can you do to combat this?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FMNIST_Net2</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">FMNIST_Net2</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="c1">####################################################################</span>
     <span class="c1"># Fill in missing code below (...),</span>
@@ -6904,16 +6954,16 @@ If yes, what can you do to combat this?</p>
 
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 <span class="c1">## Uncomment below to check your code</span>
-<span class="c1"># net2 = FMNIST_Net2().to(DEVICE)</span>
+<span class="c1"># net2 = FMNIST_Net2(num_classes=2).to(DEVICE)</span>
 <span class="c1"># train_loss, train_acc, validation_loss, validation_acc = train(net2, DEVICE, train_loader, validation_loader, 20)</span>
 <span class="c1"># plot_loss_accuracy(train_loss, train_acc, validation_loss, validation_acc)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_12004ecd.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_906c34b2.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_12004ecd_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_12004ecd_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_906c34b2_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_906c34b2_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
 <p>Run the next cell to get the accuracy on the data!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -6979,20 +7029,37 @@ If yes, what can you do to combat this?</p>
 <h3>Coding Exercise Bonus 2.2: How much does augmentation help?<a class="headerlink" href="#coding-exercise-bonus-2-2-how-much-does-augmentation-help" title="Permalink to this headline">¶</a></h3>
 <p>Last week you also learned how data augmentation can  regularize a network. Let’s add data augmentation to our model via transforms and see if that helps our model to better generalize! In the following cell, add the transforms you want in the list <code class="docutils literal notranslate"><span class="pre">augmentation_transforms</span></code>. We will then run the same network you created in the above exercise (with regularization) and then plot the loss and accuracies.</p>
 <p>Here’s the link to the list of transforms available in pytorch: https://pytorch.org/vision/stable/transforms.html</p>
+<div class="section" id="download-fashion-mnist-if-it-has-not-been-downloaded">
+<h4>Download Fashion-MNIST, if it has not been downloaded.<a class="headerlink" href="#download-fashion-mnist-if-it-has-not-been-downloaded" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download Fashion-MNIST, if it has not been downloaded.</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">'FashionMNIST.tar.gz'</span>
+<span class="n">folder</span> <span class="o">=</span> <span class="s1">'FashionMNIST'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://osf.io/dfhu5/download"</span>
+<span class="n">download_data</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">tar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transforms_custom</span><span class="p">(</span><span class="n">seed</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">transforms_custom</span><span class="p">(</span><span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
   <span class="c1"># basic preprocessing</span>
   <span class="n">preprocessing_transforms</span> <span class="o">=</span> <span class="p">[</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
                               <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">((</span><span class="mf">0.1307</span><span class="p">,),</span> <span class="p">(</span><span class="mf">0.3081</span><span class="p">,))]</span>
   <span class="c1"># add the augmentation transforms to the preprocessing</span>
   <span class="n">train_transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span><span class="n">get_augmentation_transforms</span><span class="p">()</span> <span class="o">+</span> \
                                       <span class="n">preprocessing_transforms</span><span class="p">)</span>
-  <span class="c1"># load the FashonMNIST dataset with the transforms</span>
-  <span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                    <span class="n">transform</span><span class="o">=</span><span class="n">train_transform</span><span class="p">)</span>
-  <span class="c1"># reduce to our two classes to speed up training</span>
-  <span class="n">train_data</span> <span class="o">=</span> <span class="n">reduce_classes</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+  <span class="c1"># load the Fashion MNIST dataset with the transforms</span>
+  <span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">FashionMNIST</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span>
+                                     <span class="n">download</span><span class="o">=</span><span class="n">download</span><span class="p">,</span>
+                                     <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                     <span class="n">transform</span><span class="o">=</span><span class="n">train_transform</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">binary</span><span class="p">:</span>
+    <span class="c1"># reduce to our two classes to speed up training</span>
+    <span class="n">train_data</span> <span class="o">=</span> <span class="n">reduce_classes</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+
   <span class="c1"># get the data loader instances for the dataset</span>
   <span class="n">train_loader</span><span class="p">,</span> <span class="n">validation_loader</span><span class="p">,</span> <span class="n">test_loader</span> <span class="o">=</span> <span class="n">get_data_loaders</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span>
                                                                   <span class="n">validation_data</span><span class="p">,</span>
@@ -7018,24 +7085,25 @@ If yes, what can you do to combat this?</p>
 
 
 <span class="n">set_seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
-<span class="n">net3</span> <span class="o">=</span> <span class="n">FMNIST_Net2</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>  <span class="c1"># get the network</span>
+<span class="n">net3</span> <span class="o">=</span> <span class="n">FMNIST_Net2</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>  <span class="c1"># get the network</span>
 
 <span class="c1">## Uncomment below to test your function</span>
-<span class="c1"># train_loader, validation_loader, test_loader = transforms_custom(SEED)</span>
+<span class="c1"># train_loader, validation_loader, test_loader = transforms_custom(binary=True, seed=SEED)</span>
 <span class="c1"># train_loss, train_acc, validation_loss, validation_acc = train(net3, DEVICE, train_loader, validation_loader, 20)</span>
 <span class="c1"># plot_loss_accuracy(train_loss, train_acc, validation_loss, validation_acc)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_8d4116f3.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/solutions/W2D1_Tutorial1_Solution_4df59f95.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_8d4116f3_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_8d4116f3_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_4df59f95_3.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D1_ConvnetsAndRecurrentNeuralNetworks/static/W2D1_Tutorial1_Solution_4df59f95_3.png" style="width: 2195.0px; height: 755.0px;"/></a>
 <p>Run the next cell to get the accuracy on the data!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">(</span><span class="n">net3</span><span class="p">,</span> <span class="n">DEVICE</span><span class="p">,</span> <span class="n">test_loader</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
