@@ -1418,7 +1418,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7c7df10bc3c84a2790fed0c0430898ee"}
+{"version_major": 2, "version_minor": 0, "model_id": "b2d70ebb7c1842ad8738cc3a7114347e"}
 </script></div>
 </div>
 <p>A key idea of neural nets, is that they use models that are “too complex” - complex enough to fit all the noise in the data. One then needs to “regularize” them to make the models fit complex enough, but not too complex. The more complex the model, the better it fits the training data, but if it is too complex, it generalizes less well; it memorizes the training data but is less accurate on future test data.</p>
@@ -1428,7 +1428,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "54e5d31a4d1b4983b6549d9bfd875f47"}
+{"version_major": 2, "version_minor": 0, "model_id": "16c6d9a296304e588ec53640fcacb532"}
 </script></div>
 </div>
 <p>One way to think about Regularization is to think in terms of the magnitude of the overall weights of the model. A model with big weights can fit more data perfectly, whereas a model with smaller weights tends to underperform on the train set but can surprisingly do very well on the test set. Having the weights too small can also be an issue as it can then underfit the model.</p>
@@ -1438,8 +1438,8 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <h2>Coding Exercise 1: Frobenius Norm<a class="headerlink" href="#coding-exercise-1-frobenius-norm" title="Permalink to this headline">¶</a></h2>
 <p>Before we start, let’s define the Frobenius norm, sometimes also called the Euclidean norm of an <span class="math notranslate nohighlight">\(m×n\)</span> matrix <span class="math notranslate nohighlight">\(A\)</span>  as the square root of the sum of the absolute squares of its elements.</p>
 <br/>
-<div class="amsmath math notranslate nohighlight" id="equation-30321f28-31b6-4703-88e4-de07c188b299">
-<span class="eqno">(48)<a class="headerlink" href="#equation-30321f28-31b6-4703-88e4-de07c188b299" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2a6986f6-fe12-43f6-a2b3-a6f3fbf38a72">
+<span class="eqno">(48)<a class="headerlink" href="#equation-2a6986f6-fe12-43f6-a2b3-a6f3fbf38a72" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 ||A||_F= \sqrt{\sum_{i=1}^m\sum_{j=1}^n|a_{ij}|^2}
 \end{equation}\]</div>
 <p>This is just a measure of how big the matrix is, analogous to how big a vector is.</p>
@@ -1562,7 +1562,7 @@ Frobenius Norm of Models weights: 7.3810
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8141b82dc88349f484473ca914f9e3ca"}
+{"version_major": 2, "version_minor": 0, "model_id": "a32c24aa831f4899aed15f8bd73421c7"}
 </script></div>
 </div>
 </div>
@@ -1694,7 +1694,7 @@ Frobenius Norm of Models weights: 7.3810
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ca55d303ef3b475b99fc4cd85febbf75"}
+{"version_major": 2, "version_minor": 0, "model_id": "03ca3a5a461e47b69a3d7e02ecdd90aa"}
 </script></div>
 </div>
 <p>Now that we have finished training, let’s see how the model has evolved over the training process.</p>
@@ -1754,7 +1754,7 @@ Frobenius Norm of Models weights: 7.3810
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3321</span><span class="o">/</span><span class="mf">2511244387.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3297</span><span class="o">/</span><span class="mf">2511244387.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">37</span>                                <span class="n">blit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">38</span>                                <span class="n">repeat_delay</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">39</span> <span class="n">html_anim</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
@@ -1840,9 +1840,9 @@ Frobenius Norm of Models weights: 7.3810
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ce1864839d344e2497c5d3f76d7bfb94"}
+{"version_major": 2, "version_minor": 0, "model_id": "fdf262cb469449f28c3e6ac431758e59"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "cec6ac6b5636412a9deca1b4472cbbf0"}
+{"version_major": 2, "version_minor": 0, "model_id": "b6f4a821670c49efa4d58b7c05206858"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D5_Regularization/solutions/W1D5_Tutorial1_Solution_c705db1a.py"><em>Click for solution</em></a></p>
@@ -2098,24 +2098,24 @@ Frobenius Norm of Models weights: 7.3810
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9481b95fc8174554998ef09f0d960801"}
+{"version_major": 2, "version_minor": 0, "model_id": "4ccbe9a2ea0a4a70a164d183c04ce9d4"}
 </script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3321</span><span class="o">/</span><span class="mf">2311793667.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3297</span><span class="o">/</span><span class="mf">2311793667.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>                                               <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">20</span>                                               <span class="n">train_loader</span><span class="o">=</span><span class="n">train_loader</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">21</span>                                               <span class="n">val_loader</span><span class="o">=</span><span class="n">val_loader</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">23</span> 
 
-<span class="nn">/tmp/ipykernel_3321/3720794291.py</span> in <span class="ni">main</span><span class="nt">(args, model, train_loader, val_loader, reg_function1, reg_function2)</span>
+<span class="nn">/tmp/ipykernel_3297/3720794291.py</span> in <span class="ni">main</span><span class="nt">(args, model, train_loader, val_loader, reg_function1, reg_function2)</span>
 <span class="g g-Whitespace">     </span><span class="mi">59</span>                           <span class="n">reg_function1</span><span class="o">=</span><span class="n">reg_function1</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">60</span>                           <span class="n">reg_function2</span><span class="o">=</span><span class="n">reg_function2</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">61</span>     <span class="n">train_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span>     <span class="n">val_acc</span> <span class="o">=</span> <span class="n">test</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="n">param_norm</span> <span class="o">=</span> <span class="n">calculate_frobenius_norm</span><span class="p">(</span><span class="n">trained_model</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_3321/3720794291.py</span> in <span class="ni">test</span><span class="nt">(model, test_loader, criterion, device)</span>
+<span class="nn">/tmp/ipykernel_3297/3720794291.py</span> in <span class="ni">test</span><span class="nt">(model, test_loader, criterion, device)</span>
 <span class="g g-Whitespace">     </span><span class="mi">31</span>   <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="g g-Whitespace">     </span><span class="mi">32</span>   <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
 <span class="ne">---&gt; </span><span class="mi">33</span>     <span class="k">for</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">test_loader</span><span class="p">:</span>
@@ -2151,67 +2151,39 @@ Frobenius Norm of Models weights: 7.3810
 <span class="g g-Whitespace">    </span><span class="mi">992</span>         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/queues.py</span> in <span class="ni">get</span><span class="nt">(self, block, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_rlock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">112</span>         <span class="c1"># unserialize the data after having released the lock</span>
-<span class="ne">--&gt; </span><span class="mi">113</span>         <span class="k">return</span> <span class="n">_ForkingPickler</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span> 
-<span class="g g-Whitespace">    </span><span class="mi">115</span>     <span class="k">def</span> <span class="nf">qsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">102</span>                 <span class="k">if</span> <span class="n">block</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span>                     <span class="n">timeout</span> <span class="o">=</span> <span class="n">deadline</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">104</span>                     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span>                         <span class="k">raise</span> <span class="n">Empty</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span>                 <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">():</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/multiprocessing/reductions.py</span> in <span class="ni">rebuild_storage_fd</span><span class="nt">(cls, df, size)</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> 
-<span class="g g-Whitespace">    </span><span class="mi">288</span> <span class="k">def</span> <span class="nf">rebuild_storage_fd</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">289</span>     <span class="n">fd</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">290</span>     <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span>         <span class="n">storage</span> <span class="o">=</span> <span class="n">storage_from_cache</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fd_id</span><span class="p">(</span><span class="n">fd</span><span class="p">))</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">poll</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_check_closed</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readable</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">257</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> 
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/resource_sharer.py</span> in <span class="ni">detach</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">55</span>         <span class="k">def</span> <span class="nf">detach</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>             <span class="sd">'''Get the fd.  This should only be called once.'''</span>
-<span class="ne">---&gt; </span><span class="mi">57</span>             <span class="k">with</span> <span class="n">_resource_sharer</span><span class="o">.</span><span class="n">get_connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_id</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>                 <span class="k">return</span> <span class="n">reduction</span><span class="o">.</span><span class="n">recv_handle</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span> 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">_poll</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">412</span> 
+<span class="g g-Whitespace">    </span><span class="mi">413</span>     <span class="k">def</span> <span class="nf">_poll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">414</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">wait</span><span class="p">([</span><span class="bp">self</span><span class="p">],</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span>         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/resource_sharer.py</span> in <span class="ni">get_connection</span><span class="nt">(ident)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span>         <span class="kn">from</span> <span class="nn">.connection</span> <span class="kn">import</span> <span class="n">Client</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span>         <span class="n">address</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">ident</span>
-<span class="ne">---&gt; </span><span class="mi">87</span>         <span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">authkey</span><span class="o">=</span><span class="n">process</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">authkey</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">88</span>         <span class="n">c</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()))</span>
-<span class="g g-Whitespace">     </span><span class="mi">89</span>         <span class="k">return</span> <span class="n">c</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">wait</span><span class="nt">(object_list, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span> 
+<span class="g g-Whitespace">    </span><span class="mi">920</span>             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">921</span>                 <span class="n">ready</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">922</span>                 <span class="k">if</span> <span class="n">ready</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">923</span>                     <span class="k">return</span> <span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">fileobj</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ready</span><span class="p">]</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">Client</span><span class="nt">(address, family, authkey)</span>
-<span class="g g-Whitespace">    </span><span class="mi">496</span> 
-<span class="g g-Whitespace">    </span><span class="mi">497</span>     <span class="k">if</span> <span class="n">authkey</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">498</span>         <span class="n">answer_challenge</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">authkey</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">499</span>         <span class="n">deliver_challenge</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">authkey</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">500</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">answer_challenge</span><span class="nt">(connection, authkey)</span>
-<span class="g g-Whitespace">    </span><span class="mi">745</span>     <span class="n">digest</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">authkey</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="s1">'md5'</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">746</span>     <span class="n">connection</span><span class="o">.</span><span class="n">send_bytes</span><span class="p">(</span><span class="n">digest</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">747</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">recv_bytes</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>        <span class="c1"># reject large message</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span>     <span class="k">if</span> <span class="n">response</span> <span class="o">!=</span> <span class="n">WELCOME</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">749</span>         <span class="k">raise</span> <span class="n">AuthenticationError</span><span class="p">(</span><span class="s1">'digest sent was rejected'</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">recv_bytes</span><span class="nt">(self, maxlength)</span>
-<span class="g g-Whitespace">    </span><span class="mi">214</span>         <span class="k">if</span> <span class="n">maxlength</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">maxlength</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span>             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"negative maxlength"</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">216</span>         <span class="n">buf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recv_bytes</span><span class="p">(</span><span class="n">maxlength</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span>         <span class="k">if</span> <span class="n">buf</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">218</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_bad_message_length</span><span class="p">()</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">_recv_bytes</span><span class="nt">(self, maxsize)</span>
-<span class="g g-Whitespace">    </span><span class="mi">405</span> 
-<span class="g g-Whitespace">    </span><span class="mi">406</span>     <span class="k">def</span> <span class="nf">_recv_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">407</span>         <span class="n">buf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recv</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="n">size</span><span class="p">,</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">"!i"</span><span class="p">,</span> <span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="k">if</span> <span class="n">maxsize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="n">maxsize</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">_recv</span><span class="nt">(self, size, read)</span>
-<span class="g g-Whitespace">    </span><span class="mi">377</span>         <span class="n">remaining</span> <span class="o">=</span> <span class="n">size</span>
-<span class="g g-Whitespace">    </span><span class="mi">378</span>         <span class="k">while</span> <span class="n">remaining</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">379</span>             <span class="n">chunk</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">remaining</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>             <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">381</span>             <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/selectors.py</span> in <span class="ni">select</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">413</span>         <span class="n">ready</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">415</span>             <span class="n">fd_event_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selector</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">416</span>         <span class="k">except</span> <span class="ne">InterruptedError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>             <span class="k">return</span> <span class="n">ready</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
