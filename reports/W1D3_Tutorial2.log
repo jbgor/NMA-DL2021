@@ -32,15 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-# Define a new model and set params
-model = Net().to(DEVICE)
-optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
-
-# Train the model on MNIST
-nEpochs = 3
-print(f"Training model on {nEpochs} epochs...")
-for epoch in range(1, nEpochs+1):
-  train(model, x_train, t_train, optimizer, epoch, device=DEVICE)
-  test(model, x_test, t_test, device=DEVICE)
+["def run_poly_clasification(poly_degree, device='cpu', seed=0):", '', '  def make_poly_features(poly_degree, X):', '    # Define the number of polynomial features except the bias term', '    num_features = (poly_degree + 1)*(poly_degree + 2) // 2 - 1']
+...
+['', 'set_seed(seed=SEED)', 'max_poly_degree = 50', 'num_features = run_poly_clasification(max_poly_degree, DEVICE, SEED)', "print(f'Number of features: {num_features}')"]
 -------------------
 

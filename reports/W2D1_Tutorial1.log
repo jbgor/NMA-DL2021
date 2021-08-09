@@ -32,8 +32,12 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# Training', '# Instantiate model', '# Puts the Model on the GPU (Select runtime-type as GPU', "#                            from the 'Runtime->Change Runtime type' option).", '']
-...
-['', '    predictions = torch.argmax(y, dim=1)', '    correct += torch.sum((predictions == labs).float())', '', "print(f'Test accuracy: {correct/total * 100:.2f}%')"]
+# @title Download EMNIST dataset
+
+# webpage: https://www.itl.nist.gov/iaui/vip/cs_links/EMNIST/gzip.zip
+fname = 'EMNIST.zip'
+folder = 'EMNIST'
+url = "https://osf.io/xwfaj/download"
+download_data(fname, folder, url, tar=False)
 -------------------
 
