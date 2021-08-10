@@ -1592,7 +1592,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "94c9c97618bf49f8afa8287074a69a0f"}
+{"version_major": 2, "version_minor": 0, "model_id": "36a1dfecc4ec438a8414bba464af60e9"}
 </script></div>
 </div>
 </div>
@@ -1626,7 +1626,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b579723158a64ba09637376e5a45a286"}
+{"version_major": 2, "version_minor": 0, "model_id": "73b1572baa4b4ee5ae0c5aba4f0eac12"}
 </script></div>
 </div>
 </div>
@@ -1668,89 +1668,33 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_11445</span><span class="o">/</span><span class="mf">1197104903.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">fname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.zip"</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">'http://mmlab.ie.cuhk.edu.hk/projects/TCDCN/data/MTFL.zip'</span>
-<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>   <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10159</span><span class="o">/</span><span class="mf">1197104903.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> 
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">zfile</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">14</span>   <span class="n">zfile</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="sa">f</span><span class="s2">"./</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/requests/api.py</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="s2">"""</span>
-<span class="g g-Whitespace">     </span><span class="mi">74</span><span class="s2"> </span>
-<span class="ne">---&gt; </span><span class="mi">75</span><span class="s2">     return request('get', url, params=params, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">77</span><span class="s2"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/zipfile.py</span> in <span class="ni">extractall</span><span class="nt">(self, path, members, pwd)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1634</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1635</span>         <span class="k">for</span> <span class="n">zipinfo</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1636</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_extract_member</span><span class="p">(</span><span class="n">zipinfo</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1637</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1638</span>     <span class="nd">@classmethod</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/requests/api.py</span> in <span class="ni">request</span><span class="nt">(method, url, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="s2">     # cases, and look like a memory leak in others.</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="s2">     with sessions.Session() as session:</span>
-<span class="ne">---&gt; </span><span class="mi">61</span><span class="s2">         return session.request(method=method, url=url, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span><span class="s2"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span><span class="s2"> </span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/zipfile.py</span> in <span class="ni">_extract_member</span><span class="nt">(self, member, targetpath, pwd)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1674</span>             <span class="n">arcname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize_windows_name</span><span class="p">(</span><span class="n">arcname</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1675</span> 
+<span class="ne">-&gt; </span><span class="mi">1676</span>         <span class="n">targetpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">targetpath</span><span class="p">,</span> <span class="n">arcname</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1677</span>         <span class="n">targetpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">targetpath</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1678</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="g g-Whitespace">    </span><span class="mi">540</span><span class="s2">         }</span>
-<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="s2">         send_kwargs.update(settings)</span>
-<span class="ne">--&gt; </span><span class="mi">542</span><span class="s2">         resp = self.send(prep, **send_kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">544</span><span class="s2">         return resp</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">695</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">696</span><span class="s2">         if not stream:</span>
-<span class="ne">--&gt; </span><span class="mi">697</span><span class="s2">             r.content</span>
-<span class="g g-Whitespace">    </span><span class="mi">698</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">699</span><span class="s2">         return r</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/requests/models.py</span> in <span class="ni">content</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">834</span><span class="s2">                 self._content = None</span>
-<span class="g g-Whitespace">    </span><span class="mi">835</span><span class="s2">             else:</span>
-<span class="ne">--&gt; </span><span class="mi">836</span><span class="s2">                 self._content = b''.join(self.iter_content(CONTENT_CHUNK_SIZE)) or b''</span>
-<span class="g g-Whitespace">    </span><span class="mi">837</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">838</span><span class="s2">         self._content_consumed = True</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/requests/models.py</span> in <span class="ni">generate</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">756</span><span class="s2">             if hasattr(self.raw, 'stream'):</span>
-<span class="g g-Whitespace">    </span><span class="mi">757</span><span class="s2">                 try:</span>
-<span class="ne">--&gt; </span><span class="mi">758</span><span class="s2">                     for chunk in self.raw.stream(chunk_size, decode_content=True):</span>
-<span class="g g-Whitespace">    </span><span class="mi">759</span><span class="s2">                         yield chunk</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span><span class="s2">                 except ProtocolError as e:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/urllib3/response.py</span> in <span class="ni">stream</span><span class="nt">(self, amt, decode_content)</span>
-<span class="g g-Whitespace">    </span><span class="mi">574</span><span class="s2">         else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">575</span><span class="s2">             while not is_fp_closed(self._fp):</span>
-<span class="ne">--&gt; </span><span class="mi">576</span><span class="s2">                 data = self.read(amt=amt, decode_content=decode_content)</span>
-<span class="g g-Whitespace">    </span><span class="mi">577</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">578</span><span class="s2">                 if data:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/urllib3/response.py</span> in <span class="ni">read</span><span class="nt">(self, amt, decode_content, cache_content)</span>
-<span class="g g-Whitespace">    </span><span class="mi">517</span><span class="s2">             else:</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span><span class="s2">                 cache_content = False</span>
-<span class="ne">--&gt; </span><span class="mi">519</span><span class="s2">                 data = self._fp.read(amt) if not fp_closed else b""</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span><span class="s2">                 if (</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span><span class="s2">                     amt != 0 and not data</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/http/client.py</span> in <span class="ni">read</span><span class="nt">(self, amt)</span>
-<span class="g g-Whitespace">    </span><span class="mi">463</span><span class="s2">             # Amount is given, implement using readinto</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span><span class="s2">             b = bytearray(amt)</span>
-<span class="ne">--&gt; </span><span class="mi">465</span><span class="s2">             n = self.readinto(b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">466</span><span class="s2">             return memoryview(b)[:n].tobytes()</span>
-<span class="g g-Whitespace">    </span><span class="mi">467</span><span class="s2">         else:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/http/client.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">507</span><span class="s2">         # connection, and the user is reading more bytes than will be provided</span>
-<span class="g g-Whitespace">    </span><span class="mi">508</span><span class="s2">         # (for example, reading in 1k chunks)</span>
-<span class="ne">--&gt; </span><span class="mi">509</span><span class="s2">         n = self.fp.readinto(b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">510</span><span class="s2">         if not n and b:</span>
-<span class="g g-Whitespace">    </span><span class="mi">511</span><span class="s2">             # Ideally, we would raise IncompleteRead if the content-length</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span><span class="s2">         while True:</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span><span class="s2">             try:</span>
-<span class="ne">--&gt; </span><span class="mi">589</span><span class="s2">                 return self._sock.recv_into(b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">590</span><span class="s2">             except timeout:</span>
-<span class="g g-Whitespace">    </span><span class="mi">591</span><span class="s2">                 self._timeout_occurred = True</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/posixpath.py</span> in <span class="ni">join</span><span class="nt">(a, *p)</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="n">will</span> <span class="n">be</span> <span class="n">discarded</span><span class="o">.</span>  <span class="n">An</span> <span class="n">empty</span> <span class="n">last</span> <span class="n">part</span> <span class="n">will</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">path</span> <span class="n">that</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span>     <span class="n">ends</span> <span class="k">with</span> <span class="n">a</span> <span class="n">separator</span><span class="o">.</span><span class="s2">"""</span>
+<span class="ne">---&gt; </span><span class="mi">80</span><span class="s2">     a = os.fspath(a)</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span><span class="s2">     sep = _get_sep(a)</span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="s2">     path = a</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -2219,8 +2163,8 @@ Complete the <code class="docutils literal notranslate"><span class="pre">forwar
 <p>The algorithm does not favour either of the outcomes, so <span class="math notranslate nohighlight">\(P(cancer) = P(no\_cancer) = .5\)</span></p>
 <p>You wish to find the most important feature according to the model and you have the following list of conditional probabilities.</p>
 <p>\</p>
-<div class="amsmath math notranslate nohighlight" id="equation-512481d9-f5a1-48fa-935f-905ef8734fb2">
-<span class="eqno">(108)<a class="headerlink" href="#equation-512481d9-f5a1-48fa-935f-905ef8734fb2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f8de64f7-67c4-42b3-870e-1ee8bb9bf698">
+<span class="eqno">(108)<a class="headerlink" href="#equation-f8de64f7-67c4-42b3-870e-1ee8bb9bf698" title="Permalink to this equation">¶</a></span>\[\begin{align}
 P(family\_history = 1  | no\_cancer) = .1 &amp;, P(family\_history = 1 | cancer) = .9 \\
 P(smoker = 1 | no\_cancer) = .05 &amp;, P(smoker = 1| cancer) = .8 \\
 P(young = 1 | no\_cancer) = .01 &amp;, P(young = 1 | cancer) = .71
@@ -2259,8 +2203,8 @@ P(young = 1 | no\_cancer) = .01 &amp;, P(young = 1 | cancer) = .71
 <p>Let’s assume that we wish to find the K best features. We know that a set of K features would be most important if they can predict the outcome with high confidence and better than any other set of the same size! We could hence try to predict the outcome using only the given set of features and record the accuracy. If this accuracy is higher than that using any other set of the same size, then we can say that the given set has the most important K features!</p>
 <p>In essence, we would want to find the accuracies considering all feature sets of size K and then pick the one with the highest accuracy.</p>
 <p>If we wish to define a loss instead (the lower the better), we could simply extend the above notion as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9dbb2eec-12da-406e-b9a8-89a6efbf7102">
-<span class="eqno">(109)<a class="headerlink" href="#equation-9dbb2eec-12da-406e-b9a8-89a6efbf7102" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c2092082-936e-4dee-9377-70e121f04bf4">
+<span class="eqno">(109)<a class="headerlink" href="#equation-c2092082-936e-4dee-9377-70e121f04bf4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 Loss = 1 - Accuracy
 \end{equation}\]</div>
 </div>
