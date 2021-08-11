@@ -1036,7 +1036,7 @@
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "74622423bc89456988b3955ea17ef15d"}
+{"version_major": 2, "version_minor": 0, "model_id": "b325ed9ad95545dd884a33b5f04318b7"}
 </script></div>
 </div>
 </div>
@@ -1342,7 +1342,7 @@ If you want to enable it, in the menu under `Runtime` -&gt;
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ea62f120b9f240c788331fc96f851972"}
+{"version_major": 2, "version_minor": 0, "model_id": "3dbafe0b59ec47a3b1aa36be3d6656d3"}
 </script></div>
 </div>
 <p>Here we’ll explore catastrophic forgetting first hand, a key barrier preventing continual learning in neural networks. To do so, we’ll build a simple network model and try our best to teach it the trusty MNIST dataset</p>
@@ -1630,7 +1630,7 @@ Testing on task 2
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "70bd32720d8d44c2a9c86becf7b13bad"}
+{"version_major": 2, "version_minor": 0, "model_id": "46aeeb51e4544204b120652eca3c3681"}
 </script></div>
 </div>
 </div>
@@ -1947,10 +1947,10 @@ Train Epoch: 2 	Loss: 0.001975
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.451759
-Train Epoch: 2 	Loss: 0.164818
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0017, Accuracy: 1364/2115 (64%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.164818
+Test set: Average loss: 0.0017, Accuracy: 1364/2115 (64%)
 
 Test set: Average loss: 0.0002, Accuracy: 1816/2042 (89%)
 </pre></div>
@@ -2046,7 +2046,7 @@ Test set: Average loss: nan, Accuracy: 974/1983 (49%)
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1984f23c7a20439ea90e4015444c5cae"}
+{"version_major": 2, "version_minor": 0, "model_id": "b33b3549efef4365935ee7b9e35071fd"}
 </script></div>
 </div>
 <p>As introduced in the above video, continual learning research certainly does not only use the MNIST dataset.
@@ -2434,9 +2434,7 @@ Testing on task: 4
 Test set: Average loss: 0.0024, Accuracy: 0/1983 (0%)
 
 Avg acc: 58.569638110341316
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training on task: 3
+Training on task: 3
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.637280
@@ -2469,37 +2467,25 @@ Avg acc: 77.05748490353808
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.605949
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_12055</span><span class="o">/</span><span class="mf">790201944.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Training on task: </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>   <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> 
-<span class="g g-Whitespace">     </span><span class="mi">27</span>   <span class="c1"># Evaluate performance after training on this task</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.674918
+Testing on task: 0
+Test set: Average loss: 0.0000, Accuracy: 2064/2115 (98%)
 
-<span class="nn">/tmp/ipykernel_12055/2551254000.py</span> in <span class="ni">train</span><span class="nt">(model, x_train, t_train, optimizer, epoch, device)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">24</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>   <span class="nb">print</span><span class="p">(</span><span class="s1">'Train Epoch: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">Loss: </span><span class="si">{:.6f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+Testing on task: 1
+Test set: Average loss: 0.0000, Accuracy: 1966/2042 (96%)
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span> 
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
+Testing on task: 2
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0000, Accuracy: 1821/1874 (97%)
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span> 
-<span class="g g-Whitespace">    </span><span class="mi">151</span> 
+Testing on task: 3
+Test set: Average loss: 0.0000, Accuracy: 1873/1986 (94%)
 
-<span class="ne">KeyboardInterrupt</span>: 
+Testing on task: 4
+Test set: Average loss: 0.0001, Accuracy: 1793/1983 (90%)
+
+Avg acc: 95.15347301254934
 </pre></div>
 </div>
 </div>
@@ -2522,6 +2508,9 @@ Avg acc: 77.05748490353808
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/W3D4_Tutorial1_89_0.png" src="../../../_images/W3D4_Tutorial1_89_0.png"/>
+</div>
 </div>
 </div>
 </div>
@@ -2539,6 +2528,10 @@ Avg acc: 77.05748490353808
 <div class="section" id="video-4-continual-learning-evaluation">
 <h2>Video 4: Continual Learning Evaluation<a class="headerlink" href="#video-4-continual-learning-evaluation" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "29b3bca0fc7643efbb3904f60703bf6b"}
+</script></div>
 </div>
 <p>We have already trained the model on T tasks and recorded all the accuracy values in a single TxT matrix.</p>
 </div>
@@ -2633,6 +2626,20 @@ Avg acc: 77.05748490353808
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_12040</span><span class="o">/</span><span class="mf">675530718.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>   <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"You should fill the values of `result_matrix`, and `T` first."</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Result matrix shape: </span><span class="si">{</span><span class="n">result_matrix</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Result matrix values:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">result_matrix</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+
+<span class="ne">AttributeError</span>: 'ellipsis' object has no attribute 'shape'
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2644,12 +2651,22 @@ Avg acc: 77.05748490353808
 <div class="section" id="video-5-continual-learning-applications">
 <h2>Video 5: Continual Learning Applications<a class="headerlink" href="#video-5-continual-learning-applications" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "96f839bd107940d3ab91790133355e14"}
+</script></div>
 </div>
 <p><strong>CORe50</strong> is an interesting real-world video dataset composed of 50 domestic objects belonging to 10 different categories and specifically designed for Continual Learning. You can find more information about the dataset and benchmark in its <a class="reference external" href="https://vlomonaco.github.io/core50">official website</a>.</p>
 <p>Here we will use the <a class="reference external" href="https://avalanche.continualai.org">Avalanche library</a> to automatically download and use this dataset. Avalanche allows you to explore more challenging datasets and tasks to bring your continual learning algorithms into the real-world!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install git+https://github.com/ContinualAI/avalanche.git --quiet
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+<span class="-Color -Color-Red">ERROR: Operation cancelled by user</span>
 </pre></div>
 </div>
 </div>
