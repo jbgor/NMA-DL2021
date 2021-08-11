@@ -956,8 +956,8 @@
       </a>
 </li>
 <li class="toc-h3 nav-item toc-entry">
-<a class="reference internal nav-link" href="#exercise-1-3-transition-probabilities">
-       Exercise 1.3: Transition probabilities
+<a class="reference internal nav-link" href="#bonus-exercise-1-3-transition-probabilities">
+       (Bonus) Exercise 1.3: Transition probabilities
       </a>
 </li>
 <li class="toc-h3 nav-item toc-entry">
@@ -1547,18 +1547,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a96b0886-77da-4edb-91db-a1e1d83286b3">
-<span class="eqno">(60)<a class="headerlink" href="#equation-a96b0886-77da-4edb-91db-a1e1d83286b3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5b09e9ac-f58a-41d0-88f3-f317ce14bf95">
+<span class="eqno">(60)<a class="headerlink" href="#equation-5b09e9ac-f58a-41d0-88f3-f317ce14bf95" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-345fccf4-6df7-4b44-9bb4-dd695b6c3a2c">
-<span class="eqno">(61)<a class="headerlink" href="#equation-345fccf4-6df7-4b44-9bb4-dd695b6c3a2c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e343161b-3ec3-4187-ab97-15644210a846">
+<span class="eqno">(61)<a class="headerlink" href="#equation-e343161b-3ec3-4187-ab97-15644210a846" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9c1a029-9b23-49a2-ab13-fad6ac583cf6">
-<span class="eqno">(62)<a class="headerlink" href="#equation-c9c1a029-9b23-49a2-ab13-fad6ac583cf6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-17418009-9f11-48db-8765-45c9e24d7f64">
+<span class="eqno">(62)<a class="headerlink" href="#equation-17418009-9f11-48db-8765-45c9e24d7f64" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1570,8 +1570,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-46d0d9f0-9186-4382-97ce-3fe116a39598">
-<span class="eqno">(63)<a class="headerlink" href="#equation-46d0d9f0-9186-4382-97ce-3fe116a39598" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3a3b78ad-b4a0-48ff-ab12-085f0728142b">
+<span class="eqno">(63)<a class="headerlink" href="#equation-3a3b78ad-b4a0-48ff-ab12-085f0728142b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
@@ -1999,10 +1999,11 @@ P_{transition} =
 </div>
 <p>We see that a hidden markov model also does well in generating text. We encourage you to try out different initialisations and hyperparameters to see how the model does.</p>
 </div>
-<div class="section" id="exercise-1-3-transition-probabilities">
-<h3>Exercise 1.3: Transition probabilities<a class="headerlink" href="#exercise-1-3-transition-probabilities" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="bonus-exercise-1-3-transition-probabilities">
+<h3>(Bonus) Exercise 1.3: Transition probabilities<a class="headerlink" href="#bonus-exercise-1-3-transition-probabilities" title="Permalink to this headline">¶</a></h3>
 <p>We have seen how we can use sequences of text to form probability chains, as well as how we can use out of the box models to generate text. In this exercise, you will be using your own data to generate sequences using <code class="docutils literal notranslate"><span class="pre">hmmlearn</span></code> or any other implementation of a markov model. Explore the transition probabilities in your corpus and generate sentences. For example, one such exploration can be - how does using a model with the word frequencies incorporated in compare to using a default model?</p>
 <p>Perform any one such comparison or exploration, and generate 3 sentences or 50 words using your model. You should be able to use all the existing functions defined for this exercise.</p>
+<p><strong>Note:</strong> We suggest to do this exercise after the completion of both tutorials.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load your own dataset and create a model using the frequencies based HMM model!</span>
