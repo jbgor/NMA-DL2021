@@ -1329,7 +1329,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9bf36852af774d3bb7ab2b24aa9672c3"}
+{"version_major": 2, "version_minor": 0, "model_id": "b5fdd7e93b184fc6b29040ce88c2218f"}
 </script></div>
 </div>
 </div>
@@ -1352,7 +1352,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a5800e59367e416c993fdf5d83f6a2a1"}
+{"version_major": 2, "version_minor": 0, "model_id": "c9493d6031154120b534aa13e3cb7991"}
 </script></div>
 </div>
 </div>
@@ -1635,7 +1635,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a55a9f1a8a324135bc054edcb9920e07"}
+{"version_major": 2, "version_minor": 0, "model_id": "f7f3e9105b464a0e8b53fd341a17ca32"}
 </script></div>
 </div>
 </div>
@@ -1826,9 +1826,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "55919d683e1d42dc8dd7f002e82ee5ff"}
+{"version_major": 2, "version_minor": 0, "model_id": "546f15535c5e4dec80a0695c9b46821c"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "45419894e5c340fd9b5db3af5c03adae"}
+{"version_major": 2, "version_minor": 0, "model_id": "745e4029e8dc47299390680e0325fa99"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_2de57667.py"><em>Click for solution</em></a></p>
@@ -1845,7 +1845,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8be6d51a04ed40189cf0194b3aa4cc2f"}
+{"version_major": 2, "version_minor": 0, "model_id": "0033aef5de724aee856678e3cd544b18"}
 </script></div>
 </div>
 <p>We illustrate this issue in a 2-dimensional setting. We freeze all but two parameters of the network: one of them is an element of the weight matrix (filter) for class 0, while the other is the bias for class 7. This results in an optimization with two decision variables.</p>
@@ -1982,22 +1982,22 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="section" id="coding-exercise-4-implement-momentum">
 <h2>Coding Exercise 4: Implement momentum<a class="headerlink" href="#coding-exercise-4-implement-momentum" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the momentum update given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-79c44f95-1eed-4f38-8a68-c75399a3a939">
-<span class="eqno">(43)<a class="headerlink" href="#equation-79c44f95-1eed-4f38-8a68-c75399a3a939" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5f8d42ac-a6b3-40ae-8649-107c632b1e7c">
+<span class="eqno">(43)<a class="headerlink" href="#equation-5f8d42ac-a6b3-40ae-8649-107c632b1e7c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} = w_t - \eta \nabla J(w_t) + \beta (w_t - w_{t-1})
 \end{equation}\]</div>
 <p>It is convenient to re-express this update rule in terms of a recursion. For that, we define ‘velocity’ as the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b5ec4494-6204-4219-8708-82dadae966ec">
-<span class="eqno">(44)<a class="headerlink" href="#equation-b5ec4494-6204-4219-8708-82dadae966ec" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7138db01-0b58-4cef-a214-1cf56f0f6454">
+<span class="eqno">(44)<a class="headerlink" href="#equation-7138db01-0b58-4cef-a214-1cf56f0f6454" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_{t-1} := w_{t} - w_{t-1}
 \end{equation}\]</div>
 <p>which leads to the two-step update rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70479d47-97c3-4552-a8c6-44cb8f8a1df7">
-<span class="eqno">(45)<a class="headerlink" href="#equation-70479d47-97c3-4552-a8c6-44cb8f8a1df7" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-be012489-5bcf-4384-8007-c66ff0400cc0">
+<span class="eqno">(45)<a class="headerlink" href="#equation-be012489-5bcf-4384-8007-c66ff0400cc0" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_t = - \eta \nabla J(w_t) + \beta (\underbrace{w_t - w_{t-1}}_{v_{t-1}})
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2ed19e72-30bf-46e7-8715-8aae0c6b640f">
-<span class="eqno">(46)<a class="headerlink" href="#equation-2ed19e72-30bf-46e7-8715-8aae0c6b640f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-328d7284-dd44-4e77-831c-fd568913e8ce">
+<span class="eqno">(46)<a class="headerlink" href="#equation-328d7284-dd44-4e77-831c-fd568913e8ce" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} \leftarrow w_t + v_{t}
 \end{equation}\]</div>
 <p>Pay attention to the positive sign of the update in the last equation, given the definition of <span class="math notranslate nohighlight">\(v_t\)</span>, above.</p>
@@ -2167,9 +2167,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e8c3a874de49427cb988280e5126928f"}
+{"version_major": 2, "version_minor": 0, "model_id": "c8d2494116ca471b9085846f3c9b4230"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f07e0075da584f1c9b7f696a9d865d51"}
+{"version_major": 2, "version_minor": 0, "model_id": "7562af5b6bb64b1b8d914f432f4ad316"}
 </script></div>
 </div>
 </div>
@@ -2210,9 +2210,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "db1778fc606d468c8bc3ea000a907e68"}
+{"version_major": 2, "version_minor": 0, "model_id": "175b8e45ff6846a8838293cc4210e0bb"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b927bb02ec9d4d3997def0d730240d6f"}
+{"version_major": 2, "version_minor": 0, "model_id": "4adbae837ee0444299a8bb30fd9c654d"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_5eaa9306.py"><em>Click for solution</em></a></p>
@@ -2230,7 +2230,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e3df185802b9430fa5fb124fbb9e92af"}
+{"version_major": 2, "version_minor": 0, "model_id": "e1d01f4319fe4cd1a91259778eb627c9"}
 </script></div>
 </div>
 <p>Take a couple of minutes to play with a more complex 3D visualization of the loss landscape of a neural network on a non-convex problem. Visit https://losslandscape.com/explorer.</p>
@@ -2299,7 +2299,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a2cb3530f828412bb14eb7b235ec8114"}
+{"version_major": 2, "version_minor": 0, "model_id": "54afa6d784064246b47e26256b470ba3"}
 </script></div>
 </div>
 <div class="section" id="think-5-1-width-and-depth-of-the-network">
@@ -2335,9 +2335,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "401d8ebfd815431380570e9e899c7e82"}
+{"version_major": 2, "version_minor": 0, "model_id": "30d697629d8d4e2a964bd4917056dcef"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "43893220e1354afb9f77c4cb84d86998"}
+{"version_major": 2, "version_minor": 0, "model_id": "cae4e06b9ebb405db710d81c6af46adf"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_d69ca8d7.py"><em>Click for solution</em></a></p>
@@ -2356,7 +2356,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4b6023e42b274828987f43df6c484501"}
+{"version_major": 2, "version_minor": 0, "model_id": "0f5f9083bd234c2ea8a09523b9650880"}
 </script></div>
 </div>
 </div>
@@ -2405,7 +2405,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a4f2678f467343518ac077ef3a201cda"}
+{"version_major": 2, "version_minor": 0, "model_id": "e62f456eb0574348ac50477fa3e24513"}
 </script></div>
 </div>
 </div>
@@ -2504,7 +2504,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "12a8b25c7f1e46d6aa0e665604eca65a"}
+{"version_major": 2, "version_minor": 0, "model_id": "dad6699304bd4be1b537276f6086ac7d"}
 </script></div>
 </div>
 <p><strong>Remarks:</strong> SGD works! We have an algorithm that can be applied (with the due precautions) to learn datasets of arbitrary size.</p>
@@ -2529,15 +2529,15 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4a09a6394423473b910efa1ac73cac41"}
+{"version_major": 2, "version_minor": 0, "model_id": "7b2a29e9b4684fba8d4f931e418db3b8"}
 </script></div>
 </div>
 </div>
 <div class="section" id="coding-exercise-7-implement-rmsprop">
 <h2>Coding Exercise 7: Implement RMSprop<a class="headerlink" href="#coding-exercise-7-implement-rmsprop" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the update of the RMSprop optimizer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ec4ce58b-21df-45be-8441-e2f87b627930">
-<span class="eqno">(47)<a class="headerlink" href="#equation-ec4ce58b-21df-45be-8441-e2f87b627930" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dcb56c19-d6fa-49db-9bdc-e93cc54c07c6">
+<span class="eqno">(47)<a class="headerlink" href="#equation-dcb56c19-d6fa-49db-9bdc-e93cc54c07c6" title="Permalink to this equation">¶</a></span>\[\begin{align}
 v_{t} &amp;= \alpha v_{t-1} + (1 - \alpha) \nabla J(w_t)^2 \\ \\
 w_{t+1} &amp;= w_t - \eta \frac{\nabla J(w_t)}{\sqrt{v_t + \epsilon}}
 \end{align}\]</div>
@@ -2687,7 +2687,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4613d4cc1c1c4da0add0b56ec9f9cd40"}
+{"version_major": 2, "version_minor": 0, "model_id": "53df7b70afe34d15a880d3a420aca080"}
 </script></div>
 </div>
 <div class="section" id="discussion">
@@ -2732,9 +2732,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2a5eae8d44d24eeb858de3578ec336b2"}
+{"version_major": 2, "version_minor": 0, "model_id": "873c0062098e45caaeb82841aee1baa0"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6b7ca9cab7854a6d8c7045ae6c8ba65f"}
+{"version_major": 2, "version_minor": 0, "model_id": "57a2101d93aa4eaca0e319d4e5abfe66"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_a3f4354b.py"><em>Click for solution</em></a></p>
@@ -2750,7 +2750,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "aba14d12820542499325dc9507e8a883"}
+{"version_major": 2, "version_minor": 0, "model_id": "73113fd40e9e40b7a9608162ee2a5c5c"}
 </script></div>
 </div>
 </div>
@@ -2784,7 +2784,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell_output docutils container">
 <div class="output text_html">
 <div>
-<a href="https://portal.neuromatchacademy.org/api/redirect/to/9548a279-c9f9-4586-b89c-f0ceceba5c14?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzFENF9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyODcxNzcxMS42MDU2MDJ9LCB7ImV2ZW50IjogIlZpZGVvIDE6IEludHJvZHVjdGlvbiIsICJ0cyI6IDE2Mjg3MTc3MTIuNTM0Njc3M30sIHsiZXZlbnQiOiAiVmlkZW8gMjogQ2FzZSBTdHVkeSAtIE1MUCBDbGFzc2lmaWNhdGlvbiIsICJ0cyI6IDE2Mjg3MTc3MTIuNjM3MDg0fSwgeyJldmVudCI6ICJWaWRlbyAzOiBPcHRpbWl6YXRpb24gb2YgYW4gT2JqZWN0aXZlIEZ1bmN0aW9uIiwgInRzIjogMTYyODcxNzcyNi45OTY3NjI1fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgMzogSW1wbGVtZW50IGdyYWRpZW50IGRlc2NlbnQiLCAidHMiOiAxNjI4NzE3NzI3LjAzNTkyMDZ9LCB7ImV2ZW50IjogIlZpZGVvIDQ6IE1vbWVudHVtIiwgInRzIjogMTYyODcxNzcyNy42MDA2ODZ9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA0OiBJbXBsZW1lbnQgbW9tZW50dW0iLCAidHMiOiAxNjI4NzE3NzI3LjY0MzIxODN9LCB7ImV2ZW50IjogIlZpZGVvIDU6IE92ZXJwYXJhbWV0cml6YXRpb24iLCAidHMiOiAxNjI4NzE3NzI5LjYyNzM1NH0sIHsiZXZlbnQiOiAiVmlkZW8gNjogTWluaS1iYXRjaGVzIiwgInRzIjogMTYyODcxNzcyOS44Mjk3MzJ9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA2OiBJbXBsZW1lbnQgbWluaWJhdGNoIHNhbXBsaW5nIiwgInRzIjogMTYyODcxNzcyOS45MTA5NzA3fSwgeyJldmVudCI6ICJWaWRlbyA3OiBBZGFwdGl2ZSBNZXRob2RzIiwgInRzIjogMTYyODcxNzczMC4wODAyMjIxfSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgNzogSW1wbGVtZW50IFJNU3Byb3AiLCAidHMiOiAxNjI4NzE3NzMwLjEwMTYzODZ9LCB7ImV2ZW50IjogIlZpZGVvIDg6IEV0aGljYWwgY29uY2VybnMiLCAidHMiOiAxNjI4NzE3NzMwLjI5NTg2OTZ9LCB7ImV2ZW50IjogInVybCBnZW5lcmF0ZWQiLCAidHMiOiAxNjI4NzE3NzMwLjMxMzk0MzZ9XX0%3D" target="_blank">
+<a href="https://portal.neuromatchacademy.org/api/redirect/to/9548a279-c9f9-4586-b89c-f0ceceba5c14?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzFENF9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyODcyMTQ2NC43MDY3MDI3fSwgeyJldmVudCI6ICJWaWRlbyAxOiBJbnRyb2R1Y3Rpb24iLCAidHMiOiAxNjI4NzIxNDY1Ljc3MTk1NH0sIHsiZXZlbnQiOiAiVmlkZW8gMjogQ2FzZSBTdHVkeSAtIE1MUCBDbGFzc2lmaWNhdGlvbiIsICJ0cyI6IDE2Mjg3MjE0NjUuODgyNDA3N30sIHsiZXZlbnQiOiAiVmlkZW8gMzogT3B0aW1pemF0aW9uIG9mIGFuIE9iamVjdGl2ZSBGdW5jdGlvbiIsICJ0cyI6IDE2Mjg3MjE0ODAuOTIzMjQ3fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgMzogSW1wbGVtZW50IGdyYWRpZW50IGRlc2NlbnQiLCAidHMiOiAxNjI4NzIxNDgwLjk1MjE2Nn0sIHsiZXZlbnQiOiAiVmlkZW8gNDogTW9tZW50dW0iLCAidHMiOiAxNjI4NzIxNDgxLjU1MTY2NzJ9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA0OiBJbXBsZW1lbnQgbW9tZW50dW0iLCAidHMiOiAxNjI4NzIxNDgxLjU5NTk0Njh9LCB7ImV2ZW50IjogIlZpZGVvIDU6IE92ZXJwYXJhbWV0cml6YXRpb24iLCAidHMiOiAxNjI4NzIxNDgzLjYwNDQxNTJ9LCB7ImV2ZW50IjogIlZpZGVvIDY6IE1pbmktYmF0Y2hlcyIsICJ0cyI6IDE2Mjg3MjE0ODMuODE1MTkzMn0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDY6IEltcGxlbWVudCBtaW5pYmF0Y2ggc2FtcGxpbmciLCAidHMiOiAxNjI4NzIxNDgzLjg5NzgwMzN9LCB7ImV2ZW50IjogIlZpZGVvIDc6IEFkYXB0aXZlIE1ldGhvZHMiLCAidHMiOiAxNjI4NzIxNDg0LjA1MjY1ODN9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA3OiBJbXBsZW1lbnQgUk1TcHJvcCIsICJ0cyI6IDE2Mjg3MjE0ODQuMDc2MzI3M30sIHsiZXZlbnQiOiAiVmlkZW8gODogRXRoaWNhbCBjb25jZXJucyIsICJ0cyI6IDE2Mjg3MjE0ODQuMjcwNTAzM30sIHsiZXZlbnQiOiAidXJsIGdlbmVyYXRlZCIsICJ0cyI6IDE2Mjg3MjE0ODQuMjg5NTcyMn1dfQ%3D%3D" target="_blank">
 <img alt="button link end of day Survey" src="https://github.com/NeuromatchAcademy/course-content-dl/blob/main/tutorials/static/SurveyButton.png?raw=1" style="width:410px"/></a>
 </div></div></div>
 </div>
@@ -2802,7 +2802,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9fe05834e0f54d23bbfaafcb3da7f73c"}
+{"version_major": 2, "version_minor": 0, "model_id": "fc635f8b618a4def8d5150e9148f6730"}
 </script></div>
 </div>
 </div>
@@ -3005,7 +3005,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "cccbe928302441b2beadd6712e36798b"}
+{"version_major": 2, "version_minor": 0, "model_id": "143dcf53a96746d09fc94afc942fe748"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[VALID] Epoch 1 - Batch 200 - Loss: 2.235 - Acc: 38.174%
 [TRAIN] Epoch 1 - Batch 200 - Loss: 2.274 - Acc: 30.945%
 </pre></div>
@@ -3026,84 +3026,45 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 [TRAIN] Epoch 2 - Batch 400 - Loss: 1.168 - Acc: 74.133%
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[VALID] Epoch 2 - Batch 600 - Loss: 0.928 - Acc: 80.957%
+[TRAIN] Epoch 2 - Batch 600 - Loss: 0.997 - Acc: 79.094%
+</pre></div>
+</div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3029</span><span class="o">/</span><span class="mf">729571843.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>       <span class="n">val_loss</span><span class="p">,</span> <span class="n">val_acc</span> <span class="o">=</span> <span class="n">eval_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                                      <span class="n">num_batches</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>                                      <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>       <span class="n">metrics</span><span class="p">[</span><span class="s1">'val_idx'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step_idx</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>       <span class="n">metrics</span><span class="p">[</span><span class="s1">'val_loss'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3006</span><span class="o">/</span><span class="mf">729571843.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="c1"># Note how all the magic in the update of the parameters is encapsulated by</span>
+<span class="g g-Whitespace">     </span><span class="mi">61</span>     <span class="c1"># the optimizer class.</span>
+<span class="ne">---&gt; </span><span class="mi">62</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="c1"># Log metrics for plotting</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="n">metrics</span><span class="p">[</span><span class="s1">'train_loss'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 
-<span class="nn">/tmp/ipykernel_3029/3014249815.py</span> in <span class="ni">eval_model</span><span class="nt">(model, data_loader, num_batches, device)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>   <span class="c1"># We are just evaluating the model, no need to compute gradients</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>   <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
-<span class="ne">---&gt; </span><span class="mi">15</span>     <span class="k">for</span> <span class="n">batch_id</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>       <span class="c1"># If we only evaluate a number of batches, stop after we reach that number</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>       <span class="k">if</span> <span class="n">batch_id</span> <span class="o">&gt;</span> <span class="n">num_batches</span><span class="p">:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/optim/optimizer.py</span> in <span class="ni">wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span>                 <span class="n">profile_name</span> <span class="o">=</span> <span class="s2">"Optimizer.step#</span><span class="si">{}</span><span class="s2">.step"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span>                 <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">record_function</span><span class="p">(</span><span class="n">profile_name</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">88</span>                     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span>             <span class="k">return</span> <span class="n">wrapper</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">__next__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">521</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/grad_mode.py</span> in <span class="ni">decorate_context</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>         <span class="k">def</span> <span class="nf">decorate_context</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span>             <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">():</span>
+<span class="ne">---&gt; </span><span class="mi">28</span>                 <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span>         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">decorate_context</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span> 
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_next_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1184</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1185</span>             <span class="k">assert</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shutdown</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tasks_outstanding</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="ne">-&gt; </span><span class="mi">1186</span>             <span class="n">idx</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_data</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1187</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_tasks_outstanding</span> <span class="o">-=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">   </span><span class="mi">1188</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span><span class="p">:</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/optim/adam.py</span> in <span class="ni">step</span><span class="nt">(self, closure)</span>
+<span class="g g-Whitespace">    </span><span class="mi">116</span>                    <span class="n">lr</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">'lr'</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>                    <span class="n">weight_decay</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">'weight_decay'</span><span class="p">],</span>
+<span class="ne">--&gt; </span><span class="mi">118</span>                    <span class="n">eps</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">'eps'</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>         <span class="k">return</span> <span class="n">loss</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_get_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1150</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1151</span>             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1152</span>                 <span class="n">success</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_try_get_data</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1153</span>                 <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1154</span>                     <span class="k">return</span> <span class="n">data</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/utils/data/dataloader.py</span> in <span class="ni">_try_get_data</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">988</span>         <span class="c1">#   (bool: whether successfully get data, any: data if successful else None)</span>
-<span class="g g-Whitespace">    </span><span class="mi">989</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">990</span>             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_queue</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">991</span>             <span class="k">return</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">992</span>         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/queues.py</span> in <span class="ni">get</span><span class="nt">(self, block, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">102</span>                 <span class="k">if</span> <span class="n">block</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">103</span>                     <span class="n">timeout</span> <span class="o">=</span> <span class="n">deadline</span> <span class="o">-</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">104</span>                     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">105</span>                         <span class="k">raise</span> <span class="n">Empty</span>
-<span class="g g-Whitespace">    </span><span class="mi">106</span>                 <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">():</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">poll</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_check_closed</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_check_readable</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">257</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span> 
-<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">_poll</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">412</span> 
-<span class="g g-Whitespace">    </span><span class="mi">413</span>     <span class="k">def</span> <span class="nf">_poll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">414</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">wait</span><span class="p">([</span><span class="bp">self</span><span class="p">],</span> <span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">415</span>         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">416</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py</span> in <span class="ni">wait</span><span class="nt">(object_list, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">919</span> 
-<span class="g g-Whitespace">    </span><span class="mi">920</span>             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">921</span>                 <span class="n">ready</span> <span class="o">=</span> <span class="n">selector</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">922</span>                 <span class="k">if</span> <span class="n">ready</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">923</span>                     <span class="k">return</span> <span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">fileobj</span> <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ready</span><span class="p">]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/selectors.py</span> in <span class="ni">select</span><span class="nt">(self, timeout)</span>
-<span class="g g-Whitespace">    </span><span class="mi">413</span>         <span class="n">ready</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">415</span>             <span class="n">fd_event_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_selector</span><span class="o">.</span><span class="n">poll</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">416</span>         <span class="k">except</span> <span class="ne">InterruptedError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span>             <span class="k">return</span> <span class="n">ready</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/optim/_functional.py</span> in <span class="ni">adam</span><span class="nt">(params, grads, exp_avgs, exp_avg_sqs, max_exp_avg_sqs, state_steps, amsgrad, beta1, beta2, lr, weight_decay, eps)</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span>         <span class="n">step_size</span> <span class="o">=</span> <span class="n">lr</span> <span class="o">/</span> <span class="n">bias_correction1</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> 
+<span class="ne">---&gt; </span><span class="mi">98</span>         <span class="n">param</span><span class="o">.</span><span class="n">addcdiv_</span><span class="p">(</span><span class="n">exp_avg</span><span class="p">,</span> <span class="n">denom</span><span class="p">,</span> <span class="n">value</span><span class="o">=-</span><span class="n">step_size</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">99</span> 
+<span class="g g-Whitespace">    </span><span class="mi">100</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
