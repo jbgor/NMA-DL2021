@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# @title Install dependencies', '', '# @markdown **WARNING**: There may be *errors* and *warnings* reported during the installation.', '# @markdown However, they should be ignored.', '']
+["def run_poly_clasification(poly_degree, device='cpu', seed=0):", '', '  def make_poly_features(poly_degree, X):', '    # Define the number of polynomial features except the bias term', '    num_features = (poly_degree + 1)*(poly_degree + 2) // 2 - 1']
 ...
-['!pip install git+https://github.com/NeuromatchAcademy/evaltools --quiet', 'from evaltools.airtable import AirtableForm', '', '# generate airtable form', "atform = AirtableForm('appn7VdPRseSoMXEG','W1D5_T1','https://portal.neuromatchacademy.org/api/redirect/to/9c55f6cb-cdf9-4429-ac1c-ec44fe64c303')"]
+['', 'set_seed(seed=SEED)', 'max_poly_degree = 50', 'num_features = run_poly_clasification(max_poly_degree, DEVICE, SEED)', "print(f'Number of features: {num_features}')"]
 -------------------
 
