@@ -1079,7 +1079,7 @@
 <div class="row" id="main-content">
 <div class="col-12 col-md-9 pl-md-3 pr-md-0">
 <div>
-<p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/tutorials/W2D3_ModernRecurrentNeuralNetworks/student/W2D3_Tutorial1.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
+<p><a href="https://colab.research.google.com/github/NeuromatchAcademy/course-content-dl/blob/main/tutorials/W2D3_ModernRecurrentNeuralNetworks/W2D3_Tutorial1.ipynb" target="_blank"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a>, “<a href="https://kaggle.com/kernels/welcome?src=https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D3_ModernRecurrentNeuralNetworks/student/W2D3_Tutorial1.ipynb" target="_blank"><img alt="Open in Kaggle" src="https://kaggle.com/static/images/open-in-kaggle.svg"/></a>”</p>
 <div class="section" id="tutorial-1-modeling-sequencies-and-encoding-text">
 <h1>Tutorial 1: Modeling sequencies and encoding text<a class="headerlink" href="#tutorial-1-modeling-sequencies-and-encoding-text" title="Permalink to this headline">¶</a></h1>
 <p><strong>Week 2, Day 3: Modern RNNs</strong></p>
@@ -1547,18 +1547,18 @@
 and that the <em>system</em> transitions between these states with some probability at each time step <span class="math notranslate nohighlight">\(t\)</span>,
 thus generating a sequence of states over time.
 Let’s call these states <span class="math notranslate nohighlight">\(S\)</span>, where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e141b78a-0a40-4b9b-aae7-64c6e340c47c">
-<span class="eqno">(60)<a class="headerlink" href="#equation-e141b78a-0a40-4b9b-aae7-64c6e340c47c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a96b0886-77da-4edb-91db-a1e1d83286b3">
+<span class="eqno">(60)<a class="headerlink" href="#equation-a96b0886-77da-4edb-91db-a1e1d83286b3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, ..., s_n\}
 \end{equation}\]</div>
 <p>To keep things simple, let’s start with three states:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-74e6862d-f8c0-46e6-856d-06caaf8487b8">
-<span class="eqno">(61)<a class="headerlink" href="#equation-74e6862d-f8c0-46e6-856d-06caaf8487b8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-345fccf4-6df7-4b44-9bb4-dd695b6c3a2c">
+<span class="eqno">(61)<a class="headerlink" href="#equation-345fccf4-6df7-4b44-9bb4-dd695b6c3a2c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 S = \{s_1, s_2, s_3\}
 \end{equation}\]</div>
 <p>A Markov model generates a sequence of states, with one possible realization being:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a3b40fb6-452d-48fb-a03a-e3e0b29509a1">
-<span class="eqno">(62)<a class="headerlink" href="#equation-a3b40fb6-452d-48fb-a03a-e3e0b29509a1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c9c1a029-9b23-49a2-ab13-fad6ac583cf6">
+<span class="eqno">(62)<a class="headerlink" href="#equation-c9c1a029-9b23-49a2-ab13-fad6ac583cf6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \{s_1, s_1, s_1, s_3, s_3, s_3, s_2, s_2, s_3, s_3, s_3, s_3, s_1, ...\}
 \end{equation}\]</div>
 <p>And generically, we represent it as a sequence of states <span class="math notranslate nohighlight">\(x_t, x_{t+1}... x_{t+n}\)</span>. (We have chosen a different symbol to not confuse the “generic” state with the specific realization. Graphically, a plain and simple Markov model looks like the following:</p>
@@ -1570,8 +1570,8 @@ S = \{s_1, s_2, s_3\}
 while columns correspond to state at time <span class="math notranslate nohighlight">\(t+1\)</span>.
 Hence, row probabilities sum to one, because the probability of transitioning to the next state depends on only the current state, and all possible states are known and enumerated.</p>
 <p>Let’s call the transition matrix <span class="math notranslate nohighlight">\(P_{transition}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c0c2f91f-e6fa-456c-a243-fec02f5c7552">
-<span class="eqno">(63)<a class="headerlink" href="#equation-c0c2f91f-e6fa-456c-a243-fec02f5c7552" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-46d0d9f0-9186-4382-97ce-3fe116a39598">
+<span class="eqno">(63)<a class="headerlink" href="#equation-46d0d9f0-9186-4382-97ce-3fe116a39598" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 P_{transition} = 
   \begin{pmatrix}
   p_{11} &amp; p_{12} &amp; p_{13} \\
