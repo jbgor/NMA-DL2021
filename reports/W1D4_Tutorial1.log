@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# Define the model and the optimizer', 'model = Net().to(DEVICE)', 'optimizer = optim.SGD(model.parameters(), lr=0.01)', '', '# Prepare list to store average accuracies after each task']
+['set_seed(seed=SEED)', '# Print trainig stats every LOG_FREQ minibatches', 'LOG_FREQ = 200', '# Frequency for evaluating the validation metrics', 'VAL_FREQ = 200']
 ...
-['    acc = test(model, x_test, t_test, device=DEVICE)', '    avg_acc = avg_acc + acc', '', '  print(f"Avg acc: {avg_acc / len(task_data)}")', '  rehe_accs.append(avg_acc/len(task_data))']
+['      print(f"[TRAIN] Epoch {epoch + 1} - Batch {batch_id + 1} - "', '            f"Loss: {running_loss / LOG_FREQ:.3f} - "', '            f"Acc: {100 * running_acc / LOG_FREQ:.3f}%")', '', '      running_loss, running_acc = 0., 0.']
 -------------------
 
