@@ -1218,7 +1218,8 @@
 <span class="o">!</span>pip install <span class="nv">folium</span><span class="o">==</span><span class="m">0</span>.2.1 --quiet
 <span class="o">!</span>pip install datasets --quiet
 <span class="o">!</span>pip install pytorch_pretrained_bert --quiet
-<span class="o">!</span>pip install tensorflow-text
+<span class="o">!</span>pip install tensorflow-text --quiet
+<span class="o">!</span>pip install textattack --quiet
 
 <span class="o">!</span>pip install git+https://github.com/NeuromatchAcademy/evaltools --quiet
 <span class="kn">from</span> <span class="nn">evaltools.airtable</span> <span class="kn">import</span> <span class="n">AirtableForm</span>
@@ -1229,8 +1230,18 @@
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.3; however, version 21.2.4 is available.</span>
+<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.3; however, version 21.2.4 is available.</span>
+<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
 <span class="-Color -Color-Red">ERROR: Operation cancelled by user</span>
+<span class="-Color -Color-Yellow">WARNING: You are using pip version 21.2.3; however, version 21.2.4 is available.</span>
+<span class="-Color -Color-Yellow">You should consider upgrading via the '/opt/hostedtoolcache/Python/3.7.11/x64/bin/python -m pip install --upgrade pip' command.</span>
 </pre></div>
 </div>
 </div>
@@ -1578,8 +1589,8 @@
 <div class="section" id="coding-exercise-2-dot-product-attention">
 <h3>Coding Exercise 2: Dot product attention<a class="headerlink" href="#coding-exercise-2-dot-product-attention" title="Permalink to this headline">¶</a></h3>
 <p>In this exercise, let’s compute the scaled dot product attention using its matrix form.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-80ef8f64-030e-468a-8bd8-0a207207450f">
-<span class="eqno">(82)<a class="headerlink" href="#equation-80ef8f64-030e-468a-8bd8-0a207207450f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8265605d-48e3-4c20-b63b-e3d3c9d4e34d">
+<span class="eqno">(82)<a class="headerlink" href="#equation-8265605d-48e3-4c20-b63b-e3d3c9d4e34d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathrm{softmax} \left( \frac{Q K^\text{T}}{\sqrt{d}} \right) V
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(Q\)</span> denotes the query or values of the embeddings (in other words the hidden states), <span class="math notranslate nohighlight">\(K\)</span> the key, and <span class="math notranslate nohighlight">\(k\)</span> denotes the dimension of the query key vector.</p>
@@ -2277,7 +2288,7 @@ conclusion in this situation?</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Bonus 1.1: Load Yelp reviews dataset ⌛🤗</span>
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">DATASET</span><span class="p">[</span><span class="s1">'train'</span><span class="p">]</span>
-<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">DATASET</span><span class="p">[</span><span class="s1">'test'</span><span class="p">]</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">DATASET</span><span class="p">[</span><span class="s1">'test'</span><span class="p">]</span>
 
 <span class="c1"># filter training data by sentiment value</span>
 <span class="n">sentiment_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -2305,7 +2316,7 @@ conclusion in this situation?</p>
     <span class="k">return</span> <span class="n">text</span>
 
 <span class="c1"># @markdown ---</span>
-<span class="n">sample_review_from_yelp</span> <span class="o">=</span> <span class="s2">"Sentiment = 0"</span> <span class="c1"># @param ["Sentiment = 0", "Sentiment = 1", "Sentiment = 2", "Sentiment = 3", "Sentiment = 4"]</span>
+<span class="n">sample_review_from_yelp</span> <span class="o">=</span> <span class="s2">"Sentiment = 4"</span> <span class="c1"># @param ["Sentiment = 0", "Sentiment = 1", "Sentiment = 2", "Sentiment = 3", "Sentiment = 4"]</span>
 <span class="c1"># @markdown **Randomly sample a response from the Yelp review dataset with the given sentiment value {0:😠, 1:😦, 2:😐, 3:🙂, 4:😀}**</span>
 
 <span class="c1"># @markdown ---</span>
