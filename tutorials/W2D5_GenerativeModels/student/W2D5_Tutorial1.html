@@ -904,8 +904,8 @@
     </a>
 </li>
 <li class="toc-h2 nav-item toc-entry">
-<a class="reference internal nav-link" href="#coding-exercise-2-ppca">
-     Coding Exercise 2: pPCA
+<a class="reference internal nav-link" href="#coding-exercise-2-ppca-bonus">
+     Coding Exercise 2: pPCA (Bonus)
     </a>
 </li>
 </ul>
@@ -918,11 +918,6 @@
 <li class="toc-h2 nav-item toc-entry">
 <a class="reference internal nav-link" href="#video-3-autoenconders">
      Video 3: Autoenconders
-    </a>
-</li>
-<li class="toc-h2 nav-item toc-entry">
-<a class="reference internal nav-link" href="#download-mnist-and-cifar10-datasets">
-     Download MNIST and CIFAR10 datasets
     </a>
 <ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry">
@@ -1006,13 +1001,18 @@
        Coding Exercise 4.2: Generating images
       </a>
 </li>
+<li class="toc-h3 nav-item toc-entry">
+<a class="reference internal nav-link" href="#think-4-2-autoencoders-vs-variational-autoencoders">
+       Think! 4.2: AutoEncoders vs. Variational AutoEncoders
+      </a>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry">
-<a class="reference internal nav-link" href="#section-5-state-of-the-art-vaes-and-wrap-up">
-   Section 5: State of the art VAEs and Wrap-up
+<a class="reference internal nav-link" href="#section-5-state-of-the-art-vaes-and-wrap-up-bonus">
+   Section 5: State of the art VAEs and Wrap-up (Bonus)
   </a>
 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry">
@@ -1083,7 +1083,7 @@
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Install dependencies</span>
-<span class="o">!</span>pip install --upgrade torchvision --quiet
+<span class="o">!</span>pip install torchvision --quiet
 
 <span class="c1"># @markdown Install *Huggingface BigGAN* library</span>
 
@@ -1123,7 +1123,6 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">nltk</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1456,16 +1455,61 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download `wordnet` dataset</span>
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">'wordnet'</span><span class="p">)</span>
+
+<span class="c1"># import nltk</span>
+<span class="c1"># nltk.download('wordnet')</span>
+
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">zipfile</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">'wordnet.zip'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">'https://osf.io/ekjxy/download'</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'wordnet.zip'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+  <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+  <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s1">'/root/nltk_data/corpora'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package wordnet to /home/runner/nltk_data...
-[nltk_data]   Unzipping corpora/wordnet.zip.
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PermissionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_11560</span><span class="o">/</span><span class="mf">4023721422.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> 
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">16</span>   <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s1">'/root/nltk_data/corpora'</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/zipfile.py</span> in <span class="ni">extractall</span><span class="nt">(self, path, members, pwd)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1634</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1635</span>         <span class="k">for</span> <span class="n">zipinfo</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1636</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_extract_member</span><span class="p">(</span><span class="n">zipinfo</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1637</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1638</span>     <span class="nd">@classmethod</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/zipfile.py</span> in <span class="ni">_extract_member</span><span class="nt">(self, member, targetpath, pwd)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1680</span>         <span class="n">upperdirs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">targetpath</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1681</span>         <span class="k">if</span> <span class="n">upperdirs</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">upperdirs</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1682</span>             <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">upperdirs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1683</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1684</span>         <span class="k">if</span> <span class="n">member</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/os.py</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>     <span class="k">if</span> <span class="n">head</span> <span class="ow">and</span> <span class="n">tail</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">212</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">213</span>             <span class="n">makedirs</span><span class="p">(</span><span class="n">head</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="n">exist_ok</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">214</span>         <span class="k">except</span> <span class="ne">FileExistsError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span>             <span class="c1"># Defeats race condition when another thread created the path</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/os.py</span> in <span class="ni">makedirs</span><span class="nt">(name, mode, exist_ok)</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span>             <span class="k">return</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">223</span>         <span class="n">mkdir</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span>         <span class="c1"># Cannot rely on checking for EEXIST, since the operating system</span>
+
+<span class="ne">PermissionError</span>: [Errno 13] Permission denied: '/root/nltk_data'
 </pre></div>
 </div>
 </div>
@@ -1482,140 +1526,24 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4ab337e3759945788e562b1a3e9b9001"}
+{"version_major": 2, "version_minor": 0, "model_id": "4f33eeaed44045b1941e28182eb0b1aa"}
 </script></div>
 </div>
-<p>Download BigGAN (a generative model) and a few standard image datasets while the above video plays</p>
+<p>Download BigGAN (a generative model) and a few standard image datasets</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Download BigGAN (a generative model) and a few standard image datasets while the above video plays</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Download BigGAN (a generative model) and a few standard image datasets</span>
 
-<span class="n">biggan_model</span> <span class="o">=</span> <span class="n">BigGAN</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">'biggan-deep-256'</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/234411737 [00:00&lt;?, ?B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  2%|▏         | 5046272/234411737 [00:00&lt;00:04, 50459640.19B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  5%|▍         | 11676672/234411737 [00:00&lt;00:03, 59778393.62B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  8%|▊         | 18307072/234411737 [00:00&lt;00:03, 62749810.28B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|█         | 24864768/234411737 [00:00&lt;00:03, 63861167.83B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 13%|█▎        | 31448064/234411737 [00:00&lt;00:03, 64571601.37B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 16%|█▋        | 38106112/234411737 [00:00&lt;00:03, 65252739.57B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 19%|█▉        | 44773376/234411737 [00:00&lt;00:02, 65716158.13B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 22%|██▏       | 51389440/234411737 [00:00&lt;00:02, 65854923.12B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|██▍       | 58056704/234411737 [00:00&lt;00:02, 66107846.67B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 28%|██▊       | 64667648/234411737 [00:01&lt;00:02, 66100720.00B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 30%|███       | 71339008/234411737 [00:01&lt;00:02, 66286691.66B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|███▎      | 77968384/234411737 [00:01&lt;00:02, 66214765.99B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 36%|███▌      | 84608000/234411737 [00:01&lt;00:02, 66268827.98B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 39%|███▉      | 91235328/234411737 [00:01&lt;00:02, 66212292.26B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 42%|████▏     | 97903616/234411737 [00:01&lt;00:02, 66352728.35B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 45%|████▍     | 104596480/234411737 [00:01&lt;00:01, 66524156.68B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████▋     | 111257600/234411737 [00:01&lt;00:01, 66547045.50B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████     | 117913600/234411737 [00:01&lt;00:01, 66545094.10B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████▎    | 124568576/234411737 [00:01&lt;00:01, 65725156.29B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 56%|█████▌    | 131233792/234411737 [00:02&lt;00:01, 65995212.60B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 59%|█████▉    | 137903104/234411737 [00:02&lt;00:01, 66202221.08B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 62%|██████▏   | 144574464/234411737 [00:02&lt;00:01, 66352905.33B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|██████▍   | 151211008/234411737 [00:02&lt;00:01, 66271312.67B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 67%|██████▋   | 157889536/234411737 [00:02&lt;00:01, 66424647.74B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 70%|███████   | 164541440/234411737 [00:02&lt;00:01, 66452025.43B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 73%|███████▎  | 171187200/234411737 [00:02&lt;00:00, 66423683.82B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|███████▌  | 177829888/234411737 [00:02&lt;00:00, 66320722.80B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 79%|███████▊  | 184462336/234411737 [00:02&lt;00:00, 66272006.47B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 82%|████████▏ | 191090688/234411737 [00:02&lt;00:00, 66262795.59B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 84%|████████▍ | 197770240/234411737 [00:03&lt;00:00, 66419689.36B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 87%|████████▋ | 204455936/234411737 [00:03&lt;00:00, 66550130.53B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|█████████ | 211130368/234411737 [00:03&lt;00:00, 66605315.59B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 93%|█████████▎| 217791488/234411737 [00:03&lt;00:00, 66368598.90B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|█████████▌| 224429056/234411737 [00:03&lt;00:00, 66338611.58B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|█████████▊| 231067648/234411737 [00:03&lt;00:00, 66352505.30B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 234411737/234411737 [00:03&lt;00:00, 65852195.37B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/715 [00:00&lt;?, ?B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 715/715 [00:00&lt;00:00, 668806.28B/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class="c1">## Initially was downloaded directly</span>
+<span class="c1"># biggan_model = BigGAN.from_pretrained('biggan-deep-256')</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"https://osf.io/3yvhw/download"</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="s2">"biggan_deep_256"</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+  <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+<span class="n">biggan_model</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1623,9 +1551,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="section" id="section-1-1-generating-images-from-biggan">
 <h2>Section 1.1: Generating Images from BigGAN<a class="headerlink" href="#section-1-1-generating-images-from-biggan" title="Permalink to this headline">¶</a></h2>
-<p>To demonstrate the power of generative models, we are giving you a sneak peak of a fully trained generative model called BigGAN. You’ll see it again (with more background under your belt) later today. For now, let’s just focus on BigGAN as a generative model. Specifically, BigGAN is a class conditional generative model for 128 x 128 images. The classes are based on categorical labels that describe the images and images are generated based upon a vector (z from the video lecture) and the probability that the image comes from a specific discrete category.</p>
+<p>To demonstrate the power of generative models, we are giving you a sneak peek of a fully trained generative model called BigGAN. You’ll see it again (with more background under your belt) later today. For now, let’s just focus on BigGAN as a generative model. Specifically, BigGAN is a class conditional generative model for 128 x 128 images. The classes are based on categorical labels that describe the images and images are generated based upon a vector (z from the video lecture) and the probability that the image comes from a specific discrete category.</p>
 <p>For now, don’t worry about the specifics of the model other than the fact that it generates images based on the vector and the category label.</p>
-<p>To explore the space of generated images, we’ve provided you with a widget that allows you to select a category label and to alter the value of the vector. The vector is a 128-D, which may seem high dimensional, but is much lower dimensional than a 128 x 128 image! To simplify usability the widget limits the magnitude of the vector and constrains all entries to be equal (so you are only exploring a subset of the possible images that can be generated).</p>
+<p>To explore the space of generated images, we’ve provided you with a widget that allows you to select a category label and to alter the value of the vector. The vector is a 128-D, which may seem high dimensional, but is much lower-dimensional than a 128 x 128 image! To simplify usability the widget limits the magnitude of the vector and constrains all entries to be equal (so you are only exploring a subset of the possible images that can be generated).</p>
 <div class="section" id="think-1-1-generated-images">
 <h3>Think! 1.1: Generated images<a class="headerlink" href="#think-1-1-generated-images" title="Permalink to this headline">¶</a></h3>
 <p>As you alter the magnitude of the vector, what do you note about the relationship between the different generated images? What do you note about the relationship between the image and the category label as you increase the magnitude of the vector?</p>
@@ -1659,15 +1587,15 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ac75b681a9184ed98e7a2c628502e866"}
+{"version_major": 2, "version_minor": 0, "model_id": "59da8d92eb5f4150b52016e71934aaa1"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b74e20c83c7f49aa8005603b05d2622b"}
+{"version_major": 2, "version_minor": 0, "model_id": "c29b4871e5d9461d907d837bc852b3ee"}
 </script></div>
 </div>
-<div class="cell docutils container">
+<p>BigGAN Image Generator (the updates may take a few seconds)</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> --no-display
-<span class="c1"># @markdown BigGAN Image Generator (the updates may take a few seconds)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown BigGAN Image Generator (the updates may take a few seconds)</span>
 
 <span class="c1"># category = 'German shepherd' # @param ['tench', 'magpie', 'jellyfish', 'German shepherd', 'bee', 'acoustic guitar', 'coffee mug', 'minibus', 'monitor']</span>
 <span class="c1"># z_magnitude = -16 # @param {type:"slider", min:-50, max:50, step:1}</span>
@@ -1701,7 +1629,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
   <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
   <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
 
-<span class="n">z_slider</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=-</span><span class="mi">25</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="n">z_slider</span> <span class="o">=</span> <span class="n">IntSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                      <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                      <span class="n">description</span><span class="o">=</span><span class="s1">'Z Magnitude'</span><span class="p">,</span>
                      <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">'440px'</span><span class="p">))</span>
@@ -1727,11 +1655,10 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "46e3564b9fa54b0684b2b5da06cc4dc7"}
+{"version_major": 2, "version_minor": 0, "model_id": "7cd2cb21a7fa4cb88f66fba9dc9c842d"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a91f2118d712482a9d7aff7179661705"}
-</script><img alt="../../../_images/W2D5_Tutorial1_34_2.png" src="../../../_images/W2D5_Tutorial1_34_2.png"/>
-</div>
+{"version_major": 2, "version_minor": 0, "model_id": "5f6dfb0ef8564819bd325952800fe551"}
+</script></div>
 </div>
 </div>
 </div>
@@ -1772,9 +1699,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e99af332b5284585928be4784d700a9b"}
+{"version_major": 2, "version_minor": 0, "model_id": "e83f2b46bd89481c98d227838ca57bf2"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "11a8b54d7b494a87a589680bf97407dd"}
+{"version_major": 2, "version_minor": 0, "model_id": "eca6722069f047c082d64a6826e44576"}
 </script></div>
 </div>
 <p>BigGAN Interpolation Widget (the updates may take a few seconds)</p>
@@ -1873,9 +1800,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "85214e03d2214bef87aa248aa479fa27"}
+{"version_major": 2, "version_minor": 0, "model_id": "bd2e60ec15f34e179f44dbe0fbdf5f49"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2b9baaf7ef5d46859cc5cd7a9b5b329e"}
+{"version_major": 2, "version_minor": 0, "model_id": "30bd2419824545be86631863f56d1ae8"}
 </script></div>
 </div>
 </div>
@@ -1885,18 +1812,21 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <hr class="docutils"/>
 <div class="section" id="section-2-latent-variable-models">
 <h1>Section 2: Latent Variable Models<a class="headerlink" href="#section-2-latent-variable-models" title="Permalink to this headline">¶</a></h1>
-<p><em>Time estimate: ~20mins</em></p>
+<p><em>Time estimate: ~15mins</em> excluding the Bonus</p>
 <div class="section" id="video-2-latent-variable-models">
 <h2>Video 2: Latent Variable Models<a class="headerlink" href="#video-2-latent-variable-models" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "035f61ec5c7846a0af14e5d8efaf4fe8"}
+{"version_major": 2, "version_minor": 0, "model_id": "4ac472dd9fce4c1f916e12a2f20a95a3"}
 </script></div>
 </div>
-<p>In the video the concept of a latent variable model was introduced. We saw how PCA (principal component analysis) can be extended into a generative model with latent variables called pPCA. For pPCA the latent variables (z in the video) are the projections onto the principal component axes.</p>
-<p>The dimensionality of the principal components is typically set to be substantially lower dimensional than the original data. Thus, the latent variables (the projection onto the principal component axes) are a lower dimensional representation of the original data (dimensionality reduction!). With pPCA we can estimate the original distribution of the high dimensional data. This allows us to generate data with a distribution that “looks” more like the original data than if we were to only use PCA to generate data from the latent variables.</p>
-<p>Let’s see how that might look with a simple example. Assume we have two noisy thermometers measuring the temperature of the same room. They both make noisy measurements.  The room tends to be around 25°C (that’s 77°F), but can vary around that temperature.  If we take lots of readings from the two thermometers over time and plot the paired readings, we might see something like the plot generated below:</p>
+<p>In the video, the concept of a latent variable model was introduced. We saw how PCA (principal component analysis) can be extended into a generative model with latent variables called pPCA. For pPCA the latent variables (z in the video) are the projections onto the principal component axes.</p>
+<p>The dimensionality of the principal components is typically set to be substantially lower-dimensional than the original data. Thus, the latent variables (the projection onto the principal component axes) are a lower-dimensional representation of the original data (dimensionality reduction!). With pPCA we can estimate the original distribution of the high dimensional data. This allows us to generate data with a distribution that “looks” more like the original data than if we were to only use PCA to generate data from the latent variables. Let’s see how that might look with a simple example.</p>
+</div>
+<div class="section" id="coding-exercise-2-ppca-bonus">
+<h2>Coding Exercise 2: pPCA (Bonus)<a class="headerlink" href="#coding-exercise-2-ppca-bonus" title="Permalink to this headline">¶</a></h2>
+<p>Assume we have two noisy thermometers measuring the temperature of the same room. They both make noisy measurements.  The room tends to be around 25°C (that’s 77°F), but can vary around that temperature.  If we take lots of readings from the two thermometers over time and plot the paired readings, we might see something like the plot generated below:</p>
 <p>Generate example datapoints from the two thermometers</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -1941,10 +1871,10 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W2D5_Tutorial1_46_0.png" src="../../../_images/W2D5_Tutorial1_46_0.png"/>
+<img alt="../../../_images/W2D5_Tutorial1_48_0.png" src="../../../_images/W2D5_Tutorial1_48_0.png"/>
 </div>
 </div>
-<p>Let’s model these data with a single principal component. Given that the thermometers are measuring the same actual temperature, the principal component axes will be the identity line. The direction of this axes can be indicated by the unit vector [1 1]/sqrt(2).  We could estimate this axes by applying PCA. We can plot this axes, it tells us something about the data, but we can’t generate from it:</p>
+<p>Let’s model these data with a single principal component. Given that the thermometers are measuring the same actual temperature, the principal component axes will be the identity line. The direction of this axes can be indicated by the unit vector <span class="math notranslate nohighlight">\([1 ~~ 1]~/~\sqrt2\)</span>.  We could estimate this axes by applying PCA. We can plot this axes, it tells us something about the data, but we can’t generate from it:</p>
 <p>Add first PC axes to the plot</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -1961,12 +1891,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W2D5_Tutorial1_49_0.png" src="../../../_images/W2D5_Tutorial1_49_0.png"/>
+<img alt="../../../_images/W2D5_Tutorial1_51_0.png" src="../../../_images/W2D5_Tutorial1_51_0.png"/>
 </div>
 </div>
-</div>
-<div class="section" id="coding-exercise-2-ppca">
-<h2>Coding Exercise 2: pPCA<a class="headerlink" href="#coding-exercise-2-ppca" title="Permalink to this headline">¶</a></h2>
 <p><strong>Step 1:</strong> Calculate the parameters of the pPCA model</p>
 <p>This part is completed already, so you don’t need to make any edits:</p>
 <div class="cell docutils container">
@@ -1998,8 +1925,8 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <p><strong>Step 2</strong>: “Generate” from the pPCA model of the thermometer data.</p>
 <p>Complete the code so it properly generates from the pPCA model. At present we aren’t accounting for the “sensor noise” the sensor noise is the variance that the PC axes isn’t accounting for. Thus, you’ll note that the current output sits on the PC axes and doesn’t look like the original data distribution!!</p>
 <p>Here is the equation for sampling from the pPCA model:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e3899ee7-7381-43b9-83d8-7311cce59c84">
-<span class="eqno">(83)<a class="headerlink" href="#equation-e3899ee7-7381-43b9-83d8-7311cce59c84" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6784fc82-297f-4de8-9e8f-a64f48580849">
+<span class="eqno">(83)<a class="headerlink" href="#equation-6784fc82-297f-4de8-9e8f-a64f48580849" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma^2 \mathbf{I})
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -2057,22 +1984,20 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <hr class="docutils"/>
 <div class="section" id="section-3-autoencoders">
 <h1>Section 3: Autoencoders<a class="headerlink" href="#section-3-autoencoders" title="Permalink to this headline">¶</a></h1>
-<p><em>Time estimate: ~25mins</em></p>
+<p><em>Time estimate: ~30mins</em></p>
 <p><strong>Please</strong> run the cell after the video to download MNIST and CIFAR10 image datasets while the video plays.</p>
 <div class="section" id="video-3-autoenconders">
 <h2>Video 3: Autoenconders<a class="headerlink" href="#video-3-autoenconders" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6df8b08de4be45ca8e6b5163b7e20b5a"}
+{"version_major": 2, "version_minor": 0, "model_id": "f6a7f8f954f945b19bcc86d37d492eb0"}
 </script></div>
 </div>
-</div>
-<div class="section" id="download-mnist-and-cifar10-datasets">
-<h2>Download MNIST and CIFAR10 datasets<a class="headerlink" href="#download-mnist-and-cifar10-datasets" title="Permalink to this headline">¶</a></h2>
+<p>Download MNIST and CIFAR10 datasets</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @title Download MNIST and CIFAR10 datasets</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown Download MNIST and CIFAR10 datasets</span>
 <span class="kn">import</span> <span class="nn">tarfile</span><span class="o">,</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">os</span>
 
 <span class="n">fname</span> <span class="o">=</span> <span class="s1">'MNIST.tar.gz'</span>
@@ -2161,7 +2086,7 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <div class="section" id="select-a-dataset">
 <h3>Select a dataset<a class="headerlink" href="#select-a-dataset" title="Permalink to this headline">¶</a></h3>
 <p>We’ve built today’s tutorial to be flexible. It should work more-or-less out of the box with both MNIST and CIFAR (and other image datasets). MNIST is in many ways simpler, and the results will likely look better and run a bit faster if using MNIST. But we are leaving it up to you to pick which one you want to experiment with!</p>
-<p>We encourage pods to coordinate so that some members use MNIST and others use CIFAR10. Keep in mind that the CIFAR dataset may require more learning epochs.</p>
+<p>We encourage pods to coordinate so that some members use MNIST and others use CIFAR10. Keep in mind that the CIFAR dataset may require more learning epochs (longer training required).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'mnist'</span><span class="p">):</span>
@@ -2191,13 +2116,13 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <div class="section" id="section-3-1-conceptual-introduction-to-autoencoders">
 <h2>Section 3.1: Conceptual introduction to AutoEncoders<a class="headerlink" href="#section-3-1-conceptual-introduction-to-autoencoders" title="Permalink to this headline">¶</a></h2>
 <p>Now we’ll create our first autoencoder. It will reduce images down to <span class="math notranslate nohighlight">\(K\)</span> dimensions. The architecture will be quite simple: the input will be linearly mapped to a single hidden (or latent) layer <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> with <span class="math notranslate nohighlight">\(K\)</span> units, which will then be linearly mapped back to an output that is the same size as the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e98d3584-d9c3-43e2-a4c2-c657df6be48b">
-<span class="eqno">(84)<a class="headerlink" href="#equation-e98d3584-d9c3-43e2-a4c2-c657df6be48b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ebb68da6-dab4-4a1a-b09d-5a51799588c8">
+<span class="eqno">(84)<a class="headerlink" href="#equation-ebb68da6-dab4-4a1a-b09d-5a51799588c8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \longrightarrow \mathbf{h} \longrightarrow \mathbf{x'}
 \end{equation}\]</div>
 <p>The loss function we’ll use will simply be mean squared error (MSE) quantifying how well the reconstruction (<span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>) matches the original image (<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-149025bd-4e24-4dda-889a-1b845578917e">
-<span class="eqno">(85)<a class="headerlink" href="#equation-149025bd-4e24-4dda-889a-1b845578917e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a4a6673c-ca28-42ed-b07a-12ac94d57817">
+<span class="eqno">(85)<a class="headerlink" href="#equation-a4a6673c-ca28-42ed-b07a-12ac94d57817" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{MSE Loss} = \sum_{i=1}^{N} ||\mathbf{x}_i - \mathbf{x'}_i||^2_2
 \end{equation}\]</div>
 <p>If all goes well, then the AutoEncoder will learn, <strong>end to end</strong>, a good “encoding” or “compression” of inputs to a latent representation (<span class="math notranslate nohighlight">\(\mathbf{x \longrightarrow h}\)</span>) as well as a good “decoding” of that latent representation to a reconstruction of the original input (<span class="math notranslate nohighlight">\(\mathbf{h \longrightarrow x'}\)</span>).</p>
@@ -2211,6 +2136,7 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># @markdown #### Run to define the `train_autoencoder` function.</span>
 <span class="c1"># @markdown Feel free to inspect the training function if the time allows.</span>
+
 <span class="c1"># @markdown `train_autoencoder(autoencoder, dataset, device, epochs=20, batch_size=250, seed=0)`</span>
 
 
@@ -2347,27 +2273,8 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "22fd4271fb474618a1fee227b2622ae2"}
-</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_8745</span><span class="o">/</span><span class="mf">2353154234.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> 
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">mu</span><span class="p">,</span> <span class="n">cov</span> <span class="o">=</span> <span class="n">image_moments</span><span class="p">((</span><span class="n">im</span> <span class="k">for</span> <span class="n">im</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">loader</span><span class="p">),</span>
-<span class="ne">---&gt; </span><span class="mi">14</span>                         <span class="n">n_batches</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span> <span class="o">//</span> <span class="mi">32</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> 
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">pca_encode</span><span class="p">,</span> <span class="n">pca_decode</span> <span class="o">=</span> <span class="n">pca_encoder_decoder</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
-
-<span class="nn">/tmp/ipykernel_8745/1260270458.py</span> in <span class="ni">image_moments</span><span class="nt">(image_batches, n_batches)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="n">m1</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">+</span> <span class="n">im</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">m2</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">+</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">im</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="n">n</span> <span class="o">+=</span> <span class="n">b</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>   <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">/</span><span class="n">n</span><span class="p">,</span> <span class="n">m2</span><span class="o">/</span><span class="n">n</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
+{"version_major": 2, "version_minor": 0, "model_id": "fb24ef03959544419e00442015063cb1"}
+</script></div>
 </div>
 <p>Let’s visualize some of the reconstructions (<span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>) side-by-side with the input images (<span class="math notranslate nohighlight">\(\mathbf{x}\)</span>).</p>
 <p>Visualize the reconstructions <span class="math notranslate nohighlight">\(\mathbf{x}'\)</span>, run this code a few times to see different examples.</p>
@@ -2406,6 +2313,7 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 </pre></div>
 </div>
 </div>
+
 </div>
 </div>
 <div class="section" id="think-3-1-pca-vs-linear-autoenconder">
@@ -2439,6 +2347,12 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "9c501666cb944b7f821c0f7ccce66daa"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "08d21f72a4234fb4b493c775b75ebd9e"}
+</script></div>
 </div>
 </div>
 </div>
@@ -2468,7 +2382,7 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <li><p>The <strong>encoder</strong> once again maps from images to <span class="math notranslate nohighlight">\(\mathbf{h}\in\mathbb{R}^K\)</span>. This will use a <code class="docutils literal notranslate"><span class="pre">BiasLayer</span></code> followed by two convolutional layers (<code class="docutils literal notranslate"><span class="pre">nn.Conv2D</span></code>), followed by flattening and linearly projecting down to <span class="math notranslate nohighlight">\(K\)</span> dimensions. The convolutional layers will have <code class="docutils literal notranslate"><span class="pre">ReLU</span></code> nonlinearities on their outputs.</p></li>
 <li><p>The <strong>decoder</strong> inverts this process, taking in vectors of length <span class="math notranslate nohighlight">\(K\)</span> and outputting images. Roughly speaking, its architecture is a “mirror image” of the encoder: the first decoder layer is linear, followed by two <strong>deconvolution</strong> layers (<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html"><code class="docutils literal notranslate"><span class="pre">ConvTranspose2d</span></code></a>). The <code class="docutils literal notranslate"><span class="pre">ConvTranspose2d</span></code>layers will have <code class="docutils literal notranslate"><span class="pre">ReLU</span></code> nonlinearities on their <em>inputs</em>. This “mirror image” between the encoder and decoder is a useful and near-ubiquitous convention. The idea is that the decoder can then learn to approximately invert the encoder, but it is not a strict requirement (and it does not guarantee the decoder will be an exact inverse of the encoder!).</p></li>
 </ol>
-<p>Below is a schematic of the architecture for MNIST. Notice that the width and height dimensions of the image planes reduce after each <code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code> and increase after each <code class="docutils literal notranslate"><span class="pre">nn.ConvTranspose2d</span></code>. With CIFAR10, the architecture is the same but the exact sizes will differ a bit.</p>
+<p>Below is a schematic of the architecture for MNIST. Notice that the width and height dimensions of the image planes reduce after each <code class="docutils literal notranslate"><span class="pre">nn.Conv2d</span></code> and increase after each <code class="docutils literal notranslate"><span class="pre">nn.ConvTranspose2d</span></code>. With CIFAR10, the architecture is the same but the exact sizes will differ.</p>
 <img alt="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/conv_sizes.png" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/conv_sizes.png"/>
 <p><a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html"><code class="docutils literal notranslate"><span class="pre">torch.nn.ConvTranspose2d</span></code></a> module can be seen as the gradient of <code class="docutils literal notranslate"><span class="pre">Conv2d</span></code> with respect to its input. It is also known as a fractionally-strided convolution or a deconvolution (although it is not an actual deconvolution operation). The following code demonstrates this change in sizes:</p>
 <div class="cell docutils container">
@@ -2488,6 +2402,13 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Size of image is </span><span class="si">{</span><span class="n">dummy_image</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Size of Conv2D(image) </span><span class="si">{</span><span class="n">dummy_conv</span><span class="p">(</span><span class="n">dummy_image</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Size of ConvTranspose2D(Conv2D(image)) </span><span class="si">{</span><span class="n">dummy_deconv</span><span class="p">(</span><span class="n">dummy_conv</span><span class="p">(</span><span class="n">dummy_image</span><span class="p">))</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Size of image is torch.Size([1, 1, 28, 28])
+Size of Conv2D(image) torch.Size([1, 7, 24, 24])
+Size of ConvTranspose2D(Conv2D(image)) torch.Size([1, 1, 28, 28])
 </pre></div>
 </div>
 </div>
@@ -2588,6 +2509,11 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
+</pre></div>
+</div>
+</div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D5_GenerativeModels/solutions/W2D5_Tutorial1_Solution_1624cb07.py"><em>Click for solution</em></a></p>
 <p><em>Example output:</em></p>
@@ -2628,6 +2554,7 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 </pre></div>
 </div>
 </div>
+
 </div>
 </div>
 </div>
@@ -2640,6 +2567,10 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <div class="section" id="video-4-variational-autoencoders">
 <h2>Video 4: Variational Autoencoders<a class="headerlink" href="#video-4-variational-autoencoders" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "be6e499f0c1a46adb34eb9d43e4aef4d"}
+</script></div>
 </div>
 <p>Train a VAE for MNIST while watching the video. (Note: this VAE has a 2D latent space. If you are feeling ambitious, edit the code and modify the latent space dimensionality and see what happens.)</p>
 <div class="cell tag_hide-input docutils container">
@@ -2784,6 +2715,45 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "b2a36b8970804f3792adb8ba884a1926"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "ee5a5d7032f848b4aec4ade44d651055"}
+</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_11560</span><span class="o">/</span><span class="mf">1781348708.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> 
+<span class="g g-Whitespace">    </span><span class="mi">125</span> <span class="n">trained_conv_VarAE</span> <span class="o">=</span> <span class="n">ConvVAE</span><span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="n">K_VAE</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">126</span> <span class="n">elbo_vals</span> <span class="o">=</span> <span class="n">train_vae</span><span class="p">(</span><span class="n">trained_conv_VarAE</span><span class="p">,</span> <span class="n">train_set</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">127</span> 
+<span class="g g-Whitespace">    </span><span class="mi">128</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Learned sigma_x is </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">trained_conv_VarAE</span><span class="o">.</span><span class="n">log_sig_x</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+
+<span class="nn">/tmp/ipykernel_11560/1781348708.py</span> in <span class="ni">train_vae</span><span class="nt">(vae, dataset, epochs, n_samples)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>       <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span>       <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">vae</span><span class="o">.</span><span class="n">elbo</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">116</span>       <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">117</span>       <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span> 
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> 
+<span class="g g-Whitespace">    </span><span class="mi">151</span> 
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="section-4-1-components-of-a-vae">
@@ -2791,25 +2761,25 @@ x = \mu + W z + \epsilon, \,\text{where}\,~~ \epsilon \sim \mathcal{N}(0,~\sigma
 <p><em>Recognition models and density networks</em></p>
 <p>Variational AutoEncoders (VAEs) are a lot like the classic AutoEncoders (AEs), but where we explicitly think about probability distributions. In the language of VAEs, the <strong>encoder</strong> is replaced with a <strong>recognition model</strong>, and the <strong>decoder</strong> is replaced with a <strong>density network</strong>.</p>
 <p>Where in a classic autoencoder the encoder maps from images to a single hidden vector,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ac85337-0571-43be-a6b6-0ad9c5123d8e">
-<span class="eqno">(86)<a class="headerlink" href="#equation-0ac85337-0571-43be-a6b6-0ad9c5123d8e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-46a00ffb-dc3a-4497-966a-0ef8b4953d4f">
+<span class="eqno">(86)<a class="headerlink" href="#equation-46a00ffb-dc3a-4497-966a-0ef8b4953d4f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{AE}}{\longrightarrow} \mathbf{h} \, ,
 \end{equation}\]</div>
 <p>in a VAE we would say that a recognition model maps from inputs to entire <strong>distributions</strong> over hidden vectors,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-17d34648-ca87-437f-9e2b-38cac53a6283">
-<span class="eqno">(87)<a class="headerlink" href="#equation-17d34648-ca87-437f-9e2b-38cac53a6283" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0c8ff9a0-4f39-4945-80b0-e821a0301039">
+<span class="eqno">(87)<a class="headerlink" href="#equation-0c8ff9a0-4f39-4945-80b0-e821a0301039" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{VAE}}{\longrightarrow} q_{\mathbf{w_e}}(\mathbf{z}) \, ,
 \end{equation}\]</div>
 <p>which we will then sample from. Here <span class="math notranslate nohighlight">\(\mathbf{w_e}\)</span> refers to the weights of the recognition model, which parametarize our distribution generating network. We’ll say more in a moment about what kind of distribution <span class="math notranslate nohighlight">\(q_{\mathbf{w_e}}(\mathbf{z})\)</span> is.
 Part of what makes VAEs work is that the loss function will require good reconstructions of the input not just for a single <span class="math notranslate nohighlight">\(\mathbf{z}\)</span>, but <em>on average</em> from samples of <span class="math notranslate nohighlight">\(\mathbf{z} \sim q_{\mathbf{w_e}}(\mathbf{z})\)</span>.</p>
 <p>In the classic autoencoder, we had a decoder which maps from hidden vectors to reconstructions of the input:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-679a41bf-781c-4eb5-a388-36295201dc22">
-<span class="eqno">(88)<a class="headerlink" href="#equation-679a41bf-781c-4eb5-a388-36295201dc22" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6f3b7ff5-9f36-4797-9994-606f7805d85e">
+<span class="eqno">(88)<a class="headerlink" href="#equation-6f3b7ff5-9f36-4797-9994-606f7805d85e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{h} \overset{\text{AE}}{\longrightarrow} \mathbf{x'} \, .
 \end{equation}\]</div>
 <p>In a density network, reconstructions are expressed in terms of a distribution:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4120a98f-3768-47ce-9cd7-1ddcd1517a84">
-<span class="eqno">(89)<a class="headerlink" href="#equation-4120a98f-3768-47ce-9cd7-1ddcd1517a84" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b849b824-2b90-4120-8cfb-e7f95c492797">
+<span class="eqno">(89)<a class="headerlink" href="#equation-b849b824-2b90-4120-8cfb-e7f95c492797" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \overset{\text{VAE}}{\longrightarrow} p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})
 \end{equation}\]</div>
 <p>where, as above, <span class="math notranslate nohighlight">\(p_{\mathbf{w_d}}(\mathbf{x}|\mathbf{z})\)</span> is defined by mapping <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> through a density network then treating the resulting <span class="math notranslate nohighlight">\(f(\mathbf{z};\mathbf{w_d})\)</span> as the mean of a (Gaussian) distribution over <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Similarly, our reconstruction distribution is parametarized by the weights of the density network.</p>
@@ -2817,13 +2787,13 @@ Part of what makes VAEs work is that the loss function will require good reconst
 <div class="section" id="section-4-2-generating-novel-images-from-the-decoder">
 <h2>Section 4.2: Generating novel images from the decoder<a class="headerlink" href="#section-4-2-generating-novel-images-from-the-decoder" title="Permalink to this headline">¶</a></h2>
 <p>If we isolate the decoder part of the AutoEncoder, what we have is a neural network that takes as input a vector of size <span class="math notranslate nohighlight">\(K\)</span> and produces as output an image that looks something like our training data. Recall that in our earlier notation, we had an input <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> that was mapped to a low-dimensional hidden representation <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> which was then decoded into a reconstruction of the input, <span class="math notranslate nohighlight">\(\mathbf{x'}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-35ab4d03-9a62-462c-8a51-87f20f9f834c">
-<span class="eqno">(90)<a class="headerlink" href="#equation-35ab4d03-9a62-462c-8a51-87f20f9f834c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a726810e-9a73-4b10-b376-1b29db5696a4">
+<span class="eqno">(90)<a class="headerlink" href="#equation-a726810e-9a73-4b10-b376-1b29db5696a4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{x} \overset{\text{encode}}{\longrightarrow} \mathbf{h} \overset{\text{decode}}{\longrightarrow} \mathbf{x'}\, .
 \end{equation}\]</div>
 <p>Partly as a matter of convention, and partly to distinguish where we are going next from the previous section, we’re going to introduce a new variable, <span class="math notranslate nohighlight">\(\mathbf{z} \in \mathbb{R}^K\)</span>, which will take the place of <span class="math notranslate nohighlight">\(\mathbf{h}\)</span>. The key difference is that while <span class="math notranslate nohighlight">\(\mathbf{h}\)</span> is produced by the encoder for a particular <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> will be drawn out of thin air from a prior of our choosing:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-60f3f16f-9e7a-4e4b-b84e-13eacb1983a5">
-<span class="eqno">(91)<a class="headerlink" href="#equation-60f3f16f-9e7a-4e4b-b84e-13eacb1983a5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-25a25bd4-8e6c-4258-8122-416802bbd50c">
+<span class="eqno">(91)<a class="headerlink" href="#equation-25a25bd4-8e6c-4258-8122-416802bbd50c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \mathbf{z} \sim p(\mathbf{z})\\ \mathbf{z} \overset{\text{decode}}{\longrightarrow} \mathbf{x}\, .
 \end{equation}\]</div>
 <p>(Note that it is also common convention to drop the “prime” on <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> when it is no longer being thought of as a “reconstruction”).</p>
@@ -2870,11 +2840,16 @@ Part of what makes VAEs work is that the loss function will require good reconst
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_1.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_1.png" style="width: 826.0px; height: 886.0px;"/></a>
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_2.png"><img align="center" alt="Solution hint" class="align-center" src="https://raw.githubusercontent.com/NeuromatchAcademy/course-content-dl/main/tutorials/W2D5_GenerativeModels/static/W2D5_Tutorial1_Solution_1f5f1241_2.png" style="width: 855.0px; height: 886.0px;"/></a>
 </div>
+<div class="section" id="think-4-2-autoencoders-vs-variational-autoencoders">
+<h3>Think! 4.2: AutoEncoders vs. Variational AutoEncoders<a class="headerlink" href="#think-4-2-autoencoders-vs-variational-autoencoders" title="Permalink to this headline">¶</a></h3>
+<p>Compare the images generated by the AutoEncoder to the images generated by the Variational AutoEncoder. You can run the code a few times to see a variety of examples.</p>
+<p>Does one set look more like the training set (handwritten digits) than the other? What is driving this difference?</p>
+</div>
 </div>
 </div>
 <hr class="docutils"/>
-<div class="section" id="section-5-state-of-the-art-vaes-and-wrap-up">
-<h1>Section 5: State of the art VAEs and Wrap-up<a class="headerlink" href="#section-5-state-of-the-art-vaes-and-wrap-up" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="section-5-state-of-the-art-vaes-and-wrap-up-bonus">
+<h1>Section 5: State of the art VAEs and Wrap-up (Bonus)<a class="headerlink" href="#section-5-state-of-the-art-vaes-and-wrap-up-bonus" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="video-5-state-of-the-art-vaes">
 <h2>Video 5: State-Of-The-Art VAEs<a class="headerlink" href="#video-5-state-of-the-art-vaes" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
