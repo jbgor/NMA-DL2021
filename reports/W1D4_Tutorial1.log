@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# @title Download and unzip the dataset', 'import requests, os', 'from zipfile import ZipFile', '', 'print("Start downloading and unzipping `MTFL` dataset...")']
+['set_seed(seed=SEED)', '# Print trainig stats every LOG_FREQ minibatches', 'LOG_FREQ = 200', '# Frequency for evaluating the validation metrics', 'VAL_FREQ = 200']
 ...
-['else:', '  print(f"The file {fname} does not exist")', '', 'os.chdir(name)', 'print("Download completed.")']
+['      print(f"[TRAIN] Epoch {epoch + 1} - Batch {batch_id + 1} - "', '            f"Loss: {running_loss / LOG_FREQ:.3f} - "', '            f"Acc: {100 * running_acc / LOG_FREQ:.3f}%")', '', '      running_loss, running_acc = 0., 0.']
 -------------------
 
