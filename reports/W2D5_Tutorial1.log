@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# PCA requires finding the top K eigenvectors of the data covariance. Start by', '# finding the mean and covariance of the pixels in our dataset', 'g_seed = torch.Generator()', 'g_seed.manual_seed(SEED)', '']
+['# @markdown Train a VAE for MNIST while watching the video. (Note: this VAE has a 2D latent space. If you are feeling ambitious, edit the code and modify the latent space dimensionality and see what happens.)', 'K_VAE = 2', '', '', 'class ConvVAE(nn.Module):']
 ...
-['', 'mu, cov = image_moments((im for im, _ in loader),', '                        n_batches=len(train_set) // 32)', '', 'pca_encode, pca_decode = pca_encoder_decoder(mu, cov, K)']
+['plt.figure()', 'plt.plot(elbo_vals)', "plt.xlabel('Batch #')", "plt.ylabel('ELBO')", 'plt.show()']
 -------------------
 
