@@ -1047,10 +1047,11 @@
 <p><strong>Week 3, Day 4: Continual Learning</strong></p>
 <p><strong>By Neuromatch Academy</strong></p>
 <p><strong>Content creators:</strong> Keiland Cooper, Diganta Misra, Gido van de Ven, Andrea Cossu, Vincenzo Lomonaco</p>
-<p><strong>Content reviewers:</strong> Arush Tagade, Jeremy Forest, Siwei Bai,Kelson Shilling-Scrivo</p>
+<p><strong>Content reviewers:</strong> Arush Tagade, Jeremy Forest, Siwei Bai, Kelson Shilling-Scrivo</p>
 <p><strong>Content editors:</strong> Anoop Kulkarni, Spiros Chavlis</p>
 <p><strong>Production editors:</strong> Deepak Raya, Spiros Chavlis</p>
-</div>
+<p><strong>Our 2021 Sponsors, including Presenting Sponsor Facebook Reality Labs</strong></p>
+<p align="center"><img src="https://github.com/NeuromatchAcademy/widgets/blob/master/sponsors.png?raw=True"/></p></div>
 <hr class="docutils"/>
 <div class="section" id="tutorial-objectives">
 <h1>Tutorial Objectives<a class="headerlink" href="#tutorial-objectives" title="Permalink to this headline">¶</a></h1>
@@ -1366,7 +1367,7 @@ If you want to enable it, in the menu under `Runtime` -&gt;
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7216ff69d947459c9fc75ae44e6f2e13"}
+{"version_major": 2, "version_minor": 0, "model_id": "c896769b45c049458da4f3ed8b2fc6b1"}
 </script></div>
 </div>
 </div>
@@ -1380,7 +1381,7 @@ If you want to enable it, in the menu under `Runtime` -&gt;
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "880fc85d44f24cb18642b2a9527fbabe"}
+{"version_major": 2, "version_minor": 0, "model_id": "28201dc520584183a310a5ed76eb63cd"}
 </script></div>
 </div>
 <p>Here we’ll explore catastrophic forgetting first hand, a key barrier preventing continual learning in neural networks. To do so, we’ll build a simple network model and try our best to teach it the trusty MNIST dataset</p>
@@ -1521,11 +1522,11 @@ t_train dim: (10000,) and type: int64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task 1: MNIST Training data:
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_37_2.png" src="../../../_images/W3D4_Tutorial1_37_2.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_38_2.png" src="../../../_images/W3D4_Tutorial1_38_2.png"/>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task 2: Permuted MNIST data:
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_37_4.png" src="../../../_images/W3D4_Tutorial1_37_4.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_38_4.png" src="../../../_images/W3D4_Tutorial1_38_4.png"/>
 </div>
 </div>
 <p>Great! We have our data. This commonly  used task is typically called the “permuted MNIST <a class="reference external" href="https://arxiv.org/pdf/1312.6211.pdf">task</a>”, given the shuffling of the data. The permutations are the same across all images in the same task (all the permuted image in that task follow are permuted in the same way). This is useful as it allows you to create almost as many tasks as you would like out of the same dataset. While it may <a class="reference external" href="https://arxiv.org/pdf/1805.09733.pdf">not be the best benchmark for CL</a>, it is commonly used, and will serve our purposes well enough for illustration.</p>
@@ -1605,7 +1606,7 @@ Testing on task 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0020, Accuracy: 894/10000 (9%)
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_41_3.png" src="../../../_images/W3D4_Tutorial1_41_3.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_42_3.png" src="../../../_images/W3D4_Tutorial1_42_3.png"/>
 </div>
 </div>
 <p>As we saw before, the model does great on the Task 1 dataset it was trained on, but not so well on the new one. No worries! We haven’t taught it the permuted MNIST dataset yet! So let’s train the <em>same</em> task 1-trained-model on the new data, and see if we can get comparable performance between the two types of MNIST</p>
@@ -1653,7 +1654,7 @@ Testing on task 2
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0006, Accuracy: 6988/10000 (70%)
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_43_6.png" src="../../../_images/W3D4_Tutorial1_43_6.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_44_6.png" src="../../../_images/W3D4_Tutorial1_44_6.png"/>
 </div>
 </div>
 <p>Hey! Training did the trick, task 2 (permuted MNIST) has great accuracy now that we trained the model on it. But something is wrong. We just saw that Task 1 (standard MNIST) had high accuracy before we trained on the new task. What gives? Try to incorporate what you learned in the lecture to help explain the problem we’re seeing. You might also take a few seconds and think of what possible soultions you might like to try. In the next section, we’ll look into exactly that!</p>
@@ -1669,7 +1670,7 @@ Testing on task 2
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "844c4db29f8449699aa1de35bf57453f"}
+{"version_major": 2, "version_minor": 0, "model_id": "b9d4f6ee40ec43e9885208b8a6118d5d"}
 </script></div>
 </div>
 </div>
@@ -1708,23 +1709,23 @@ Testing on task 2
 Task: 1
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_50_1.png" src="../../../_images/W3D4_Tutorial1_50_1.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_51_1.png" src="../../../_images/W3D4_Tutorial1_51_1.png"/>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 2
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_50_3.png" src="../../../_images/W3D4_Tutorial1_50_3.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_51_3.png" src="../../../_images/W3D4_Tutorial1_51_3.png"/>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 3
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_50_5.png" src="../../../_images/W3D4_Tutorial1_50_5.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_51_5.png" src="../../../_images/W3D4_Tutorial1_51_5.png"/>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 4
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_50_7.png" src="../../../_images/W3D4_Tutorial1_50_7.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_51_7.png" src="../../../_images/W3D4_Tutorial1_51_7.png"/>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 5
 </pre></div>
 </div>
-<img alt="../../../_images/W3D4_Tutorial1_50_9.png" src="../../../_images/W3D4_Tutorial1_50_9.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_51_9.png" src="../../../_images/W3D4_Tutorial1_51_9.png"/>
 </div>
 </div>
 </div>
@@ -1835,11 +1836,11 @@ Test set: Average loss: 0.0034, Accuracy: 1807/2115 (85%)
 Test set: Average loss: 0.0004, Accuracy: 1042/2042 (51%)
 
 Test set: Average loss: 0.0004, Accuracy: 1051/1874 (56%)
-
-Test set: Average loss: 0.0004, Accuracy: 1091/1986 (55%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0005, Accuracy: 1046/1983 (53%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0004, Accuracy: 1091/1986 (55%)
+
+Test set: Average loss: 0.0005, Accuracy: 1046/1983 (53%)
 </pre></div>
 </div>
 </div>
@@ -1980,9 +1981,7 @@ Test set: Average loss: 0.0004, Accuracy: 1091/1986 (55%)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.005017
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.001975
+Train Epoch: 2 	Loss: 0.001975
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0004, Accuracy: 2108/2115 (100%)
@@ -2073,7 +2072,7 @@ Test set: Average loss: nan, Accuracy: 974/1983 (49%)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../../_images/W3D4_Tutorial1_65_0.png" src="../../../_images/W3D4_Tutorial1_65_0.png"/>
+<img alt="../../../_images/W3D4_Tutorial1_66_0.png" src="../../../_images/W3D4_Tutorial1_66_0.png"/>
 </div>
 </div>
 </div>
@@ -2089,7 +2088,7 @@ Test set: Average loss: nan, Accuracy: 974/1983 (49%)
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "39eed3bd93954faeb12810af724b6798"}
+{"version_major": 2, "version_minor": 0, "model_id": "5953ee4a313c40f986d13e172d97a86d"}
 </script></div>
 </div>
 <p>As introduced in the above video, continual learning research certainly does not only use the MNIST dataset.
@@ -2257,15 +2256,17 @@ Training on task:  2
 Test set: Average loss: 0.0018, Accuracy: 131/2115 (6%)
 
 Testing on task: 1
-Test set: Average loss: 0.0015, Accuracy: 201/2042 (10%)
-
-Testing on task: 2
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0005, Accuracy: 1682/1874 (90%)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0015, Accuracy: 201/2042 (10%)
+
+Testing on task: 2
+Test set: Average loss: 0.0005, Accuracy: 1682/1874 (90%)
 
 Testing on task: 3
-Test set: Average loss: 0.0031, Accuracy: 0/1986 (0%)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0031, Accuracy: 0/1986 (0%)
 
 Testing on task: 4
 Test set: Average loss: 0.0040, Accuracy: 0/1983 (0%)
@@ -2514,33 +2515,47 @@ Avg acc: 77.05748490353808
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_11559</span><span class="o">/</span><span class="mf">790201944.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10532</span><span class="o">/</span><span class="mf">790201944.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">23</span>   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Training on task: </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">24</span>   <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">26</span> 
 <span class="g g-Whitespace">     </span><span class="mi">27</span>   <span class="c1"># Evaluate performance after training on this task</span>
 
-<span class="nn">/tmp/ipykernel_11559/2551254000.py</span> in <span class="ni">train</span><span class="nt">(model, x_train, t_train, optimizer, epoch, device)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nn">/tmp/ipykernel_10532/2551254000.py</span> in <span class="ni">train</span><span class="nt">(model, x_train, t_train, optimizer, epoch, device)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> 
+<span class="ne">---&gt; </span><span class="mi">22</span>     <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">24</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>   <span class="nb">print</span><span class="p">(</span><span class="s1">'Train Epoch: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">Loss: </span><span class="si">{:.6f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span> 
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span> 
-<span class="g g-Whitespace">    </span><span class="mi">151</span> 
+<span class="nn">/tmp/ipykernel_10532/1830199837.py</span> in <span class="ni">forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="p">(</span><span class="n">uses</span> <span class="n">the</span> <span class="n">functional</span> <span class="n">library</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="n">imported</span> <span class="kn">from</span> <span class="nn">pytorch</span><span class="p">)</span><span class="s2">"""</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span><span class="s2">     x = F.relu(F.max_pool2d(self.conv1(x), 2))</span>
+<span class="ne">---&gt; </span><span class="mi">15</span><span class="s2">     x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="s2">     x = x.view(-1, 320)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span><span class="s2">     x = F.relu(self.fc1(x))</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_jit_internal.py</span> in <span class="ni">fn</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">403</span><span class="s2">             return if_true(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">404</span><span class="s2">         else:</span>
+<span class="ne">--&gt; </span><span class="mi">405</span><span class="s2">             return if_false(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">406</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">407</span><span class="s2">     if if_true.__doc__ is None and if_false.__doc__ is not None:</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/functional.py</span> in <span class="ni">_max_pool2d</span><span class="nt">(input, kernel_size, stride, padding, dilation, ceil_mode, return_indices)</span>
+<span class="g g-Whitespace">    </span><span class="mi">716</span><span class="s2">     if stride is None:</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span><span class="s2">         stride = torch.jit.annotate(List[int], [])</span>
+<span class="ne">--&gt; </span><span class="mi">718</span><span class="s2">     return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)</span>
+<span class="g g-Whitespace">    </span><span class="mi">719</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">720</span><span class="s2"> </span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
