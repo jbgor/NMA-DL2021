@@ -1432,20 +1432,20 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6701a9a7c8994bbda7a37f14a82ab354"}
+{"version_major": 2, "version_minor": 0, "model_id": "08ca1bee91124ab18160e7a29f30d301"}
 </script></div>
 </div>
 <p>Images are high dimensional. That is to say that <code class="docutils literal notranslate"><span class="pre">image_length</span></code> * <code class="docutils literal notranslate"><span class="pre">image_width</span></code> * <code class="docutils literal notranslate"><span class="pre">image_channels</span></code> is a big number, and multiplying that big number by a normal sized fully-connected layer leads to a ton of parameters to learn. Yesterday, we learned about convolutional neural networks, one way of working around high dimensionality in images and other domains.</p>
 <p>The widget below (i.e., <em>Interactive Demo 1</em>) calculates the parameters required for a single convolutional or fully connected layer that operates on an image of a certain height and width.</p>
 <p>Recall that, the number of parameters of a convolutional layer <span class="math notranslate nohighlight">\(l\)</span> are calculated as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0c1f85c6-ca7b-4f42-a297-3cda43ec51d2">
-<span class="eqno">(57)<a class="headerlink" href="#equation-0c1f85c6-ca7b-4f42-a297-3cda43ec51d2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-27baf5e1-fb7e-4f4b-929b-f2908f51549f">
+<span class="eqno">(57)<a class="headerlink" href="#equation-27baf5e1-fb7e-4f4b-929b-f2908f51549f" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{num_of_params}_l = \left[ \left( H \times W \times K_{l-1} \right) + 1 \right] \times K_l
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(H\)</span> denotes the shape of the height of the filter, <span class="math notranslate nohighlight">\(W\)</span> the shape of the width of the filter, and <span class="math notranslate nohighlight">\(K_l\)</span> denotes the number of the filters in the <span class="math notranslate nohighlight">\(l\)</span>-th layer. The added <span class="math notranslate nohighlight">\(1\)</span> is because of the bias term for each filter.</p>
 <p>While a fully connected layer contains:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-601f2f93-69d6-421f-9f56-d2c3fe249232">
-<span class="eqno">(58)<a class="headerlink" href="#equation-601f2f93-69d6-421f-9f56-d2c3fe249232" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdd1da76-07aa-470b-bc1b-19ed6101f5f2">
+<span class="eqno">(58)<a class="headerlink" href="#equation-cdd1da76-07aa-470b-bc1b-19ed6101f5f2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \text{num_of_params}_l = \left[ \left( N_{l-1} \times N_l \right) + 1 \times N_l \right]
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(N_l\)</span> denotes the number of nodes in the <span class="math notranslate nohighlight">\(l\)</span>-th layer.</p>
@@ -1589,7 +1589,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7c414cfa75b547d49b4e8d7ffd371bbd"}
+{"version_major": 2, "version_minor": 0, "model_id": "65c3cba672664d6dbf885f898347f8e3"}
 </script></div>
 </div>
 </div>
@@ -1606,7 +1606,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c769bb100ed441b5b79d0e4aa8af7f4e"}
+{"version_major": 2, "version_minor": 0, "model_id": "1308212c39154bad9515c5b5b0ee9258"}
 </script></div>
 </div>
 </div>
@@ -1646,9 +1646,9 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3a315210aeeb412a940c983b67e9c9cb"}
+{"version_major": 2, "version_minor": 0, "model_id": "648c6327f7f64a8bb73d4999a2bdbdec"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1434b3d90d634d77a0e4200b42ad3732"}
+{"version_major": 2, "version_minor": 0, "model_id": "67be719766984248b53999a0262e0c30"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D2_ModernConvnets/solutions/W2D2_Tutorial1_Solution_71e2a897.py"><em>Click for solution</em></a></p>
@@ -1664,7 +1664,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4deb4d949f754cb29511339025bc54b2"}
+{"version_major": 2, "version_minor": 0, "model_id": "6bd82948aa1744929df00938465ad419"}
 </script></div>
 </div>
 </div>
@@ -1715,7 +1715,7 @@ In this section you’ll have the opportunity to play with AlexNet and see the w
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8b6ee804e3d8404cb7e31b291c9dac6f"}
+{"version_major": 2, "version_minor": 0, "model_id": "57a9be97a7be4985a00c4332c66013ad"}
 </script></div>
 </div>
 </div>
@@ -1782,9 +1782,9 @@ What do these filters remind you of?</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "df63a5bfea3f447886039d5ce4c356c6"}
+{"version_major": 2, "version_minor": 0, "model_id": "64af2f666b634c3f8aa5e912774defca"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0b4b334b618c4e10b84d3c83aa162a76"}
+{"version_major": 2, "version_minor": 0, "model_id": "087c2b567089451ea32786815487d8a7"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D2_ModernConvnets/solutions/W2D2_Tutorial1_Solution_3840a79d.py"><em>Click for solution</em></a></p>
@@ -1831,7 +1831,7 @@ What do these filters remind you of?</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "dbfbbd0c82474cf8ab1a221345ed856d"}
+{"version_major": 2, "version_minor": 0, "model_id": "e5155623e7d143f6b8b9c945487266e3"}
 </script><img alt="../../../_images/W2D2_Tutorial1_57_1.png" src="../../../_images/W2D2_Tutorial1_57_1.png"/>
 </div>
 </div>
@@ -1870,9 +1870,9 @@ What do these filters remind you of?</p>
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "59d876af2eae41bb8f73db161a5b1cfa"}
+{"version_major": 2, "version_minor": 0, "model_id": "c2fa0d30fc5f45288acd3913e1a01b4c"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "241dee4f28254bc5a4e41869ac9e4cca"}
+{"version_major": 2, "version_minor": 0, "model_id": "3ce20cde12d041b890b1f47ef3dcfbbb"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W2D2_ModernConvnets/solutions/W2D2_Tutorial1_Solution_9d15a19c.py"><em>Click for solution</em></a></p>
@@ -1893,7 +1893,7 @@ What do these filters remind you of?</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b384242c25ff41ec94ac8ee9ec14f158"}
+{"version_major": 2, "version_minor": 0, "model_id": "7bd7ec81bf734f4988e2f4ab4e0ba8f9"}
 </script></div>
 </div>
 <p>In this section we’ll be working with a state of the art CNN model called <a class="reference external" href="https://arxiv.org/abs/1512.03385">ResNet</a>. ResNet has two particularly interesting features. First, it uses skip connections to avoid the vanishing gradient problem. Second, each block (collection of layers) in a ResNet can be treated as learning a residual function.</p>
@@ -3156,23 +3156,23 @@ What do these filters remind you of?</p>
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2415031bd25b4bf899ccb603ef9a48c8"}
+{"version_major": 2, "version_minor": 0, "model_id": "2c939b4834b64aea9e508d8c501aaec1"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "364b9f9757f540f3aada902ebbd1024d"}
+{"version_major": 2, "version_minor": 0, "model_id": "768c2ba04f8d4b1aa730f2ed4ef45c7f"}
 </script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/functional.py:718: UserWarning: Named tensors and all their associated APIs are an experimental feature and subject to change. Please do not use them for anything important until they are released as stable. (Triggered internally at  /pytorch/c10/core/TensorImpl.h:1156.)
   return torch.max_pool2d(input, kernel_size, stride, padding, dilation, ceil_mode)
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9588</span><span class="o">/</span><span class="mf">2682190146.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_9866</span><span class="o">/</span><span class="mf">2682190146.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>                       <span class="n">imagenette_train_loader</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span>                       <span class="n">loss_fn</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">15</span>                       <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">16</span> 
 <span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">top_1_acc</span><span class="p">,</span> <span class="n">top_5_acc</span> <span class="o">=</span> <span class="n">eval_imagenette</span><span class="p">(</span><span class="n">resnet</span><span class="p">,</span>
 
-<span class="nn">/tmp/ipykernel_9588/272719282.py</span> in <span class="ni">imagenette_train_loop</span><span class="nt">(model, optimizer, train_loader, loss_fn, device)</span>
+<span class="nn">/tmp/ipykernel_9866/272719282.py</span> in <span class="ni">imagenette_train_loop</span><span class="nt">(model, optimizer, train_loader, loss_fn, device)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span>       <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">19</span>       <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">20</span>       <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>

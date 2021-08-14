@@ -1329,7 +1329,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6e5751147fed4836847a19e484fca2c0"}
+{"version_major": 2, "version_minor": 0, "model_id": "1532cae65f7f41688510ee8d88cf8b46"}
 </script></div>
 </div>
 </div>
@@ -1352,7 +1352,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a98ee675a3464157b15816d3bf71dd40"}
+{"version_major": 2, "version_minor": 0, "model_id": "a1e68f856601430abf1d462df66286c3"}
 </script></div>
 </div>
 </div>
@@ -1635,7 +1635,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "97fc4c269c134f1ca3d4bd90a2644a43"}
+{"version_major": 2, "version_minor": 0, "model_id": "ea73c8ca11bc432ea3503a252c653683"}
 </script></div>
 </div>
 </div>
@@ -1826,9 +1826,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "964c19ee819949bfa482e1df752964ab"}
+{"version_major": 2, "version_minor": 0, "model_id": "26545f293d7c4fe9be6f940f35a1f670"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a722c36d759949d29d67127bbeecf3cb"}
+{"version_major": 2, "version_minor": 0, "model_id": "40a01a8350b04c41aa1b5e6d164b71a4"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_2de57667.py"><em>Click for solution</em></a></p>
@@ -1845,7 +1845,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "86fd1306e9b34f9b870c33fda3cfccc3"}
+{"version_major": 2, "version_minor": 0, "model_id": "b40dfe3deabf43efbff104e55b4992f6"}
 </script></div>
 </div>
 <p>We illustrate this issue in a 2-dimensional setting. We freeze all but two parameters of the network: one of them is an element of the weight matrix (filter) for class 0, while the other is the bias for class 7. This results in an optimization with two decision variables.</p>
@@ -1982,22 +1982,22 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="section" id="coding-exercise-4-implement-momentum">
 <h2>Coding Exercise 4: Implement momentum<a class="headerlink" href="#coding-exercise-4-implement-momentum" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the momentum update given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8accfa16-c41f-4bc7-96ca-1fa4685b5aae">
-<span class="eqno">(43)<a class="headerlink" href="#equation-8accfa16-c41f-4bc7-96ca-1fa4685b5aae" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-48563ca7-b074-4c82-b77e-e077267262d6">
+<span class="eqno">(43)<a class="headerlink" href="#equation-48563ca7-b074-4c82-b77e-e077267262d6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} = w_t - \eta \nabla J(w_t) + \beta (w_t - w_{t-1})
 \end{equation}\]</div>
 <p>It is convenient to re-express this update rule in terms of a recursion. For that, we define ‘velocity’ as the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-736413d2-53bc-4b24-9fde-524cd0058faf">
-<span class="eqno">(44)<a class="headerlink" href="#equation-736413d2-53bc-4b24-9fde-524cd0058faf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53ea9515-b8e3-4f0f-b843-4ef3f41beafc">
+<span class="eqno">(44)<a class="headerlink" href="#equation-53ea9515-b8e3-4f0f-b843-4ef3f41beafc" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_{t-1} := w_{t} - w_{t-1}
 \end{equation}\]</div>
 <p>which leads to the two-step update rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-56d52cb5-fae4-4fc2-a719-c07cd6600e2b">
-<span class="eqno">(45)<a class="headerlink" href="#equation-56d52cb5-fae4-4fc2-a719-c07cd6600e2b" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9b9cb625-a499-4b1a-8952-6069a2b88ed6">
+<span class="eqno">(45)<a class="headerlink" href="#equation-9b9cb625-a499-4b1a-8952-6069a2b88ed6" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_t = - \eta \nabla J(w_t) + \beta (\underbrace{w_t - w_{t-1}}_{v_{t-1}})
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b753fcbc-d93f-4c39-8834-06ba804434b2">
-<span class="eqno">(46)<a class="headerlink" href="#equation-b753fcbc-d93f-4c39-8834-06ba804434b2" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-758c4e1f-5a14-4058-9d85-664910356788">
+<span class="eqno">(46)<a class="headerlink" href="#equation-758c4e1f-5a14-4058-9d85-664910356788" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} \leftarrow w_t + v_{t}
 \end{equation}\]</div>
 <p>Pay attention to the positive sign of the update in the last equation, given the definition of <span class="math notranslate nohighlight">\(v_t\)</span>, above.</p>
@@ -2167,9 +2167,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4b7f449a9d1e4398b9ec86216ed028f6"}
+{"version_major": 2, "version_minor": 0, "model_id": "a1e7a2876f344bba83f351501a1ea3ed"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f5006441542a4c17a1cfc31c774710be"}
+{"version_major": 2, "version_minor": 0, "model_id": "c9dacba8a78d411fbd8b78d8b8ab7c39"}
 </script></div>
 </div>
 </div>
@@ -2210,9 +2210,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4bbe1f06516346299c2e7aec36d89a8c"}
+{"version_major": 2, "version_minor": 0, "model_id": "531348c01dc5498e9663c46e0d331d70"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "4f09cacf6573426c889010832bed44ca"}
+{"version_major": 2, "version_minor": 0, "model_id": "bb899ebad0414aecb50788264a7e71d0"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_5eaa9306.py"><em>Click for solution</em></a></p>
@@ -2230,7 +2230,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "ebf9b10d251d4f4383f9e417e969b385"}
+{"version_major": 2, "version_minor": 0, "model_id": "f43b8775a5754e0fb9d531baae167a49"}
 </script></div>
 </div>
 <p>Take a couple of minutes to play with a more complex 3D visualization of the loss landscape of a neural network on a non-convex problem. Visit https://losslandscape.com/explorer.</p>
@@ -2299,7 +2299,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2b8742a929a7400eb57680808326e582"}
+{"version_major": 2, "version_minor": 0, "model_id": "a87371cd5a14486fb7a9c2a5ccede2ac"}
 </script></div>
 </div>
 <div class="section" id="think-5-1-width-and-depth-of-the-network">
@@ -2335,9 +2335,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8da396771bc84dc19cb769e2447e0989"}
+{"version_major": 2, "version_minor": 0, "model_id": "94d4d2d884f34d59b0397859039ca6de"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9ffbff7f20d741ca9257aaf73f4cf7eb"}
+{"version_major": 2, "version_minor": 0, "model_id": "17b0617155fd407b93aa8fd131ff3eb1"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_d69ca8d7.py"><em>Click for solution</em></a></p>
@@ -2356,7 +2356,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "cec708842c8e4861b39aed1912a8b801"}
+{"version_major": 2, "version_minor": 0, "model_id": "0d9fa99ee9cf47c6a567f68a25c95efa"}
 </script></div>
 </div>
 </div>
@@ -2405,7 +2405,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a11e2cf2461c4f1ebb80107546d561ac"}
+{"version_major": 2, "version_minor": 0, "model_id": "38d54939da3847b1a2de9ce6d773c907"}
 </script></div>
 </div>
 </div>
@@ -2504,7 +2504,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7675d33c13e3484191c3d9830d12559b"}
+{"version_major": 2, "version_minor": 0, "model_id": "3f61611351b84a5eb9ae67d524589d17"}
 </script></div>
 </div>
 <p><strong>Remarks:</strong> SGD works! We have an algorithm that can be applied (with the due precautions) to learn datasets of arbitrary size.</p>
@@ -2529,15 +2529,15 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "93ecabfca8ed48888a2894292b22c10a"}
+{"version_major": 2, "version_minor": 0, "model_id": "f19af0a04fab4795b10dbdb435117154"}
 </script></div>
 </div>
 </div>
 <div class="section" id="coding-exercise-7-implement-rmsprop">
 <h2>Coding Exercise 7: Implement RMSprop<a class="headerlink" href="#coding-exercise-7-implement-rmsprop" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the update of the RMSprop optimizer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fb76475a-acfa-4b9a-afa9-f65dd9d3a61e">
-<span class="eqno">(47)<a class="headerlink" href="#equation-fb76475a-acfa-4b9a-afa9-f65dd9d3a61e" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1e1853f8-af07-4bef-9846-12b81197e15f">
+<span class="eqno">(47)<a class="headerlink" href="#equation-1e1853f8-af07-4bef-9846-12b81197e15f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 v_{t} &amp;= \alpha v_{t-1} + (1 - \alpha) \nabla J(w_t)^2 \\ \\
 w_{t+1} &amp;= w_t - \eta \frac{\nabla J(w_t)}{\sqrt{v_t + \epsilon}}
 \end{align}\]</div>
@@ -2687,7 +2687,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "05ae0ad251194be7b4b39112fce73ff2"}
+{"version_major": 2, "version_minor": 0, "model_id": "c2e8327c43314ebd9728f78738520bca"}
 </script></div>
 </div>
 <div class="section" id="discussion">
@@ -2732,9 +2732,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "01fb9007e8824c889c1568950c8c2d1d"}
+{"version_major": 2, "version_minor": 0, "model_id": "b07b21a15ff348f4a31218efe8c37f63"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "a050f4e00eab496487e8e8c21ea32c04"}
+{"version_major": 2, "version_minor": 0, "model_id": "63ae989bf6bc405ba3ca7e98b29521f3"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_a3f4354b.py"><em>Click for solution</em></a></p>
@@ -2750,7 +2750,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "1b25da8bfd9247d299069f4ca2fd7973"}
+{"version_major": 2, "version_minor": 0, "model_id": "e660c036f6fe4a41b03724822cc206d0"}
 </script></div>
 </div>
 </div>
@@ -2784,7 +2784,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell_output docutils container">
 <div class="output text_html">
 <div>
-<a href="https://portal.neuromatchacademy.org/api/redirect/to/9548a279-c9f9-4586-b89c-f0ceceba5c14?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzFENF9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyODg3MzU2My44MzAwODQ4fSwgeyJldmVudCI6ICJWaWRlbyAxOiBJbnRyb2R1Y3Rpb24iLCAidHMiOiAxNjI4ODczNTY0Ljk4Mzk5NDV9LCB7ImV2ZW50IjogIlZpZGVvIDI6IENhc2UgU3R1ZHkgLSBNTFAgQ2xhc3NpZmljYXRpb24iLCAidHMiOiAxNjI4ODczNTY1LjE1NzAxMDh9LCB7ImV2ZW50IjogIlZpZGVvIDM6IE9wdGltaXphdGlvbiBvZiBhbiBPYmplY3RpdmUgRnVuY3Rpb24iLCAidHMiOiAxNjI4ODczNTgwLjU4Nzk2NX0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDM6IEltcGxlbWVudCBncmFkaWVudCBkZXNjZW50IiwgInRzIjogMTYyODg3MzU4MC42MjI5MDc5fSwgeyJldmVudCI6ICJWaWRlbyA0OiBNb21lbnR1bSIsICJ0cyI6IDE2Mjg4NzM1ODEuMzQzMjU4Nn0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDQ6IEltcGxlbWVudCBtb21lbnR1bSIsICJ0cyI6IDE2Mjg4NzM1ODEuMzg4NzI2fSwgeyJldmVudCI6ICJWaWRlbyA1OiBPdmVycGFyYW1ldHJpemF0aW9uIiwgInRzIjogMTYyODg3MzU4My41MTEzNzg1fSwgeyJldmVudCI6ICJWaWRlbyA2OiBNaW5pLWJhdGNoZXMiLCAidHMiOiAxNjI4ODczNTgzLjc3MTUxNTR9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA2OiBJbXBsZW1lbnQgbWluaWJhdGNoIHNhbXBsaW5nIiwgInRzIjogMTYyODg3MzU4My44NTQ0NTAyfSwgeyJldmVudCI6ICJWaWRlbyA3OiBBZGFwdGl2ZSBNZXRob2RzIiwgInRzIjogMTYyODg3MzU4NC4wMzE2OTU0fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgNzogSW1wbGVtZW50IFJNU3Byb3AiLCAidHMiOiAxNjI4ODczNTg0LjA2MDExODJ9LCB7ImV2ZW50IjogIlZpZGVvIDg6IEV0aGljYWwgY29uY2VybnMiLCAidHMiOiAxNjI4ODczNTg0LjI4OTMwOH0sIHsiZXZlbnQiOiAidXJsIGdlbmVyYXRlZCIsICJ0cyI6IDE2Mjg4NzM1ODQuMzA4MTM1NX1dfQ%3D%3D" target="_blank">
+<a href="https://portal.neuromatchacademy.org/api/redirect/to/9548a279-c9f9-4586-b89c-f0ceceba5c14?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzFENF9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyODkyNTA2Ni41ODY4NTI2fSwgeyJldmVudCI6ICJWaWRlbyAxOiBJbnRyb2R1Y3Rpb24iLCAidHMiOiAxNjI4OTI1MDY3LjU5MzAwMX0sIHsiZXZlbnQiOiAiVmlkZW8gMjogQ2FzZSBTdHVkeSAtIE1MUCBDbGFzc2lmaWNhdGlvbiIsICJ0cyI6IDE2Mjg5MjUwNjcuNjg5MzczM30sIHsiZXZlbnQiOiAiVmlkZW8gMzogT3B0aW1pemF0aW9uIG9mIGFuIE9iamVjdGl2ZSBGdW5jdGlvbiIsICJ0cyI6IDE2Mjg5MjUwODIuMjQ1Mjk0Nn0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDM6IEltcGxlbWVudCBncmFkaWVudCBkZXNjZW50IiwgInRzIjogMTYyODkyNTA4Mi4yNzE3MzZ9LCB7ImV2ZW50IjogIlZpZGVvIDQ6IE1vbWVudHVtIiwgInRzIjogMTYyODkyNTA4Mi44NjA0NTJ9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA0OiBJbXBsZW1lbnQgbW9tZW50dW0iLCAidHMiOiAxNjI4OTI1MDgyLjkwMzI3OTN9LCB7ImV2ZW50IjogIlZpZGVvIDU6IE92ZXJwYXJhbWV0cml6YXRpb24iLCAidHMiOiAxNjI4OTI1MDg0Ljg4NzMwMzZ9LCB7ImV2ZW50IjogIlZpZGVvIDY6IE1pbmktYmF0Y2hlcyIsICJ0cyI6IDE2Mjg5MjUwODUuMTAyODQ5Mn0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDY6IEltcGxlbWVudCBtaW5pYmF0Y2ggc2FtcGxpbmciLCAidHMiOiAxNjI4OTI1MDg1LjE4MjQwNzl9LCB7ImV2ZW50IjogIlZpZGVvIDc6IEFkYXB0aXZlIE1ldGhvZHMiLCAidHMiOiAxNjI4OTI1MDg1LjMzMzAzODh9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA3OiBJbXBsZW1lbnQgUk1TcHJvcCIsICJ0cyI6IDE2Mjg5MjUwODUuMzUyNjY4OH0sIHsiZXZlbnQiOiAiVmlkZW8gODogRXRoaWNhbCBjb25jZXJucyIsICJ0cyI6IDE2Mjg5MjUwODUuNTI5ODU1N30sIHsiZXZlbnQiOiAidXJsIGdlbmVyYXRlZCIsICJ0cyI6IDE2Mjg5MjUwODUuNTUyNTY5NH1dfQ%3D%3D" target="_blank">
 <img alt="button link end of day Survey" src="https://github.com/NeuromatchAcademy/course-content-dl/blob/main/tutorials/static/SurveyButton.png?raw=1" style="width:410px"/></a>
 </div></div></div>
 </div>
@@ -2802,7 +2802,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "53f8a86c4eec4ce4a6c34506a4e33e2e"}
+{"version_major": 2, "version_minor": 0, "model_id": "187e59ba0c4f4f1c91a3363c484451d4"}
 </script></div>
 </div>
 </div>
@@ -3005,7 +3005,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "d5b192a7317048d7b041095b68a4b75d"}
+{"version_major": 2, "version_minor": 0, "model_id": "4ea0d89f994942579805dfcef005c308"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[VALID] Epoch 1 - Batch 200 - Loss: 2.235 - Acc: 38.174%
 [TRAIN] Epoch 1 - Batch 200 - Loss: 2.274 - Acc: 30.945%
 </pre></div>
@@ -3028,14 +3028,14 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3121</span><span class="o">/</span><span class="mf">729571843.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3098</span><span class="o">/</span><span class="mf">729571843.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">69</span>       <span class="n">val_loss</span><span class="p">,</span> <span class="n">val_acc</span> <span class="o">=</span> <span class="n">eval_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">,</span>
 <span class="g g-Whitespace">     </span><span class="mi">70</span>                                      <span class="n">num_batches</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
 <span class="ne">---&gt; </span><span class="mi">71</span>                                      <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">72</span>       <span class="n">metrics</span><span class="p">[</span><span class="s1">'val_idx'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step_idx</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">73</span>       <span class="n">metrics</span><span class="p">[</span><span class="s1">'val_loss'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
 
-<span class="nn">/tmp/ipykernel_3121/3014249815.py</span> in <span class="ni">eval_model</span><span class="nt">(model, data_loader, num_batches, device)</span>
+<span class="nn">/tmp/ipykernel_3098/3014249815.py</span> in <span class="ni">eval_model</span><span class="nt">(model, data_loader, num_batches, device)</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>   <span class="c1"># We are just evaluating the model, no need to compute gradients</span>
 <span class="g g-Whitespace">     </span><span class="mi">14</span>   <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
 <span class="ne">---&gt; </span><span class="mi">15</span>     <span class="k">for</span> <span class="n">batch_id</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
