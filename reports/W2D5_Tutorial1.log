@@ -32,8 +32,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# @title Download `wordnet` dataset', '', '# import nltk', "# nltk.download('wordnet')", '']
+['# PCA requires finding the top K eigenvectors of the data covariance. Start by', '# finding the mean and covariance of the pixels in our dataset', 'g_seed = torch.Generator()', 'g_seed.manual_seed(SEED)', '']
 ...
-["with open('wordnet.zip', 'wb') as fd:", '  fd.write(r.content)', '', "with zipfile.ZipFile(fname, 'r') as zip_ref:", "  zip_ref.extractall('/root/nltk_data/corpora')"]
+['', 'mu, cov = image_moments((im for im, _ in loader),', '                        n_batches=len(train_set) // 32)', '', 'pca_encode, pca_decode = pca_encoder_decoder(mu, cov, K)']
 -------------------
 
