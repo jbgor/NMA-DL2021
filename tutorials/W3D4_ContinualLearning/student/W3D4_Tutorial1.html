@@ -1100,6 +1100,7 @@
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
@@ -1369,7 +1370,7 @@ If you want to enable it, in the menu under `Runtime` -&gt;
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "69e741836f6949ebbfedfe0ee24fcdb6"}
+{"version_major": 2, "version_minor": 0, "model_id": "9476c358153e4ac49d0b1e9a8ab0a301"}
 </script></div>
 </div>
 </div>
@@ -1383,7 +1384,7 @@ If you want to enable it, in the menu under `Runtime` -&gt;
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c86450b977ae4105a1a6fa898826db73"}
+{"version_major": 2, "version_minor": 0, "model_id": "424d06f03d064fc0a2ff4bec6b1254f6"}
 </script></div>
 </div>
 <p>Here we’ll explore catastrophic forgetting first hand, a key barrier preventing continual learning in neural networks. To do so, we’ll build a simple network model and try our best to teach it the trusty MNIST dataset</p>
@@ -1568,10 +1569,57 @@ t_train dim: (10000,) and type: int64
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0002, Accuracy: 9260/10000 (93%)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 3 	Loss: 0.972822
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0002, Accuracy: 9245/10000 (92%)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_7717</span><span class="o">/</span><span class="mf">263589032.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Training model on </span><span class="si">{</span><span class="n">nEpochs</span><span class="si">}</span><span class="s2"> epochs..."</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nEpochs</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">9</span>   <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>   <span class="n">test</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">t_test</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
+
+<span class="nn">/tmp/ipykernel_7717/2551254000.py</span> in <span class="ni">train</span><span class="nt">(model, x_train, t_train, optimizer, epoch, device)</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> 
+<span class="ne">---&gt; </span><span class="mi">22</span>     <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="nn">/tmp/ipykernel_7717/1830199837.py</span> in <span class="ni">forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="p">(</span><span class="n">uses</span> <span class="n">the</span> <span class="n">functional</span> <span class="n">library</span> <span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="n">imported</span> <span class="kn">from</span> <span class="nn">pytorch</span><span class="p">)</span><span class="s2">"""</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span><span class="s2">     x = F.relu(F.max_pool2d(self.conv1(x), 2))</span>
+<span class="ne">---&gt; </span><span class="mi">15</span><span class="s2">     x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="s2">     x = x.view(-1, 320)</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span><span class="s2">     x = F.relu(self.fc1(x))</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1049</span><span class="s2">         if not (self._backward_hooks or self._forward_hooks or self._forward_pre_hooks or _global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1050</span><span class="s2">                 or _global_forward_hooks or _global_forward_pre_hooks):</span>
+<span class="ne">-&gt; </span><span class="mi">1051</span><span class="s2">             return forward_call(*input, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span><span class="s2">         # Do not call functions when jit is used</span>
+<span class="g g-Whitespace">   </span><span class="mi">1053</span><span class="s2">         full_backward_hooks, non_full_backward_hooks = [], []</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/conv.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="s2">     def forward(self, input: Tensor) -&gt; Tensor:</span>
+<span class="ne">--&gt; </span><span class="mi">443</span><span class="s2">         return self._conv_forward(input, self.weight, self.bias)</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">445</span><span class="s2"> class Conv3d(_ConvNd):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/conv.py</span> in <span class="ni">_conv_forward</span><span class="nt">(self, input, weight, bias)</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span><span class="s2">                             _pair(0), self.dilation, self.groups)</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span><span class="s2">         return F.conv2d(input, weight, bias, self.stride,</span>
+<span class="ne">--&gt; </span><span class="mi">440</span><span class="s2">                         self.padding, self.dilation, self.groups)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="s2">     def forward(self, input: Tensor) -&gt; Tensor:</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1596,20 +1644,6 @@ t_train dim: (10000,) and type: int64
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing on task 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0002, Accuracy: 9245/10000 (92%)
-
-Testing on task 2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0018, Accuracy: 998/10000 (10%)
-</pre></div>
-</div>
-<img alt="../../../_images/W3D4_Tutorial1_42_3.png" src="../../../_images/W3D4_Tutorial1_42_3.png"/>
-</div>
 </div>
 <p>As we saw before, the model does great on the Task 1 dataset it was trained on, but not so well on the new one. No worries! We haven’t taught it the permuted MNIST dataset yet! So let’s train the <em>same</em> task 1-trained-model on the new data, and see if we can get comparable performance between the two types of MNIST</p>
 <div class="cell docutils container">
@@ -1633,31 +1667,6 @@ Testing on task 2
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 1.890164
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0008, Accuracy: 5668/10000 (57%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 1.717749
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0006, Accuracy: 7169/10000 (72%)
-
-Testing on task 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0022, Accuracy: 574/10000 (6%)
-
-Testing on task 2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0006, Accuracy: 7169/10000 (72%)
-</pre></div>
-</div>
-<img alt="../../../_images/W3D4_Tutorial1_44_6.png" src="../../../_images/W3D4_Tutorial1_44_6.png"/>
-</div>
 </div>
 <p>Hey! Training did the trick, task 2 (permuted MNIST) has great accuracy now that we trained the model on it. But something is wrong. We just saw that Task 1 (standard MNIST) had high accuracy before we trained on the new task. What gives? Try to incorporate what you learned in the lecture to help explain the problem we’re seeing. You might also take a few seconds and think of what possible soultions you might like to try. In the next section, we’ll look into exactly that!</p>
 </div>
@@ -1670,10 +1679,6 @@ Testing on task 2
 <div class="section" id="video-2-cl-strategies">
 <h2>Video 2: CL strategies<a class="headerlink" href="#video-2-cl-strategies" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2acd6d123b254e44802a1a4dd86e35dd"}
-</script></div>
 </div>
 </div>
 <div class="section" id="split-mnist">
@@ -1705,29 +1710,6 @@ Testing on task 2
   <span class="n">plot_task</span><span class="p">(</span><span class="n">task_data_with_overlap</span><span class="p">[</span><span class="n">sample</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">task_classes_arr</span><span class="p">))</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Random seed 2021 has been set.
-Task: 1
-</pre></div>
-</div>
-<img alt="../../../_images/W3D4_Tutorial1_51_1.png" src="../../../_images/W3D4_Tutorial1_51_1.png"/>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 2
-</pre></div>
-</div>
-<img alt="../../../_images/W3D4_Tutorial1_51_3.png" src="../../../_images/W3D4_Tutorial1_51_3.png"/>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 3
-</pre></div>
-</div>
-<img alt="../../../_images/W3D4_Tutorial1_51_5.png" src="../../../_images/W3D4_Tutorial1_51_5.png"/>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 4
-</pre></div>
-</div>
-<img alt="../../../_images/W3D4_Tutorial1_51_7.png" src="../../../_images/W3D4_Tutorial1_51_7.png"/>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Task: 5
-</pre></div>
-</div>
-<img alt="../../../_images/W3D4_Tutorial1_51_9.png" src="../../../_images/W3D4_Tutorial1_51_9.png"/>
 </div>
 </div>
 </div>
@@ -1802,48 +1784,6 @@ Task: 1
     <span class="n">accs_subset</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="n">task_id</span><span class="p">))</span>
   <span class="c1"># Collect all test accuracies</span>
   <span class="n">accs_naive</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">accs_subset</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 3 	Loss: 0.000000
-Test set: Average loss: 0.0000, Accuracy: 2113/2115 (100%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 3 	Loss: 0.492668
-Test set: Average loss: 0.0032, Accuracy: 1862/2115 (88%)
-
-Test set: Average loss: 0.0003, Accuracy: 1762/2042 (86%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 3 	Loss: 0.068543
-Test set: Average loss: 0.0091, Accuracy: 1179/2115 (56%)
-
-Test set: Average loss: 0.0014, Accuracy: 1317/2042 (64%)
-
-Test set: Average loss: 0.0000, Accuracy: 1858/1874 (99%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 3 	Loss: 0.002141
-Test set: Average loss: 0.0043, Accuracy: 1329/2115 (63%)
-
-Test set: Average loss: 0.0008, Accuracy: 1323/2042 (65%)
-
-Test set: Average loss: 0.0004, Accuracy: 1260/1874 (67%)
-
-Test set: Average loss: 0.0000, Accuracy: 1974/1986 (99%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 3 	Loss: 8.139584
-Test set: Average loss: 0.0037, Accuracy: 1501/2115 (71%)
-
-Test set: Average loss: 0.0005, Accuracy: 1230/2042 (60%)
-
-Test set: Average loss: 0.0006, Accuracy: 1393/1874 (74%)
-
-Test set: Average loss: 0.0015, Accuracy: 1024/1986 (52%)
-
-Test set: Average loss: 0.0006, Accuracy: 1692/1983 (85%)
 </pre></div>
 </div>
 </div>
@@ -1941,7 +1881,7 @@ Test set: Average loss: 0.0006, Accuracy: 1692/1983 (85%)
 <span class="n">epochs</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="c1"># Set EWC hyperparameter</span>
-<span class="n">ewc_lambda</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">ewc_lambda</span> <span class="o">=</span> <span class="mf">0.2</span>
 
 <span class="c1"># Define dictionaries to store values needed by EWC</span>
 <span class="n">fisher_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1982,68 +1922,6 @@ Test set: Average loss: 0.0006, Accuracy: 1692/1983 (85%)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.005016
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.001975
-Test set: Average loss: 0.0004, Accuracy: 2108/2115 (100%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.187040
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.272632
-Test set: Average loss: 0.0020, Accuracy: 1280/2115 (61%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0002, Accuracy: 1743/2042 (85%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: nan
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: nan
-Test set: Average loss: nan, Accuracy: 980/2115 (46%)
-
-Test set: Average loss: nan, Accuracy: 1032/2042 (51%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: nan, Accuracy: 982/1874 (52%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: nan
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: nan
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: nan, Accuracy: 980/2115 (46%)
-
-Test set: Average loss: nan, Accuracy: 1032/2042 (51%)
-
-Test set: Average loss: nan, Accuracy: 982/1874 (52%)
-
-Test set: Average loss: nan, Accuracy: 958/1986 (48%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: nan
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: nan
-Test set: Average loss: nan, Accuracy: 980/2115 (46%)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: nan, Accuracy: 1032/2042 (51%)
-
-Test set: Average loss: nan, Accuracy: 982/1874 (52%)
-
-Test set: Average loss: nan, Accuracy: 958/1986 (48%)
-
-Test set: Average loss: nan, Accuracy: 974/1983 (49%)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="plot-naive-vs-ewc-results">
 <h3>Plot Naive vs EWC results<a class="headerlink" href="#plot-naive-vs-ewc-results" title="Permalink to this headline">¶</a></h3>
@@ -2079,9 +1957,6 @@ Test set: Average loss: nan, Accuracy: 974/1983 (49%)
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../../_images/W3D4_Tutorial1_66_0.png" src="../../../_images/W3D4_Tutorial1_66_0.png"/>
-</div>
 </div>
 </div>
 </div>
@@ -2094,10 +1969,6 @@ Test set: Average loss: nan, Accuracy: 974/1983 (49%)
 <div class="section" id="video-3-benchmarks-and-different-types-of-continual-learning">
 <h2>Video 3: Benchmarks and different types of continual learning<a class="headerlink" href="#video-3-benchmarks-and-different-types-of-continual-learning" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "479d5bc4248d4d6ba75616b838119879"}
-</script></div>
 </div>
 <p>As introduced in the above video, continual learning research certainly does not only use the MNIST dataset.
 But not to make things more complicated than necessary (and to make sure the examples run in an acceptable amount of time), we continue with the Split MNIST example for now.
@@ -2148,14 +2019,6 @@ This variant of Split MNIST is also referred to as <em><strong>single-headed Spl
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x_train dim: (60000, 1, 28, 28) and type: uint8
-t_train dim: (60000,) and type: int64
-x_train dim: (10000, 1, 28, 28) and type: uint8
-t_train dim: (10000,) and type: int64
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="example-ewc-on-the-class-incremental-version-of-split-mnist">
@@ -2168,7 +2031,7 @@ t_train dim: (10000,) and type: int64
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
 
 <span class="c1"># Set 'lambda', the hyperparameter of EWC</span>
-<span class="n">ewc_lambda</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">ewc_lambda</span> <span class="o">=</span> <span class="mf">0.2</span>
 
 <span class="c1"># Define dictionaries to store values needed by EWC</span>
 <span class="n">fisher_dict</span> <span class="o">=</span> <span class="p">{}</span>
@@ -2202,140 +2065,6 @@ t_train dim: (10000,) and type: int64
 
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Avg acc: </span><span class="si">{</span><span class="n">avg_acc</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">task_data</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
   <span class="n">ewc_accs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">avg_acc</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">task_data</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training on task:  0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.226422
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing on task: 0
-Test set: Average loss: 0.0000, Accuracy: 2109/2115 (100%)
-
-Testing on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0064, Accuracy: 0/2042 (0%)
-
-Testing on task: 2
-Test set: Average loss: 0.0073, Accuracy: 0/1874 (0%)
-
-Testing on task: 3
-Test set: Average loss: 0.0084, Accuracy: 0/1986 (0%)
-
-Testing on task: 4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0083, Accuracy: 0/1983 (0%)
-
-Avg acc: 19.94326241134752
-Training on task:  1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 1.473775
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing on task: 0
-Test set: Average loss: 0.0014, Accuracy: 252/2115 (12%)
-
-Testing on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0004, Accuracy: 1762/2042 (86%)
-
-Testing on task: 2
-Test set: Average loss: 0.0023, Accuracy: 0/1874 (0%)
-
-Testing on task: 3
-Test set: Average loss: 0.0030, Accuracy: 1/1986 (0%)
-
-Testing on task: 4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0039, Accuracy: 0/1983 (0%)
-
-Avg acc: 19.650639814311912
-Training on task:  2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 1.628246
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing on task: 0
-Test set: Average loss: 0.0018, Accuracy: 135/2115 (6%)
-
-Testing on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0015, Accuracy: 211/2042 (10%)
-
-Testing on task: 2
-Test set: Average loss: 0.0005, Accuracy: 1670/1874 (89%)
-
-Testing on task: 3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0031, Accuracy: 0/1986 (0%)
-
-Testing on task: 4
-Test set: Average loss: 0.0040, Accuracy: 0/1983 (0%)
-
-Avg acc: 21.166035963270826
-Training on task:  3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 2.476979
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing on task: 0
-Test set: Average loss: 0.0015, Accuracy: 366/2115 (17%)
-
-Testing on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0014, Accuracy: 527/2042 (26%)
-
-Testing on task: 2
-Test set: Average loss: 0.0014, Accuracy: 380/1874 (20%)
-
-Testing on task: 3
-Test set: Average loss: 0.0013, Accuracy: 818/1986 (41%)
-
-Testing on task: 4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0018, Accuracy: 11/1983 (1%)
-
-Avg acc: 21.026702101991766
-Training on task:  4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 2.713020
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Testing on task: 0
-Test set: Average loss: 0.0017, Accuracy: 392/2115 (19%)
-
-Testing on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0015, Accuracy: 260/2042 (13%)
-
-Testing on task: 2
-Test set: Average loss: 0.0015, Accuracy: 132/1874 (7%)
-
-Testing on task: 3
-Test set: Average loss: 0.0015, Accuracy: 358/1986 (18%)
-
-Testing on task: 4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0014, Accuracy: 900/1983 (45%)
-
-Avg acc: 20.344522623761836
 </pre></div>
 </div>
 </div>
@@ -2418,128 +2147,6 @@ Although we don’t have time to demonstrate this, there are no values of lambda
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training on task: 0
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.180135
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.012838
-Testing on task: 0
-Test set: Average loss: 0.0000, Accuracy: 2114/2115 (100%)
-
-Testing on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0119, Accuracy: 0/2042 (0%)
-
-Testing on task: 2
-Test set: Average loss: 0.0132, Accuracy: 0/1874 (0%)
-
-Testing on task: 3
-Test set: Average loss: 0.0141, Accuracy: 0/1986 (0%)
-
-Testing on task: 4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0109, Accuracy: 0/1983 (0%)
-
-Avg acc: 19.990543735224584
-Training on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.406758
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.202420
-Testing on task: 0
-Test set: Average loss: 0.0000, Accuracy: 2103/2115 (99%)
-
-Testing on task: 1
-Test set: Average loss: 0.0000, Accuracy: 1990/2042 (97%)
-
-Testing on task: 2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0040, Accuracy: 0/1874 (0%)
-
-Testing on task: 3
-Test set: Average loss: 0.0048, Accuracy: 0/1986 (0%)
-
-Testing on task: 4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0039, Accuracy: 0/1983 (0%)
-
-Avg acc: 39.377220219364965
-Training on task: 2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.510728
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 2 	Loss: 0.395682
-Testing on task: 0
-Test set: Average loss: 0.0000, Accuracy: 2091/2115 (99%)
-
-Testing on task: 1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0000, Accuracy: 1990/2042 (97%)
-
-Testing on task: 2
-Test set: Average loss: 0.0000, Accuracy: 1816/1874 (97%)
-
-Testing on task: 3
-Test set: Average loss: 0.0026, Accuracy: 0/1986 (0%)
-
-Testing on task: 4
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set: Average loss: 0.0024, Accuracy: 0/1983 (0%)
-
-Avg acc: 58.64474824376758
-Training on task: 3
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train Epoch: 1 	Loss: 0.638742
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_10230</span><span class="o">/</span><span class="mf">790201944.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Training on task: </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>   <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">25</span>     <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> 
-<span class="g g-Whitespace">     </span><span class="mi">27</span>   <span class="c1"># Evaluate performance after training on this task</span>
-
-<span class="nn">/tmp/ipykernel_10230/2551254000.py</span> in <span class="ni">train</span><span class="nt">(model, x_train, t_train, optimizer, epoch, device)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>     <span class="n">loss</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">cross_entropy</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">24</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span>   <span class="nb">print</span><span class="p">(</span><span class="s1">'Train Epoch: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\t</span><span class="s1">Loss: </span><span class="si">{:.6f}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span> 
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
-<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span> 
-<span class="g g-Whitespace">    </span><span class="mi">151</span> 
-
-<span class="ne">KeyboardInterrupt</span>: 
-</pre></div>
-</div>
-</div>
 </div>
 <p>And finally, let’s compare the performance of EWC and Replay on the class-incremental version of Split MNIST in a plot:</p>
 <div class="section" id="plot-ewc-vs-replay">
@@ -2593,7 +2200,7 @@ Training on task: 3
 <span class="sd">    (i, j) -&gt; test accuracy on task j after training on task i</span>
 <span class="sd">  """</span>
 
-  <span class="n">final_accs</span> <span class="o">=</span> <span class="n">result_matrix</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># take accuracies after final training</span>
+  <span class="n">final_accs</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">result_matrix</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>  <span class="c1"># take accuracies after final training</span>
   <span class="n">acc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">final_accs</span><span class="p">)</span>  <span class="c1"># compute average</span>
 
   <span class="k">return</span> <span class="n">acc</span><span class="p">,</span> <span class="n">final_accs</span>
@@ -2630,9 +2237,9 @@ Training on task: 3
 </div>
 <div class="section" id="coding-exercise-4-2-evaluate-your-cl-algorithm">
 <h3>Coding Exercise 4.2: Evaluate your CL algorithm<a class="headerlink" href="#coding-exercise-4-2-evaluate-your-cl-algorithm" title="Permalink to this headline">¶</a></h3>
-<p>You should replace the ellipses, i.e., <code class="docutils literal notranslate"><span class="pre">...</span></code>, with your code. You should train 5 tasks and your result_matrix is [0,1] values from a uniformly sampled distribution.</p>
-<p>Hint: Use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code> with weight values (p) = [0.1, 0.9].</p>
+<p>You should replace the ellipses, i.e., <code class="docutils literal notranslate"><span class="pre">...</span></code>, with your code. You should train 5 tasks and your result_matrix is [0,1] values from a randomly sampled distribution.</p>
 <p>This is the only cell you have to modify :)</p>
+<p><strong>Hint:</strong> Use <code class="docutils literal notranslate"><span class="pre">np.random.choice</span></code> with weight values <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">[0.1,</span> <span class="pre">0.9]</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_result_matrix</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
@@ -2647,24 +2254,23 @@ Training on task: 3
 <span class="sd">    result_matrix : numpy.array</span>
 <span class="sd">      A TxT matrix</span>
 <span class="sd">  """</span>
-  <span class="c1">####################################################################</span>
-  <span class="c1"># Fill in all missing code below (...),</span>
-  <span class="c1"># then remove or comment the line below to test your function</span>
-  <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Predict top 5"</span><span class="p">)</span>
-  <span class="c1">####################################################################</span>
-  <span class="n">result_matrix</span> <span class="o">=</span> <span class="p">[]</span>
-  <span class="c1"># Uniform sampled distribution</span>
-  <span class="n">distribution</span> <span class="o">=</span> <span class="o">...</span>
-  <span class="n">place_holder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-  <span class="n">place_holder</span><span class="p">[</span><span class="n">distribution</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="c1"># Masking</span>
+  <span class="c1">#################################################</span>
+  <span class="c1">## TODO for students: update the value of the parameter ##</span>
+  <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Student exercise: implement the mask"</span><span class="p">)</span>
+  <span class="c1">#################################################</span>
+  <span class="n">distribution</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">T</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+  <span class="c1"># Create a random mask</span>
+  <span class="n">mask</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="n">distribution</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
-  <span class="c1"># This block is to un-flatten the 25 element matrix into a 5*5 matrix</span>
+  <span class="n">result_matrix</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
     <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
-      <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">place_holder</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+      <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">distribution</span><span class="p">[</span><span class="n">count</span><span class="p">])</span>
+      <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">result_matrix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
-
   <span class="n">result_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result_matrix</span><span class="p">)</span>
 
   <span class="k">return</span> <span class="n">result_matrix</span>
@@ -2673,15 +2279,23 @@ Training on task: 3
 <span class="c1"># add event to airtable</span>
 <span class="n">atform</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s1">'Coding Exercise 4.2: Evaluate your CL algorithm'</span><span class="p">)</span>
 
+<span class="n">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
 <span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">rehe_accs</span><span class="p">)</span>  <span class="c1"># number of tasks</span>
-<span class="c1">## Uncommnet below to test you function</span>
+<span class="c1">## Uncomment below to test you function</span>
 <span class="c1"># result_matrix = make_result_matrix(T)</span>
 <span class="c1"># print(result_matrix)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D4_ContinualLearning/solutions/W3D4_Tutorial1_Solution_dadabfd5.py"><em>Click for solution</em></a></p>
+<p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W3D4_ContinualLearning/solutions/W3D4_Tutorial1_Solution_9b4fcc19.py"><em>Click for solution</em></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mf">0.60597828</span> <span class="mf">0.73336936</span> <span class="mf">0.13894716</span> <span class="mf">0.31267308</span>        <span class="n">nan</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.12816238</span> <span class="mf">0.17899311</span> <span class="mf">0.75292543</span> <span class="mf">0.66216051</span> <span class="mf">0.78431013</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.0968944</span>  <span class="mf">0.05857129</span> <span class="mf">0.96239599</span> <span class="mf">0.61655744</span> <span class="mf">0.08662996</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.56127236</span> <span class="mf">0.61652471</span> <span class="mf">0.96384302</span> <span class="mf">0.57430429</span> <span class="mf">0.37116085</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.45214524</span> <span class="mf">0.20185025</span> <span class="mf">0.56930512</span> <span class="mf">0.19509597</span> <span class="mf">0.58370402</span><span class="p">]]</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="think-4-2-performance-metrics">
 <h3>Think! 4.2: Performance metrics<a class="headerlink" href="#think-4-2-performance-metrics" title="Permalink to this headline">¶</a></h3>
@@ -2725,7 +2339,7 @@ Training on task: 3
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Result matrix shape: </span><span class="si">{</span><span class="n">result_matrix</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Result matrix values:</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">result_matrix</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="c1">#result_matrix = [value for value in result_matrix if not math.isnan(value)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">result_matrix</span><span class="p">)</span>
+<span class="c1"># print(result_matrix)</span>
 <span class="c1"># print Average Accuracy metric</span>
 <span class="n">acc</span><span class="p">,</span> <span class="n">final_accs</span> <span class="o">=</span> <span class="n">ACC</span><span class="p">(</span><span class="n">result_matrix</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">ACC: </span><span class="si">{</span><span class="n">acc</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -2739,6 +2353,23 @@ Training on task: 3
 </pre></div>
 </div>
 </div>
+</div>
+<p>Expected Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Result</span> <span class="n">matrix</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">Result</span> <span class="n">matrix</span> <span class="n">values</span><span class="p">:</span>
+ <span class="p">[[</span><span class="mf">0.60597828</span> <span class="mf">0.73336936</span> <span class="mf">0.13894716</span> <span class="mf">0.31267308</span>        <span class="n">nan</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.12816238</span> <span class="mf">0.17899311</span> <span class="mf">0.75292543</span> <span class="mf">0.66216051</span> <span class="mf">0.78431013</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.0968944</span>  <span class="mf">0.05857129</span> <span class="mf">0.96239599</span> <span class="mf">0.61655744</span> <span class="mf">0.08662996</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.56127236</span> <span class="mf">0.61652471</span> <span class="mf">0.96384302</span> <span class="mf">0.57430429</span> <span class="mf">0.37116085</span><span class="p">]</span>
+ <span class="p">[</span><span class="mf">0.45214524</span> <span class="mf">0.20185025</span> <span class="mf">0.56930512</span> <span class="mf">0.19509597</span> <span class="mf">0.58370402</span><span class="p">]]</span>
+<span class="p">[</span><span class="mf">0.45214524</span> <span class="mf">0.20185025</span> <span class="mf">0.56930512</span> <span class="mf">0.19509597</span> <span class="mf">0.58370402</span><span class="p">]</span>
+
+<span class="n">ACC</span><span class="p">:</span> <span class="mf">0.4004201200681699</span>
+<span class="n">Accuracies</span> <span class="k">for</span> <span class="n">each</span> <span class="n">task</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.45214524</span> <span class="mf">0.20185025</span> <span class="mf">0.56930512</span> <span class="mf">0.19509597</span> <span class="mf">0.58370402</span><span class="p">]</span>
+
+<span class="n">BWT</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.18065501708115667</span>
+<span class="n">BWT</span> <span class="k">for</span> <span class="n">each</span> <span class="n">task</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.15383304</span>  <span class="mf">0.02285714</span> <span class="o">-</span><span class="mf">0.39309087</span> <span class="o">-</span><span class="mf">0.37920832</span>  <span class="mf">0.</span>        <span class="p">]</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -2814,7 +2445,7 @@ Training on task: 3
 </div>
 </div>
 </div>
-<p>The scenario “New Instances” (<code class="docutils literal notranslate"><span class="pre">scenario="ni"</span></code>) corresponds to the previously introduced Domain-Incremental setting and it’s based on the idea of encountering images of the same classes for every incremental batch of data (or experience if you will). The <code class="docutils literal notranslate"><span class="pre">mini=True</span></code> option downloads data 32x32 instead of the original 128x128.</p>
+<p>The scenario “New Instances” (<code class="docutils literal notranslate"><span class="pre">scenario=ni</span></code>) corresponds to the previously introduced Domain-Incremental setting and it’s based on the idea of encountering images of the same classes for every incremental batch of data (or experience if you will). The <code class="docutils literal notranslate"><span class="pre">mini=True</span></code> option downloads data 32x32 instead of the original 128x128.</p>
 <p><strong>Note:</strong> We download the data from OSF. Due to space limitations on OSF, if you want to use the 128x18 dataset, you have to download it via setting <code class="docutils literal notranslate"><span class="pre">mini=False</span></code>.</p>
 <p>Original locations:</p>
 <ul class="simple">
@@ -2840,9 +2471,9 @@ Training on task: 3
 </div>
 <div class="section" id="explore-the-challenging-core50-scenarios">
 <h2>Explore the challenging CORe50 scenarios!<a class="headerlink" href="#explore-the-challenging-core50-scenarios" title="Permalink to this headline">¶</a></h2>
-<p>CORe50 offers a number of interesting preset scenarios already implemented and available to you through <a class="reference external" href="https://avalanche.continualai.org/">Avalanche</a>.</p>
+<p>CORe50 offers a number of interesting preset scenarios already implemented and available to you through Avalanche.</p>
 <p>You could further try to explore the different scenarios offered (like the challenging NICv2-391) and possibly even apply what you’ve previously learned (like a replay approach) to get the best accuracy you can!</p>
-<p>See the <code class="docutils literal notranslate"><span class="pre">Core50</span></code> help menu below for more info.</p>
+<p>See the CORe50 help menu below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">CORe50</span><span class="p">)</span>
