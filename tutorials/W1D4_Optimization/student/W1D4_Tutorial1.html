@@ -1323,7 +1323,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9cfc927c49c146fc96c6e6e46281f946"}
+{"version_major": 2, "version_minor": 0, "model_id": "1234bfec013142b0b62329b42cbaae15"}
 </script></div>
 </div>
 </div>
@@ -1346,7 +1346,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "d942e57f3ada4ce2acab474d1d47c4ef"}
+{"version_major": 2, "version_minor": 0, "model_id": "f859a992ce434968a2caf87c367c85c6"}
 </script></div>
 </div>
 </div>
@@ -1629,7 +1629,7 @@ WARNING: For this notebook to perform best, if possible, in the menu under `Runt
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6118cde2034842f4ac68b0c67f718eee"}
+{"version_major": 2, "version_minor": 0, "model_id": "3b5cad283ac0493c87ed0ad167eb1d6b"}
 </script></div>
 </div>
 </div>
@@ -1820,9 +1820,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "c0527eb6b2dd4ed19b6fc5b2f981bf5f"}
+{"version_major": 2, "version_minor": 0, "model_id": "4c2e0b2584584ed8ba5dbdbe71dc6383"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "490908a7c42e4af493eb9dac17262fdf"}
+{"version_major": 2, "version_minor": 0, "model_id": "2435ae15ae8a40c88820246bff43411f"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_2de57667.py"><em>Click for solution</em></a></p>
@@ -1839,7 +1839,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6d85b1c95fa94d1ba2883a8de8e44871"}
+{"version_major": 2, "version_minor": 0, "model_id": "4ff7ff0407a24566a851c7b2bc137135"}
 </script></div>
 </div>
 <p>We illustrate this issue in a 2-dimensional setting. We freeze all but two parameters of the network: one of them is an element of the weight matrix (filter) for class 0, while the other is the bias for class 7. This results in an optimization with two decision variables.</p>
@@ -1976,22 +1976,22 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="section" id="coding-exercise-4-implement-momentum">
 <h2>Coding Exercise 4: Implement momentum<a class="headerlink" href="#coding-exercise-4-implement-momentum" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the momentum update given by:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3e6e1063-11de-4dc4-9bbb-7b2996b3234c">
-<span class="eqno">(43)<a class="headerlink" href="#equation-3e6e1063-11de-4dc4-9bbb-7b2996b3234c" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c574a40e-2b4e-408e-bc58-198f8009dbd3">
+<span class="eqno">(43)<a class="headerlink" href="#equation-c574a40e-2b4e-408e-bc58-198f8009dbd3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} = w_t - \eta \nabla J(w_t) + \beta (w_t - w_{t-1})
 \end{equation}\]</div>
 <p>It is convenient to re-express this update rule in terms of a recursion. For that, we define ‘velocity’ as the quantity:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-91e3ead9-2b8a-4d41-9b08-005002d58ac3">
-<span class="eqno">(44)<a class="headerlink" href="#equation-91e3ead9-2b8a-4d41-9b08-005002d58ac3" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-54427ff6-4115-411c-a0b0-106b4c800dfe">
+<span class="eqno">(44)<a class="headerlink" href="#equation-54427ff6-4115-411c-a0b0-106b4c800dfe" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_{t-1} := w_{t} - w_{t-1}
 \end{equation}\]</div>
 <p>which leads to the two-step update rule:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9b845e54-3c86-4b31-98c5-afc2ab45d5ff">
-<span class="eqno">(45)<a class="headerlink" href="#equation-9b845e54-3c86-4b31-98c5-afc2ab45d5ff" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-386833df-93e4-4105-8026-152f6dc1780a">
+<span class="eqno">(45)<a class="headerlink" href="#equation-386833df-93e4-4105-8026-152f6dc1780a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 v_t = - \eta \nabla J(w_t) + \beta (\underbrace{w_t - w_{t-1}}_{v_{t-1}})
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ebdffbf5-34fe-4c5b-8852-def59dae6a57">
-<span class="eqno">(46)<a class="headerlink" href="#equation-ebdffbf5-34fe-4c5b-8852-def59dae6a57" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cdad413a-0017-43cd-bb28-e8114d4b2b3e">
+<span class="eqno">(46)<a class="headerlink" href="#equation-cdad413a-0017-43cd-bb28-e8114d4b2b3e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 w_{t+1} \leftarrow w_t + v_{t}
 \end{equation}\]</div>
 <p>Pay attention to the positive sign of the update in the last equation, given the definition of <span class="math notranslate nohighlight">\(v_t\)</span>, above.</p>
@@ -2161,9 +2161,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "3d7db0f4574f4dd687286852e16a413a"}
+{"version_major": 2, "version_minor": 0, "model_id": "38365d55fe4b4de0a7966b179a12df8d"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "82fd7a62cc8f4169b88ee0469b186425"}
+{"version_major": 2, "version_minor": 0, "model_id": "5732c66e76c1412b87386107e94d99be"}
 </script></div>
 </div>
 </div>
@@ -2204,9 +2204,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "7c54b2d5d84946378c160ed11d3a65c7"}
+{"version_major": 2, "version_minor": 0, "model_id": "64ea82c3e980469f815075615f8e001f"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "49a74cea3bba44f3aa9931432b0021e9"}
+{"version_major": 2, "version_minor": 0, "model_id": "8f8780098fdc4abb845b27d35a1f40ed"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_5eaa9306.py"><em>Click for solution</em></a></p>
@@ -2224,7 +2224,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0ad0a80e9da7444cad122989189a5241"}
+{"version_major": 2, "version_minor": 0, "model_id": "95b18ce290194661b2d73b20245a5d2e"}
 </script></div>
 </div>
 <p>Take a couple of minutes to play with a more complex 3D visualization of the loss landscape of a neural network on a non-convex problem. Visit https://losslandscape.com/explorer.</p>
@@ -2293,7 +2293,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "8d7ef0a48ebb4466b26b21d14242619c"}
+{"version_major": 2, "version_minor": 0, "model_id": "24a999f5704c4d2894a367b61161f7b7"}
 </script></div>
 </div>
 <div class="section" id="think-5-1-width-and-depth-of-the-network">
@@ -2329,9 +2329,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e4fee46c387c42809ce69b37e5f1a6ec"}
+{"version_major": 2, "version_minor": 0, "model_id": "af9b7cc487e1437c83b04b66db8df023"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "9909a4afc15349378136da20172279eb"}
+{"version_major": 2, "version_minor": 0, "model_id": "f544708f12cf4d71ba903660bb3a9e64"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_d69ca8d7.py"><em>Click for solution</em></a></p>
@@ -2350,7 +2350,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "e70c319d38344da8a40af51fbc04c75d"}
+{"version_major": 2, "version_minor": 0, "model_id": "bafc1c687d314d938483cd22c50fdc26"}
 </script></div>
 </div>
 </div>
@@ -2399,7 +2399,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "2179b6606db74f26a4b68010365b09e6"}
+{"version_major": 2, "version_minor": 0, "model_id": "d6bbf9ed6c134d168d3e40fca475723e"}
 </script></div>
 </div>
 </div>
@@ -2498,7 +2498,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "b6e1cb240d374e7ba5d542b39381ae10"}
+{"version_major": 2, "version_minor": 0, "model_id": "bba84d1df7a140e79a6007f59680b9af"}
 </script></div>
 </div>
 <p><strong>Remarks:</strong> SGD works! We have an algorithm that can be applied (with the due precautions) to learn datasets of arbitrary size.</p>
@@ -2523,15 +2523,15 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "25516bfb364141759cff8ddc996bfdeb"}
+{"version_major": 2, "version_minor": 0, "model_id": "bb99ab7159af404f96a549e8dcbbe030"}
 </script></div>
 </div>
 </div>
 <div class="section" id="coding-exercise-7-implement-rmsprop">
 <h2>Coding Exercise 7: Implement RMSprop<a class="headerlink" href="#coding-exercise-7-implement-rmsprop" title="Permalink to this headline">¶</a></h2>
 <p>In this exercise you will implement the update of the RMSprop optimizer:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-66600679-8e45-4791-a35c-c4a01da036e2">
-<span class="eqno">(47)<a class="headerlink" href="#equation-66600679-8e45-4791-a35c-c4a01da036e2" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-31242483-fdde-4724-94db-3c9c57fb689e">
+<span class="eqno">(47)<a class="headerlink" href="#equation-31242483-fdde-4724-94db-3c9c57fb689e" title="Permalink to this equation">¶</a></span>\[\begin{align}
 v_{t} &amp;= \alpha v_{t-1} + (1 - \alpha) \nabla J(w_t)^2 \\ \\
 w_{t+1} &amp;= w_t - \eta \frac{\nabla J(w_t)}{\sqrt{v_t + \epsilon}}
 \end{align}\]</div>
@@ -2681,7 +2681,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "244618d76323486c925cfec144f6a7ba"}
+{"version_major": 2, "version_minor": 0, "model_id": "0070a41cf4284e41b07b4f31f5758220"}
 </script></div>
 </div>
 <div class="section" id="discussion">
@@ -2726,9 +2726,9 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "6f250470fcea489b8546368b3d88c0a3"}
+{"version_major": 2, "version_minor": 0, "model_id": "63f3302bb46b4edd98d62ba9a169a939"}
 </script><script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "f00a7dcd509347a69eb689b7c303eacc"}
+{"version_major": 2, "version_minor": 0, "model_id": "0130473646ea43648b6862fe678d4425"}
 </script></div>
 </div>
 <p><a class="reference external" href="https://github.com/NeuromatchAcademy/course-content-dl/tree/main//tutorials/W1D4_Optimization/solutions/W1D4_Tutorial1_Solution_a3f4354b.py"><em>Click for solution</em></a></p>
@@ -2744,7 +2744,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "aae4043e7cbb4119bbcea5c7f70953b1"}
+{"version_major": 2, "version_minor": 0, "model_id": "e2464164d4614fe49450f6d8536fa36d"}
 </script></div>
 </div>
 </div>
@@ -2778,7 +2778,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell_output docutils container">
 <div class="output text_html">
 <div>
-<a href="https://portal.neuromatchacademy.org/api/redirect/to/9548a279-c9f9-4586-b89c-f0ceceba5c14?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzFENF9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyOTQ2NzIyNi41NDU4MjEyfSwgeyJldmVudCI6ICJWaWRlbyAxOiBJbnRyb2R1Y3Rpb24iLCAidHMiOiAxNjI5NDY3MjI3LjY1OTI3NDZ9LCB7ImV2ZW50IjogIlZpZGVvIDI6IENhc2UgU3R1ZHkgLSBNTFAgQ2xhc3NpZmljYXRpb24iLCAidHMiOiAxNjI5NDY3MjI3Ljc1MzQ1NDd9LCB7ImV2ZW50IjogIlZpZGVvIDM6IE9wdGltaXphdGlvbiBvZiBhbiBPYmplY3RpdmUgRnVuY3Rpb24iLCAidHMiOiAxNjI5NDY3MjQzLjkxMDQyMTZ9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSAzOiBJbXBsZW1lbnQgZ3JhZGllbnQgZGVzY2VudCIsICJ0cyI6IDE2Mjk0NjcyNDMuOTM4NzYxfSwgeyJldmVudCI6ICJWaWRlbyA0OiBNb21lbnR1bSIsICJ0cyI6IDE2Mjk0NjcyNDQuNTgzMDY1fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgNDogSW1wbGVtZW50IG1vbWVudHVtIiwgInRzIjogMTYyOTQ2NzI0NC42MzAwMTh9LCB7ImV2ZW50IjogIlZpZGVvIDU6IE92ZXJwYXJhbWV0cml6YXRpb24iLCAidHMiOiAxNjI5NDY3MjQ2LjgxNDg0NX0sIHsiZXZlbnQiOiAiVmlkZW8gNjogTWluaS1iYXRjaGVzIiwgInRzIjogMTYyOTQ2NzI0Ny4wMjY0MjA2fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgNjogSW1wbGVtZW50IG1pbmliYXRjaCBzYW1wbGluZyIsICJ0cyI6IDE2Mjk0NjcyNDcuMTI1ODAwOH0sIHsiZXZlbnQiOiAiVmlkZW8gNzogQWRhcHRpdmUgTWV0aG9kcyIsICJ0cyI6IDE2Mjk0NjcyNDcuMjg1OTQ5NX0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDc6IEltcGxlbWVudCBSTVNwcm9wIiwgInRzIjogMTYyOTQ2NzI0Ny4zMDg1NzM1fSwgeyJldmVudCI6ICJWaWRlbyA4OiBFdGhpY2FsIGNvbmNlcm5zIiwgInRzIjogMTYyOTQ2NzI0Ny41MDQwNzI0fSwgeyJldmVudCI6ICJ1cmwgZ2VuZXJhdGVkIiwgInRzIjogMTYyOTQ2NzI0Ny41MjI3MDE3fV19" target="_blank">
+<a href="https://portal.neuromatchacademy.org/api/redirect/to/9548a279-c9f9-4586-b89c-f0ceceba5c14?data=eyJmb3JtX2lkIjogImFwcG43VmRQUnNlU29NWEVHIiwgInRhYmxlX25hbWUiOiAiVzFENF9UMSIsICJhbnN3ZXJzIjoge30sICJldmVudHMiOiBbeyJldmVudCI6ICJpbml0IiwgInRzIjogMTYyOTU2MzI3Mi40NzE1NDYyfSwgeyJldmVudCI6ICJWaWRlbyAxOiBJbnRyb2R1Y3Rpb24iLCAidHMiOiAxNjI5NTYzMjczLjMyMjY4MzZ9LCB7ImV2ZW50IjogIlZpZGVvIDI6IENhc2UgU3R1ZHkgLSBNTFAgQ2xhc3NpZmljYXRpb24iLCAidHMiOiAxNjI5NTYzMjczLjQwMTg2NDN9LCB7ImV2ZW50IjogIlZpZGVvIDM6IE9wdGltaXphdGlvbiBvZiBhbiBPYmplY3RpdmUgRnVuY3Rpb24iLCAidHMiOiAxNjI5NTYzMjg3LjczMjgzODZ9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSAzOiBJbXBsZW1lbnQgZ3JhZGllbnQgZGVzY2VudCIsICJ0cyI6IDE2Mjk1NjMyODcuNzU5NTc5NH0sIHsiZXZlbnQiOiAiVmlkZW8gNDogTW9tZW50dW0iLCAidHMiOiAxNjI5NTYzMjg4LjI5OTgxODh9LCB7ImV2ZW50IjogIkNvZGluZyBFeGVyY2lzZSA0OiBJbXBsZW1lbnQgbW9tZW50dW0iLCAidHMiOiAxNjI5NTYzMjg4LjM0MjU2NX0sIHsiZXZlbnQiOiAiVmlkZW8gNTogT3ZlcnBhcmFtZXRyaXphdGlvbiIsICJ0cyI6IDE2Mjk1NjMyOTAuMjg3MDI0NX0sIHsiZXZlbnQiOiAiVmlkZW8gNjogTWluaS1iYXRjaGVzIiwgInRzIjogMTYyOTU2MzI5MC40NjM2NTE0fSwgeyJldmVudCI6ICJDb2RpbmcgRXhlcmNpc2UgNjogSW1wbGVtZW50IG1pbmliYXRjaCBzYW1wbGluZyIsICJ0cyI6IDE2Mjk1NjMyOTAuNTMzMjc5Mn0sIHsiZXZlbnQiOiAiVmlkZW8gNzogQWRhcHRpdmUgTWV0aG9kcyIsICJ0cyI6IDE2Mjk1NjMyOTAuNjY0NTE0NX0sIHsiZXZlbnQiOiAiQ29kaW5nIEV4ZXJjaXNlIDc6IEltcGxlbWVudCBSTVNwcm9wIiwgInRzIjogMTYyOTU2MzI5MC42ODUxMjE4fSwgeyJldmVudCI6ICJWaWRlbyA4OiBFdGhpY2FsIGNvbmNlcm5zIiwgInRzIjogMTYyOTU2MzI5MC44NDQ0ODd9LCB7ImV2ZW50IjogInVybCBnZW5lcmF0ZWQiLCAidHMiOiAxNjI5NTYzMjkwLjg2MDQ0NH1dfQ%3D%3D" target="_blank">
 <img alt="button link end of day Survey" src="https://github.com/NeuromatchAcademy/course-content-dl/blob/main/tutorials/static/SurveyButton.png?raw=1" style="width:410px"/></a>
 </div></div></div>
 </div>
@@ -2796,7 +2796,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "0bd7c2528fe44ad7b6020a4d43eb044f"}
+{"version_major": 2, "version_minor": 0, "model_id": "6dc27c6cdd344015841676e53afe1fa9"}
 </script></div>
 </div>
 </div>
@@ -2999,7 +2999,7 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 </pre></div>
 </div>
 <script type="application/vnd.jupyter.widget-view+json">
-{"version_major": 2, "version_minor": 0, "model_id": "267338cc5aa8438fa570110c38042245"}
+{"version_major": 2, "version_minor": 0, "model_id": "34e3cadd720c4523b05660b845f0aae4"}
 </script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[VALID] Epoch 1 - Batch 200 - Loss: 2.235 - Acc: 38.174%
 [TRAIN] Epoch 1 - Batch 200 - Loss: 2.274 - Acc: 30.945%
 </pre></div>
@@ -3020,92 +3020,32 @@ main.0.bias tensor([-0.0290, -0.0033,  0.0100, -0.0320,  0.0022,  0.0221,  0.030
 [TRAIN] Epoch 2 - Batch 400 - Loss: 1.168 - Acc: 74.133%
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
-    send_bytes(obj)
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
-    self._send_bytes(m[offset:offset + size])
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 404, in _send_bytes
-    self._send(header + buf)
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 368, in _send
-    n = write(self._handle, buf)
-BrokenPipeError: [Errno 32] Broken pipe
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/queues.py", line 242, in _feed
-    send_bytes(obj)
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 200, in send_bytes
-    self._send_bytes(m[offset:offset + size])
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 404, in _send_bytes
-    self._send(header + buf)
-  File "/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/multiprocessing/connection.py", line 368, in _send
-    n = write(self._handle, buf)
-BrokenPipeError: [Errno 32] Broken pipe
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[VALID] Epoch 2 - Batch 600 - Loss: 0.928 - Acc: 80.957%
+[TRAIN] Epoch 2 - Batch 600 - Loss: 0.997 - Acc: 79.094%
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_3185</span><span class="o">/</span><span class="mf">729571843.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span>       <span class="n">val_loss</span><span class="p">,</span> <span class="n">val_acc</span> <span class="o">=</span> <span class="n">eval_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>                                      <span class="n">num_batches</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>                                      <span class="n">device</span><span class="o">=</span><span class="n">DEVICE</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span>       <span class="n">metrics</span><span class="p">[</span><span class="s1">'val_idx'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">step_idx</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>       <span class="n">metrics</span><span class="p">[</span><span class="s1">'val_loss'</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2984</span><span class="o">/</span><span class="mf">729571843.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span>     <span class="n">acc</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">preds</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">labels</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="c1"># Compute gradients</span>
+<span class="ne">---&gt; </span><span class="mi">58</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="c1"># Update parameters</span>
+<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="c1"># Note how all the magic in the update of the parameters is encapsulated by</span>
 
-<span class="nn">/tmp/ipykernel_3185/3014249815.py</span> in <span class="ni">eval_model</span><span class="nt">(model, data_loader, num_batches, device)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>       <span class="n">data</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">batch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>       <span class="c1"># Evaluate model and loss on minibatch</span>
-<span class="ne">---&gt; </span><span class="mi">22</span>       <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span>       <span class="n">loss_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>       <span class="n">acc_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mf">1.</span> <span class="o">*</span> <span class="p">(</span><span class="n">preds</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">labels</span><span class="p">))</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/_tensor.py</span> in <span class="ni">backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>                 <span class="n">create_graph</span><span class="o">=</span><span class="n">create_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>                 <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">255</span>         <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span> 
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="k">def</span> <span class="nf">register_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/tmp/ipykernel_3185/1933332006.py</span> in <span class="ni">forward</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="c1"># Flatten the images into 'vectors'</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="n">transformed_x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_dim</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">42</span>     <span class="n">hidden_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">transformed_x</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span>     <span class="n">output</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">hidden_output</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span>     <span class="k">return</span> <span class="n">output</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/container.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">139</span>             <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">140</span>         <span class="k">return</span> <span class="nb">input</span>
-<span class="g g-Whitespace">    </span><span class="mi">141</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *input, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1049</span>         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1050</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1051</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1052</span>         <span class="c1"># Do not call functions when jit is used</span>
-<span class="g g-Whitespace">   </span><span class="mi">1053</span>         <span class="n">full_backward_hooks</span><span class="p">,</span> <span class="n">non_full_backward_hooks</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/modules/linear.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span> 
-<span class="g g-Whitespace">     </span><span class="mi">95</span>     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">96</span>         <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span> 
-<span class="g g-Whitespace">     </span><span class="mi">98</span>     <span class="k">def</span> <span class="nf">extra_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/nn/functional.py</span> in <span class="ni">linear</span><span class="nt">(input, weight, bias)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1845</span>     <span class="k">if</span> <span class="n">has_torch_function_variadic</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1846</span>         <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span><span class="n">linear</span><span class="p">,</span> <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">),</span> <span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="n">bias</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1847</span>     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">_C</span><span class="o">.</span><span class="n">_nn</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1848</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1849</span> 
+<span class="nn">/opt/hostedtoolcache/Python/3.7.11/x64/lib/python3.7/site-packages/torch/autograd/__init__.py</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>     <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="n">tensors</span><span class="p">,</span> <span class="n">grad_tensors_</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span>
+<span class="ne">--&gt; </span><span class="mi">149</span>         <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># allow_unreachable flag</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> 
+<span class="g g-Whitespace">    </span><span class="mi">151</span> 
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
